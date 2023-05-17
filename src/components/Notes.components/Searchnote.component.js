@@ -1,7 +1,8 @@
 import React from "react";  
 // import {DropdownButton, Dropdown} from "antd/es/dropdown/dropdown-button";  
 // import { Row } from "reactstrap";  
-  
+import Form from "react-bootstrap/Form";
+
 function Searchnote(){  
     return(  
         <div className="ms-3">  
@@ -34,7 +35,7 @@ function Searchnote(){
                     <div className='row mb-2'>   
                     <div className='col-4'><label>Topic:</label></div>   
                         <div className='col-8'>   
-                            <select className='w-100 form-control'>   
+                            <Form.Select aria-label="Default select example">  
                                 <option>General</option>  
                                 <option>First notice of loss</option>  
                                 <option>Coverage</option>  
@@ -45,7 +46,7 @@ function Searchnote(){
                                 <option>Litigation</option>  
                                 <option>Denial</option>  
                                 <option>Reinsurance</option>  
-                            </select>   
+                            </Form.Select>   
                         </div>   
                     </div>   
             </div>  

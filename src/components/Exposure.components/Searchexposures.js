@@ -185,22 +185,24 @@ function Searchexposures() {
           <h1>Exposures</h1>
         </div>
         <hr />
-        <div className="col-6 align-right">
-          <button
-            type="button"
-            class="btn btn-success custom-margin-right-2"
-            onClick={handleAddRow}
-          >
-            Add exposures
-          </button>
-          &nbsp;&nbsp;
-          <button
-            type="button"
-            class="btn btn-dark"
-            onClick={handleDeleteRow}
-          >
-            Delete
-          </button>
+        <div className="col-16 d-flex justify-content-end">
+          
+            <button
+              type="button"
+              class="btn btn-success custom-margin-right-2"
+              onClick={handleAddRow}
+              >
+              Add exposures
+            </button>
+            &nbsp;&nbsp;
+            <button
+              type="button"
+              class="btn btn-dark"
+              onClick={handleDeleteRow}
+            >
+              Delete
+            </button>
+          
         </div>
       </div>
       <BootstrapTable keyField="id" data={tableData} columns={columns} />
