@@ -5,7 +5,7 @@ import React from 'react'
  
 function Basic() { 
   return ( 
-    //hi
+    
             <div> 
         <div className='row mb-2'> 
         <div className='col-4'><label>Claim Number</label></div> 
