@@ -68,7 +68,6 @@ function FnolDetails(){
   
   <input type="submit"class="btn btn-success custom-margin-right-1" value="Submit"/> &nbsp; 
   <input type="reset"class="btn btn-dark custom-margin-right-1" value="Reset"/>
-  
   </div>
   );
 

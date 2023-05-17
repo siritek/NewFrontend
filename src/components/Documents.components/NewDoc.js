@@ -1,9 +1,15 @@
 import React from 'react';
+<<<<<<< HEAD
 function NewDoc(props) {
  
   const handleDocumentClick=()=>{
     props.onDocumentClick();
   };
+=======
+import Form from "react-bootstrap/Form";
+
+function NewDoc() {
+>>>>>>> e4073a352a44803b21b8dd11f03e1ce17204d40e
   return (
     <div>
       <div>
@@ -17,89 +23,87 @@ function NewDoc(props) {
         <hr />
       </div>
 
-      <div className='row mb-2'>
-        <div className='col-3'>
+      <div className="row mb-2">
+        <div className="col-3">
           <label>Document Name</label>
-          <i className='text-danger h5'>*</i>
+          <i className="text-danger h5">*</i>
         </div>
-        <div className='col-6'>
-          <input className='w-100 form-control' />
+        <div className="col-6">
+          <input className="w-100 form-control" />
         </div>
       </div>
 
-      <div className='row mb-2'>
-        <div className='col-3'>
+      <div className="row mb-2">
+        <div className="col-3">
           <label>Document Type</label>
         </div>
-        <div className='col-6'>
-          <select className='w-100 form-control'>
+        <div className="col-6">
+          <Form.Select aria-label="Default select example">
             <option>None</option>
             <option>.JPEG</option>
             <option>.PDF</option>
             <option>.MP4</option>
             <option>.SVG</option>
             <option>.GIF</option>
-          </select>
+          </Form.Select>
         </div>
       </div>
 
-      <div className='row mb-2'>
-        <div className='col-3'>
+      <div className="row mb-2">
+        <div className="col-3">
           <label>Related To</label>
         </div>
-        <div className='col-6'>
-          <select className='w-100 form-control'>
+        <div className="col-6">
+          <Form.Select aria-label="Default select example">
             <option>None</option>
             <option>Claim</option>
             <option>Contacts</option>
-          </select>
+          </Form.Select>
         </div>
       </div>
 
-      <div className='row mb-2'>
-        <div className='col-3'>
+      <div className="row mb-2">
+        <div className="col-3">
           <label>Status</label>
-          <i className='text-danger h5'>*</i>
+          <i className="text-danger h5">*</i>
         </div>
-        <div className='col-6'>
-          <select className='w-100 form-control'>
+        <div className="col-6">
+          <Form.Select aria-label="Default select example">
             <option>None</option>
             <option>Any</option>
             <option>Approved</option>
             <option>Approving</option>
             <option>Draft</option>
             <option>Final</option>
-          </select>
+          </Form.Select>
         </div>
       </div>
 
-      <div className='row mb-2'>
-        <div className='col-3'>
+      <div className="row mb-2">
+        <div className="col-3">
           <label>Uploaded By</label>
-          <i className='text-danger h5'>*</i>
+          <i className="text-danger h5">*</i>
         </div>
-        <div className='col-6'>
-          <input className='w-100 form-control' />
+        <div className="col-6">
+          <input className="w-100 form-control" />
         </div>
       </div>
 
-      <div className='row mb-2'>
-        <div className='col-3'>
+      <div className="row mb-2">
+        <div className="col-3">
           <label>Uploaded Date</label>
-          
         </div>
-        <div className='col-3'>
-          <input type="date" className='w-100 form-control' />
+        <div className="col-3">
+          <input type="date" className="w-100 form-control" />
         </div>
       </div>
 
-      <div className='row mb-2'>
-        <div className='col-3'>
+      <div className="row mb-2">
+        <div className="col-3">
           <label>Uploaded Time</label>
-       
         </div>
-        <div className='col-3'>
-          <input type="time" className='w-100 form-control' />
+        <div className="col-3">
+          <input type="time" className="w-100 form-control" />
         </div>
       </div>
     </div>

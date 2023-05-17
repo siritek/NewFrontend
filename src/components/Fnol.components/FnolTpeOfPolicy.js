@@ -38,8 +38,7 @@ function FnolTypeOfPolicy() {
           type="radio"  
           name="form"  
           value="form2"  
-          onChange={handleRadioChange}  
-        />Homeowners   
+          onChange={handleRadioChange} />Homeowners   
       </div>
       <div>
       {showForm1 && (  

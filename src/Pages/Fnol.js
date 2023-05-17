@@ -3,7 +3,6 @@ import FnolDetails from "../components/Fnol.components/FnolDetails"
  
 function Fnol() { 
   
-   
   return ( 
      <div> 
  <div>

@@ -171,7 +171,7 @@ function Additional() {
   
   return (  
     <div>  
-      <div className='row p-1 m-0 text-bg-secondary'>  
+      <div className='row p-1 m-0'>  
         <div className='col-6'>  
           <strong>Additional Insured</strong>  
         </div>  
