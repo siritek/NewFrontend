@@ -1,33 +1,3 @@
-// import React from 'react'
-
-// function Additional() {
-//   return (
-//     <div className='ms-3'>
-//       <table className='table'>
-//         <thead>
-//           <tr>
-//             <th>#</th>
-//             <th>First Name</th>
-//             <th>Last Name</th>
-//             <th>Username</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           <tr>
-//             <td>1</td>
-//             <td>John</td>
-//             <td>Doe</td>
-//             <td>@John</td>
-//           </tr>
-
-//         </tbody>
-//       </table>
-//     </div>
-//   )
-// }
-
-// export default Additional
-
 import React, { useState } from 'react'  
 import BootstrapTable from 'react-bootstrap-table-next';  
 import { Dropdown, DropdownButton } from "react-bootstrap";  
@@ -169,7 +139,7 @@ function Policylevel() {
   
   return (  
     <div>  
-      <div className='row p-1 m-0 text-bg-secondary'>  
+      <div className='row p-1 m-0'>  
         <div className='col-6'>  
           <strong>Policy-level Coverages</strong>  
         </div>  
