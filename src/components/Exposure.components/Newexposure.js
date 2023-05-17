@@ -5,35 +5,15 @@ import Form from "react-bootstrap/Form";
     
 function Newexposure() {    
   return (
-<<<<<<< HEAD
-    <div ><div>
-      <h2> New Exposure</h2>
-      <hr/>
-    </div>
-   
-        <div className="row mb-2">
-          <div className="col-3">
-            <label>Loss Party</label>
-          </div>
-          <div className="col-6">
-            <select className="w-100 form-control">
-              <option>None</option>
-              <option>Insured's loss</option>
-              <option>Third party Liability </option>
-              <option> </option>
-            </select>
-          </div>
-=======
     <div>
       <div>
-        <h1>Exposures</h1>
+        <h2>New Exposure</h2>
         <hr />
       </div>
 
       <div className="row mb-2">
         <div className="col-3">
           <label>Loss Party</label>
->>>>>>> e4073a352a44803b21b8dd11f03e1ce17204d40e
         </div>
         <div className="col-6">
           <Form.Select aria-label="Default select example">

@@ -1,6 +1,7 @@
 import React, { useState } from 'react' 
 import BootstrapTable from 'react-bootstrap-table-next'; 
 import { Dropdown } from "react-bootstrap"; 
+import Form from "react-bootstrap/Form";  
  
 function Documents(props) { 
   const handleNewDocClick=()=>{
@@ -164,24 +165,24 @@ function Documents(props) {
     <div className='row mb-2'>  
           <div className='col-3'><label>Related To</label></div>  
           <div className='col-4'>  
-            <select className='w-100 form-control'>  
-              <option></option>  
+            <Form.Select className='w-100 form-control'>  
+              <option>None</option>  
               <option>Claim</option>  
               <option>Contacts</option>  
-            </select>  
+            </Form.Select>  
           </div>  
-        </div> 
+        </div>
         <div className='row mb-2'>  
           <div className='col-3'><label>Status</label></div>  
           <div className='col-4'>  
-            <select className='w-100 form-control'>  
-              <option></option>  
+            <Form.Select className='w-100 form-control'>  
+              <option>None</option>  
               <option>Any</option>  
               <option>Approved</option> 
               <option>Approving</option> 
               <option>Draft</option> 
               <option>Final</option>  
-            </select>  
+            </Form.Select>  
           </div>  
         </div> 
         <div className='row mb-2'>  
