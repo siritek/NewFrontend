@@ -1,6 +1,6 @@
 import React from 'react'
 
-// import Dropdown from 'react-bootstrap/Dropdown'; 
+ import Form from "react-bootstrap/Form";
  
 function Basic() { 
 
@@ -17,10 +17,13 @@ function Basic() {
           <input type="number" className='w-100 form-control' maxLength={25}/> 
           </div> 
         </div> 
+
+       
         <div className='row mb-2'> 
           <div className='col-4'><label>Policy Type</label></div> 
           <div className='col-8'> 
-            <select className='w-100 form-control'> 
+          
+            <Form.Select className='w-100 form-control'> 
               <option>None</option> 
               <option>Personal Auto</option> 
               <option>Commercial Auto</option> 
@@ -28,7 +31,7 @@ function Basic() {
               <option>Genral Liability</option> 
               <option>Mutual</option> 
               <option>Worker Compensation</option> 
-            </select> 
+            </Form.Select> 
           </div> 
         </div> 
  
@@ -93,13 +96,13 @@ function Basic() {
         <div className='row mb-2'> 
           <div className='col-4'><label>Policy Status</label></div> 
           <div className='col-8'> 
-            <select className='w-100 form-control'> 
+            <Form.Select className='w-100 form-control'> 
             <option>None</option> 
               <option>In Effect</option> 
               <option>Pre-Cancellation</option> 
               <option>Expired</option> 
               <option>Other</option> 
-            </select> 
+            </Form.Select> 
           </div> 
         </div> 
  

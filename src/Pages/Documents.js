@@ -158,7 +158,7 @@ function Documents(props) {
   return ( 
     <div> 
         <div> 
-    <h1> Documents</h1> 
+    <h2> Documents</h2> 
     <hr />
     </div>
     <div className='row mb-2'>  

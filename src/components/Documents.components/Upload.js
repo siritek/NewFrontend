@@ -1,16 +1,23 @@
 import React from 'react' 
 //mport BootstrapTable from 'react-bootstrap-table-next'; 
-function Upload(){
+function Upload(props){
+    const handleDocumentClick=()=>{
+        props.onDocumentClick();
+      };
     return ( 
         <div> 
-        <div> 
-    <h1>  Upload Documents</h1> 
+      <div className="d-flex justify-content-between align-items-center">
+          <h2>Upload Document</h2>
+          <button type="button" className="btn btn-success" onClick={handleDocumentClick}>
+            Back
+          </button>
+        </div>
     <hr />
     
     <label for="Documents"> Documents  &nbsp;</label> 
     <input type="file" id="Documents" name="Documents" ></input>  
         </div>   
-        </div>
+        
       ); 
 }
 export default Upload;

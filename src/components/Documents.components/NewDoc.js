@@ -1,10 +1,19 @@
 import React from 'react';
-
-function NewDoc() {
+function NewDoc(props) {
+ 
+  const handleDocumentClick=()=>{
+    props.onDocumentClick();
+  };
   return (
     <div>
       <div>
-        <h1>New Document</h1>
+
+        <div className="d-flex justify-content-between align-items-center">
+          <h2>New Document</h2>
+          <button type="button" className="btn btn-success" onClick={handleDocumentClick}>
+            Back
+          </button>
+        </div>
         <hr />
       </div>
 
@@ -25,7 +34,7 @@ function NewDoc() {
         <div className='col-6'>
           <select className='w-100 form-control'>
             <option>None</option>
-            <option>JPEG</option>
+            <option>.JPEG</option>
             <option>.PDF</option>
             <option>.MP4</option>
             <option>.SVG</option>

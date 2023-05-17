@@ -9,7 +9,7 @@ function Losssummary() {
     return ( 
       <div> 
         <div> 
-    <h1>Loss Summary</h1> 
+    <h2>Loss Summary</h2> 
     <hr />
     </div>
         <div className='row'> 

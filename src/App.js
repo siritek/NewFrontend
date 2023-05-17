@@ -38,8 +38,8 @@ function App() {
           {activeSection === "pi" && <PolicyInformation />} 
           {activeSection === "documents" && (<Documents onNewDocClick={() =>  
             setActiveSection("newDoc")} onUploadClick={() => setActiveSection("upload")} />)} 
-          {activeSection === "newDoc" && <NewDoc />} 
-          {activeSection === "upload" && <Upload />} 
+          {activeSection === "newDoc" && <NewDoc onDocumentClick={()=>setActiveSection("documents")} />} 
+          {activeSection === "upload" && <Upload onDocumentClick={()=>setActiveSection("documents")}/>} 
           {activeSection === "losssummary" && <Losssummary/>}
           {activeSection === "newexposure" && <Newexposure/>}
           {activeSection === "searchexposure" && <Searchexposure/>}  

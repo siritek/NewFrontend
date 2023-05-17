@@ -182,7 +182,7 @@ function Searchexposures() {
     <div>
       <div className="row p-1 m-0 ">
         <div className="col-6">
-          <h1>Exposures</h1>
+          <h2> Search Exposures</h2>
         </div>
         <hr />
         <div className="col-6 align-right">

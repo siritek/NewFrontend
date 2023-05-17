@@ -2,6 +2,9 @@ import React from 'react'
 
 function Dairy(){
     return(   
+      <div>
+      <h2>Diary</h2>
+      <hr/>
       <div className='row'> 
          <div className='row mb-2'> 
           <div className='col-4'> 
@@ -76,7 +79,7 @@ function Dairy(){
           </div> 
         </div> 
         </div>
-       
+       </div>
     )
 }
 export default Dairy;
