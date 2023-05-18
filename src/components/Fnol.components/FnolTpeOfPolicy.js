@@ -5,7 +5,15 @@ import React, { useState } from "react";
 function FnolTypeOfPolicy() {  
   const [showForm1, setShowForm1] = useState(false);  
   const [showForm2, setShowForm2] = useState(false);  
-  
+  const [VIN, setVIN] = React.useState('');
+  const [Make, setMake] = React.useState('');
+  const [Model, setModel] = React.useState('');
+  const [PlateNumber, setPlateNumber] = React.useState('');
+  const [PlateSlate, setPlateSlate] = React.useState('');
+  const [Driver, setDriver] = React.useState('');
+  const [Address, setAddress] = React.useState('');
+ 
+ 
   const handleRadioChange = (e) => {  
     const value = e.target.value;  
     if (value === "form1") {  
@@ -48,50 +56,52 @@ function FnolTypeOfPolicy() {
           <br/>
           <div className='row mb-2'>
      <div className='col-4'>
-       <label>VIN </label>
+       <label htmlFor="VIN">VIN </label>
      </div>
      <div className='col-5'>
-       <input className='w-100 form-control' />
+       <input id="VIN" type="text" value={VIN} 
+       onChange={event=>{setVIN(event.target.value)}} className='w-100 form-control' />
      </div>
    </div>
    <div className='row mb-2'>
      <div className='col-4'>
-       <label>Make </label>
+       <label htmlFor="Make">Make </label>
      </div>
      <div className='col-5'>
-       <input className='w-100 form-control' />
+       <input id="Make" type="text" value={Make} onChange={event=>{setMake(event.target.value)}} className='w-100 form-control' />
      </div>
    </div>
    <div className='row mb-2'>
      <div className='col-4'>
-       <label>Model </label>
+       <label htmlFor="Model">Model </label>
      </div>
      <div className='col-5'>
-       <input className='w-100 form-control' />
+       <input id="Model" type="text" value={Model}onChange={event=>{setModel(event.target.value)}} className='w-100 form-control' />
      </div>
    </div>
    <div className='row mb-2'>
      <div className='col-4'>
-       <label>Plate Number </label>
+       <label htmlFor="PlateNumber">Plate Number </label>
      </div>
      <div className='col-5'>
-       <input className='w-100 form-control' />
+       <input id="PlateNumber" type="number" value={PlateNumber}onChange={event=>{setPlateNumber(event.target.value)}} className='w-100 form-control' />
      </div>
    </div>
    <div className='row mb-2'>
      <div className='col-4'>
-       <label>Plate Slate </label>
+       <label htmlFor="PlateSlate">Plate Slate </label>
      </div>
      <div className='col-5'>
-       <input className='w-100 form-control' />
+       <input id="PlateSlate" type="text" value={PlateSlate} 
+       onChange={event=>{setPlateSlate(event.target.value)}} className='w-100 form-control' />
      </div>
    </div>
    <div className='row mb-2'>
      <div className='col-4'>
-       <label>Driver </label>
+       <label htmlFor="Driver">Driver </label>
      </div>
      <div className='col-5'>
-       <input className='w-100 form-control' />
+       <input id="Driver" type="text" value={Driver} onChange={event=>{setDriver(event.target.value)}} className='w-100 form-control' />
      </div>
    </div>
          </div> 
@@ -103,9 +113,9 @@ function FnolTypeOfPolicy() {
           <br/>  
  
         <div className='col-4'> 
-    <label for="Address">Address   </label>  
+    <label htmlFor="Address">Address   </label>  
      
-    <textarea name="message" id="message"  rows="5"  placeholder="Mention your complete address" ></textarea>  
+    <textarea name="message" id="Address"  value={Address} onChange={event=>{setAddress(event.target.value)}} rows="5"  placeholder="Mention your complete address" ></textarea>  
            </div> 
            </div> 
           

@@ -7,7 +7,7 @@ function Newexposure() {
   return (
     <div>
       <div>
-        <h1>Exposures</h1>
+        <h2>New Exposure</h2>
         <hr />
       </div>
 

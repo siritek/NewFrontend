@@ -1,7 +1,14 @@
 import React from 'react';
 import Form from "react-bootstrap/Form";
 function NewDoc(props) {
- 
+const[DocName,setDocName]=React.useState('');
+const[DocType,setDocType]=React.useState('None')
+const[Related,setRelated]=React.useState('None');
+const[Status,setStatus]=React.useState('None');
+const[UploadedBy,setUploadedBy]=React.useState('')
+const[UDate,setUDate]=React.useState('');
+const[UTime,setUTime]=React.useState('');
+
   const handleDocumentClick=()=>{
     props.onDocumentClick();
   };
@@ -20,85 +27,85 @@ function NewDoc(props) {
 
       <div className="row mb-2">
         <div className="col-3">
-          <label>Document Name</label>
+          <label htmlFor='DocName'>Document Name</label>
           <i className="text-danger h5">*</i>
         </div>
         <div className="col-6">
-          <input className="w-100 form-control" />
+          <input id='DocName' type="text" value={DocName} onChange={event=>{setDocName(event.target.value)}} className="w-100 form-control" />
         </div>
       </div>
 
       <div className="row mb-2">
         <div className="col-3">
-          <label>Document Type</label>
+          <label htmlFor="DocType">Document Type</label>
         </div>
         <div className="col-6">
-          <Form.Select aria-label="Default select example">
-            <option>None</option>
-            <option>.JPEG</option>
-            <option>.PDF</option>
-            <option>.MP4</option>
-            <option>.SVG</option>
-            <option>.GIF</option>
+          <Form.Select id="DocType" value={DocType} onChange={event=>{setDocType(event.target.value)}} aria-label="Default select example">
+            <option value='None'>None</option>
+            <option value='Jpeg'>.JPEG</option>
+            <option value='Pdf'>.PDF</option>
+            <option value='Mp4'>.MP4</option>
+            <option value='Svg'>.SVG</option>
+            <option value='Gif'>.GIF</option>
           </Form.Select>
         </div>
       </div>
 
       <div className="row mb-2">
         <div className="col-3">
-          <label>Related To</label>
+          <label htmlFor='Related'>Related To</label>
         </div>
         <div className="col-6">
-          <Form.Select aria-label="Default select example">
-            <option>None</option>
-            <option>Claim</option>
-            <option>Contacts</option>
+          <Form.Select id="Related" value={Related} onChange={event=>{setRelated(event.target.value)}} aria-label="Default select example">
+            <option value="None">None</option>
+            <option value="Claim">Claim</option>
+            <option value="Contacts">Contacts</option>
           </Form.Select>
         </div>
       </div>
 
       <div className="row mb-2">
         <div className="col-3">
-          <label>Status</label>
+          <label htmlFor='Status'>Status</label>
           <i className="text-danger h5">*</i>
         </div>
         <div className="col-6">
-          <Form.Select aria-label="Default select example">
-            <option>None</option>
-            <option>Any</option>
-            <option>Approved</option>
-            <option>Approving</option>
-            <option>Draft</option>
-            <option>Final</option>
+          <Form.Select id="Status" value={Status} onChange={event=>{setStatus(event.target.value)}} aria-label="Default select example">
+            <option value="None">None</option>
+            <option value="Any">Any</option>
+            <option value="Approved">Approved</option>
+            <option value="Approving">Approving</option>
+            <option value="Draft">Draft</option>
+            <option value="Final">Final</option>
           </Form.Select>
         </div>
       </div>
 
       <div className="row mb-2">
         <div className="col-3">
-          <label>Uploaded By</label>
+          <label htmlFor="UploadedBy">Uploaded By</label>
           <i className="text-danger h5">*</i>
         </div>
         <div className="col-6">
-          <input className="w-100 form-control" />
+          <input id="UploadedBy" value={UploadedBy} onChange={event=>{setUploadedBy(event.target.value)}}className="w-100 form-control" />
         </div>
       </div>
 
       <div className="row mb-2">
         <div className="col-3">
-          <label>Uploaded Date</label>
+          <label htmlFor='UDate'>Uploaded Date</label>
         </div>
         <div className="col-3">
-          <input type="date" className="w-100 form-control" />
+          <input id="UDate" value={UDate} onChange={event=>{setUDate(event.target.value)}}type="date" className="w-100 form-control" />
         </div>
       </div>
 
       <div className="row mb-2">
         <div className="col-3">
-          <label>Uploaded Time</label>
+          <label htmlFor='UTime'>Uploaded Time</label>
         </div>
         <div className="col-3">
-          <input type="time" className="w-100 form-control" />
+          <input id="UTime" value={UTime} onChange={event=>{setUTime(event.target.value)}} type="time" className="w-100 form-control" />
         </div>
       </div>
     </div>

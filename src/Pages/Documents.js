@@ -1,8 +1,12 @@
 import React, { useState } from 'react' 
 import BootstrapTable from 'react-bootstrap-table-next'; 
 import { Dropdown } from "react-bootstrap"; 
+import Form from "react-bootstrap/Form";  
  
 function Documents(props) { 
+  const[Related,setRelated]=React.useState('None');
+  const[Status,setStatus]=React.useState('None');
+  const[Identity,setIdentity]=React.useState('')
   const handleNewDocClick=()=>{
     props.onNewDocClick();
   };
@@ -58,30 +62,12 @@ function Documents(props) {
           <div className='col-12'> 
             
           </div> 
-        {/* <div className='col-4'> 
-        <DropdownButton id={`dropdown-button-${row.id}`} title='' className='dropdown-type-value'> 
-              <Dropdown.Item onClick={() => alert(`${row.name} selected Type A`)}> 
-                New Person 
-              </Dropdown.Item> 
-              <Dropdown.Item onClick={() => alert(`${row.name} selected Type B`)}> 
-                New Company 
-              </Dropdown.Item>              
-            </DropdownButton> 
-        </div> */} 
+    
       </div>    
  
       ), 
     }, 
-    { 
-        dataField: "Actions", 
-        text: "Actions", 
-        sort: true, 
-        headerClasses: "Actions-header", 
-        classes: "Actions-column", 
-        formatter: (cellContent, row) => ( <div className='row'> 
-        <div className='col-12'>
-         </div></div>
-         ),}, 
+ 
     { 
         dataField: "Document-Type", 
         text: "Document-Type", 
@@ -102,19 +88,10 @@ function Documents(props) {
             <div className='col-12'>
              </div></div>
              ),},
-             { 
-                dataField: "Author", 
-                text: "Author", 
-                sort: true, 
-                headerClasses: "Author-header", 
-                classes: "Author-column", 
-                formatter: (cellContent, row) => ( <div className='row'> 
-                <div className='col-12'>
-                 </div></div>
-                 ),},
+            
                  { 
-                    dataField: "Uploaded", 
-                    text: "Uploaded", 
+                    dataField: "Uploaded By", 
+                    text: "Uploaded By", 
                     sort: true, 
                     headerClasses: "Uploaded-header", 
                     classes: "Uploaded-column", 
@@ -162,35 +139,37 @@ function Documents(props) {
     <hr />
     </div>
     <div className='row mb-2'>  
-          <div className='col-3'><label>Related To</label></div>  
+          <div className='col-3'><label htmlFor='Related'>Related To</label></div>  
           <div className='col-4'>  
-            <select className='w-100 form-control'>  
-              <option></option>  
-              <option>Claim</option>  
-              <option>Contacts</option>  
-            </select>  
+            <Form.Select id='Related' value={Related} onChange={event=>{setRelated(event.target.value)}} className='w-100 form-control'>  
+              <option value="None">None</option>  
+              <option value="Claim">Claim</option>  
+              <option value="Contacts">Contacts</option>  
+            </Form.Select>  
+          </div>  
+        </div>
+
+        <div className='row mb-2'>  
+          <div className='col-3'><label htmlFor='Status'>Status</label></div>  
+          <div className='col-4'>  
+            <Form.Select id="Status" value={Status} onChange={event=>{setStatus(event.target.value)}}  className='w-100 form-control'>  
+              <option value="None">None</option>  
+              <option value="Any">Any</option>  
+              <option value="Approved">Approved</option> 
+              <option value="Approving">Approving</option> 
+              <option value="Draft">Draft</option> 
+              <option value="Final">Final</option>  
+            </Form.Select>  
           </div>  
         </div> 
         <div className='row mb-2'>  
-          <div className='col-3'><label>Status</label></div>  
+          <div className='col-3'><label htmlFor='Identity'>Name (or) Identity</label></div>  
           <div className='col-4'>  
-            <select className='w-100 form-control'>  
-              <option></option>  
-              <option>Any</option>  
-              <option>Approved</option> 
-              <option>Approving</option> 
-              <option>Draft</option> 
-              <option>Final</option>  
-            </select>  
-          </div>  
-        </div> 
-        <div className='row mb-2'>  
-          <div className='col-3'><label>Name (or) Identity</label></div>  
-          <div className='col-4'>  
-            <input className='w-100 form-control'>   
+            <input id="Identity" type="text"value={Identity} onChange={event=>{setIdentity(event.target.value)}} className='w-100 form-control'>   
             </input>  
           </div>  
         </div> 
+       
         <div> <input type="submit"class="btn btn-success custom-margin-right-1" value="Submit"/> &nbsp;
         <input type="reset"class="btn btn-dark custom-margin-right-1" value="Reset"/>
         </div>
