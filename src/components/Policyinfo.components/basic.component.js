@@ -8,13 +8,19 @@ function Basic() {
   return (
     <div className="ms-3">
       <h5>Basic Information</h5>
+
       <div className="row">
         <div className="row mb-2">
           <div className="col-4">
-            <label>Policy Number</label>
+            <label htmlFor="PolicyNumber">Policy Number</label>
           </div>
           <div className="col-8">
             <input
+              id="PolicyNumber"
+              value={PolicyNumber}
+              onChange={(event) => {
+                setPolicyNumber(event.target.value);
+              }}
               type="number"
               className="w-100 form-control"
               maxLength={25}
@@ -24,20 +30,25 @@ function Basic() {
 
         <div className="row mb-2">
           <div className="col-4">
-            <label>Policy Type</label>
+            <label htmlFor="PolicyType">Policy Type</label>
           </div>
           <div className="col-8">
-           
-              <Form.Select aria-label="Default select example">
-                <option>None</option>
-                <option>Personal Auto</option>
-                <option>Commercial Auto</option>
-                <option>Homeowners</option>
-                <option>Genral Liability</option>
-                <option>Mutual</option>
-                <option>Worker Compensation</option>
-              </Form.Select>
-           
+            <Form.Select
+              id="PolicyType"
+              value={PolicyType}
+              onChange={(event) => {
+                setPolicyType(event.target.value);
+              }}
+              aria-label="Default select example"
+            >
+              <option value="None">None</option>
+              <option value="Personal Auto">Personal Auto</option>
+              <option value="Commercial Auto">Commercial Auto</option>
+              <option value="Homeowners">Homeowners</option>
+              <option value="Genral Liability">Genral Liability</option>
+              <option value="Mutual">Mutual</option>
+              <option value="Worker Compensation">Worker Compensation</option>
+            </Form.Select>
           </div>
         </div>
 
@@ -51,90 +62,174 @@ function Basic() {
         <div className="row mb-3">
           <div className="col-4">Policy Verified</div>
           <div className="col-8">
-            <input type="radio" name="basicRadioGroup" /> Yes{" "}
-            <span className="ms-3"></span>
-            <input type="radio" name="basicRadioGroup" /> No
+            <input
+              type="radio"
+              name="basicRadioGroup"
+              id="PolicyVerified-yes"
+              value="yes"
+              checked={PolicyVerified === "yes"}
+              onChange={(event) => {
+                setPolicyVerified(event.target.value);
+              }}
+            />{" "}
+            Yes <span className="ms-3"></span>
+            <input
+              type="radio"
+              name="basicRadioGroup"
+              id="PolicyVerified-no"
+              value="no"
+              checked={PolicyVerified === "no"}
+              onChange={(event) => {
+                setPolicyVerified(event.target.value);
+              }}
+            />{" "}
+            No
           </div>
         </div>
 
         <div className="row mb-2">
           <div className="col-4">
-            <label>Date of loss</label>
+            <label htmlFor="Dateofloss">Date of loss</label>
             <i className="text-danger h5">*</i>
           </div>
           <div className="col-8">
-            <input type="date" className="w-100 form-control" />
+            <input
+              type="date"
+              className="w-100 form-control"
+              id="Dateofloss"
+              value={DateOfLoss}
+              onChange={(event) => {
+                setDateOfLoss(event.target.value);
+              }}
+            />
           </div>
         </div>
 
         <div className="row mb-2">
           <div className="col-4">
-            <label>Time of loss</label>
+            <label htmlFor="Timeofloss">Time of loss</label>
             <i className="text-danger h5">*</i>
           </div>
           <div className="col-8">
-            <input type="time" className="w-100 form-control" />
+            <input
+              type="time"
+              className="w-100 form-control"
+              id="Timeofloss"
+              value={TimeOfLoss}
+              onChange={(event) => {
+                setTimeOfLoss(event.target.value);
+              }}
+            />
           </div>
         </div>
 
         <div className="row mb-2">
           <div className="col-4">
-            <label>Underwriting Company</label>
+            <label htmlFor="Underwriting">Underwriting Company</label>
           </div>
           <div className="col-8">
-            <input type="text" className="w-100 form-control" />
+            <input
+              type="text"
+              className="w-100 form-control"
+              id="Underwriting"
+              value={Underwriting}
+              onChange={(event) => {
+                setUnderwriting(event.target.value);
+              }}
+            />
           </div>
         </div>
 
         <div className="row mb-2">
           <div className="col-4">
-            <label>Effective Date</label>
+            <label htmlFor="EffectiveDate">Effective Date</label>
             <i className="text-danger h5">*</i>
           </div>
           <div className="col-8">
-            <input type="date" className="w-100 form-control" />
+            <input
+              type="date"
+              className="w-100 form-control"
+              id="EffectiveDate"
+              value={EffectiveDate}
+              onChange={(event) => {
+                setEffectiveDate(event.target.value);
+              }}
+            />
           </div>
         </div>
 
         <div className="row mb-2">
           <div className="col-4">
-            <label>Expiration Date</label>
+            <label htmlFor="ExpirationDate">Expiration Date</label>
             <i className="text-danger h5">*</i>
           </div>
           <diiv className="col-8">
-            <input type="date" className="w-100 form-control" />
+            <input
+              type="date"
+              className="w-100 form-control"
+              id="ExpirationDate"
+              value={ExpirationDate}
+              onChange={(event) => {
+                setExpirationDate(event.target.value);
+              }}
+            />
           </diiv>
         </div>
 
         <div className="row mb-2">
           <div className="col-4">
-            <label>Cancellation Date</label>
+            <label htmlFor="CancellationDate">Cancellation Date</label>
           </div>
           <div className="col-8">
-            <input type="date" className="w-100 form-control" />
+            <input
+              type="date"
+              className="w-100 form-control"
+              id="CancellationDate"
+              value={CancellationDate}
+              onChange={(event) => {
+                setCancellationDate(event.target.value);
+              }}
+            />
           </div>
         </div>
 
         <div className="row mb-2">
           <div className="col-4">
-            <label>Original Effective Date</label>
+            <label htmlFor="OriginalEffectiveDate">
+              Original Effective Date
+            </label>
           </div>
           <div className="col-8">
-            <input type="date" className="w-100 form-control" />
+            <input
+              type="date"
+              className="w-100 form-control"
+              id="OriginalEffectiveDate"
+              value={OriginalEffectiveDate}
+              onChange={(event) => {
+                setOriginalEffectiveDate(event.target.value);
+              }}
+            />
           </div>
         </div>
 
         <div className="row mb-2">
           <div className="col-4">
-            <label>Policy Status</label>
+            <label htmlFor="PolicyStatus">Policy Status</label>
           </div>
           <div className="col-8">
-            <Form.Select aria-label="Default select example">
-              <option>None</option>
-              <option>In Effect</option>
-              <option>Pre-Cancellation</option>
-              <option>Expired</option>
-              <option>Other</option>
+            <Form.Select
+              aria-label="Default select example"
+              id="PolicyStatus"
+              value={PolicyStatus}
+              onChange={(event) => {
+                setPolicyStatus(event.target.value);
+              }}
+            >
+              <option value="None">None</option>
+              <option value="In Effect">In Effect</option>
+              <option value="Pre-Cancellation">Pre-Cancellation</option>
+              <option value="Expired">Expired</option>
+              <option value="Other">Other</option>
             </Form.Select>
           </div>
         </div>
@@ -147,7 +242,7 @@ function Basic() {
             <i className="text-danger h5">*</i>
           </div>
           <div className="col-8">
-            <input type="text" maxLength={25} className="w-100 form-control" />
+            <input type="text" className="w-100 form-control" />
             {/* <select className='w-200 form-control'> 
               <option>Ray Newton</option> 
               <option>None</option> 
