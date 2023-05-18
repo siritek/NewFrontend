@@ -1,73 +1,92 @@
+import React from "react";
 function FnolDetails(){
+  const [ClaimNumber, setClaimNumber] = React.useState('');
+  const [DateOfLoss, setDateOfLoss] = React.useState('');
+  const [LossLocation, setLossLocation] = React.useState('');
+  const [LossTime, setLossTime] = React.useState('');
+  const [ReportedBy, setReportedBy] = React.useState('');
+  const [DateOfReport, setDateOfReport] = React.useState('');
+  const [PolicyNumber, setPolicyNumber] = React.useState('');
+  
   return(<div>
       
 
  <div className='row mb-2'>
    <div className='col-4'>
-     <label>Claim Number</label>
+     <label htmlFor="ClaimNumber">Claim Number</label>
      <i className='text-danger h5'>*</i>
    </div>
    <div className='col-5'>
-     <input className='w-100 form-control' />
+     <input id="ClaimNumber" type="number" value={ClaimNumber}  
+     onChange={event=>{setClaimNumber(event.target.value)}} className='w-100 form-control' />
+
    </div>
- </div>
+ </div> 
  <div className='row mb-2'>
    <div className='col-4'>
-     <label> Date Of Loss</label>
+     <label htmlFor="DateOfLoss"> Date Of Loss</label>
      
    </div>
    <div className='col-5'>
-     <input type="date" className='w-100 form-control' />
+     <input  id="DateOfLoss" type="date" value={DateOfLoss}  
+     onChange={event=>{setDateOfLoss(event.target.value)}}  className='w-100 form-control' />
    </div>
  </div>
  
  <div className='row mb-2'>
    <div className='col-4'>
-     <label>Loss Location</label>
+     <label htmlFor="LossLocation">Loss Location</label>
    </div>
    <div className='col-5'>
-     <input className='w-100 form-control' />
+     <input id="LossLocation" type="text" value={LossLocation} 
+     onChange={event=>{setLossLocation(event.target.value)}}  className='w-100 form-control' />
    </div>
  </div>
+
 <div className='row mb-2'>
    <div className='col-4'>
-     <label>Time Of Loss</label>
+     <label htmlFor="LossTime">Time Of Loss</label>
   
    </div>
    <div className='col-5'>
-     <input type="time" className='w-100 form-control' />
+     <input id="LossType" type="time" value={LossTime} 
+     onChange={event=>{setLossTime(event.target.value)}} className='w-100 form-control' />
    </div>
  </div>
+
 <div className='row mb-2'>
    <div className='col-4'>
-     <label>Reported By</label>
+     <label htmlFor="ReportedBy">Reported By</label>
      
    </div>
    <div className='col-5'>
-     <input className='w-100 form-control' />
+     <input id="ReportedBy" type="text" value={ReportedBy} 
+     onChange={event=>{setReportedBy(event.target.value)}} className='w-100 form-control' />
    </div>
  </div>
  <div className='row mb-2'>
    <div className='col-4'>
-     <label> Date Reported</label>
+     <label htmlFor="DateOfReport"> Date Reported</label>
      
    </div>
    <div className='col-5'>
-     <input type="date" className='w-100 form-control' />
+     <input type="date" id="DateOfReport" value={DateOfReport} 
+     onChange={event=>{setDateOfReport(event.target.value)}}className='w-100 form-control' />
    </div>
  </div>
  <div className='row mb-2'>
    <div className='col-4'>
-     <label>Policy Number</label>
+     <label htmlFor="PolicyNumber">Policy Number</label>
      <i className='text-danger h5'>*</i>
    </div>
    <div className='col-5'>
-     <input className='w-100 form-control' />
+     <input id="PolicyNumber" type="number" value={PolicyNumber} onChange={event=>{setPolicyNumber(event.target.value)}}className='w-100 form-control' />
    </div>
  </div>
   
   <input type="submit"class="btn btn-success custom-margin-right-1" value="Submit"/> &nbsp; 
   <input type="reset"class="btn btn-dark custom-margin-right-1" value="Reset"/>
+  
   </div>
   );
 

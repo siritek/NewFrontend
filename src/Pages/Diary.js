@@ -1,13 +1,10 @@
 import React from 'react'
 
-function Diary(){
-    return(
+function Dairy(){
+    return(   
       <div>
-        <div> 
-    <h1> Diary</h1> 
-        <hr />
-    </div>
-       
+      <h2>Diary</h2>
+      <hr/>
       <div className='row'> 
          <div className='row mb-2'> 
           <div className='col-4'> 
@@ -98,4 +95,4 @@ function Diary(){
        
     )
 }
-export default Diary;
+export default Dairy;

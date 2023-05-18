@@ -147,7 +147,7 @@ function Basic() {
             <i className="text-danger h5">*</i>
           </div>
           <div className="col-8">
-            <input type="text" className="w-100 form-control" />
+            <input type="text" maxLength={25} className="w-100 form-control" />
             {/* <select className='w-200 form-control'> 
               <option>Ray Newton</option> 
               <option>None</option> 

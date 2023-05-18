@@ -28,9 +28,9 @@
 
 // export default Additional
 
-import React, { useState } from 'react'  
 import BootstrapTable from 'react-bootstrap-table-next';  
-import { Dropdown, DropdownButton } from "react-bootstrap";  
+import { Dropdown, DropdownButton } from "react-bootstrap"; 
+import React, { useState } from 'react'   
 //import NewPesron from './newPerson.component';
 function Additional() {  
     
