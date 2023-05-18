@@ -14,6 +14,7 @@ import Searchexposure from "./components/Exposure.components/Searchexposures";
 import NewNote from "./NewNote";
 import SearchNote from "./SearchNote";
 
+
  
 function App() { 
   const [activeSection, setActiveSection] = useState(null); 
@@ -24,6 +25,7 @@ function App() {
  
   return ( 
     <> 
+    
       <Row> 
         <Col> 
           <Header></Header> 
@@ -42,13 +44,18 @@ function App() {
           {activeSection === "upload" && <Upload />} 
           {activeSection === "losssummary" && <Losssummary/>}
           {activeSection === "newexposure" && <Newexposure/>}
-          {activeSection === "searchexposure" && <Searchexposure/>}  
-          {activeSection === "newnote" && <NewNote/>}
+          {activeSection === "searchexposure" && <Searchexposure/>} 
+
+
+          
+            {activeSection === "newnote" && <NewNote/>}
+         
           {activeSection === "searchnote" && <SearchNote/>}
           {activeSection === "dairy" && <Dairy/>}
            
         </div> 
       </div> 
+     
     </> 
   ); 
 } 
