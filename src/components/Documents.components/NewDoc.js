@@ -1,15 +1,10 @@
 import React from 'react';
-<<<<<<< HEAD
+import Form from "react-bootstrap/Form";
 function NewDoc(props) {
  
   const handleDocumentClick=()=>{
     props.onDocumentClick();
   };
-=======
-import Form from "react-bootstrap/Form";
-
-function NewDoc() {
->>>>>>> e4073a352a44803b21b8dd11f03e1ce17204d40e
   return (
     <div>
       <div>

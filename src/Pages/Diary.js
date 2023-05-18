@@ -1,12 +1,5 @@
 import React from 'react'
 
-<<<<<<< HEAD:src/Pages/Dairy.js
-function Dairy(){
-    return(   
-      <div>
-      <h2>Diary</h2>
-      <hr/>
-=======
 function Diary(){
     return(
       <div>
@@ -15,7 +8,6 @@ function Diary(){
         <hr />
     </div>
        
->>>>>>> e4073a352a44803b21b8dd11f03e1ce17204d40e:src/Pages/Diary.js
       <div className='row'> 
          <div className='row mb-2'> 
           <div className='col-4'> 
@@ -101,13 +93,9 @@ function Diary(){
           </div> 
         </div> 
         </div>
-<<<<<<< HEAD:src/Pages/Dairy.js
-       </div>
-=======
         </div>
           
        
->>>>>>> e4073a352a44803b21b8dd11f03e1ce17204d40e:src/Pages/Diary.js
     )
 }
 export default Diary;

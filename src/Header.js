@@ -1,6 +1,6 @@
 import React from "react";
 // import { AiOutlineUser } from "react-icons/ai";
-import logo from './images/logo1-png.png'
+import logo from './images/Logo2png.png.png'
 import {
   Nav,
   Navbar,
@@ -14,7 +14,7 @@ const Header = () => {
   return (
     <div>
       <Navbar color="success"  dark expand="md">
-        <NavbarBrand class="text-dark" href=""> <img src={logo} width={100} height={59} /><b> </b></NavbarBrand>
+        <NavbarBrand class="text-dark" href=""> <img src={logo} width={80} height={30} /><b> </b></NavbarBrand>
         <Nav className="mr-auto" navbar>
           <NavItem>
             <NavLink class="text-dark" href="/components/"> <b> Components </b></NavLink>
