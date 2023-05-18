@@ -2,7 +2,8 @@ import React, {useState} from "react";
 
 // import {DropdownButton, Dropdown} from "antd/es/dropdown/dropdown-button";  
 // import { Row } from "reactstrap";  
-  
+import Form from "react-bootstrap/Form";
+
 function Searchnote(){  
 
     const[topic,settopic] =useState('')
@@ -60,6 +61,7 @@ function Searchnote(){
                     <div className='row mb-2'>   
                     <div className='col-4'><label>Topic:</label></div>   
                         <div className='col-8'>   
+<<<<<<< HEAD
                             <select className='w-100 form-control'name="topic" value={topic} onChange={(e)=>settopic(e.target.value)}>   
                             <option value="general" >-General-</option>  
                             <option value= "firstnoticeofloss">First Notice of Loss</option>  
@@ -75,6 +77,20 @@ function Searchnote(){
                             <option value="reinsurance">Reinsurance</option> 
        
                             </select>   
+=======
+                            <Form.Select aria-label="Default select example">  
+                                <option>General</option>  
+                                <option>First notice of loss</option>  
+                                <option>Coverage</option>  
+                                <option>Investigatiin</option>  
+                                <option>Medical</option>  
+                                <option>Subrogation</option>  
+                                <option>Salvage</option>  
+                                <option>Litigation</option>  
+                                <option>Denial</option>  
+                                <option>Reinsurance</option>  
+                            </Form.Select>   
+>>>>>>> c2b6841080696ad35d57ef9eba17ec48740879e1
                         </div>   
                     </div>   
             </div>  

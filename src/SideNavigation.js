@@ -1,5 +1,6 @@
 import { Menu,SubMenu, MenuItem, ProSidebar, SidebarHeader } from "react-pro-sidebar"; 
 import "react-pro-sidebar/dist/css/styles.css"; 
+import { getWidth } from "rsuite/esm/DOMHelper";
  
 const SideNavigation = (props) => { 
   const handleItemClick = (section) => { 
@@ -7,7 +8,7 @@ const SideNavigation = (props) => {
   }; 
  
   return ( 
-    <ProSidebar style={{ height: "150vh" }}> 
+    <ProSidebar style={{ height: "150vh" }} >
       <SidebarHeader></SidebarHeader> 
  
       <Menu> 
@@ -25,7 +26,7 @@ const SideNavigation = (props) => {
         </SubMenu>
         <MenuItem onClick={() => handleItemClick("documents")}>Documents</MenuItem> 
         
-        <MenuItem onClick={()=>handleItemClick("dairy")}>Diary</MenuItem> 
+        <MenuItem onClick={()=>handleItemClick("diary")}>Diary</MenuItem> 
         <MenuItem>Synopsis</MenuItem> 
       </Menu> 
     </ProSidebar> 

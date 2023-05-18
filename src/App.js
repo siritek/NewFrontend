@@ -8,7 +8,7 @@ import Documents from "./Pages/Documents";
 import NewDoc from "./components/Documents.components/NewDoc"; 
 import Upload from "./components/Documents.components/Upload";
 import Losssummary from "./Pages/LossSummary";
-import Dairy from "./Pages/Dairy";
+import Diary from "./Pages/Diary";
 import Newexposure from "./components/Exposure.components/Newexposure";
 import Searchexposure from "./components/Exposure.components/Searchexposures";
 import NewNote from "./NewNote";
@@ -40,8 +40,8 @@ function App() {
           {activeSection === "pi" && <PolicyInformation />} 
           {activeSection === "documents" && (<Documents onNewDocClick={() =>  
             setActiveSection("newDoc")} onUploadClick={() => setActiveSection("upload")} />)} 
-          {activeSection === "newDoc" && <NewDoc />} 
-          {activeSection === "upload" && <Upload />} 
+          {activeSection === "newDoc" && <NewDoc onDocumentClick={()=>setActiveSection("documents")} />} 
+          {activeSection === "upload" && <Upload onDocumentClick={()=>setActiveSection("documents")}/>} 
           {activeSection === "losssummary" && <Losssummary/>}
           {activeSection === "newexposure" && <Newexposure/>}
           {activeSection === "searchexposure" && <Searchexposure/>} 
@@ -51,7 +51,7 @@ function App() {
             {activeSection === "newnote" && <NewNote/>}
          
           {activeSection === "searchnote" && <SearchNote/>}
-          {activeSection === "dairy" && <Dairy/>}
+          {activeSection === "diary" && <Diary/>}
            
         </div> 
       </div> 

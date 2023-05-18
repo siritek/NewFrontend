@@ -28,9 +28,9 @@
 
 // export default Additional
 
-import React, { useState } from 'react'  
 import BootstrapTable from 'react-bootstrap-table-next';  
-import { Dropdown, DropdownButton } from "react-bootstrap";  
+import { Dropdown, DropdownButton } from "react-bootstrap"; 
+import React, { useState } from 'react'   
 //import NewPesron from './newPerson.component';
 function Additional() {  
     
@@ -171,7 +171,7 @@ function Additional() {
   
   return (  
     <div>  
-      <div className='row p-1 m-0 text-bg-secondary'>  
+      <div className='row p-1 m-0'>  
         <div className='col-6'>  
           <strong>Additional Insured</strong>  
         </div>  
