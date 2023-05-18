@@ -16,11 +16,8 @@ function Basic() {
   const [PolicyStatus, setPolicyStatus] = React.useState("None");
 
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> ec68d0720fdd2e5aa2e918048efc3cf9af643592
   return (
     <div className="ms-3">
       <h5>Basic Information</h5>
