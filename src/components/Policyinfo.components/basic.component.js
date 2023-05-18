@@ -3,8 +3,7 @@ import Form from "react-bootstrap/Form";
 // import Dropdown from 'react-bootstrap/Dropdown'; 
  
 function Basic() { 
-<<<<<<< HEAD
-=======
+
   const [PolicyNumber, setPolicyNumber] = React.useState("");
   const [PolicyType, setPolicyType] = React.useState("None");
   const [PolicyVerified, setPolicyVerified] = React.useState("");
@@ -18,12 +17,7 @@ function Basic() {
   const [PolicyStatus, setPolicyStatus] = React.useState("None");
 
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 66e23ee888992aa690ceeb34a6f3f56ba588c957
->>>>>>> 0d96fd881cb4af41dd209db461bc93690bb37973
+
 
 
   return (
