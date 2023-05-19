@@ -26,6 +26,7 @@ function App() {
  
   return ( 
     <> 
+    
       <Row> 
         <Col> 
           <Header></Header> 
@@ -43,15 +44,26 @@ function App() {
           {activeSection === "newDoc" && <NewDoc onDocumentClick={()=>setActiveSection("documents")} />} 
           {activeSection === "upload" && <Upload onDocumentClick={()=>setActiveSection("documents")}/>} 
           {activeSection === "losssummary" && <Losssummary/>}
+<<<<<<< HEAD
           {activeSection === "Exposures" && <Exposures/>}
           {/* {activeSection === "newexposure" && <Newexposure/>}
           {activeSection === "searchexposure" && <Searchexposure/>}   */}
           {activeSection === "newnote" && <NewNote/>}
+=======
+          {activeSection === "newexposure" && <Newexposure/>}
+          {activeSection === "searchexposure" && <Searchexposure/>} 
+
+
+          
+            {activeSection === "newnote" && <NewNote/>}
+         
+>>>>>>> be60b990e4c8c3f01fc4f5d22c86d89e8d7d03f7
           {activeSection === "searchnote" && <SearchNote/>}
           {activeSection === "diary" && <Diary/>}
            
         </div> 
       </div> 
+     
     </> 
   ); 
 } 
