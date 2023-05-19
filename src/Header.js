@@ -13,28 +13,45 @@ import {
   NavLink,
 } from "reactstrap";
 
-const Header = () => {
+const Header = (props) => {
+  const handleFnolClick=()=>{
+    props.onFnolClick();
+  };
   return (
     
     <div>
-      <Navbar color="success"  dark expand="md">
-        <NavbarBrand class="text-dark" href=""> <img src={logo} width={80} height={30} /><b> </b></NavbarBrand>
-        <Nav className="mr-auto" navbar>
-          <NavItem>
-            <NavLink class="text-dark" href="/components/"> <b> Components </b></NavLink>
-            
-          </NavItem>
-         
-        </Nav>
-        <NavbarText>
-          <div>
-            {/* <AiOutlineUser >
-         
-            </AiOutlineUser> */}
-          </div>
-        </NavbarText>
-      </Navbar>
-    </div>
+      <Navbar color="success" dark expand="md">
+  <NavbarBrand className="text-dark">
+    <img src={logo} width={50} height={20} />
+  </NavbarBrand>
+  <Nav className="mr-auto" navbar>
+    <NavItem>
+      <div className='row'>
+        <DropdownButton variant='dark' title='Claim'>
+          <Dropdown.Item type="button" className="btn btn-dark" onClick={handleFnolClick}>
+            New Claim
+          </Dropdown.Item>
+          {/* <Dropdown.Item>
+            Search
+          </Dropdown.Item> */}
+        </DropdownButton>
+      </div>
+    </NavItem>
+
+
+
+  </Nav>
+  <NavbarText>
+    
+  </NavbarText>
+  <NavbarText>
+    
+  </NavbarText>
+  <NavbarText>
+    
+  </NavbarText>
+</Navbar>
+     </div>
   );
 };
 

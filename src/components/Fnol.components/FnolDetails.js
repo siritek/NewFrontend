@@ -1,6 +1,6 @@
 import React from "react";
 function FnolDetails(){
-  const [ClaimNumber, setClaimNumber] = React.useState('');
+  //const [ClaimNumber, setClaimNumber] = React.useState('');
   const [DateOfLoss, setDateOfLoss] = React.useState('');
   const [LossLocation, setLossLocation] = React.useState('');
   const [LossTime, setLossTime] = React.useState('');
@@ -10,18 +10,27 @@ function FnolDetails(){
   
   return(<div>
       
-
+{/* 
  <div className='row mb-2'>
    <div className='col-4'>
      <label htmlFor="ClaimNumber">Claim Number</label>
      <i className='text-danger h5'>*</i>
    </div>
    <div className='col-5'>
-     <input id="ClaimNumber" type="number" value={ClaimNumber}  
-     onChange={event=>{setClaimNumber(event.target.value)}} className='w-100 form-control' />
+     <input id="ClaimNumber" type="text"  maxLength='10' value={ClaimNumber}  
+     onChange={event=>{setClaimNumber(event.target.value.replace(/\D/g, ''))}} className='w-100 form-control' />
 
    </div>
- </div> 
+ </div>  */}
+  <div className='row mb-2'>
+   <div className='col-4'>
+     <label htmlFor="PolicyNumber">Policy Number</label>
+     <i className='text-danger h5'>*</i>
+   </div>
+   <div className='col-5'>
+     <input id="PolicyNumber" type="number" value={PolicyNumber} onChange={event=>{setPolicyNumber(event.target.value)}}className='w-100 form-control' />
+   </div>
+ </div>
  <div className='row mb-2'>
    <div className='col-4'>
      <label htmlFor="DateOfLoss"> Date Of Loss</label>
@@ -74,18 +83,10 @@ function FnolDetails(){
      onChange={event=>{setDateOfReport(event.target.value)}}className='w-100 form-control' />
    </div>
  </div>
- <div className='row mb-2'>
-   <div className='col-4'>
-     <label htmlFor="PolicyNumber">Policy Number</label>
-     <i className='text-danger h5'>*</i>
-   </div>
-   <div className='col-5'>
-     <input id="PolicyNumber" type="number" value={PolicyNumber} onChange={event=>{setPolicyNumber(event.target.value)}}className='w-100 form-control' />
-   </div>
- </div>
+
   
-  <input type="submit"class="btn btn-success custom-margin-right-1" value="Submit"/> &nbsp; 
-  <input type="reset"class="btn btn-dark custom-margin-right-1" value="Reset"/>
+  {/* <input type="submit"class="btn btn-success custom-margin-right-1" value="Submit"/> &nbsp; 
+  <input type="reset"class="btn btn-dark custom-margin-right-1" value="Reset"/> */}
   
   </div>
   );

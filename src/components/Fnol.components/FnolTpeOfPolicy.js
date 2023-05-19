@@ -12,6 +12,8 @@ function FnolTypeOfPolicy() {
   const [PlateSlate, setPlateSlate] = React.useState('');
   const [Driver, setDriver] = React.useState('');
   const [Address, setAddress] = React.useState('');
+  const [Notes, setNotes] = React.useState('');
+
  
  
   const handleRadioChange = (e) => {  
@@ -113,7 +115,7 @@ function FnolTypeOfPolicy() {
           <br/>  
  
         <div className='col-4'> 
-    <label htmlFor="Address">Address   </label>  
+    <label htmlFor="Address"> Address </label>  
      
     <textarea name="message" id="Address"  value={Address} onChange={event=>{setAddress(event.target.value)}} rows="5"  placeholder="Mention your complete address" ></textarea>  
            </div> 
@@ -121,8 +123,17 @@ function FnolTypeOfPolicy() {
           
       )}  
 </div  > 
+<br/>
+<div className='col-4'> 
+<label htmlFor="Notes"> Notes </label>
+      <textarea name="Notes" id="Notes" value={Notes} onChange={event=>{setNotes(event.target.value)}} rows="5" placeholder="Mention your complete address"  ></textarea> 
+      
+      <label for="Documents"> Documents  &nbsp;</label> 
+    <input type="file" id="Documents" name="Documents" ></input>  
+        
 </div  > 
 </div  > 
+</div>
   );  
             
   

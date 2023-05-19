@@ -26,7 +26,7 @@ function App() {
     <> 
       <Row> 
         <Col> 
-          <Header></Header> 
+          <Header onFnolClick={()=>setActiveSection("fnol")}></Header> 
         </Col> 
       </Row> 
  
@@ -34,10 +34,9 @@ function App() {
         <SideNavigation onSectionClick={handleSectionClick} /> 
  
         <div style={{ marginLeft: "10px", width: "100%" }}> 
-          {activeSection === "fnol" && <Fnol />} 
-          {activeSection === "pi" && <PolicyInformation />} 
-          {activeSection === "documents" && (<Documents onNewDocClick={() =>  
-            setActiveSection("newDoc")} onUploadClick={() => setActiveSection("upload")} />)} 
+          {activeSection === "fnol" && <Fnol onPIClick={()=>setActiveSection("pi")} />} 
+          {activeSection === "pi" && (<PolicyInformation onFnolClick={()=>setActiveSection("fnol")} onLossSummaryClick={()=>setActiveSection("losssummary")}/>)} 
+          {activeSection === "documents" && (<Documents onNewDocClick={() =>setActiveSection("newDoc")} onUploadClick={() => setActiveSection("upload")} />)} 
           {activeSection === "newDoc" && <NewDoc onDocumentClick={()=>setActiveSection("documents")} />} 
           {activeSection === "upload" && <Upload onDocumentClick={()=>setActiveSection("documents")}/>} 
           {activeSection === "losssummary" && <Losssummary/>}
