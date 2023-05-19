@@ -16,10 +16,6 @@ function Basic() {
   const [OriginalEffectiveDate, setOriginalEffectiveDate] = React.useState("");
   const [PolicyStatus, setPolicyStatus] = React.useState("None");
 
-
-
-
-
   return (
     <div className="ms-3">
       <h5>Basic Information</h5>

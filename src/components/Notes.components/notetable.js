@@ -19,6 +19,7 @@ function Notetable() {
             type="checkbox"    
             className="form-check-input"    
             id={row.id}    
+            
                 
           />    
         </div>    

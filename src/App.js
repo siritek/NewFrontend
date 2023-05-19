@@ -9,10 +9,12 @@ import NewDoc from "./components/Documents.components/NewDoc";
 import Upload from "./components/Documents.components/Upload";
 import Losssummary from "./Pages/LossSummary";
 import Diary from "./Pages/Diary";
-import Newexposure from "./components/Exposure.components/Newexposure";
-import Searchexposure from "./components/Exposure.components/Searchexposures";
+import Exposures from "./Pages/Exposures";
+// import Newexposure from "./components/Exposure.components/Newexposure";
+// import Searchexposure from "./components/Exposure.components/Searchexposures";
 import NewNote from "./NewNote";
 import SearchNote from "./SearchNote";
+
 
  
 function App() { 
@@ -24,6 +26,7 @@ function App() {
  
   return ( 
     <> 
+    
       <Row> 
         <Col> 
           <Header onFnolClick={()=>setActiveSection("fnol")}></Header> 
@@ -39,15 +42,17 @@ function App() {
           {activeSection === "documents" && (<Documents onNewDocClick={() =>setActiveSection("newDoc")} onUploadClick={() => setActiveSection("upload")} />)} 
           {activeSection === "newDoc" && <NewDoc onDocumentClick={()=>setActiveSection("documents")} />} 
           {activeSection === "upload" && <Upload onDocumentClick={()=>setActiveSection("documents")}/>} 
-          {activeSection === "losssummary" && <Losssummary/>}
-          {activeSection === "newexposure" && <Newexposure/>}
-          {activeSection === "searchexposure" && <Searchexposure/>}  
+          {activeSection === "losssummary" && <Losssummary onPIClick={()=>setActiveSection("pi")} onExposureClick={()=>setActiveSection("Exposures")}/>}
+          {activeSection === "Exposures" && <Exposures onLossSummaryClick={()=>setActiveSection("losssummary")} />}
+          {/* {activeSection === "newexposure" && <Newexposure/>}
+          {activeSection === "searchexposure" && <Searchexposure/>}   */}
           {activeSection === "newnote" && <NewNote/>}
           {activeSection === "searchnote" && <SearchNote/>}
           {activeSection === "diary" && <Diary/>}
            
         </div> 
       </div> 
+     
     </> 
   ); 
 } 
