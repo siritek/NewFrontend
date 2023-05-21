@@ -7,6 +7,20 @@ function FnolDetails(){
   const [ReportedBy, setReportedBy] = React.useState('');
   const [DateOfReport, setDateOfReport] = React.useState('');
   const [PolicyNumber, setPolicyNumber] = React.useState('');
+
+  const handleClick=(e)=>{ 
+    e.preventDefault() 
+    const abs={LossLocation,LossTime,ReportedBy,PolicyNumber} 
+    console.log(abs) 
+    fetch("http://localhost:8080/fnolfirst/add",{ 
+        method:"POST", 
+        headers:{"Content-Type":"application/json"}, 
+        body:JSON.stringify(abs) 
+ 
+    }).then(()=>{ 
+        console.log("New Insured added") 
+    }) 
+  }
   
   return(<div>
       
@@ -84,10 +98,9 @@ function FnolDetails(){
    </div>
  </div>
 
-  
-  {/* <input type="submit"class="btn btn-success custom-margin-right-1" value="Submit"/> &nbsp; 
-  <input type="reset"class="btn btn-dark custom-margin-right-1" value="Reset"/> */}
-  
+ <input type="submit"class="btn btn-success custom-margin-right-1" value="Submit" onClick={handleClick}/> &nbsp; 
+  <input type="reset"class="btn btn-dark custom-margin-right-1" value="Reset"/>
+
   </div>
   );
 
