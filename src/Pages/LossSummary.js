@@ -5,13 +5,27 @@ import Losslocation from "../components/Losssummary.components/losslocation";
 import Properties from "../components/Losssummary.components/properties";
 // import Heading from "./components/header.component";
 
-function Losssummary() { 
+function Losssummary(props) { 
+  const handlePIClick=()=>{
+ props.onPIClick();
+  };
+   
+    const handleExposureClick=()=>{
+      props.onExposureClick();
+    };
     return ( 
       <div> 
-        <div> 
+        <div className="d-flex justify-content-between align-items-center"> 
     <h2>Loss Summary</h2> 
+    <div>
+            
+          <button type="button" className="btn btn-dark" onClick={handlePIClick}>Back</button>&nbsp;
+          <button type="button" className="btn btn-success" onClick={handleExposureClick}>
+            Next
+          </button>
+          </div></div>
     <hr />
-    </div>
+    
         <div className='row'> 
           <div className='col-6'> 
             < Lossdetails/> 
