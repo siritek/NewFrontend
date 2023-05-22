@@ -1,13 +1,20 @@
+<<<<<<< HEAD
+import { useState } from "react"
+import React  from 'react' 
+//import Dropdown from 'react-bootstrap/Dropdown'; 
+=======
 import React, { useState } from 'react' 
 
+>>>>>>> 932ae06472e5b15f24191008847c4ca10d9cb599
  
 function NewNote(){ 
 
-   const[topic,settopic] =useState('')
-   const[securitytype,setsecuritytype] =useState('')
+  const[topic,settopic] =useState('')
+  const[securitytype,setsecuritytype] =useState('')
   const[subject,setsubject] =useState('')
   const[relatedto,setrelatedto] =useState('')
- // const[confidentitial,setconfidentitial] =useState('')
+  const[yes,setyes] =useState('')
+  const [no,setno] = useState('')
   const[text,settext] =useState('')
 
 
@@ -17,7 +24,7 @@ function NewNote(){
     e.preventDefault()
     const abs={topic,securitytype,subject,relatedto,text}
     console.log(abs)
-    fetch("http://localhost:8080/newNote",{
+    fetch("http://localhost:8080/newnotefirst/add",{
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify(abs)
@@ -92,7 +99,7 @@ function NewNote(){
        <div className='row mb-3'> 
          <div className='col-2' required>Confidential</div> 
          <div className='col-6'> 
-           <input type="radio" name = "conf"  /*value = {confidentitial} onChange={(e)=>setconfidentitial(e.target.value)}*/  /> Yes <span className='ms-3'></span><input type="radio"  name = "conf"  /*value = {confidentitial}*/ /> No 
+           <input type="radio" name = "conf"  value = {yes} onChange={(e)=>setyes(e.target.value)} /> Yes <span className='ms-3'></span><input type="radio"  name = "conf"  value = {no} onChange={(e)=>setno(e.target.value)} /> No 
          </div> 
        </div> 
  
