@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 function Newexposure() {
   const [LossParty, setLossParty] = React.useState('None');
   const [PrimaryCoverage, setPrimaryCoverage] = React.useState('None');
-  const [Adjuster, setAdjuster] = React.useState('');
+  const [Adjuster, setAdjuster] = React.useState('None');
   const [Status, setStatus] = React.useState('Open');
   const [CreationDate, setCreationDate] = React.useState('');
   const [Claimant, setClaimant] = React.useState('');
@@ -16,19 +16,19 @@ function Newexposure() {
 
   return (
     <div>
-      
-
       <div className="row mb-2">
         <div className="col-3">
-          <label>Loss Party</label>
+          <label htmlFor="LossParty">Loss Party</label>
         </div>
         <div className="col-6">
-          <Form.Select id="LossParty-select"
-          value={LossParty}
-          onChange={event => {
-            setLossParty(event.target.value)
-          }}
-           aria-label="Default select example">
+          <Form.Select
+            id="LossParty-select"
+            value={LossParty}
+            onChange={(event) => {
+              setLossParty(event.target.value);
+            }}
+            aria-label="Default select example"
+          >
             <option>None</option>
             <option>Insured's loss</option>
             <option>Third party Liability </option>
@@ -39,19 +39,56 @@ function Newexposure() {
 
       <div className="row mb-2">
         <div className="col-3">
-          <label>Primary Coverage</label>
+          <label htmlFor="PrimaryCoverage">Primary Coverage</label>
         </div>
         <div className="col-6">
           <Form.Select
             id="PrimaryCoverage-select"
             value={PrimaryCoverage}
-            onChange={event => {
-              setPrimaryCoverage(event.target.value)
+            onChange={(event) => {
+              setPrimaryCoverage(event.target.value);
             }}
-            aria-label="Default select example">
+            aria-label="Default select example"
+          >
             <option>None</option>
-            <option>1:900 Madison street </option>
+            {/* <option>1:900 Madison street </option> */}
             <option> </option>
+            <option> </option>
+          </Form.Select>
+        </div>
+      </div>
+
+      {/* <div className="row mb-2">
+        <div className="col-3">
+          <label htmlFor="Adjuster">Adjuster</label>
+        </div>
+        <div className="col-6">
+          <input
+            id="Adjuster-select"
+            value={Adjuster}
+            onChange={(event) => {
+              setAdjuster(event.target.value);
+            }}
+            type="text"
+            className="w-100 form-control"
+          />
+        </div>
+      </div> */}
+
+      <div className="row mb-2">
+        <div className="col-3">
+          <label htmlFor="Adjuster">Adjuster</label>
+        </div>
+        <div className="col-6">
+          <Form.Select
+            id="Adjuster-select"
+            value={Adjuster}
+            onChange={(event) => {
+              setAdjuster(event.target.value);
+            }}
+            aria-label="Default select example"
+          >
+            <option>None</option>
             <option> </option>
           </Form.Select>
         </div>
@@ -59,29 +96,17 @@ function Newexposure() {
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="Adjuster">Adjuster</label>
+          <label htmlFor="Status">Status</label>
         </div>
         <div className="col-6">
-          <input id="Adjuster-select"
-            value={Adjuster}
-            onChange={event => {
-              setAdjuster(event.target.value)
-            }} type="text" className="w-100 form-control" />
-        </div>
-      </div>
-
-      <div className="row mb-2">
-        <div className="col-3">
-          <label>Status</label>
-        </div>
-        <div className="col-6">
-          <Form.Select 
+          <Form.Select
             id="Status-select"
             value={Status}
-            onChange={event => {
-              setStatus(event.target.value)
+            onChange={(event) => {
+              setStatus(event.target.value);
             }}
-            aria-label="Default select example">
+            aria-label="Default select example"
+          >
             <option>Open</option>
             <option>Closed</option>
           </Form.Select>
@@ -94,11 +119,15 @@ function Newexposure() {
           <i className="text-danger h5">*</i>
         </div>
         <div className="col-6">
-          <input id="Creation Date-select"
+          <input
+            id="Creation Date-select"
             value={CreationDate}
-            onChange={event => {
-              setCreationDate(event.target.value)
-            }} type="date" className="w-100 form-control" />
+            onChange={(event) => {
+              setCreationDate(event.target.value);
+            }}
+            type="date"
+            className="w-100 form-control"
+          />
         </div>
       </div>
 
@@ -107,11 +136,15 @@ function Newexposure() {
           <label htmlFor="Claimant">Claimant</label>
         </div>
         <div className="col-6">
-          <input id="Claimant-select"
+          <input
+            id="Claimant-select"
             value={Claimant}
-            onChange={event => {
-              setClaimant(event.target.value)
-            }}  type="text" className="w-100 form-control" />
+            onChange={(event) => {
+              setClaimant(event.target.value);
+            }}
+            type="text"
+            className="w-100 form-control"
+          />
         </div>
       </div>
 
@@ -120,13 +153,14 @@ function Newexposure() {
           <label htmlFor="ClaimantType">Claimant Type</label>
         </div>
         <div className="col-6">
-          <Form.Select 
+          <Form.Select
             id="ClaimantType-select"
             value={ClaimantType}
-            onChange={event => {
-              setClaimantType(event.target.value)
+            onChange={(event) => {
+              setClaimantType(event.target.value);
             }}
-            aria-label="Default select example">
+            aria-label="Default select example"
+          >
             <option>None</option>
             <option>Insured</option>
             <option>Member of insured's household </option>
@@ -143,11 +177,15 @@ function Newexposure() {
           <label htmlFor="PrimaryPhone">Primary Phone</label>
         </div>
         <div className="col-6">
-          <input id="PrimaryPhone-select"
+          <input
+            id="PrimaryPhone-select"
             value={PrimaryPhone}
-            onChange={event => {
-              setPrimaryPhone(event.target.value)
-            }} type="text" className="w-100 form-control" />
+            onChange={(event) => {
+              setPrimaryPhone(event.target.value);
+            }}
+            type="text"
+            className="w-100 form-control"
+          />
         </div>
       </div>
 
@@ -157,11 +195,15 @@ function Newexposure() {
           <i className="text-danger h5">*</i>
         </div>
         <div className="col-6">
-          <input id="Address-select"
+          <input
+            id="Address-select"
             value={Address}
-            onChange={event => {
-              setAddress(event.target.value)
-            }} type="text" className="w-100 form-control" />
+            onChange={(event) => {
+              setAddress(event.target.value);
+            }}
+            type="text"
+            className="w-100 form-control"
+          />
         </div>
       </div>
     </div>

@@ -13,6 +13,7 @@ return (
     <div>
             
           <button type="button" className="btn btn-dark" onClick={handleLossSummaryClick}>Back</button>&nbsp;
+          <button type="button" className="btn btn-dark" >Cancel</button>&nbsp;
           <input type="submit"class="btn btn-success custom-margin-right-1" value="Submit"/> 
           </div></div>
     <hr />

@@ -1,6 +1,5 @@
-
 import React from 'react'
-
+import Form from "react-bootstrap/Form"; 
  
 function Lossdetails() { 
 
@@ -27,7 +26,7 @@ function Lossdetails() {
             <label htmlFor="Adjuster">Adjuster</label>
           </div>
           <div className="col-8">
-            <select
+            <Form.Select 
               className="w-100 form-control"
               id="Adjuster"
               value={Adjuster}
@@ -36,7 +35,7 @@ function Lossdetails() {
               }}
             >
               <option value="None">None</option>
-            </select>
+            </Form.Select>
           </div>
         </div>
 
@@ -63,7 +62,7 @@ function Lossdetails() {
             <label htmlFor="LossCause">Loss Cause</label>
           </div>
           <div className="col-8">
-            <select
+            <Form.Select
               className="w-100 form-control"
               id="LossCause"
               value={LossCause}
@@ -72,7 +71,7 @@ function Lossdetails() {
               }}
             >
               <option value="None">None</option>
-            </select>
+            </Form.Select>
           </div>
         </div>
 
@@ -99,7 +98,7 @@ function Lossdetails() {
             <label htmlFor="TypeOfLoss">Type of Loss</label>
           </div>
           <div className="col-8">
-            <select
+            <Form.Select
               className="w-100 form-control"
               id="TypeOfLoss"
               value={TypeOfLoss}
@@ -108,7 +107,7 @@ function Lossdetails() {
               }}
             >
               <option value="None">None</option>
-            </select>
+            </Form.Select>
           </div>
         </div>
 
@@ -198,7 +197,7 @@ function Lossdetails() {
 
         <hr />
 
-        <div className="row mb-2">
+        {/* <div className="row mb-2">
           <div className="col-4">
             <label htmlFor="ReportedBy">Reported By</label>
           </div>
@@ -215,6 +214,24 @@ function Lossdetails() {
               <option value="Claim">Claim</option>
             </select>
           </div>
+        </div> */}
+
+        <div className="row mb-2">
+          <div className="col-4">
+            <label htmlFor="ReportedBy">Reported By</label>
+          </div>
+          <div className="col-8">
+            <input
+              type="text"
+              className="w-100 form-control"
+              maxLength={500}
+              id="ReportedBy"
+              value={ReportedBy}
+              onChange={(event) => {
+                setReportedBy(event.target.value);
+              }}
+            />
+          </div>
         </div>
 
         <div className="row mb-2">
@@ -224,7 +241,7 @@ function Lossdetails() {
             </label>
           </div>
           <div className="col-8">
-            <select
+            <Form.Select
               className="w-100 form-control"
               id="RelationshipToInsured"
               value={RelationshipToInsured}
@@ -234,7 +251,7 @@ function Lossdetails() {
             >
               <option value="None">None</option>
               <option value="Agent">Agent</option>
-            </select>
+            </Form.Select>
           </div>
         </div>
       </div>
