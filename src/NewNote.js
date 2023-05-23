@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-import { useState } from "react"
-import React  from 'react' 
-//import Dropdown from 'react-bootstrap/Dropdown'; 
-=======
 import React, { useState } from 'react' 
 
->>>>>>> 932ae06472e5b15f24191008847c4ca10d9cb599
  
 function NewNote(){ 
 

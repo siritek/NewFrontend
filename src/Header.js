@@ -1,11 +1,14 @@
 import React from 'react';
 import { Dropdown, DropdownButton, Form, NavbarBrand } from 'react-bootstrap';
 import logo from './images/Logo2png.png.png';
-
+import Search from "./Pages/Search";
 const Header = (props) => {
   const handleFnolClick = () => {
     props.onFnolClick();
   };
+  const handleSearchClick=()=>{
+    props.onSearchClick();
+  }
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -30,7 +33,9 @@ const Header = (props) => {
                 </Dropdown.Item>
               </DropdownButton>
             </li>&nbsp;
-            <li className="nav-item">
+
+            <button type="submit" onClick={handleSearchClick} className="btn btn-dark">Search</button>
+            {/* <li className="nav-item">
               <DropdownButton variant="dark"style={{ width: '300px' }} title="Search">
                 <Form onSubmit={handleSearch}>
                   <div className="input-group">
@@ -41,7 +46,7 @@ const Header = (props) => {
                   </div>
                 </Form>
               </DropdownButton>
-            </li>
+            </li> */}
           </ul>
         </div>
       </nav>

@@ -14,6 +14,7 @@ import Exposures from "./Pages/Exposures";
 // import Searchexposure from "./components/Exposure.components/Searchexposures";
 import NewNote from "./NewNote";
 import SearchNote from "./SearchNote";
+import Search from "./Pages/Search";
 
 
  
@@ -29,7 +30,7 @@ function App() {
     
       <Row> 
         <Col> 
-          <Header onFnolClick={()=>setActiveSection("fnol")}></Header> 
+          <Header onFnolClick={()=>setActiveSection("fnol")} onSearchClick={()=>setActiveSection("search")} ></Header> 
         </Col> 
       </Row> 
  
@@ -49,7 +50,9 @@ function App() {
           {activeSection === "newnote" && <NewNote/>}
           {activeSection === "searchnote" && <SearchNote/>}
           {activeSection === "diary" && <Diary/>}
-           
+          {activeSection === "search" && <Search/>}
+          
+         
         </div> 
       </div> 
      
