@@ -1,21 +1,28 @@
-import React from 'react'
-import Form from "react-bootstrap/Form"; 
- 
-function Lossdetails() { 
+import React from 'react';
+import Form from 'react-bootstrap/Form';
 
-  const [Adjuster, setAdjuster] = React.useState('');
-  const [LossDescription, setLossDescription] = React.useState('');
-  const [LossCause, setLossCause] = React.useState('');
-  const [OtherDescription, setOtherDescription] = React.useState('');
-  const [TypeOfLoss, setTypeOfLoss] = React.useState('');
-  const [WeatherInvloved, setWeatherInvloved] = React.useState('');
-  const [WeatherDescription, setWeatherDescription] = React.useState('');
-  const [DateOfLoss, setDateOfLoss] = React.useState('');
-  const [TimeOfLoss, setTimeOfLoss] = React.useState('');
-  const [ReportedBy, setReportedBy] = React.useState('');
-  const [RelationshipToInsured, setRelationshipToInsured] = React.useState('');
+function Lossdetails({ setComponentData, componentData }) {
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setComponentData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+  };
 
-
+  const {
+    Adjuster = '',
+    LossDescription = '',
+    LossCause = '',
+    OtherDescription = '',
+    TypeOfLoss = '',
+    WeatherInvloved = '',
+    WeatherDescription = '',
+    DateOfLoss = '',
+    TimeOfLoss = '',
+    ReportedBy = '',
+    RelationshipToInsured = '',
+  } = componentData || {};
   return (
     <div className="ms-3">
       <h5>Loss Details</h5>
@@ -30,9 +37,7 @@ function Lossdetails() {
               className="w-100 form-control"
               id="Adjuster"
               value={Adjuster}
-              onChange={(event) => {
-                setAdjuster(event.target.value);
-              }}
+              onChange={handleInputChange}
             >
               <option value="None">None</option>
             </Form.Select>
@@ -50,9 +55,7 @@ function Lossdetails() {
               maxLength={500}
               id="LossDescription"
               value={LossDescription}
-              onChange={(event) => {
-                setLossDescription(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -66,11 +69,11 @@ function Lossdetails() {
               className="w-100 form-control"
               id="LossCause"
               value={LossCause}
-              onChange={(event) => {
-                setLossCause(event.target.value);
-              }}
+              onChange={handleInputChange}
             >
               <option value="None">None</option>
+              <option value="Personalauto">Personal Auto</option>
+              <option value="Homeowners">Homeowners </option>
             </Form.Select>
           </div>
         </div>
@@ -86,9 +89,7 @@ function Lossdetails() {
               maxLength={500}
               id="OtherDescription"
               value={OtherDescription}
-              onChange={(event) => {
-                setOtherDescription(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -102,9 +103,7 @@ function Lossdetails() {
               className="w-100 form-control"
               id="TypeOfLoss"
               value={TypeOfLoss}
-              onChange={(event) => {
-                setTypeOfLoss(event.target.value);
-              }}
+              onChange={handleInputChange}
             >
               <option value="None">None</option>
             </Form.Select>
@@ -122,9 +121,7 @@ function Lossdetails() {
               id="WeatherInvloved-yes"
               value="yes"
               checked={WeatherInvloved === "yes"}
-              onChange={(event) => {
-                setWeatherInvloved(event.target.value);
-              }}
+              onChange={handleInputChange}
             />{" "}
             Yes <span className="ms-3"></span>
             <input
@@ -133,9 +130,7 @@ function Lossdetails() {
               id="WeatherInvloved-No"
               value="No"
               checked={WeatherInvloved === "No"}
-              onChange={(event) => {
-                setWeatherInvloved(event.target.value);
-              }}
+              onChange={handleInputChange}
             />{" "}
             No
           </div>
@@ -152,9 +147,7 @@ function Lossdetails() {
               maxLength={500}
               id="WeatherDescription"
               value={WeatherDescription}
-              onChange={(event) => {
-                setWeatherDescription(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -170,9 +163,8 @@ function Lossdetails() {
               className="w-100 form-control"
               id="DateOfLoss"
               value={DateOfLoss}
-              onChange={(event) => {
-                setDateOfLoss(event.target.value);
-              }}
+              onChange={handleInputChange}
+              
             />
           </div>
         </div>
@@ -188,9 +180,7 @@ function Lossdetails() {
               className="w-100 form-control"
               id="TimeOfLoss"
               value={TimeOfLoss}
-              onChange={(event) => {
-                setTimeOfLoss(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -227,9 +217,7 @@ function Lossdetails() {
               maxLength={500}
               id="ReportedBy"
               value={ReportedBy}
-              onChange={(event) => {
-                setReportedBy(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -245,12 +233,15 @@ function Lossdetails() {
               className="w-100 form-control"
               id="RelationshipToInsured"
               value={RelationshipToInsured}
-              onChange={(event) => {
-                setRelationshipToInsured(event.target.value);
-              }}
+              onChange={handleInputChange}
             >
               <option value="None">None</option>
               <option value="Agent">Agent</option>
+              <option value="Insured">Insured</option>
+              <option value="Householdmember">Household Member</option>
+              <option value="Friend">Friend</option>
+              <option value="Otherparty">Other Party Involved</option>
+              <option value="Attorney">Attorney</option>
             </Form.Select>
           </div>
         </div>

@@ -2,19 +2,27 @@ import React from 'react'
 import Form from "react-bootstrap/Form";
 // import Dropdown from 'react-bootstrap/Dropdown'; 
  
-function Basic() { 
-
-  const [PolicyNumber, setPolicyNumber] = React.useState("");
-  const [PolicyType, setPolicyType] = React.useState("None");
-  const [PolicyVerified, setPolicyVerified] = React.useState("");
-  const [DateOfLoss, setDateOfLoss] = React.useState("");
-  const [TimeOfLoss, setTimeOfLoss] = React.useState("");
-  const [Underwriting, setUnderwriting] = React.useState("");
-  const [EffectiveDate, setEffectiveDate] = React.useState("");
-  const [ExpirationDate, setExpirationDate] = React.useState("");
-  const [CancellationDate, setCancellationDate] = React.useState("");
-  const [OriginalEffectiveDate, setOriginalEffectiveDate] = React.useState("");
-  const [PolicyStatus, setPolicyStatus] = React.useState("None");
+function Basic({ setComponentData, componentData }) { 
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setComponentData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+  };
+  const {
+    PolicyNumber = '',
+    PolicyType = '',
+    PolicyVerified= '',
+    DateOfLoss= '',
+    TimeOfLoss = '',
+    Underwriting = '',
+    EffectiveDate = '',
+    ExpirationDate= '',
+    CancellationDate = '',
+    OriginalEffectiveDate = '',
+    PolicyStatus= '',
+  } = componentData || {};
 
   return (
     <div className="ms-3">
@@ -29,9 +37,7 @@ function Basic() {
             <input
               id="PolicyNumber"
               value={PolicyNumber}
-              onChange={(event) => {
-                setPolicyNumber(event.target.value);
-              }}
+              onChange={handleInputChange}
               type="number"
               className="w-100 form-control"
               maxLength={25}
@@ -47,9 +53,7 @@ function Basic() {
             <Form.Select
               id="PolicyType"
               value={PolicyType}
-              onChange={(event) => {
-                setPolicyType(event.target.value);
-              }}
+              onChange={handleInputChange}
               aria-label="Default select example"
             >
               <option value="None">None</option>
@@ -79,9 +83,7 @@ function Basic() {
               id="PolicyVerified-yes"
               value="yes"
               checked={PolicyVerified === "yes"}
-              onChange={(event) => {
-                setPolicyVerified(event.target.value);
-              }}
+              onChange={handleInputChange}
             />{" "}
             Yes <span className="ms-3"></span>
             <input
@@ -90,9 +92,7 @@ function Basic() {
               id="PolicyVerified-no"
               value="no"
               checked={PolicyVerified === "no"}
-              onChange={(event) => {
-                setPolicyVerified(event.target.value);
-              }}
+              onChange={handleInputChange}
             />{" "}
             No
           </div>
@@ -109,9 +109,7 @@ function Basic() {
               className="w-100 form-control"
               id="Dateofloss"
               value={DateOfLoss}
-              onChange={(event) => {
-                setDateOfLoss(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -127,9 +125,7 @@ function Basic() {
               className="w-100 form-control"
               id="Timeofloss"
               value={TimeOfLoss}
-              onChange={(event) => {
-                setTimeOfLoss(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -144,9 +140,7 @@ function Basic() {
               className="w-100 form-control"
               id="Underwriting"
               value={Underwriting}
-              onChange={(event) => {
-                setUnderwriting(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -162,9 +156,7 @@ function Basic() {
               className="w-100 form-control"
               id="EffectiveDate"
               value={EffectiveDate}
-              onChange={(event) => {
-                setEffectiveDate(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -180,9 +172,7 @@ function Basic() {
               className="w-100 form-control"
               id="ExpirationDate"
               value={ExpirationDate}
-              onChange={(event) => {
-                setExpirationDate(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </diiv>
         </div>
@@ -197,9 +187,7 @@ function Basic() {
               className="w-100 form-control"
               id="CancellationDate"
               value={CancellationDate}
-              onChange={(event) => {
-                setCancellationDate(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -216,9 +204,7 @@ function Basic() {
               className="w-100 form-control"
               id="OriginalEffectiveDate"
               value={OriginalEffectiveDate}
-              onChange={(event) => {
-                setOriginalEffectiveDate(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -232,9 +218,7 @@ function Basic() {
               aria-label="Default select example"
               id="PolicyStatus"
               value={PolicyStatus}
-              onChange={(event) => {
-                setPolicyStatus(event.target.value);
-              }}
+              onChange={handleInputChange}
             >
               <option value="None">None</option>
               <option value="In Effect">In Effect</option>

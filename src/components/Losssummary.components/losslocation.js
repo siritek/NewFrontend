@@ -1,18 +1,26 @@
 import React from 'react'
 import Form from "react-bootstrap/Form"; 
  
-function Losslocation() {
-
-  const [Location, setLocation] = React.useState("");
-  const [Address1, setAddress1] = React.useState("");
-  const [Address2, setAddress2] = React.useState("");
-  const [Address3, setAddress3] = React.useState("");
-  const [Country, setCountry] = React.useState("");
-  const [City, setCity] = React.useState("");
-  const [State, setState] = React.useState("");
-  const [ZipCode, setZipCode] = React.useState("");
-  const [Jurisdiction, setJurisdiction] = React.useState("");
-
+function Losslocation({ setComponentData, componentData }) {
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setComponentData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+  };
+  const {
+    Location = '',
+    Address1 = '',
+    Address2 = '',
+    Address3 = '',
+    Country = '',
+    City = '',
+    State = '',
+    ZipCode = '',
+    Jurisdiction = '',
+   } = componentData || {};
+   
 
   return (
     <div className="ms-3">
@@ -29,9 +37,7 @@ function Losslocation() {
               className="w-100 form-control"
               id="Location"
               value={Location}
-              onChange={(event) => {
-                setLocation(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -47,9 +53,7 @@ function Losslocation() {
               maxLength={500}
               id="Address1"
               value={Address1}
-              onChange={(event) => {
-                setAddress1(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -65,9 +69,7 @@ function Losslocation() {
               maxLength={500}
               id="Address2"
               value={Address2}
-              onChange={(event) => {
-                setAddress2(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -82,9 +84,7 @@ function Losslocation() {
               maxLength={500}
               id="Address3"
               value={Address3}
-              onChange={(event) => {
-                setAddress3(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -98,9 +98,7 @@ function Losslocation() {
               className="w-100 form-control"
               id="Country"
               value={Country}
-              onChange={(event) => {
-                setCountry(event.target.value);
-              }}
+              onChange={handleInputChange}
             >
               <option value="None">None</option>
               <option value="United States">United States</option>
@@ -118,9 +116,7 @@ function Losslocation() {
               className="w-100 form-control"
               id="City"
               value={City}
-              onChange={(event) => {
-                setCity(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -134,9 +130,7 @@ function Losslocation() {
               className="w-100 form-control"
               id="State"
               value={State}
-              onChange={(event) => {
-                setState(event.target.value);
-              }}
+              onChange={handleInputChange}
             >
               <option value="None">None</option>
               <option value="AL">Alabama</option>
@@ -204,9 +198,7 @@ function Losslocation() {
               className="w-100 form-control"
               id="Zipcode"
               value={ZipCode}
-              onChange={(event) => {
-                setZipCode(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -220,9 +212,7 @@ function Losslocation() {
               className="w-100 form-control"
               id="Jurisdiction"
               value={Jurisdiction}
-              onChange={(event) => {
-                setJurisdiction(event.target.value);
-              }}
+              onChange={handleInputChange}
             >
               <option>None</option>
               <option value="AL">Alabama</option>

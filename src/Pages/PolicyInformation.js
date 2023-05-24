@@ -1,35 +1,4 @@
-// import './App.css';
-// import Basic from './Components/basic.component';
-// import Heading from './Components/header.component'
-// import Additional from './Components/additionalInsured.component'
-// import Excluded from './Components/excludedParties.component';
-// // import Agent from './Components/agent.component';
-
-
-// function App() {
-//   return (
-//     <div>
-//       <Heading />
-//       <div className='row'>
-//         <div className='col-6'>
-//           <Basic />
-//         </div>
-
-//         <div className='col-6'>
-//           <Additional />
-//           <Excluded />
-//           <hr />
-//           {/* <Agent /> */}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default App;
-
-
-// import './App.css'; 
+import { useState } from 'react';
 import Basic from '../components/Policyinfo.components/basic.component'; 
 import Additional from '../components/Policyinfo.components/additionalInsured.component' 
 import Excluded from '../components/Policyinfo.components/excludedParties.component'; 
@@ -38,8 +7,14 @@ import Policylevel from '../components/Policyinfo.components/policylevelcoverage
  
  
 function Policyinfo(props) { 
+  const [componentData, setComponentData] = useState({});
     const handleFnolClick=()=>{
       props.onFnolClick();
+    };
+    const handleNext = () => {
+      // Access the component data from the state
+      console.log(componentData);
+      // Perform further actions with the data
     };
     const handleLossSummaryClick=()=>{
       props.onLossSummaryClick();
@@ -53,14 +28,14 @@ function Policyinfo(props) {
           <div>
             
           <button type="button" className="btn btn-dark" onClick={handleFnolClick}>Back</button>&nbsp;
-          <button type="button" className="btn btn-success" onClick={handleLossSummaryClick}>
+          <button type="button" className="btn btn-success" onClick={() => { handleLossSummaryClick(); handleNext(); }}>
             Next
           </button>
           </div></div>
      <hr/>
       <div className='row'> 
         <div className='col-6'>  
-          <Basic /> 
+          <Basic setComponentData={setComponentData} componentData={componentData}/> 
         </div> 
  
         <div className='col-6'> 
