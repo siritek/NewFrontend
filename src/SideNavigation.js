@@ -8,7 +8,7 @@ const SideNavigation = (props) => {
   }; 
 
   return (
-    <ProSidebar style={{ height: "150vh" }} backgroundColor="#bcf3ff">
+    <ProSidebar style={{ height: "150vh" }} backgroundcolor="#bcf3ff">
       <SidebarHeader></SidebarHeader>
 
       <Menu>

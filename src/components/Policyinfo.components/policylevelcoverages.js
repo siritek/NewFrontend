@@ -144,9 +144,9 @@ function Policylevel() {
           <strong>Policy-level Coverages</strong>  
         </div>  
         <div className='col-6 align-right'>  
-            <button type="button" class="btn btn-success custom-margin-right-1" onClick={handleAddRow}>Add</button>  
+            <button type="button" className="btn btn-success custom-margin-right-1" onClick={handleAddRow}>Add</button>  
             &nbsp;
-            <button type="button" class="btn btn-dark" onClick={handleDeleteRow}>Remove</button>  
+            <button type="button" className="btn btn-dark" onClick={handleDeleteRow}>Remove</button>  
         </div>  
       </div>  
       <BootstrapTable keyField='id' data={tableData} columns={columns} />  

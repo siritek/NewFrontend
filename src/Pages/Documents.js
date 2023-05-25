@@ -170,8 +170,8 @@ function Documents(props) {
           </div>  
         </div> 
        
-        <div> <input type="submit"class="btn btn-success custom-margin-right-1" value="Submit"/> &nbsp;
-        <input type="reset"class="btn btn-dark custom-margin-right-1" value="Reset"/>
+        <div> <input type="submit"className="btn btn-success custom-margin-right-1" value="Submit"/> &nbsp;
+        <input type="reset"className="btn btn-dark custom-margin-right-1" value="Reset"/>
         </div>
 <hr/>
 <div className='row p-1 m-0'>
@@ -194,7 +194,7 @@ function Documents(props) {
         </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
- <button type="button" className="btn btn-dark custom-margin-right-1" onClick={handleDeleteRow}>Delete Documents</button>
+ <button type="button" className="btn btn-dark " onClick={handleDeleteRow}>Delete Documents</button>
 </div>
 
 

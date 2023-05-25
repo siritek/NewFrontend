@@ -128,7 +128,7 @@ function FnolTypeOfPolicy() {
 <label htmlFor="Notes"> Notes </label>
       <textarea name="Notes" id="Notes" value={Notes} onChange={event=>{setNotes(event.target.value)}} rows="5" placeholder="Mention your complete address"  ></textarea> 
       
-      <label for="Documents"> Documents  &nbsp;</label> 
+      <label htmlFor="Documents"> Documents  &nbsp;</label> 
     <input type="file" id="Documents" name="Documents" ></input>  
         
 </div  > 
