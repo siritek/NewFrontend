@@ -14,18 +14,18 @@ function Exposure(props){
   const handleNext = () => {
     ExposureDataObj=componentData
     // Access the component data from the state
-    const myFNoalData = FnolData(); 
+    const myFnolData = FnolData(); 
     const myPolicyInfo = policyData();
     const myLossData = LossData();
     const myExposureData = ExposureData();
 
     console.log('policyinfo-->',myPolicyInfo)
-    console.log('FNoldata -->', myFNoalData)
+    console.log('Fnoldata -->', myFnolData)
     console.log('lossdata-->',myLossData)
     console.log('exposure--->',myExposureData)
 
     const finalDataObj = {
-      "fnolData": myFNoalData, 
+      "fnolData": myFnolData, 
       "policyInfoData": myPolicyInfo,
       "lossData": myLossData,
       "exposuredata":myExposureData
