@@ -23,12 +23,13 @@ function Newexposure({setComponentData, componentData}){
       primaryphone='', 
       address='', 
   } = componentData || {}; 
+
+
   return (
     <div>
-      
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="lossparty">Loss Party</label>
+          <label htmlFor="lossparty">Loss party</label>
         </div>
         <div className="col-6">
           <Form.Select
@@ -37,10 +38,9 @@ function Newexposure({setComponentData, componentData}){
             onChange={handleInputChange}
             aria-label="Default select example"
           >
-            <option>None</option>
-            <option>Insured's loss</option>
-            <option>Third party Liability </option>
-            <option> </option>
+            <option value="None">None</option>
+            <option value="Insured's loss">Insured's loss</option>
+            <option value="Third party Liability">Third party Liability</option>
           </Form.Select>
         </div>
       </div>
@@ -56,10 +56,7 @@ function Newexposure({setComponentData, componentData}){
             onChange={handleInputChange}
             aria-label="Default select example"
           >
-            <option>None</option>
-            {/* <option>1:900 Madison street </option> */}
-            <option> </option>
-            <option> </option>
+            <option value="None">None</option>
           </Form.Select>
         </div>
       </div>
@@ -92,8 +89,7 @@ function Newexposure({setComponentData, componentData}){
             onChange={handleInputChange}
             aria-label="Default select example"
           >
-            <option>None</option>
-            <option> </option>
+            <option value="None">None</option>
           </Form.Select>
         </div>
       </div>
@@ -109,8 +105,8 @@ function Newexposure({setComponentData, componentData}){
             onChange={handleInputChange}
             aria-label="Default select example"
           >
-            <option>Open</option>
-            <option>Closed</option>
+            <option value="Open">Open</option>
+            <option value="Closed">Closed</option>
           </Form.Select>
         </div>
       </div>
@@ -157,13 +153,17 @@ function Newexposure({setComponentData, componentData}){
             onChange={handleInputChange}
             aria-label="Default select example"
           >
-            <option>None</option>
-            <option>Insured</option>
-            <option>Member of insured's household </option>
-            <option>Owner of the lost/Damaged property </option>
-            <option>Customer </option>
-            <option>Employee </option>
-            <option>Other Third Party </option>
+            <option value="None">None</option>
+            <option value="Insured">Insured</option>
+            <option value="Member of insured's household">
+              Member of insured's household{" "}
+            </option>
+            <option value="Owner of the lost/Damaged property">
+              Owner of the lost/Damaged property{" "}
+            </option>
+            <option value="Customer">Customer </option>
+            <option value="Employee ">Employee </option>
+            <option value="Other Third Party">Other Third Party </option>
           </Form.Select>
         </div>
       </div>
