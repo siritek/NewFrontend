@@ -2,19 +2,29 @@ import React from 'react'
 import Form from "react-bootstrap/Form";
 // import Dropdown from 'react-bootstrap/Dropdown'; 
  
-function Basic() { 
-
-  const [PolicyNumber, setPolicyNumber] = React.useState("");
-  const [PolicyType, setPolicyType] = React.useState("None");
-  const [PolicyVerified, setPolicyVerified] = React.useState("");
-  const [DateOfLoss, setDateOfLoss] = React.useState("");
-  const [TimeOfLoss, setTimeOfLoss] = React.useState("");
-  const [Underwriting, setUnderwriting] = React.useState("");
-  const [EffectiveDate, setEffectiveDate] = React.useState("");
-  const [ExpirationDate, setExpirationDate] = React.useState("");
-  const [CancellationDate, setCancellationDate] = React.useState("");
-  const [OriginalEffectiveDate, setOriginalEffectiveDate] = React.useState("");
-  const [PolicyStatus, setPolicyStatus] = React.useState("None");
+function Basic({ setComponentData, componentData }) { 
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setComponentData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+  };
+  const {
+    PolicyNumber = '',
+    PolicyType = '',
+    PolicyVerified= '',
+    DateOfLoss= '',
+    LossTime = '',
+    Underwriting = '',
+    EffectiveDate = '',
+    ExpirationDate= '',
+    CancellationDate = '',
+    OriginalEffectiveDate = '',
+    PolicyStatus= '',
+    Name='',
+    Address='',
+  } = componentData || {};
 
   return (
     <div className="ms-3">
@@ -29,9 +39,7 @@ function Basic() {
             <input
               id="PolicyNumber"
               value={PolicyNumber}
-              onChange={(event) => {
-                setPolicyNumber(event.target.value);
-              }}
+              onChange={handleInputChange}
               type="number"
               className="w-100 form-control"
               maxLength={25}
@@ -47,9 +55,7 @@ function Basic() {
             <Form.Select
               id="PolicyType"
               value={PolicyType}
-              onChange={(event) => {
-                setPolicyType(event.target.value);
-              }}
+              onChange={handleInputChange}
               aria-label="Default select example"
             >
               <option value="None">None</option>
@@ -76,63 +82,45 @@ function Basic() {
             <input
               type="radio"
               name="basicRadioGroup"
-              id="PolicyVerified-yes"
+              id="PolicyVerified"
               value="yes"
               checked={PolicyVerified === "yes"}
-              onChange={(event) => {
-                setPolicyVerified(event.target.value);
-              }}
+              onChange={handleInputChange}
             />{" "}
             Yes <span className="ms-3"></span>
             <input
               type="radio"
               name="basicRadioGroup"
-              id="PolicyVerified-no"
+              id="PolicyVerified"
               value="no"
               checked={PolicyVerified === "no"}
-              onChange={(event) => {
-                setPolicyVerified(event.target.value);
-              }}
+              onChange={handleInputChange}
             />{" "}
             No
           </div>
         </div>
 
-        <div className="row mb-2">
-          <div className="col-4">
-            <label htmlFor="Dateofloss">Date of loss</label>
-            <i className="text-danger h5">*</i>
-          </div>
-          <div className="col-8">
-            <input
-              type="date"
-              className="w-100 form-control"
-              id="Dateofloss"
-              value={DateOfLoss}
-              onChange={(event) => {
-                setDateOfLoss(event.target.value);
-              }}
-            />
-          </div>
-        </div>
+        <div className='row mb-2'>
+   <div className='col-4'>
+     <label htmlFor="DateOfLoss"> Date Of Loss</label>
+     
+   </div>
+   <div className='col-5'>
+     <input  id="DateOfLoss" type="date" value={DateOfLoss}  
+     onChange={handleInputChange}  className='w-100 form-control' />
+   </div>
+ </div>
 
-        <div className="row mb-2">
-          <div className="col-4">
-            <label htmlFor="Timeofloss">Time of loss</label>
-            <i className="text-danger h5">*</i>
-          </div>
-          <div className="col-8">
-            <input
-              type="time"
-              className="w-100 form-control"
-              id="Timeofloss"
-              value={TimeOfLoss}
-              onChange={(event) => {
-                setTimeOfLoss(event.target.value);
-              }}
-            />
-          </div>
-        </div>
+        <div className='row mb-2'>
+   <div className='col-4'>
+     <label htmlFor="LossTime">Time Of Loss</label>
+  
+   </div>
+   <div className='col-5'>
+     <input id="LossTime" type="time" value={LossTime} 
+     onChange={handleInputChange}className='w-100 form-control' />
+   </div>
+ </div>
 
         <div className="row mb-2">
           <div className="col-4">
@@ -144,9 +132,7 @@ function Basic() {
               className="w-100 form-control"
               id="Underwriting"
               value={Underwriting}
-              onChange={(event) => {
-                setUnderwriting(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -162,9 +148,7 @@ function Basic() {
               className="w-100 form-control"
               id="EffectiveDate"
               value={EffectiveDate}
-              onChange={(event) => {
-                setEffectiveDate(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -174,17 +158,15 @@ function Basic() {
             <label htmlFor="ExpirationDate">Expiration Date</label>
             <i className="text-danger h5">*</i>
           </div>
-          <diiv className="col-8">
+          <div className="col-8">
             <input
               type="date"
               className="w-100 form-control"
               id="ExpirationDate"
               value={ExpirationDate}
-              onChange={(event) => {
-                setExpirationDate(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
-          </diiv>
+          </div>
         </div>
 
         <div className="row mb-2">
@@ -197,9 +179,7 @@ function Basic() {
               className="w-100 form-control"
               id="CancellationDate"
               value={CancellationDate}
-              onChange={(event) => {
-                setCancellationDate(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -216,9 +196,7 @@ function Basic() {
               className="w-100 form-control"
               id="OriginalEffectiveDate"
               value={OriginalEffectiveDate}
-              onChange={(event) => {
-                setOriginalEffectiveDate(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -232,9 +210,7 @@ function Basic() {
               aria-label="Default select example"
               id="PolicyStatus"
               value={PolicyStatus}
-              onChange={(event) => {
-                setPolicyStatus(event.target.value);
-              }}
+              onChange={handleInputChange}
             >
               <option value="None">None</option>
               <option value="In Effect">In Effect</option>
@@ -249,11 +225,13 @@ function Basic() {
         <h5>Insured</h5>
         <div className="row mb-2">
           <div className="col-4">
-            <label>Name</label>
+            <label htmlFor='Name'>Name</label>
             <i className="text-danger h5">*</i>
           </div>
           <div className="col-8">
-            <input type="text" className="w-100 form-control" />
+            <input id="Name"
+              value={Name}
+              onChange={handleInputChange} type="text" className="w-100 form-control" />
             {/* <select className='w-200 form-control'> 
               <option>Ray Newton</option> 
               <option>None</option> 
@@ -263,10 +241,12 @@ function Basic() {
 
         <div className="row mb-5">
           <div className="col-4">
-            <label>Address</label>
+            <label htmlFor='Address'>Address</label>
           </div>
           <div className="col-8">
-            <input type="text" className="w-100 form-control" />
+            <input id="Address"
+              value={Address}
+              onChange={handleInputChange}type="text" className="w-100 form-control" />
           </div>
         </div>
 

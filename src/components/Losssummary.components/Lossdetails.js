@@ -1,22 +1,28 @@
+import React from 'react';
+import Form from 'react-bootstrap/Form';
 
-import React from 'react'
+function Lossdetails({ setComponentData, componentData }) {
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setComponentData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+  };
 
- 
-function Lossdetails() { 
-
-  const [Adjuster, setAdjuster] = React.useState('');
-  const [LossDescription, setLossDescription] = React.useState('');
-  const [LossCause, setLossCause] = React.useState('');
-  const [OtherDescription, setOtherDescription] = React.useState('');
-  const [TypeOfLoss, setTypeOfLoss] = React.useState('');
-  const [WeatherInvloved, setWeatherInvloved] = React.useState('');
-  const [WeatherDescription, setWeatherDescription] = React.useState('');
-  const [DateOfLoss, setDateOfLoss] = React.useState('');
-  const [TimeOfLoss, setTimeOfLoss] = React.useState('');
-  const [ReportedBy, setReportedBy] = React.useState('');
-  const [RelationshipToInsured, setRelationshipToInsured] = React.useState('');
-
-
+  const {
+    Adjuster = '',
+    LossDescription = '',
+    LossCause = '',
+    OtherDescription = '',
+    TypeOfLoss = '',
+    WeatherInvloved = '',
+    WeatherDescription = '',
+    DateOfLoss = '',
+    TimeOfLoss = '',
+    ReportedBy = '',
+    RelationshipToInsured ='',
+  } = componentData || {};
   return (
     <div className="ms-3">
       <h5>Loss Details</h5>
@@ -27,16 +33,14 @@ function Lossdetails() {
             <label htmlFor="Adjuster">Adjuster</label>
           </div>
           <div className="col-8">
-            <select
+            <Form.Select 
               className="w-100 form-control"
               id="Adjuster"
               value={Adjuster}
-              onChange={(event) => {
-                setAdjuster(event.target.value);
-              }}
+              onChange={handleInputChange}
             >
               <option value="None">None</option>
-            </select>
+            </Form.Select>
           </div>
         </div>
 
@@ -51,9 +55,7 @@ function Lossdetails() {
               maxLength={500}
               id="LossDescription"
               value={LossDescription}
-              onChange={(event) => {
-                setLossDescription(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -63,16 +65,16 @@ function Lossdetails() {
             <label htmlFor="LossCause">Loss Cause</label>
           </div>
           <div className="col-8">
-            <select
+            <Form.Select
               className="w-100 form-control"
               id="LossCause"
               value={LossCause}
-              onChange={(event) => {
-                setLossCause(event.target.value);
-              }}
+              onChange={handleInputChange}
             >
               <option value="None">None</option>
-            </select>
+              <option value="Personalauto">Personal Auto</option>
+              <option value="Homeowners">Homeowners </option>
+            </Form.Select>
           </div>
         </div>
 
@@ -87,9 +89,7 @@ function Lossdetails() {
               maxLength={500}
               id="OtherDescription"
               value={OtherDescription}
-              onChange={(event) => {
-                setOtherDescription(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -99,16 +99,14 @@ function Lossdetails() {
             <label htmlFor="TypeOfLoss">Type of Loss</label>
           </div>
           <div className="col-8">
-            <select
+            <Form.Select
               className="w-100 form-control"
               id="TypeOfLoss"
               value={TypeOfLoss}
-              onChange={(event) => {
-                setTypeOfLoss(event.target.value);
-              }}
+              onChange={handleInputChange}
             >
               <option value="None">None</option>
-            </select>
+            </Form.Select>
           </div>
         </div>
 
@@ -120,23 +118,19 @@ function Lossdetails() {
             <input
               type="radio"
               name="Weather"
-              id="WeatherInvloved-yes"
+              id="WeatherInvloved"
               value="yes"
               checked={WeatherInvloved === "yes"}
-              onChange={(event) => {
-                setWeatherInvloved(event.target.value);
-              }}
+              onChange={handleInputChange}
             />{" "}
             Yes <span className="ms-3"></span>
             <input
               type="radio"
               name="Weather"
-              id="WeatherInvloved-No"
+              id="WeatherInvloved"
               value="No"
               checked={WeatherInvloved === "No"}
-              onChange={(event) => {
-                setWeatherInvloved(event.target.value);
-              }}
+              onChange={handleInputChange}
             />{" "}
             No
           </div>
@@ -153,9 +147,7 @@ function Lossdetails() {
               maxLength={500}
               id="WeatherDescription"
               value={WeatherDescription}
-              onChange={(event) => {
-                setWeatherDescription(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
@@ -171,9 +163,8 @@ function Lossdetails() {
               className="w-100 form-control"
               id="DateOfLoss"
               value={DateOfLoss}
-              onChange={(event) => {
-                setDateOfLoss(event.target.value);
-              }}
+              onChange={handleInputChange}
+              
             />
           </div>
         </div>
@@ -189,16 +180,14 @@ function Lossdetails() {
               className="w-100 form-control"
               id="TimeOfLoss"
               value={TimeOfLoss}
-              onChange={(event) => {
-                setTimeOfLoss(event.target.value);
-              }}
+              onChange={handleInputChange}
             />
           </div>
         </div>
 
         <hr />
 
-        <div className="row mb-2">
+        {/* <div className="row mb-2">
           <div className="col-4">
             <label htmlFor="ReportedBy">Reported By</label>
           </div>
@@ -215,6 +204,22 @@ function Lossdetails() {
               <option value="Claim">Claim</option>
             </select>
           </div>
+        </div> */}
+
+        <div className="row mb-2">
+          <div className="col-4">
+            <label htmlFor="ReportedBy">Reported By</label>
+          </div>
+          <div className="col-8">
+            <input
+              type="text"
+              className="w-100 form-control"
+              maxLength={500}
+              id="ReportedBy"
+              value={ReportedBy}
+              onChange={handleInputChange}
+            />
+          </div>
         </div>
 
         <div className="row mb-2">
@@ -224,17 +229,20 @@ function Lossdetails() {
             </label>
           </div>
           <div className="col-8">
-            <select
+            <Form.Select
               className="w-100 form-control"
               id="RelationshipToInsured"
               value={RelationshipToInsured}
-              onChange={(event) => {
-                setRelationshipToInsured(event.target.value);
-              }}
+              onChange={handleInputChange}
             >
               <option value="None">None</option>
               <option value="Agent">Agent</option>
-            </select>
+              <option value="Insured">Insured</option>
+              <option value="Householdmember">Household Member</option>
+              <option value="Friend">Friend</option>
+              <option value="Otherparty">Other Party Involved</option>
+              <option value="Attorney">Attorney</option>
+            </Form.Select>
           </div>
         </div>
       </div>
