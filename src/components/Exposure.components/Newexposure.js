@@ -32,13 +32,8 @@ function Newexposure({setComponentData, componentData}){
         </div>
         <div className="col-6">
           <Form.Select
-<<<<<<< HEAD
-            id="LossParty-select"
-            value={lossParty}
-=======
             id="lossparty"
             value={lossparty}
->>>>>>> 2ebab354f49a979bacb5a531c2d437a032dca82b
             onChange={handleInputChange}
             aria-label="Default select example"
           >
@@ -56,13 +51,8 @@ function Newexposure({setComponentData, componentData}){
         </div>
         <div className="col-6">
           <Form.Select
-<<<<<<< HEAD
-            id="PrimaryCoverage-select"
-            value={primaryCoverage}
-=======
             id="primarycoverage"
             value={primarycoverage}
->>>>>>> 2ebab354f49a979bacb5a531c2d437a032dca82b
             onChange={handleInputChange}
             aria-label="Default select example"
           >
@@ -97,11 +87,7 @@ function Newexposure({setComponentData, componentData}){
         </div>
         <div className="col-6">
           <Form.Select
-<<<<<<< HEAD
-            id="Adjuster-select"
-=======
             id="adjuster"
->>>>>>> 2ebab354f49a979bacb5a531c2d437a032dca82b
             value={adjuster}
             onChange={handleInputChange}
             aria-label="Default select example"
@@ -118,11 +104,7 @@ function Newexposure({setComponentData, componentData}){
         </div>
         <div className="col-6">
           <Form.Select
-<<<<<<< HEAD
-            id="Status-select"
-=======
             id="status"
->>>>>>> 2ebab354f49a979bacb5a531c2d437a032dca82b
             value={status}
             onChange={handleInputChange}
             aria-label="Default select example"
@@ -140,13 +122,8 @@ function Newexposure({setComponentData, componentData}){
         </div>
         <div className="col-6">
           <input
-<<<<<<< HEAD
-            id="Creation Date-select"
-            value={creationDate}
-=======
             id="creationdate"
             value={creationdate}
->>>>>>> 2ebab354f49a979bacb5a531c2d437a032dca82b
             onChange={handleInputChange}
             type="date"
             className="w-100 form-control"
@@ -160,11 +137,7 @@ function Newexposure({setComponentData, componentData}){
         </div>
         <div className="col-6">
           <input
-<<<<<<< HEAD
-            id="Claimant-select"
-=======
             id="claimant"
->>>>>>> 2ebab354f49a979bacb5a531c2d437a032dca82b
             value={claimant}
             onChange={handleInputChange}
             type="text"
@@ -179,13 +152,8 @@ function Newexposure({setComponentData, componentData}){
         </div>
         <div className="col-6">
           <Form.Select
-<<<<<<< HEAD
-            id="ClaimantType-select"
-            value={claimantType}
-=======
             id="claimanttype"
             value={claimanttype}
->>>>>>> 2ebab354f49a979bacb5a531c2d437a032dca82b
             onChange={handleInputChange}
             aria-label="Default select example"
           >
@@ -206,13 +174,8 @@ function Newexposure({setComponentData, componentData}){
         </div>
         <div className="col-6">
           <input
-<<<<<<< HEAD
-            id="PrimaryPhone-select"
-            value={primaryPhone}
-=======
             id="primaryphone"
             value={primaryphone}
->>>>>>> 2ebab354f49a979bacb5a531c2d437a032dca82b
             onChange={handleInputChange}
             type="text"
             className="w-100 form-control"
@@ -227,11 +190,7 @@ function Newexposure({setComponentData, componentData}){
         </div>
         <div className="col-6">
           <input
-<<<<<<< HEAD
-            id="Address-select"
-=======
             id="address"
->>>>>>> 2ebab354f49a979bacb5a531c2d437a032dca82b
             value={address}
             onChange={handleInputChange}
             type="text"

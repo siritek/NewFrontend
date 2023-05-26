@@ -11,28 +11,39 @@ function Exposure(props){
   const handleLossSummaryClick=()=>{
     props.onLossSummaryClick();
   };
-  const handleNext = () => {
-    ExposureDataObj=componentData
-    // Access the component data from the state
-    const myFnolData = FnolData(); 
-    const myPolicyInfo = policyData();
-    const myLossData = LossData();
-    const myExposureData = ExposureData();
+  const handleClick=(e)=>{  
+    ExposureDataObj=componentData 
+    // Access the component data from the state 
+    const myFnolData = FnolData();  
+    const myPolicyInfo = policyData(); 
+    const myLossData = LossData(); 
+    const myExposureData = ExposureData(); 
+ 
+    console.log('policyinfo-->',myPolicyInfo) 
+    console.log('Fnoldata -->', myFnolData) 
+    console.log('lossdata-->',myLossData) 
+    console.log('exposure--->',myExposureData) 
+ 
+    const finalDataObj = { 
+      "fnolData": myFnolData,  
+      "policyInfoData": myPolicyInfo, 
+      "lossData": myLossData, 
+      "exposuredata":myExposureData 
+    } 
+     console.log(finalDataObj); 
+    e.preventDefault()  
+    const abs={myFnolData,myPolicyInfo,myLossData,myExposureData}  
+    console.log(abs)  
+    fetch("http://localhost:8080/fnolfirst/add",{  
+        method:"POST",  
+        headers:{"Content-Type":"application/json"},  
+        body:JSON.stringify(abs)  
+  
+    }).then(()=>{  
+        console.log("New claim added")  
+    })  
+  }
 
-    console.log('policyinfo-->',myPolicyInfo)
-    console.log('Fnoldata -->', myFnolData)
-    console.log('lossdata-->',myLossData)
-    console.log('exposure--->',myExposureData)
-
-    const finalDataObj = {
-      "fnolData": myFnolData, 
-      "policyInfoData": myPolicyInfo,
-      "lossData": myLossData,
-      "exposuredata":myExposureData
-    }
-    console.log(finalDataObj);
-    // Perform further actions with the data
-  };
 return (
 
     <div>
@@ -42,12 +53,7 @@ return (
             
           <button type="button" className="btn btn-dark" onClick={handleLossSummaryClick}>Back</button>&nbsp;
           <button type="button" className="btn btn-dark" >Cancel</button>&nbsp;
-<<<<<<< HEAD
-          {/* <input type="submit"class="btn btn-success custom-margin-right-1" value="Submit"/>  */}
-          <button type="Submit" classname="btn btn-success custom-margin-right-1" onClick={handleClick}>Submit</button>
-=======
-          <input type="submit"className="btn btn-success custom-margin-right-1" value="Submit" onClick={ handleNext}/> 
->>>>>>> 2ebab354f49a979bacb5a531c2d437a032dca82b
+          <input type="submit"className="btn btn-success custom-margin-right-1" value="Submit" onClick={handleClick}/> 
           </div></div>
     <hr />
         <Newexposure setComponentData={setComponentData} componentData={componentData}/>
