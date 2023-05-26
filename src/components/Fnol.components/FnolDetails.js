@@ -1,3 +1,4 @@
+import { FnolData } from "../../Pages/Fnol";
 function FnolDetails({setComponentData, componentData}){ 
   const handleInputChange = (e) => { 
     const {id, value} = e.target; 
@@ -27,7 +28,10 @@ function FnolDetails({setComponentData, componentData}){
         console.log("New Insured added") 
     }) 
   }
-  
+  const myFnoalData = FnolData();
+  console.log('xxxx->', myFnoalData)
+  const myPolicyNo = myFnoalData ? myFnoalData.PolicyNumber : PolicyNumber
+  console.log('ccc-> ', myPolicyNo)
   return(<div>
       
 {/* 
@@ -48,7 +52,7 @@ function FnolDetails({setComponentData, componentData}){
      <i className='text-danger h5'>*</i>
    </div>
    <div className='col-5'>
-     <input id="PolicyNumber" type="number" value={PolicyNumber} onChange={handleInputChange}className='w-100 form-control' />
+     <input id="PolicyNumber" type="number" value={myPolicyNo} onChange={handleInputChange}className='w-100 form-control' />
    </div>
  </div>
  <div className='row mb-2'>

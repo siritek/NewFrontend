@@ -6,6 +6,8 @@ import Losslocation from "../components/Losssummary.components/losslocation";
 import Properties from "../components/Losssummary.components/properties";
 // import Heading from "./components/header.component";
 
+
+var LossDataObj;
 function Losssummary(props) { 
   const [componentData, setComponentData] = useState({});
 
@@ -14,6 +16,7 @@ function Losssummary(props) {
   };
   const handleNext = () => {
     // Access the component data from the state
+    LossDataObj = componentData
     console.log(componentData);
     // Perform further actions with the data
   };
@@ -57,6 +60,10 @@ function Losssummary(props) {
         </div> 
       </div> 
     ); 
-  } 
    
-  export default Losssummary;
+  } 
+  const LossData = () => {
+    return LossDataObj
+  }
+   
+  export {LossData, Losssummary};

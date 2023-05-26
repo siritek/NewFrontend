@@ -2,16 +2,20 @@ import React, { useState } from 'react';
 import FnolTypeOfPolicy from "../components/Fnol.components/FnolTpeOfPolicy"
 import FnolDetails from "../components/Fnol.components/FnolDetails"
  
+var FnolDataObj;
 function Fnol(props) { 
   const [componentData, setComponentData] = useState({});
+  
   const handlePIClick=()=>{
     props.onPIClick();
   };
   const handleNext = () => {
     // Access the component data from the state
+    FnolDataObj = componentData
     console.log(componentData);
     // Perform further actions with the data
   };
+  
   return ( 
      <div> 
  <div>
@@ -38,10 +42,9 @@ function Fnol(props) {
       </div>    
  
   ); 
-           
- 
- 
- 
 } 
+const FnolData = () => {
+  return FnolDataObj
+}
  
-export default Fnol;  
+export{Fnol, FnolData } 

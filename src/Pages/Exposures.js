@@ -1,15 +1,36 @@
 import React, { useState } from 'react';
 import Newexposure from "../components/Exposure.components/Newexposure";    
 import Searchexposures from "../components/Exposure.components/Searchexposures"
+import { FnolData } from './Fnol';
+import { policyData } from './PolicyInformation';
+import { LossData } from './LossSummary';
 
+var ExposureDataObj;
 function Exposure(props){
   const [componentData, setComponentData] = useState({});
   const handleLossSummaryClick=()=>{
     props.onLossSummaryClick();
   };
   const handleNext = () => {
+    ExposureDataObj=componentData
     // Access the component data from the state
-    console.log(componentData);
+    const myFNoalData = FnolData(); 
+    const myPolicyInfo = policyData();
+    const myLossData = LossData();
+    const myExposureData = ExposureData();
+
+    console.log('policyinfo-->',myPolicyInfo)
+    console.log('FNoldata -->', myFNoalData)
+    console.log('lossdata-->',myLossData)
+    console.log('exposure--->',myExposureData)
+
+    const finalDataObj = {
+      "fnolData": myFNoalData, 
+      "policyInfoData": myPolicyInfo,
+      "lossData": myLossData,
+      "exposuredata":myExposureData
+    }
+    console.log(finalDataObj);
     // Perform further actions with the data
   };
 return (
@@ -31,5 +52,8 @@ return (
     </div>
   ); 
 };
+const ExposureData = () => {
+  return ExposureDataObj
+}
  
-export default Exposure;  
+export {ExposureData, Exposure};  

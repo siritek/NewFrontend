@@ -1,7 +1,7 @@
 import React from 'react';
-import { Dropdown, DropdownButton, Form, NavbarBrand } from 'react-bootstrap';
+import { Dropdown, DropdownButton, NavbarBrand } from 'react-bootstrap';
 import logo from './images/Logo2png.png.png';
-import Search from "./Pages/Search";
+// import Search from "./Pages/Search";
 const Header = (props) => {
   const handleFnolClick = () => {
     props.onFnolClick();
@@ -10,12 +10,12 @@ const Header = (props) => {
     props.onSearchClick();
   }
 
-  const handleSearch = (event) => {
-    event.preventDefault();
-    // Handle search functionality
-    const searchQuery = event.target.elements.searchQuery.value;
-    // Perform search based on the searchQuery
-  };
+  // const handleSearch = (event) => {
+  //   event.preventDefault();
+  //   // Handle search functionality
+  //   const searchQuery = event.target.elements.searchQuery.value;
+  //   // Perform search based on the searchQuery
+  // };
   
 
   return (
