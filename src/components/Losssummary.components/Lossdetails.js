@@ -21,7 +21,7 @@ function Lossdetails({ setComponentData, componentData }) {
     DateOfLoss = '',
     TimeOfLoss = '',
     ReportedBy = '',
-    RelationshipToInsured = '',
+    RelationshipToInsured ='',
   } = componentData || {};
   return (
     <div className="ms-3">
@@ -118,7 +118,7 @@ function Lossdetails({ setComponentData, componentData }) {
             <input
               type="radio"
               name="Weather"
-              id="WeatherInvloved-yes"
+              id="WeatherInvloved"
               value="yes"
               checked={WeatherInvloved === "yes"}
               onChange={handleInputChange}
@@ -127,7 +127,7 @@ function Lossdetails({ setComponentData, componentData }) {
             <input
               type="radio"
               name="Weather"
-              id="WeatherInvloved-No"
+              id="WeatherInvloved"
               value="No"
               checked={WeatherInvloved === "No"}
               onChange={handleInputChange}

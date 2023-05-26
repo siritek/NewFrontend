@@ -17,7 +17,7 @@ function Losslocation({ setComponentData, componentData }) {
     Country = '',
     City = '',
     State = '',
-    ZipCode = '',
+    Zipcode = '',
     Jurisdiction = '',
    } = componentData || {};
    
@@ -190,14 +190,14 @@ function Losslocation({ setComponentData, componentData }) {
 
         <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="ZipCode">Zip code</label>
+            <label htmlFor="Zipcode">ZipCode</label>
           </div>
           <div className="col-8">
             <input
               type="text"
               className="w-100 form-control"
               id="Zipcode"
-              value={ZipCode}
+              value={Zipcode}
               onChange={handleInputChange}
             />
           </div>

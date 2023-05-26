@@ -5,7 +5,7 @@ import Excluded from '../components/Policyinfo.components/excludedParties.compon
 //import Agent from './Components/agent.component'; 
 import Policylevel from '../components/Policyinfo.components/policylevelcoverages'
  
- 
+ var policyInfoObj;
 function Policyinfo(props) { 
   const [componentData, setComponentData] = useState({});
    
@@ -14,12 +14,15 @@ function Policyinfo(props) {
     };
     const handleNext = () => {
       // Access the component data from the state
+      policyInfoObj=componentData;
       console.log(componentData);
       // Perform further actions with the data
     };
     const handleLossSummaryClick=()=>{
       props.onLossSummaryClick();
     };
+
+    
   return ( 
     <div> 
       
@@ -53,5 +56,7 @@ function Policyinfo(props) {
     </div> 
   ); 
 } 
- 
-export default Policyinfo;
+const policyData = () => {
+  return policyInfoObj;
+}
+export {policyData, Policyinfo};

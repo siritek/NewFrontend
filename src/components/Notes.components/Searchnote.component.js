@@ -102,14 +102,14 @@ function Searchnote(){
         </div>
         <input
           type="submit"
-          class="btn btn-success custom-margin-right-1"
+          className="btn btn-success custom-margin-right-1"
           value="Submit"
           onClick={handleClick}
         />{" "}
         &nbsp;
         <input
           type="reset"
-          class="btn btn-success custom-margin-right-1"
+          className="btn btn-success custom-margin-right-1"
           value="Reset"
         />
       </div>

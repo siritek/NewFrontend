@@ -16,7 +16,7 @@ function Notes(){
                     <Searchnote />  
                     <hr/>  
                 </div>  
-<vl/>  
+ 
                 <div className="col-6">  
                     <Notetable />  
                 </div>  

@@ -1,46 +1,38 @@
-import { useState } from "react";
+import React, { useState } from 'react';
 import Newexposure from "../components/Exposure.components/Newexposure";    
 import Searchexposures from "../components/Exposure.components/Searchexposures"
+import { FnolData } from './Fnol';
+import { policyData } from './PolicyInformation';
+import { LossData } from './LossSummary';
 
-
+var ExposureDataObj;
 function Exposure(props){
-
   const [componentData, setComponentData] = useState({});
-  // const [console, setConsole] = useState([]);
-
   const handleLossSummaryClick=()=>{
     props.onLossSummaryClick();
   };
-  const handleClick = () => {
-  
-    
-   
-    console.log(componentData);
+  const handleNext = () => {
+    ExposureDataObj=componentData
+    // Access the component data from the state
+    const myFnolData = FnolData(); 
+    const myPolicyInfo = policyData();
+    const myLossData = LossData();
+    const myExposureData = ExposureData();
+
+    console.log('policyinfo-->',myPolicyInfo)
+    console.log('Fnoldata -->', myFnolData)
+    console.log('lossdata-->',myLossData)
+    console.log('exposure--->',myExposureData)
+
+    const finalDataObj = {
+      "fnolData": myFnolData, 
+      "policyInfoData": myPolicyInfo,
+      "lossData": myLossData,
+      "exposuredata":myExposureData
+    }
+    console.log(finalDataObj);
+    // Perform further actions with the data
   };
-
-    // useEffect(() => {
-    //   // Function to fetch console data
-    //   const fetchConsoleData = () => {
-    //     // Simulating console data
-    //     const data1 = 'componentData';
-    //     const data2 = 'componentData';
-    //     const data3 = 'componentData';
-    //     const data4 = 'componentData';
-  
-    //     // Combining console data into an array
-    //     const combinedData = [data1, data2, data3, data4];
-  
-    //     setConsole(combinedData);
-    //   };
-  
-    //   fetchConsoleData();
-    // });
-
-  
-  
-
-
-
 return (
 
     <div>
@@ -50,8 +42,12 @@ return (
             
           <button type="button" className="btn btn-dark" onClick={handleLossSummaryClick}>Back</button>&nbsp;
           <button type="button" className="btn btn-dark" >Cancel</button>&nbsp;
+<<<<<<< HEAD
           {/* <input type="submit"class="btn btn-success custom-margin-right-1" value="Submit"/>  */}
           <button type="Submit" classname="btn btn-success custom-margin-right-1" onClick={handleClick}>Submit</button>
+=======
+          <input type="submit"className="btn btn-success custom-margin-right-1" value="Submit" onClick={ handleNext}/> 
+>>>>>>> 2ebab354f49a979bacb5a531c2d437a032dca82b
           </div></div>
     <hr />
         <Newexposure setComponentData={setComponentData} componentData={componentData}/>
@@ -61,5 +57,8 @@ return (
     </div>
   ); 
 };
+const ExposureData = () => {
+  return ExposureDataObj
+}
  
-export default Exposure;  
+export {ExposureData, Exposure};  

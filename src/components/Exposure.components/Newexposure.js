@@ -3,47 +3,42 @@ import Form from "react-bootstrap/Form";
 // import Dropdown from 'react-bootstrap/Dropdown';    
     
     
-function Newexposure({setComponentData, componentData}){ 
-  const handleInputChange = (e) => { 
-    const {id, value} = e.target; 
-    setComponentData((prevData) =>({ 
-      ...prevData, 
-      [id]:value, 
-    })); 
-  };  
-
-  const{
-    lossParty='',
-    primaryCoverage='',
-    adjuster='',
-      status='',
-      creationDate='',
-      claimant='',
-      claimantType='',
-      primaryPhone='',
-      address='',
-  } = componentData || {};
-
-  // const [LossParty, setLossParty] = React.useState('None');
-  // const [PrimaryCoverage, setPrimaryCoverage] = React.useState('None');
-  // const [Adjuster, setAdjuster] = React.useState('None');
-  // const [Status, setStatus] = React.useState('Open');
-  // const [CreationDate, setCreationDate] = React.useState('');
-  // const [Claimant, setClaimant] = React.useState('');
-  // const [ClaimantType, setClaimantType] = React.useState('None');
-  // const [PrimaryPhone, setPrimaryPhone] = React.useState('');
-  // const [Address, setAddress] = React.useState('');
-
+function Newexposure({setComponentData, componentData}){  
+  const handleInputChange = (e) => {  
+    const {id, value} = e.target;  
+    setComponentData((prevData) =>({  
+      ...prevData,  
+      [id]:value,  
+    }));  
+  };   
+ 
+  const{ 
+    lossparty='', 
+    primarycoverage='', 
+    adjuster='', 
+      status='', 
+      creationdate='', 
+      claimant='', 
+      claimanttype='', 
+      primaryphone='', 
+      address='', 
+  } = componentData || {}; 
   return (
     <div>
+      
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="LossParty">Loss Party</label>
+          <label htmlFor="lossparty">Loss Party</label>
         </div>
         <div className="col-6">
           <Form.Select
+<<<<<<< HEAD
             id="LossParty-select"
             value={lossParty}
+=======
+            id="lossparty"
+            value={lossparty}
+>>>>>>> 2ebab354f49a979bacb5a531c2d437a032dca82b
             onChange={handleInputChange}
             aria-label="Default select example"
           >
@@ -57,12 +52,17 @@ function Newexposure({setComponentData, componentData}){
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="PrimaryCoverage">Primary Coverage</label>
+          <label htmlFor="primarycoverage">Primary Coverage</label>
         </div>
         <div className="col-6">
           <Form.Select
+<<<<<<< HEAD
             id="PrimaryCoverage-select"
             value={primaryCoverage}
+=======
+            id="primarycoverage"
+            value={primarycoverage}
+>>>>>>> 2ebab354f49a979bacb5a531c2d437a032dca82b
             onChange={handleInputChange}
             aria-label="Default select example"
           >
@@ -93,11 +93,15 @@ function Newexposure({setComponentData, componentData}){
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="Adjuster">Adjuster</label>
+          <label htmlFor="adjuster">Adjuster</label>
         </div>
         <div className="col-6">
           <Form.Select
+<<<<<<< HEAD
             id="Adjuster-select"
+=======
+            id="adjuster"
+>>>>>>> 2ebab354f49a979bacb5a531c2d437a032dca82b
             value={adjuster}
             onChange={handleInputChange}
             aria-label="Default select example"
@@ -110,11 +114,15 @@ function Newexposure({setComponentData, componentData}){
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="Status">Status</label>
+          <label htmlFor="status">Status</label>
         </div>
         <div className="col-6">
           <Form.Select
+<<<<<<< HEAD
             id="Status-select"
+=======
+            id="status"
+>>>>>>> 2ebab354f49a979bacb5a531c2d437a032dca82b
             value={status}
             onChange={handleInputChange}
             aria-label="Default select example"
@@ -127,13 +135,18 @@ function Newexposure({setComponentData, componentData}){
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="Creation Date">Creation Date</label>
+          <label htmlFor="creationdate">Creation Date</label>
           <i className="text-danger h5">*</i>
         </div>
         <div className="col-6">
           <input
+<<<<<<< HEAD
             id="Creation Date-select"
             value={creationDate}
+=======
+            id="creationdate"
+            value={creationdate}
+>>>>>>> 2ebab354f49a979bacb5a531c2d437a032dca82b
             onChange={handleInputChange}
             type="date"
             className="w-100 form-control"
@@ -143,11 +156,15 @@ function Newexposure({setComponentData, componentData}){
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="Claimant">Claimant</label>
+          <label htmlFor="claimant">Claimant</label>
         </div>
         <div className="col-6">
           <input
+<<<<<<< HEAD
             id="Claimant-select"
+=======
+            id="claimant"
+>>>>>>> 2ebab354f49a979bacb5a531c2d437a032dca82b
             value={claimant}
             onChange={handleInputChange}
             type="text"
@@ -158,12 +175,17 @@ function Newexposure({setComponentData, componentData}){
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="ClaimantType">Claimant Type</label>
+          <label htmlFor="claimanttype">Claimant Type</label>
         </div>
         <div className="col-6">
           <Form.Select
+<<<<<<< HEAD
             id="ClaimantType-select"
             value={claimantType}
+=======
+            id="claimanttype"
+            value={claimanttype}
+>>>>>>> 2ebab354f49a979bacb5a531c2d437a032dca82b
             onChange={handleInputChange}
             aria-label="Default select example"
           >
@@ -180,12 +202,17 @@ function Newexposure({setComponentData, componentData}){
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="PrimaryPhone">Primary Phone</label>
+          <label htmlFor="primaryphone">Primary Phone</label>
         </div>
         <div className="col-6">
           <input
+<<<<<<< HEAD
             id="PrimaryPhone-select"
             value={primaryPhone}
+=======
+            id="primaryphone"
+            value={primaryphone}
+>>>>>>> 2ebab354f49a979bacb5a531c2d437a032dca82b
             onChange={handleInputChange}
             type="text"
             className="w-100 form-control"
@@ -195,12 +222,16 @@ function Newexposure({setComponentData, componentData}){
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="Address">Address</label>
+          <label htmlFor="address">Address</label>
           <i className="text-danger h5">*</i>
         </div>
         <div className="col-6">
           <input
+<<<<<<< HEAD
             id="Address-select"
+=======
+            id="address"
+>>>>>>> 2ebab354f49a979bacb5a531c2d437a032dca82b
             value={address}
             onChange={handleInputChange}
             type="text"

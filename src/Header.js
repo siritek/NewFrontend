@@ -12,7 +12,7 @@ const Header = (props) => {
 
   // const handleSearch = (event) => {
   //   event.preventDefault();
-    // Handle search functionality
+  //   // Handle search functionality
   //   const searchQuery = event.target.elements.searchQuery.value;
   //   // Perform search based on the searchQuery
   // };

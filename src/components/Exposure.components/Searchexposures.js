@@ -189,7 +189,7 @@ function Searchexposures() {
           
             <button
               type="button"
-              class="btn btn-success custom-margin-right-2"
+              className="btn btn-success custom-margin-right-2"
               onClick={handleAddRow}
               >
               Add exposures
@@ -197,7 +197,7 @@ function Searchexposures() {
             &nbsp;&nbsp;
             <button
               type="button"
-              class="btn btn-dark"
+              className="btn btn-dark"
               onClick={handleDeleteRow}
             >
               Delete
