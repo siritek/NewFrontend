@@ -8,6 +8,7 @@ import Policylevel from '../components/Policyinfo.components/policylevelcoverage
  
 function Policyinfo(props) { 
   const [componentData, setComponentData] = useState({});
+   
     const handleFnolClick=()=>{
       props.onFnolClick();
     };
