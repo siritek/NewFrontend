@@ -1,5 +1,12 @@
 import React from "react";
-function FnolDetails(){
+function FnolDetails({setComponentData, componentData}){
+   const handleInputChange = (e) => { 
+    const {id, value} = e.target; 
+    setComponentData((prevData) =>({ 
+      ...prevData, 
+      [id]:value, 
+    })); 
+  }; 
   //const [ClaimNumber, setClaimNumber] = React.useState('');
   const [DateOfLoss, setDateOfLoss] = React.useState('');
   const [LossLocation, setLossLocation] = React.useState('');
