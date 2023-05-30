@@ -1,19 +1,37 @@
-import React from "react";
-function FnolDetails({setComponentData, componentData}){
-   const handleInputChange = (e) => { 
+//import { FnolData } from "../../Pages/Fnol";
+function FnolDetails({setComponentData, componentData}){ 
+  const handleInputChange = (e) => { 
     const {id, value} = e.target; 
     setComponentData((prevData) =>({ 
       ...prevData, 
       [id]:value, 
     })); 
   }; 
-  //const [ClaimNumber, setClaimNumber] = React.useState('');
-  const [DateOfLoss, setDateOfLoss] = React.useState('');
-  const [LossLocation, setLossLocation] = React.useState('');
-  const [LossTime, setLossTime] = React.useState('');
-  const [ReportedBy, setReportedBy] = React.useState('');
-  const [DateOfReport, setDateOfReport] = React.useState('');
-  const [PolicyNumber, setPolicyNumber] = React.useState('');
+  const { 
+  DateOfLoss ='', 
+  LossLocation ='', 
+  LossTime ='', 
+  ReportedBy ='', 
+  DateOfReport ='', 
+  PolicyNumber ='',  
+  } = componentData || {};
+  // const handleClick=(e)=>{ 
+  //   e.preventDefault() 
+  //   const abs={losslocation,dateofloss,reportedby,policynumber,losstime} 
+  //   console.log(abs) 
+  //   fetch("http://localhost:8080/fnolfirst/add",{ 
+  //       method:"POST", 
+  //       headers:{"Content-Type":"application/json"}, 
+  //       body:JSON.stringify(abs) 
+ 
+  //   }).then(()=>{ 
+  //       console.log("New Insured added") 
+  //   }) 
+  // }
+  // const myFnoalData = FnolData();
+  // console.log('xxxx->', myFnoalData)
+  // const myPolicyNo = myFnoalData ? myFnoalData.PolicyNumber : PolicyNumber
+  // console.log('ccc-> ', myPolicyNo)
   
   return(<div>
       
@@ -93,8 +111,8 @@ function FnolDetails({setComponentData, componentData}){
  </div>
 
   
-  {/* <input type="submit"class="btn btn-success custom-margin-right-1" value="Submit"/> &nbsp; 
-  <input type="reset"class="btn btn-dark custom-margin-right-1" value="Reset"/> */}
+  {/* <input type="submit"className="btn btn-success custom-margin-right-1" value="Submit" onClick={handleClick}/> &nbsp; 
+  <input type="reset"className="btn btn-dark custom-margin-right-1" value="Reset"/> */}
   
   </div>
   );
