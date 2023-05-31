@@ -15,6 +15,7 @@ import {Exposure} from "./Pages/Exposures";
 import NewNote from "./NewNote";
 import SearchNote from "./SearchNote";
 import Search from "./Pages/Search";
+import Synopsis from "./Pages/Synopsis";
 
 
  
@@ -51,6 +52,7 @@ function App() {
           {activeSection === "searchnote" && <SearchNote/>}
           {activeSection === "diary" && <Diary/>}
           {activeSection === "search" && <Search/>}
+          {activeSection === "synopsis" && <Synopsis onSynopsisClick={()=>setActiveSection("synopsis")} />}
           
          
         </div> 
