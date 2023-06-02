@@ -13,14 +13,14 @@ function Newexposure({setComponentData, componentData}){
   };   
  
   const{ 
-    lossparty='', 
-    primarycoverage='', 
+    lossParty='', 
+    primaryCoverage='', 
     adjuster='', 
       status='', 
-      creationdate='', 
+      creationDate='', 
       claimant='', 
-      claimanttype='', 
-      primaryphone='', 
+      claimantType='', 
+      primaryPhone='', 
       address='', 
   } = componentData || {}; 
 
@@ -29,12 +29,12 @@ function Newexposure({setComponentData, componentData}){
     <div>
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="lossparty">Loss party</label>
+          <label htmlFor="lossParty">Loss party</label>
         </div>
         <div className="col-6">
           <Form.Select
-            id="lossparty"
-            value={lossparty}
+            id="lossParty"
+            value={lossParty}
             onChange={handleInputChange}
             aria-label="Default select example"
           >
@@ -47,16 +47,18 @@ function Newexposure({setComponentData, componentData}){
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="primarycoverage">Primary Coverage</label>
+          <label htmlFor="primaryCoverage">Primary Coverage</label>
         </div>
         <div className="col-6">
           <Form.Select
-            id="primarycoverage"
-            value={primarycoverage}
+            id="primaryCoverage"
+            value={primaryCoverage}
             onChange={handleInputChange}
             aria-label="Default select example"
           >
             <option value="None">None</option>
+            <option value="yes">yes</option>
+            <option value="no">no</option>
           </Form.Select>
         </div>
       </div>
@@ -90,6 +92,8 @@ function Newexposure({setComponentData, componentData}){
             aria-label="Default select example"
           >
             <option value="None">None</option>
+            <option value="yes">yes</option>
+              <option value="no">no</option>
           </Form.Select>
         </div>
       </div>
@@ -113,13 +117,13 @@ function Newexposure({setComponentData, componentData}){
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="creationdate">Creation Date</label>
+          <label htmlFor="creationDate">Creation Date</label>
           <i className="text-danger h5">*</i>
         </div>
         <div className="col-6">
           <input
-            id="creationdate"
-            value={creationdate}
+            id="creationDate"
+            value={creationDate}
             onChange={handleInputChange}
             type="date"
             className="w-100 form-control"
@@ -144,12 +148,12 @@ function Newexposure({setComponentData, componentData}){
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="claimanttype">Claimant Type</label>
+          <label htmlFor="claimantType">Claimant Type</label>
         </div>
         <div className="col-6">
           <Form.Select
-            id="claimanttype"
-            value={claimanttype}
+            id="claimantType"
+            value={claimantType}
             onChange={handleInputChange}
             aria-label="Default select example"
           >
@@ -170,12 +174,12 @@ function Newexposure({setComponentData, componentData}){
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="primaryphone">Primary Phone</label>
+          <label htmlFor="primaryPhone">Primary Phone</label>
         </div>
         <div className="col-6">
           <input
-            id="primaryphone"
-            value={primaryphone}
+            id="primaryPhone"
+            value={primaryPhone}
             onChange={handleInputChange}
             type="text"
             className="w-100 form-control"

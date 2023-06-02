@@ -11,19 +11,19 @@ function Basic({ setComponentData, componentData }) {
     }));
   };
   const {
-    PolicyNumber = '',
-    PolicyType = '',
-    PolicyVerified= '',
-    DateOfLoss= '',
-    LossTime = '',
-    Underwriting = '',
-    EffectiveDate = '',
-    ExpirationDate= '',
-    CancellationDate = '',
-    OriginalEffectiveDate = '',
-    PolicyStatus= '',
-    Name='',
-    Address='',
+    policyNumber = '',
+    policyType = '',
+    policyVerified= '',
+    dateOfLoss= '',
+    lossTime = '',
+    underwriting = '',
+    effectiveDate = '',
+    expirationDate= '',
+    cancellationDate = '',
+    originalEffectiveDate = '',
+    policyStatus= '',
+    name='',
+    address='',
   } = componentData || {};
 
   return (
@@ -33,12 +33,12 @@ function Basic({ setComponentData, componentData }) {
       <div className="row">
         <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="PolicyNumber">Policy Number</label>
+            <label htmlFor="policyNumber">Policy Number</label>
           </div>
           <div className="col-8">
             <input
-              id="PolicyNumber"
-              value={PolicyNumber}
+              id="policyNumber"
+              value={policyNumber}
               onChange={handleInputChange}
               type="number"
               className="w-100 form-control"
@@ -49,12 +49,12 @@ function Basic({ setComponentData, componentData }) {
 
         <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="PolicyType">Policy Type</label>
+            <label htmlFor="policyType">Policy Type</label>
           </div>
           <div className="col-8">
             <Form.Select
-              id="PolicyType"
-              value={PolicyType}
+              id="policyType"
+              value={policyType}
               onChange={handleInputChange}
               aria-label="Default select example"
             >
@@ -82,18 +82,18 @@ function Basic({ setComponentData, componentData }) {
             <input
               type="radio"
               name="basicRadioGroup"
-              id="PolicyVerified"
+              id="policyVerified"
               value="yes"
-              checked={PolicyVerified === "yes"}
+              checked={policyVerified === "yes"}
               onChange={handleInputChange}
             />{" "}
             Yes <span className="ms-3"></span>
             <input
               type="radio"
               name="basicRadioGroup"
-              id="PolicyVerified"
+              id="policyVerified"
               value="no"
-              checked={PolicyVerified === "no"}
+              checked={policyVerified === "no"}
               onChange={handleInputChange}
             />{" "}
             No
@@ -102,36 +102,36 @@ function Basic({ setComponentData, componentData }) {
 
         <div className='row mb-2'>
    <div className='col-4'>
-     <label htmlFor="DateOfLoss"> Date Of Loss</label>
+     <label htmlFor="dateOfLoss"> Date Of Loss</label>
      
    </div>
    <div className='col-5'>
-     <input  id="DateOfLoss" type="date" value={DateOfLoss}  
+     <input  id="dateOfLoss" type="date" value={dateOfLoss}  
      onChange={handleInputChange}  className='w-100 form-control' />
    </div>
  </div>
 
         <div className='row mb-2'>
    <div className='col-4'>
-     <label htmlFor="LossTime">Time Of Loss</label>
+     <label htmlFor="lossTime">Time Of Loss</label>
   
    </div>
    <div className='col-5'>
-     <input id="LossTime" type="time" value={LossTime} 
+     <input id="lossTime" type="time" value={lossTime} 
      onChange={handleInputChange}className='w-100 form-control' />
    </div>
  </div>
 
         <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="Underwriting">Underwriting Company</label>
+            <label htmlFor="underwriting">Underwriting Company</label>
           </div>
           <div className="col-8">
             <input
               type="text"
               className="w-100 form-control"
-              id="Underwriting"
-              value={Underwriting}
+              id="underwriting"
+              value={underwriting}
               onChange={handleInputChange}
             />
           </div>
@@ -139,15 +139,15 @@ function Basic({ setComponentData, componentData }) {
 
         <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="EffectiveDate">Effective Date</label>
+            <label htmlFor="effectiveDate">Effective Date</label>
             <i className="text-danger h5">*</i>
           </div>
           <div className="col-8">
             <input
               type="date"
               className="w-100 form-control"
-              id="EffectiveDate"
-              value={EffectiveDate}
+              id="effectiveDate"
+              value={effectiveDate}
               onChange={handleInputChange}
             />
           </div>
@@ -155,15 +155,15 @@ function Basic({ setComponentData, componentData }) {
 
         <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="ExpirationDate">Expiration Date</label>
+            <label htmlFor="expirationDate">Expiration Date</label>
             <i className="text-danger h5">*</i>
           </div>
           <div className="col-8">
             <input
               type="date"
               className="w-100 form-control"
-              id="ExpirationDate"
-              value={ExpirationDate}
+              id="expirationDate"
+              value={expirationDate}
               onChange={handleInputChange}
             />
           </div>
@@ -171,14 +171,14 @@ function Basic({ setComponentData, componentData }) {
 
         <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="CancellationDate">Cancellation Date</label>
+            <label htmlFor="cancellationDate">Cancellation Date</label>
           </div>
           <div className="col-8">
             <input
               type="date"
               className="w-100 form-control"
-              id="CancellationDate"
-              value={CancellationDate}
+              id="cancellationDate"
+              value={cancellationDate}
               onChange={handleInputChange}
             />
           </div>
@@ -186,7 +186,7 @@ function Basic({ setComponentData, componentData }) {
 
         <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="OriginalEffectiveDate">
+            <label htmlFor="originalEffectiveDate">
               Original Effective Date
             </label>
           </div>
@@ -194,8 +194,8 @@ function Basic({ setComponentData, componentData }) {
             <input
               type="date"
               className="w-100 form-control"
-              id="OriginalEffectiveDate"
-              value={OriginalEffectiveDate}
+              id="originalEffectiveDate"
+              value={originalEffectiveDate}
               onChange={handleInputChange}
             />
           </div>
@@ -203,13 +203,13 @@ function Basic({ setComponentData, componentData }) {
 
         <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="PolicyStatus">Policy Status</label>
+            <label htmlFor="policyStatus">Policy Status</label>
           </div>
           <div className="col-8">
             <Form.Select
               aria-label="Default select example"
-              id="PolicyStatus"
-              value={PolicyStatus}
+              id="policyStatus"
+              value={policyStatus}
               onChange={handleInputChange}
             >
               <option value="None">None</option>
@@ -225,12 +225,12 @@ function Basic({ setComponentData, componentData }) {
         <h5>Insured</h5>
         <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor='Name'>Name</label>
+            <label htmlFor='name'>Name</label>
             <i className="text-danger h5">*</i>
           </div>
           <div className="col-8">
-            <input id="Name"
-              value={Name}
+            <input id="name"
+              value={name}
               onChange={handleInputChange} type="text" className="w-100 form-control" />
             {/* <select className='w-200 form-control'> 
               <option>Ray Newton</option> 
@@ -241,11 +241,11 @@ function Basic({ setComponentData, componentData }) {
 
         <div className="row mb-5">
           <div className="col-4">
-            <label htmlFor='Address'>Address</label>
+            <label htmlFor='address'>Address</label>
           </div>
           <div className="col-8">
-            <input id="Address"
-              value={Address}
+            <input id="address"
+              value={address}
               onChange={handleInputChange}type="text" className="w-100 form-control" />
           </div>
         </div>

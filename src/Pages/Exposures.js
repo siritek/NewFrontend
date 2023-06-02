@@ -19,25 +19,25 @@ function Exposure(props){
     const myLossData = LossData(); 
     const myExposureData = ExposureData(); 
  
-    console.log('policyinfo-->',myPolicyInfo) 
-    console.log('Fnoldata -->', myFnolData) 
-    console.log('lossdata-->',myLossData) 
-    console.log('exposure--->',myExposureData) 
+    // console.log('policyinfo-->',myPolicyInfo) 
+    // console.log('Fnoldata -->', myFnolData) 
+    // console.log('lossdata-->',myLossData) 
+    // console.log('exposure--->',myExposureData) 
  
     const finalDataObj = { 
       "fnolData": myFnolData,  
       "policyInfoData": myPolicyInfo, 
       "lossData": myLossData, 
-      "exposuredata":myExposureData 
+      "exposureData":myExposureData 
     } 
-     console.log(finalDataObj); 
-    e.preventDefault()  
-    const abs={myFnolData,myPolicyInfo,myLossData,myExposureData}  
-    console.log(abs)  
-    fetch("http://localhost:8080/fnolfirst/add",{  
+    //  console.log(finalDataObj); 
+    // e.preventDefault()  
+    // const abs={myFnolData,myPolicyInfo,myLossData,myExposureData}  
+    console.log(finalDataObj)  
+    fetch("http://localhost:8080/common/add",{  
         method:"POST",  
         headers:{"Content-Type":"application/json"},  
-        body:JSON.stringify(abs)  
+        body:JSON.stringify(finalDataObj)  
   
     }).then(()=>{  
         console.log("New claim added")  

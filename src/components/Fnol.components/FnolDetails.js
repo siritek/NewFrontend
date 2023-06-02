@@ -8,12 +8,12 @@ function FnolDetails({setComponentData, componentData}){
     })); 
   }; 
   const { 
-  DateOfLoss ='', 
-  LossLocation ='', 
-  LossTime ='', 
-  ReportedBy ='', 
-  DateOfReport ='', 
-  PolicyNumber ='',  
+  dateOfLoss ='', 
+  lossLocation ='', 
+  lossTime ='', 
+  reportedBy ='', 
+  dateOfReport ='', 
+  policyNumber ='',  
   } = componentData || {};
   // const handleClick=(e)=>{ 
   //   e.preventDefault() 
@@ -50,62 +50,62 @@ function FnolDetails({setComponentData, componentData}){
 
   <div className='row mb-2'>
    <div className='col-4'>
-     <label htmlFor="PolicyNumber">Policy Number</label>
+     <label htmlFor="policyNumber">Policy Number</label>
      <i className='text-danger h5'>*</i>
    </div>
    <div className='col-5'>
-     <input id="PolicyNumber" type="number" value={PolicyNumber} onChange={handleInputChange}className='w-100 form-control' />
+     <input id="policyNumber" type="number" value={policyNumber} onChange={handleInputChange}className='w-100 form-control' />
    </div>
  </div>
  <div className='row mb-2'>
    <div className='col-4'>
-     <label htmlFor="DateOfLoss"> Date Of Loss</label>
+     <label htmlFor="dateOfLoss"> Date Of Loss</label>
      
    </div>
    <div className='col-5'>
-     <input  id="DateOfLoss" type="date" value={DateOfLoss}  
+     <input  id="dateOfLoss" type="date" value={dateOfLoss}  
      onChange={handleInputChange}  className='w-100 form-control' />
    </div>
  </div>
  
  <div className='row mb-2'>
    <div className='col-4'>
-     <label htmlFor="LossLocation">Loss Location</label>
+     <label htmlFor="lossLocation">Loss Location</label>
    </div>
    <div className='col-5'>
-     <input id="LossLocation" type="text" value={LossLocation} 
+     <input id="lossLocation" type="text" value={lossLocation} 
      onChange={handleInputChange} className='w-100 form-control' />
    </div>
  </div>
 
 <div className='row mb-2'>
    <div className='col-4'>
-     <label htmlFor="LossTime">Time Of Loss</label>
+     <label htmlFor="lossTime">Time Of Loss</label>
   
    </div>
    <div className='col-5'>
-     <input id="LossTime" type="time" value={LossTime} 
+     <input id="lossTime" type="time" value={lossTime} 
      onChange={handleInputChange}className='w-100 form-control' />
    </div>
  </div>
 
 <div className='row mb-2'>
    <div className='col-4'>
-     <label htmlFor="ReportedBy">Reported By</label>
+     <label htmlFor="reportedBy">Reported By</label>
      
    </div>
    <div className='col-5'>
-     <input id="ReportedBy" type="text" value={ReportedBy} 
+     <input id="reportedBy" type="text" value={reportedBy} 
      onChange={handleInputChange} className='w-100 form-control' />
    </div>
  </div>
  <div className='row mb-2'>
    <div className='col-4'>
-     <label htmlFor="DateOfReport"> Date Reported</label>
+     <label htmlFor="dateOfReport"> Date Reported</label>
      
    </div>
    <div className='col-5'>
-     <input type="date" id="DateOfReport" value={DateOfReport} 
+     <input type="date" id="dateOfReport" value={dateOfReport} 
      onChange={handleInputChange}className='w-100 form-control' />
    </div>
  </div>
