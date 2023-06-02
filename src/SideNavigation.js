@@ -43,7 +43,10 @@ const SideNavigation = (props) => {
         </MenuItem>
 
         <MenuItem onClick={() => handleItemClick("diary")}>Diary</MenuItem>
-        <MenuItem>Synopsis</MenuItem>
+        
+        <MenuItem onClick={() => handleItemClick("synopsis")}>Synopsis</MenuItem>
+
+
       </Menu>
     </ProSidebar>
   ); 
