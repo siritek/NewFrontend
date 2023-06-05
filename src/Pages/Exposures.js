@@ -36,15 +36,15 @@ function Exposure(props){
     //  console.log(finalDataObj); 
     // e.preventDefault()  
     // const abs={myFnolData,myPolicyInfo,myLossData,myExposureData}  
-    // console.log(finalDataObj)  
-    // fetch("http://localhost:8080/common/add",{  
-    //     method:"POST",  
-    //     headers:{"Content-Type":"application/json"},  
-    //     body:JSON.stringify(finalDataObj)  
+    console.log(finalDataObj)  
+    fetch("http://localhost:8080/common/add",{  
+        method:"POST",  
+        headers:{"Content-Type":"application/json"},  
+        body:JSON.stringify(finalDataObj)  
   
-    // }).then(()=>{  
-    //     console.log("New claim added")  
-    // })  
+    }).then(()=>{  
+        console.log("New claim added")  
+    })  
   }
 
 return (

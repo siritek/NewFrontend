@@ -10,10 +10,10 @@ function Losslocation({ setComponentData, componentData }) {
     }));
   };
   const {
-    location = '',
-    address1 = '',
-    address2 = '',
-    address3 = '',
+    // location = '',
+    address = '',
+    // address2 = '',
+    // address3 = '',
     country = '',
     city = '',
     state = '',
@@ -26,8 +26,8 @@ function Losslocation({ setComponentData, componentData }) {
     <div className="ms-3">
       <h5>Loss Location</h5>
 
-      <div className="row">
-        <div className="row mb-2">
+       <div className="row">
+      {/*  <div className="row mb-2">
           <div className="col-4">
             <label htmlFor="location">Location</label>
           </div>
@@ -40,25 +40,37 @@ function Losslocation({ setComponentData, componentData }) {
               onChange={handleInputChange}
             />
           </div>
-        </div>
+        </div> */}
 
         <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="address1">Address 1</label>
-          </div>
+            <label htmlFor="address">Address</label>
+            </div>
           <div className="col-15">
             <input
               type="text"
               className="w-100 form-control"
               maxLength={500}
-              id="address1"
-              value={address1}
+              id="address"
+              value={address}
+              onChange={handleInputChange}
+            />&nbsp;
+             <div className="col-15">
+            <input
+              type="text"
+              className="w-100 form-control"
+              maxLength={500}
+              id="address"
+              value={address}
               onChange={handleInputChange}
             />
+           </div>
           </div>
         </div>
+        
+        
 
-        <div className="row mb-2">
+        {/* <div className="row mb-2">
           <div className="col-4">
             <label htmlFor="address2">Address 2</label>
           </div>
@@ -87,7 +99,7 @@ function Losslocation({ setComponentData, componentData }) {
               onChange={handleInputChange}
             />
           </div>
-        </div>
+        </div> */}
 
         <div className="row mb-2">
           <div className="col-4">
