@@ -11,6 +11,9 @@ function Exposure(props){
   const handleLossSummaryClick=()=>{
     props.onLossSummaryClick();
   };
+  const handleBlankClick=()=>{
+    props.onBlankClick();
+  }
   const handleClick=(e)=>{  
     ExposureDataObj=componentData 
     // Access the component data from the state 
@@ -33,15 +36,15 @@ function Exposure(props){
     //  console.log(finalDataObj); 
     // e.preventDefault()  
     // const abs={myFnolData,myPolicyInfo,myLossData,myExposureData}  
-    console.log(finalDataObj)  
-    fetch("http://localhost:8080/common/add",{  
-        method:"POST",  
-        headers:{"Content-Type":"application/json"},  
-        body:JSON.stringify(finalDataObj)  
+    // console.log(finalDataObj)  
+    // fetch("http://localhost:8080/common/add",{  
+    //     method:"POST",  
+    //     headers:{"Content-Type":"application/json"},  
+    //     body:JSON.stringify(finalDataObj)  
   
-    }).then(()=>{  
-        console.log("New claim added")  
-    })  
+    // }).then(()=>{  
+    //     console.log("New claim added")  
+    // })  
   }
 
 return (
@@ -53,7 +56,7 @@ return (
             
           <button type="button" className="btn btn-dark" onClick={handleLossSummaryClick}>Back</button>&nbsp;
           <button type="button" className="btn btn-dark" >Cancel</button>&nbsp;
-          <input type="submit"className="btn btn-success custom-margin-right-1" value="Submit" onClick={handleClick}/> 
+          <input type="submit"className="btn btn-success custom-margin-right-1" value="Submit" onClick={()=>{handleClick();handleBlankClick()}}/> 
           </div></div>
     <hr />
         <Newexposure setComponentData={setComponentData} componentData={componentData}/>

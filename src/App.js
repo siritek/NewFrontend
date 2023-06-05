@@ -16,6 +16,7 @@ import NewNote from "./NewNote";
 import SearchNote from "./SearchNote";
 import Search from "./Pages/Search";
 import Synopsis from "./Pages/Synopsis";
+import Blank from "./Pages/Blank";
 
 
  
@@ -45,7 +46,7 @@ function App() {
           {activeSection === "newDoc" && <NewDoc onDocumentClick={()=>setActiveSection("documents")} />} 
           {activeSection === "upload" && <Upload onDocumentClick={()=>setActiveSection("documents")}/>} 
           {activeSection === "losssummary" && <Losssummary onPIClick={()=>setActiveSection("pi")} onExposureClick={()=>setActiveSection("Exposures")}/>}
-          {activeSection === "Exposures" && <Exposure onLossSummaryClick={()=>setActiveSection("losssummary")} />}
+          {activeSection === "Exposures" && <Exposure onLossSummaryClick={()=>setActiveSection("losssummary")} onBlankClick={()=>setActiveSection("blank")} />}
           {/* {activeSection === "newexposure" && <Newexposure/>}
           {activeSection === "searchexposure" && <Searchexposure/>}   */}
           {activeSection === "newnote" && <NewNote/>}
@@ -53,7 +54,7 @@ function App() {
           {activeSection === "diary" && <Diary/>}
           {activeSection === "search" && <Search/>}
           {activeSection === "synopsis" && <Synopsis onSynopsisClick={()=>setActiveSection("synopsis")} />}
-          
+          {activeSection==="blank"&&<Blank/>}
          
         </div> 
       </div> 
