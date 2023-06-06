@@ -142,7 +142,7 @@ function Witnesses() {
         <div className="col-6"> 
           <strong>Witnesses</strong> 
         </div> 
-        {/* <div className="col-6 align-right"> 
+         <div className="col-6 align-right"> 
           <button 
             type="button" 
             class="btn btn-success custom-margin-right-1" 
@@ -153,7 +153,7 @@ function Witnesses() {
           <button type="button" class="btn btn-dark" onClick={handleDeleteRow}> 
             Remove 
           </button> 
-        </div> */} 
+        </div> 
       </div> 
       <BootstrapTable keyField="id" data={tableData} columns={columns} /> 
     </div> 

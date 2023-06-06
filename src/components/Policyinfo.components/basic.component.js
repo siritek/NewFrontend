@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect }  from 'react'
 import Form from "react-bootstrap/Form";
 // import Dropdown from 'react-bootstrap/Dropdown'; 
+
  
-function Basic({ setComponentData, componentData }) { 
+function Basic({ setComponentData, componentData, FnolDataObj }) { 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setComponentData((prevData) => ({
@@ -10,6 +11,26 @@ function Basic({ setComponentData, componentData }) {
       [id]: value,
     }));
   };
+
+  useEffect(() => {
+    if (FnolDataObj) {
+      const {
+        policyNumber,
+        dateOfLoss,
+        lossTime,
+        // Add other common fields here
+      } = FnolDataObj;
+
+      setComponentData((prevData) => ({
+        ...prevData,
+        policyNumber: policyNumber || prevData.policyNumber,
+        dateOfLoss : dateOfLoss || prevData.dateOfLoss,
+        lossTime: lossTime || prevData.lossTime,
+        // Update other common fields in componentData
+      }));
+    }
+  }, [FnolDataObj, setComponentData]);
+
   const {
     policyNumber = '',
     policyType = '',
