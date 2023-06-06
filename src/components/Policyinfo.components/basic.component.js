@@ -45,6 +45,7 @@ function Basic({ setComponentData, componentData, FnolDataObj }) {
     policyStatus= '',
     name='',
     address='',
+    primaryPhone='',
   } = componentData || {};
 
   return (
@@ -260,7 +261,7 @@ function Basic({ setComponentData, componentData, FnolDataObj }) {
           </div>
         </div>
 
-        <div className="row mb-5">
+        <div className="row mb-2">
           <div className="col-4">
             <label htmlFor='address'>Address</label>
           </div>
@@ -271,6 +272,20 @@ function Basic({ setComponentData, componentData, FnolDataObj }) {
           </div>
         </div>
 
+        <div className="row mb-2">
+        <div className="col-4">
+          <label htmlFor="primaryPhone">Primary Phone</label>
+        </div>
+        <div className="col-8">
+          <input
+            id="primaryPhone"
+            value={primaryPhone}
+            onChange={handleInputChange}
+            type="text"
+            className="w-100 form-control"
+          />
+        </div>
+      </div>
         {/* <div className='row mb-2'> 
           <div className='col-4'><label>Account Name</label></div> 
         </div> 
