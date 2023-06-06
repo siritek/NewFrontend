@@ -13,7 +13,7 @@ import {Exposure} from "./Pages/Exposures";
 // import Newexposure from "./components/Exposure.components/Newexposure";
 // import Searchexposure from "./components/Exposure.components/Searchexposures";
 import NewNote from "./NewNote";
-import SearchNote from "./SearchNote";
+//import SearchNote from "./SearchNote";
 import Search from "./Pages/Search";
 import Synopsis from "./Pages/Synopsis";
 import Blank from "./Pages/Blank";
@@ -50,12 +50,12 @@ function App() {
           {/* {activeSection === "newexposure" && <Newexposure/>}
           {activeSection === "searchexposure" && <Searchexposure/>}   */}
           {activeSection === "newnote" && <NewNote/>}
-          {activeSection === "searchnote" && <SearchNote/>}
+          {/* {activeSection === "searchnote" && <SearchNote/>} */}
           {activeSection === "diary" && <Diary/>}
           {activeSection === "search" && <Search/>}
           {activeSection === "synopsis" && <Synopsis onSynopsisClick={()=>setActiveSection("synopsis")} />}
-          {activeSection==="blank"&&<Blank/>}
-         
+          {activeSection==="blank"&&<Blank/>}         {/* new claim synopsis */}
+    
         </div> 
       </div> 
      
