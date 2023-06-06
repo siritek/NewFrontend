@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 // import Dropdown from 'react-bootstrap/Dropdown'; 
 
  
-function Basic({ setComponentData, componentData, FnolDataObj }) { 
+function Basic({ setComponentData, componentData, fnoldataobj }) { 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setComponentData((prevData) => ({
@@ -13,13 +13,13 @@ function Basic({ setComponentData, componentData, FnolDataObj }) {
   };
 
   useEffect(() => {
-    if (FnolDataObj) {
+    if (fnoldataobj) {
       const {
         policyNumber,
         dateOfLoss,
         lossTime,
         // Add other common fields here
-      } = FnolDataObj;
+      } = fnoldataobj;
 
       setComponentData((prevData) => ({
         ...prevData,
@@ -29,7 +29,7 @@ function Basic({ setComponentData, componentData, FnolDataObj }) {
         // Update other common fields in componentData
       }));
     }
-  }, [FnolDataObj, setComponentData]);
+  }, [fnoldataobj, setComponentData]);
 
   const {
     policyNumber = '',
