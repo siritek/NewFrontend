@@ -113,27 +113,32 @@ function FnolTypeOfPolicy() {
         <br/> 
           <b>Homeowners subsection</b>  
           <br/>  
- 
+          
+          <div className='row mb-2'> 
         <div className='col-4'> 
     <label htmlFor="Address"> Address </label>  
-     
-    <textarea name="message" id="Address"  value={Address} onChange={event=>{setAddress(event.target.value)}} rows="5"  placeholder="Mention your complete address" ></textarea>  
+     </div> 
+     <div className='col-6'>
+     <input  name="message" type="text" id="Address"  value={Address} onChange={event=>{setAddress(event.target.value)}} className='w-100 form-control' placeholder="Mention your complete address"/> 
+          </div> 
            </div> 
            </div> 
-          
       )}  
-</div  > 
+ 
 <br/>
+<div className='row mb-2'> 
 <div className='col-4'> 
 <label htmlFor="Notes"> Notes </label>
-      <textarea name="Notes" id="Notes" value={Notes} onChange={event=>{setNotes(event.target.value)}} rows="5" placeholder="Mention your complete address"  ></textarea> 
-      
+ </div>
+ <div className='col-5'>
+      <input name="Notes" type="text" id="Notes" value={Notes} onChange={event=>{setNotes(event.target.value)}} className='w-100 form-control'  placeholder="Write Here" />
+     </div  > 
+</div  >
       <label htmlFor="Documents"> Documents  &nbsp;</label> 
     <input type="file" id="Documents" name="Documents" ></input>  
         
-</div  > 
-</div  > 
-</div>
+
+</div></div  > </div  >
   );  
             
   

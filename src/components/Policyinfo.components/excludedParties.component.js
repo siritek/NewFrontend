@@ -1,63 +1,3 @@
-// import React from 'react'
-
-// function Excluded() {
-//   return (
-//     <div className='ms-3'>
-//       <table className='table'>
-//         <thead>
-//           <tr>
-//             <th>#</th>
-//             <th>First Name</th>
-//             <th>Last Name</th>
-//             <th>Username</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           <tr>
-//             <td>1</td>
-//             <td>John</td>
-//             <td>Doe</td>
-//             <td>@John</td>
-//           </tr>
-
-//         </tbody>
-//       </table>
-//     </div>
-//   )
-// }
-
-// export default Excluded
-
-// import React from 'react'
-
-// function Additional() {
-//   return (
-//     <div className='ms-3'>
-//       <table className='table'>
-//         <thead>
-//           <tr>
-//             <th>#</th>
-//             <th>First Name</th>
-//             <th>Last Name</th>
-//             <th>Username</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           <tr>
-//             <td>1</td>
-//             <td>John</td>
-//             <td>Doe</td>
-//             <td>@John</td>
-//           </tr>
-
-//         </tbody>
-//       </table>
-//     </div>
-//   )
-// }
-
-// export default Additional
-
 import React, { useState } from 'react'  
 import BootstrapTable from 'react-bootstrap-table-next';  
 import { Dropdown, DropdownButton } from "react-bootstrap";  
@@ -65,42 +5,36 @@ import { Dropdown, DropdownButton } from "react-bootstrap";
 function Exclude() {  
     
   //Coloumns For the Table  
-  const columns = [  
-    {  
-      dataField: "checkbox",  
-      text: "Checkbox",  
-      headerClasses: "checkbox-header",  
-      classes: "checkbox-column",  
-      headerFormatter: (cellContent, row) => (  
-        <div className="form-check">  
-          <input  
-            type="checkbox"  
-            className="form-check-input"  
-            id={row.id}  
-              
-          />  
-        </div>  
-      ),  
-      formatter: (cellContent, row) => (  
-        <div className="form-check">  
-          <input  
-            type="checkbox"  
-            className="form-check-input"  
-            id={row.id}  
-            checked={row.selected}  
-      onChange={() => handleCheckboxChange(row.id)}  
-          />  
-        </div>  
-  
-      ),  
-    },  
-    {  
-      dataField: "id",  
-      text: "#",  
-      sort: true,  
-      headerClasses: "id-header",  
-      classes: "id-column",  
-    },  
+  const columns = [
+    {
+      dataField: "checkbox",
+      text: "Checkbox",
+      headerClasses: "checkbox-header",
+      classes: "checkbox-column",
+      headerFormatter: (cellContent, row) => (
+        <div className="form-check">
+          <input type="checkbox" className="form-check-input" id={row.id} />
+        </div>
+      ),
+      formatter: (cellContent, row) => (
+        <div className="form-check">
+          <input
+            type="checkbox"
+            className="form-check-input"
+            id={row.id}
+            checked={row.selected}
+            onChange={() => handleCheckboxChange(row.id)}
+          />
+        </div>
+      ),
+    },
+    {
+      dataField: "id",
+      text: "Id",
+      sort: true,
+      headerClasses: "id-header",
+      classes: "id-column",
+    }, 
     {  
       dataField: "name",  
       text: "Name",  
@@ -110,7 +44,7 @@ function Exclude() {
       formatter: (cellContent, row) => (  
   
         <div className='row'>  
-          <div className='col-10'>  
+          <div className='col-8'>  
             <DropdownButton variant='success' id={`dropdown-button-${row.id}`} title='select' className='dropdown-type-value'>  
               <Dropdown.Item onClick={() => alert(`${row.name} selected Type A`)}>  
                 John  
@@ -211,3 +145,36 @@ function Exclude() {
 }  
   
 export default Exclude  
+
+
+// import React from 'react'
+
+// function Excluded() {
+//   return (
+//     <div className='ms-3'>
+//       <table className='table'>
+//         <thead>
+//           <tr>
+//             <th>#</th>
+//             <th>First Name</th>
+//             <th>Last Name</th>
+//             <th>Username</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           <tr>
+//             <td>1</td>
+//             <td>John</td>
+//             <td>Doe</td>
+//             <td>@John</td>
+//           </tr>
+
+//         </tbody>
+//       </table>
+//     </div>
+//   )
+// }
+
+// export default Excluded
+
+// import React from 'react'

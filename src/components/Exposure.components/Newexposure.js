@@ -19,8 +19,7 @@ function Newexposure({setComponentData, componentData}){
       status='', 
       creationDate='', 
       claimant='', 
-      claimantType='', 
-      primaryPhone='', 
+      claimantType='',  
       address='', 
   } = componentData || {}; 
 
@@ -169,21 +168,6 @@ function Newexposure({setComponentData, componentData}){
             <option value="Employee ">Employee </option>
             <option value="Other Third Party">Other Third Party </option>
           </Form.Select>
-        </div>
-      </div>
-
-      <div className="row mb-2">
-        <div className="col-3">
-          <label htmlFor="primaryPhone">Primary Phone</label>
-        </div>
-        <div className="col-6">
-          <input
-            id="primaryPhone"
-            value={primaryPhone}
-            onChange={handleInputChange}
-            type="text"
-            className="w-100 form-control"
-          />
         </div>
       </div>
 

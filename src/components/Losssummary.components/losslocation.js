@@ -54,17 +54,7 @@ function Losslocation({ setComponentData, componentData }) {
               id="address"
               value={address}
               onChange={handleInputChange}
-            />&nbsp;
-             <div className="col-15">
-            <input
-              type="text"
-              className="w-100 form-control"
-              maxLength={500}
-              id="address"
-              value={address}
-              onChange={handleInputChange}
             />
-           </div>
           </div>
         </div>
         

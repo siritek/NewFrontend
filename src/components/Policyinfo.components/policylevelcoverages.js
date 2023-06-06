@@ -53,13 +53,13 @@ function Policylevel() {
           <div className='col-12'>  
             <DropdownButton variant='success' id={`dropdown-button-${row.id}`} title='select' className='dropdown-type-value'>  
               <Dropdown.Item onClick={() => alert(`${row.name} selected Type A`)}>  
-                John  
+                Fire 
               </Dropdown.Item>  
               <Dropdown.Item onClick={() => alert(`${row.name} selected Type B`)}>  
-                Jake  
+                Water 
               </Dropdown.Item>  
               <Dropdown.Item onClick={() => alert(`${row.name} selected Type C`)}>  
-                Thomas  
+                Accident
               </Dropdown.Item>  
             </DropdownButton>  
           </div>  
