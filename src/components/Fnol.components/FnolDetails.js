@@ -1,5 +1,10 @@
 //import { FnolData } from "../../Pages/Fnol";
 function FnolDetails({setComponentData, componentData}){ 
+
+  const today = new Date();
+  const pastYear = new Date();
+  pastYear.setFullYear(today.getFullYear() - 1);
+
   const handleInputChange = (e) => { 
     const {id, value} = e.target; 
     setComponentData((prevData) =>({ 
@@ -7,8 +12,10 @@ function FnolDetails({setComponentData, componentData}){
       [id]:value, 
     })); 
   }; 
+ 
+
   const { 
-  DateOfLoss ='', 
+  DateOfLoss ='',
   LossLocation ='', 
   LossTime ='', 
   ReportedBy ='', 
@@ -32,6 +39,13 @@ function FnolDetails({setComponentData, componentData}){
   // console.log('xxxx->', myFnoalData)
   // const myPolicyNo = myFnoalData ? myFnoalData.PolicyNumber : PolicyNumber
   // console.log('ccc-> ', myPolicyNo)
+
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
   
   return(<div>
       
@@ -62,9 +76,9 @@ function FnolDetails({setComponentData, componentData}){
      <label htmlFor="DateOfLoss"> Date Of Loss</label>
      
    </div>
-   <div className='col-5'>
-     <input  id="DateOfLoss" type="date" value={DateOfLoss}  
-     onChange={handleInputChange}  className='w-100 form-control' />
+   <div className="col-5">
+   <input type="Date"   min={formatDate(pastYear)}
+        max={formatDate(today)} ></input>
    </div>
  </div>
  
