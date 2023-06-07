@@ -135,7 +135,8 @@ function NewNote({setComponentData, componentData}){
 
         <br />
         <input type="submit" className="btn btn-success " value="Create" onClick={handleClick} /> &nbsp;
-        <input type="cancel" className="btn btn-success " value="Cancel" onClick={handleClick} />
+        <input type="Reset" className="btn btn-dark " value="Reset" onClick={handleClick} />
+        
 
       </form>
     </div>

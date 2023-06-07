@@ -1,5 +1,6 @@
 import React, { useState } from "react"; 
 import BootstrapTable from "react-bootstrap-table-next"; 
+import Form from "react-bootstrap/Form";
  
 function Injuries() { 
   //Coloumns For the Table 
@@ -56,7 +57,14 @@ function Injuries() {
       formatter: (cellContent, row) => ( 
         <div className="row"> 
           <div className="col-12"> 
-            <input className="form-control"></input> 
+          <Form.Select aria-label="Default select example">
+            <option value="None">None</option>
+            <option value="person">Minor</option>
+            <option value="company">Moderate</option>
+            <option value="company">Major(hospitalization)</option>
+            <option value="company">Life-threatening</option>
+            <option value="company">Death</option>
+          </Form.Select>
           </div> 
         </div> 
       ), 
@@ -108,7 +116,7 @@ function Injuries() {
  
   return ( 
     <div> 
-      <div className="row p-1 m-0 text-bg-secondary"> 
+      <div className="row p-1 m-0 "> 
         <div className="col-6"> 
           <strong>Injuries</strong> 
         </div> 
