@@ -53,7 +53,7 @@ function App() {
           {activeSection === "newnote" && <NewNote setComponentData={setComponentData} componentData={componentData}/>}
           {/* {activeSection === "searchnote" && <SearchNote/>} */}
           {activeSection === "diary" && <Diary/>}
-          {activeSection === "search" && <Search/>}
+          {activeSection === "search" && <Search setComponentData={setComponentData} componentData={componentData}/>}
           {activeSection === "synopsis" && <Synopsis onSynopsisClick={()=>setActiveSection("synopsis")} />}
           {activeSection==="claimGeneration"&&<ClaimGeneration/>}         {/* new claim synopsis */}
     

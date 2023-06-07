@@ -3,7 +3,8 @@ import React, { useState } from 'react'
 import BootstrapTable from 'react-bootstrap-table-next';  
 import Form from "react-bootstrap/Form";   
   
-function Search() {  
+function Search(
+  {setComponentData, componentData}) {  
  
   const columns = [  
     {  
@@ -174,8 +175,28 @@ function Search() {
       prevData.map((row) =>  
         row.id === rowId ? { ...row, selected: !row.selected } : row  
       )  
-    );  
-  };  
+    );
+  }
+    const handleInputChange = (e) => {  
+      const {id, value} = e.target;  
+      setComponentData((prevData) =>({  
+        ...prevData,  
+        [id]:value,  
+      }));  
+    }; 
+    
+  const {
+    claimNumber = '',
+    policyNumber = '',
+    searchFor= '',
+    firstName= '',
+    lastName= '',
+    organizationName= '',
+    taxId="",
+  } = componentData || {};
+
+    
+    
   
    
   
@@ -188,11 +209,11 @@ function Search() {
 
 <div className='row mb-2'>
    <div className='col-4'>
-     <label >Claim Number</label>
+     <label htmlFor='claimNumber' >Claim Number</label>
      <i className='text-danger h5'>*</i>
    </div>
    <div className='col-4'>
-     <input  type="text"  maxLength='10'  
+     <input  type="text" id='claimNumber' value={claimNumber} onChange={handleInputChange} maxLength='10'  
   className='w-100 form-control' />
    </div>
  </div>
@@ -200,22 +221,22 @@ function Search() {
 
  <div className='row mb-2'>
    <div className='col-4'>
-     <label>Policy Number</label>
+     <label htmlFor='policyNumber'>Policy Number</label>
      <i className='text-danger h5'>*</i>
    </div>
    <div className='col-4'>
-     <input type="number" className='w-100 form-control' />
+     <input type="number" id='policyNumber' value={policyNumber}  onChange={handleInputChange}className='w-100 form-control' />
    </div>
  </div>
 
 
  <div className="row mb-2">
           <div className="col-4">
-            <label >Search For</label>
+            <label htmlFor='searchFor' >Search For</label>
           </div>
           <div className="col-4">
             <Form.Select
-              aria-label="Default select example">
+              aria-label="Default select example" id='searchFor' value={searchFor} onChange={handleInputChange} >
               <option value ="none" >None</option>
               <option value="additional insured">Additional Insured</option>  
         <option value="any party involved">Any Party Involved</option>  
@@ -229,40 +250,40 @@ function Search() {
     <div className='col-6'>
     <div className='row mb-2'>
    <div className='col-4'>
-     <label >First Name</label>
+     <label htmlFor='firstName'>First Name</label>
    </div>
    <div className='col-4'>
-     <input  type="text"    
+     <input  type="text"   id='firstName' value={firstName} onChange={handleInputChange}
   className='w-100 form-control' />
    </div>
  </div>
 
  <div className='row mb-2'>
    <div className='col-4'>
-     <label >Last Name</label>
+     <label htmlFor='lastName'>Last Name</label>
    </div>
    <div className='col-4'>
-     <input  type="text"    
+     <input  type="text"    id='lastName' value={lastName} onChange={handleInputChange}
   className='w-100 form-control' /> 
  </div>
 </div>
 
 <div className='row mb-2'>
    <div className='col-4'>
-     <label >Organization Name</label>
+     <label htmlFor='organizationName' >Organization Name</label>
    </div>
    <div className='col-4'>
-     <input  type="text"    
+     <input  type="text"    id='organizationName' value={organizationName} onChange={handleInputChange}
   className='w-100 form-control' /> 
  </div>
 </div>
 
 <div className='row mb-2'>
    <div className='col-4'>
-     <label >Tax ID</label>
+     <label htmlFor='taxId' >Tax ID</label>
    </div>
    <div className='col-4'>
-     <input  type="text"   className='w-100 form-control' /> <br/>
+     <input  type="text"  id='taxId' value={taxId} className='w-100 form-control' onChange={handleInputChange} /> <br/>
  </div>
 </div>
 </div></div>
