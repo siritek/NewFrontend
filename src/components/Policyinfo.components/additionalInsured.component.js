@@ -3,8 +3,21 @@ import Form from "react-bootstrap/Form";
 import React, { useState } from 'react'   
 
 //import NewPesron from './newPerson.component';
-function Additional() {  
+function Additional({ setComponentData, componentData, fnoldataobj }) { 
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setComponentData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+  };
+
+  
+  const {
+   
+    name='',
     
+  } = componentData || {};
   //  const [showNewPersonComponent, setShowNewComponent] = useState(false)
 
   //Coloumns For the Table  
@@ -83,7 +96,12 @@ function Additional() {
       formatter: (cellContent, row) => (
         <div className="row">
           <div className="col-10">
-            <input className="form-control"></input>
+            <input 
+            id="name"
+            type='text'
+            value={name}
+            onChange={handleInputChange}
+            className="form-control"></input>
           </div>
         </div>
       ),

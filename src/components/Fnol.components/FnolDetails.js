@@ -15,21 +15,12 @@ function FnolDetails({setComponentData, componentData}){
  
 
   const { 
-<<<<<<< HEAD
-  DateOfLoss ='',
-  LossLocation ='', 
-  LossTime ='', 
-  ReportedBy ='', 
-  DateOfReport ='', 
-  PolicyNumber ='',  
-=======
   dateOfLoss ='', 
   lossLocation ='', 
   lossTime ='', 
   reportedBy ='', 
   dateOfReport ='', 
   policyNumber ='',  
->>>>>>> 0aa0adef6ffc3cbbee6ec91b5654fa686a275392
   } = componentData || {};
   // const handleClick=(e)=>{ 
   //   e.preventDefault() 
@@ -85,15 +76,9 @@ function FnolDetails({setComponentData, componentData}){
      <label htmlFor="dateOfLoss"> Date Of Loss</label>
      
    </div>
-<<<<<<< HEAD
-   <div className="col-5">
-   <input type="Date"   min={formatDate(pastYear)}
-        max={formatDate(today)} ></input>
-=======
    <div className='col-5'>
      <input  id="dateOfLoss" type="date" value={dateOfLoss}  
      onChange={handleInputChange}  className='w-100 form-control' />
->>>>>>> 0aa0adef6ffc3cbbee6ec91b5654fa686a275392
    </div>
  </div>
  

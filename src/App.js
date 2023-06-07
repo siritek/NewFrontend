@@ -22,6 +22,7 @@ import ClaimGeneration from "./Pages/ClaimGeneration";
  
 function App() { 
   const [activeSection, setActiveSection] = useState(null); 
+  const [componentData, setComponentData] = useState({});
  
   const handleSectionClick = (section) => { 
     setActiveSection(section); 
@@ -49,7 +50,7 @@ function App() {
           {activeSection === "Exposures" && <Exposure onLossSummaryClick={()=>setActiveSection("losssummary")} onBlankClick={()=>setActiveSection("claimGeneration")} />}
           {/* {activeSection === "newexposure" && <Newexposure/>}
           {activeSection === "searchexposure" && <Searchexposure/>}   */}
-          {activeSection === "newnote" && <NewNote/>}
+          {activeSection === "newnote" && <NewNote setComponentData={setComponentData} componentData={componentData}/>}
           {/* {activeSection === "searchnote" && <SearchNote/>} */}
           {activeSection === "diary" && <Diary/>}
           {activeSection === "search" && <Search/>}

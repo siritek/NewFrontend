@@ -45,7 +45,7 @@ function Policyinfo(props) {
         </div> 
  
         <div className='col-6'> 
-          <Additional /> 
+          <Additional setComponentData={setComponentData} componentData={componentData}/> 
           <hr />  
           <Excluded /> 
           </div> 

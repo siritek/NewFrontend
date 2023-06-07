@@ -1,22 +1,31 @@
-import React, { useState } from 'react'
+import React from 'react'
+import Form from "react-bootstrap/Form";
+    
+function NewNote({setComponentData, componentData}){  
+  const handleInputChange = (e) => {  
+    const {id, value} = e.target;  
+    setComponentData((prevData) =>({  
+      ...prevData,  
+      [id]:value,  
+    }));  
+  };   
+ 
 
-
-function NewNote() {
-
-  const [topic, settopic] = useState('')
-  const [securitytype, setsecuritytype] = useState('')
-  const [subject, setsubject] = useState('')
-  const [relatedto, setrelatedto] = useState('')
-  const [yes, setyes] = useState('')
-  const [no, setno] = useState('')
-  const [text, settext] = useState('')
-
-
+  const {
+    topic = '',
+    securityType = '',
+    subject= '',
+    relatedTo= '',
+    yes= '',
+    no= '',
+    text = '',
+    confidential="",
+  } = componentData || {};
 
 
   const handleClick = (e) => {
     e.preventDefault()
-    const abs = { topic, securitytype, subject, relatedto, text }
+    const abs = { topic, securityType, subject, relatedTo, text }
     console.log(abs)
     fetch("http://localhost:8080/newnotefirst/add", {
       method: "POST",
@@ -39,9 +48,9 @@ function NewNote() {
 
       <form >
         <div className='row mb-2'>
-          <div className='col-2'><label>Topic</label></div>
+          <div className='col-2'><label htmlFor='topic'>Topic</label></div>
           <div className='col-6'>
-            <select className='w-100 form-control' required name="topic" value={topic} onChange={(e) => settopic(e.target.value)}  >
+            <Form.Select  aria-label="Default select example" required id="topic" value={topic}  onChange={handleInputChange} >
               <option value="general" >-General-</option>
               <option value="firstnoticeofloss">First Notice of Loss</option>
               <option value="coverage">Coverage</option>
@@ -54,53 +63,73 @@ function NewNote() {
               <option value="litigation">Litigation</option>
               <option value="denial">Denial</option>
               <option value="reinsurance">Reinsurance</option>
-            </select>
+            </Form.Select>
           </div>
         </div>
 
         <div className='row mb-2'>
-          <div className='col-2'><label>Security Type </label></div>
+          <div className='col-2'><label htmlFor='securitytype'>Security Type </label></div>
           <div className='col-6'>
-            <select className='w-100 form-control' name="securitytype" value={securitytype} onChange={(e) => setsecuritytype(e.target.value)} >
+            <Form.Select aria-label="Default select example" id="securityType" value={securityType}  onChange={handleInputChange} >
               <option value="none">-none- </option>
               <option value="medical">Medical</option>
               <option value="private">Private</option>
               <option value="public">Public</option>
               <option value="sensitive">Sensitive</option>
-            </select>
+            </Form.Select>
           </div>
         </div>
 
 
         <div className='row mb-2'>
-          <div className='col-2'><label>Subject</label></div>
+          <div className='col-2'><label htmlFor='subject'>Subject</label></div>
           <div className='col-6'>
-            <input type="text" className='w-100 form-control' name="subject" value={subject} onChange={(e) => setsubject(e.target.value)} />
+            <input type="text" className='w-100 form-control' id="subject" value={subject}  onChange={handleInputChange} />
           </div>
         </div>
 
 
         <div className='row mb-2'>
-          <div className='col-2'><label>Related To </label></div>
+          <div className='col-2'><label htmlFor='relatedto'>Related To </label></div>
           <div className='col-6'>
-            <select className='w-100 form-control' name="relatedto" value={relatedto} onChange={(e) => setrelatedto(e.target.value)} >
+            <Form.Select  aria-label="Default select example" id="relatedTo" value={relatedTo}  onChange={handleInputChange} >
               <option value="claim">-"Claim"- </option>
-            </select>
+            </Form.Select>
           </div>
         </div>
 
 
-        <div className='row mb-3'>
-          <div className='col-2' required>Confidential</div>
-          <div className='col-6'>
-            <input type="radio" name="conf" value={yes} onChange={(e) => setyes(e.target.value)} /> Yes <span className='ms-3'></span><input type="radio" name="conf" value={no} onChange={(e) => setno(e.target.value)} /> No
+
+
+        <div className="row mb-3">
+          <div className="col-2"><label htmlFor='confidential' required>Confidential</label></div>
+          <div className="col-6">
+            <input
+              type="radio"
+              name="basicRadioGroup"
+              id="confidential"
+              value="yes"
+              checked={confidential === "yes"}
+              onChange={handleInputChange}
+            />{" "}
+            Yes <span className="ms-3"></span>
+            <input
+              type="radio"
+              name="basicRadioGroup"
+              id="confidential"
+              value="no"
+              checked={confidential === "no"}
+              onChange={handleInputChange}
+            />{" "}
+            No
           </div>
         </div>
+
 
         <div className='row mb-2'>
-          <div className='col-2'><label>Text</label></div>
+          <div className='col-2'><label htmlFor='text'>Text</label></div>
           <div className='col-6'>
-            <input type="text" className='w-100 form-control' name="text" value={text} onChange={(e) => settext(e.target.value)} />
+            <input type="text" className='w-100 form-control' id="text" value={text}  onChange={handleInputChange} />
           </div>
         </div>
 
@@ -114,4 +143,4 @@ function NewNote() {
   );
 
 }
-export default NewNote
+export default NewNote;
