@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 
 
-function Lossdetails({ setComponentData, componentData, FnolDataObj}) {
+function Lossdetails({ setComponentData, componentData, fnoldataobj}) {
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setComponentData((prevData) => ({
@@ -13,23 +13,23 @@ function Lossdetails({ setComponentData, componentData, FnolDataObj}) {
 
   
   useEffect(() => {
-    if (FnolDataObj) {
+    if (fnoldataobj) {
       const {
         reportedBy,
         dateOfLoss,
-        timeOfLoss,
+        lossTime,
         // Add other common fields here
-      } = FnolDataObj;
+      } = fnoldataobj;
 
       setComponentData((prevData) => ({
         ...prevData,
-        reportedby: reportedBy || prevData.reportedBy,
+        reportedBy: reportedBy || prevData.reportedBy,
         dateOfLoss: dateOfLoss || prevData.dateOfLoss,
-        timeOfLoss: timeOfLoss || prevData.timeOfLoss,
+        timeOfLoss: lossTime || prevData.lossTime,
         // Update other common fields in componentData
       }));
     }
-  }, [FnolDataObj, setComponentData]);
+  }, [fnoldataobj, setComponentData]);
 
   const {
     adjuster = '',

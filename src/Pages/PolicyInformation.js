@@ -4,6 +4,8 @@ import Additional from '../components/Policyinfo.components/additionalInsured.co
 import Excluded from '../components/Policyinfo.components/excludedParties.component'; 
 //import Agent from './Components/agent.component'; 
 import Policylevel from '../components/Policyinfo.components/policylevelcoverages'
+import { FnolData } from './Fnol';
+
  
  var policyInfoObj;
 function Policyinfo(props) { 
@@ -39,7 +41,7 @@ function Policyinfo(props) {
      <hr/>
       <div className='row'> 
         <div className='col-6'>  
-          <Basic setComponentData={setComponentData} componentData={componentData}/> 
+          <Basic setComponentData={setComponentData} componentData={componentData} fnoldataobj={FnolData()}/> 
         </div> 
  
         <div className='col-6'> 

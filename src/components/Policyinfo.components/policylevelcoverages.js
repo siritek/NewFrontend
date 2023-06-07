@@ -1,6 +1,6 @@
 import React, { useState } from 'react'  
 import BootstrapTable from 'react-bootstrap-table-next';  
-import { Dropdown, DropdownButton } from "react-bootstrap";  
+import Form from "react-bootstrap/Form";
   
 function Policylevel() {  
     
@@ -49,31 +49,15 @@ function Policylevel() {
       classes: "Coverage type-column",  
       formatter: (cellContent, row) => (  
   
-        <div className='row'>  
-          <div className='col-12'>  
-            <DropdownButton variant='success' id={`dropdown-button-${row.id}`} title='select' className='dropdown-type-value'>  
-              <Dropdown.Item onClick={() => alert(`${row.name} selected Type A`)}>  
-                Fire 
-              </Dropdown.Item>  
-              <Dropdown.Item onClick={() => alert(`${row.name} selected Type B`)}>  
-                Water 
-              </Dropdown.Item>  
-              <Dropdown.Item onClick={() => alert(`${row.name} selected Type C`)}>  
-                Accident
-              </Dropdown.Item>  
-            </DropdownButton>  
-          </div>  
-        {/* <div className='col-4'>  
-        <DropdownButton id={`dropdown-button-${row.id}`} title='' className='dropdown-type-value'>  
-              <Dropdown.Item onClick={() => alert(`${row.name} selected Type A`)}>  
-                New Person  
-              </Dropdown.Item>  
-              <Dropdown.Item onClick={() => alert(`${row.name} selected Type B`)}>  
-                New Company  
-              </Dropdown.Item>               
-            </DropdownButton>  
-        </div> */}  
-      </div>     
+        
+        <div className="col-12">
+          <Form.Select aria-label="Default select example">
+            <option value="None">None</option>
+            <option value="Fire">Fire</option>
+            <option value="Water">Water</option>
+            <option value="Accident">Accident</option>
+          </Form.Select>
+        </div>  
   
       ),  
     },  
