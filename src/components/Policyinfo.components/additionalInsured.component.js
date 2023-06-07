@@ -1,6 +1,7 @@
 import BootstrapTable from 'react-bootstrap-table-next';  
-import { Dropdown, DropdownButton } from "react-bootstrap"; 
+import Form from "react-bootstrap/Form";
 import React, { useState } from 'react'   
+
 //import NewPesron from './newPerson.component';
 function Additional() {  
     
@@ -111,29 +112,16 @@ function Additional() {
       classes: "type-column",
       formatter: (cellContent, row) => (
         <div className="row">
+         
           <div className="col-12">
-            <DropdownButton
-              variant="success"
-              id={`dropdown-button-${row.id}`}
-              title="select"
-              className="dropdown-type-value"
-            >
-              <Dropdown.Item
-                onClick={() => alert(`${row.name} selected Type A`)}
-              >
-                Additional insured (Person)
-              </Dropdown.Item>
-              <Dropdown.Item
-                onClick={() => alert(`${row.name} selected Type B`)}
-              >
-                Additional named insured (Company)
-              </Dropdown.Item>
-              {/* <Dropdown.Item onClick={() => alert(`${row.name} selected Type C`)}>  
-                Thomas  
-              </Dropdown.Item> */}
-            </DropdownButton>
+          <Form.Select aria-label="Default select example">
+            <option value="None">None</option>
+            <option value="person">Additional Insured (Person)</option>
+            <option value="company">Additional Named Insured(Company)</option>
+          </Form.Select>
+        </div> 
           </div>
-        </div>
+      
       ),
     },
   ];  
