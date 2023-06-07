@@ -15,26 +15,35 @@ function FnolDetails({setComponentData, componentData}){
  
 
   const { 
+<<<<<<< HEAD
   DateOfLoss ='',
   LossLocation ='', 
   LossTime ='', 
   ReportedBy ='', 
   DateOfReport ='', 
   PolicyNumber ='',  
+=======
+  dateOfLoss ='', 
+  lossLocation ='', 
+  lossTime ='', 
+  reportedBy ='', 
+  dateOfReport ='', 
+  policyNumber ='',  
+>>>>>>> 0aa0adef6ffc3cbbee6ec91b5654fa686a275392
   } = componentData || {};
-  const handleClick=(e)=>{ 
-    e.preventDefault() 
-    const abs={LossLocation,LossTime,ReportedBy,PolicyNumber} 
-    console.log(abs) 
-    fetch("http://localhost:8080/fnolfirst/add",{ 
-        method:"POST", 
-        headers:{"Content-Type":"application/json"}, 
-        body:JSON.stringify(abs) 
+  // const handleClick=(e)=>{ 
+  //   e.preventDefault() 
+  //   const abs={losslocation,dateofloss,reportedby,policynumber,losstime} 
+  //   console.log(abs) 
+  //   fetch("http://localhost:8080/fnolfirst/add",{ 
+  //       method:"POST", 
+  //       headers:{"Content-Type":"application/json"}, 
+  //       body:JSON.stringify(abs) 
  
-    }).then(()=>{ 
-        console.log("New Insured added") 
-    }) 
-  }
+  //   }).then(()=>{ 
+  //       console.log("New Insured added") 
+  //   }) 
+  // }
   // const myFnoalData = FnolData();
   // console.log('xxxx->', myFnoalData)
   // const myPolicyNo = myFnoalData ? myFnoalData.PolicyNumber : PolicyNumber
@@ -64,69 +73,75 @@ function FnolDetails({setComponentData, componentData}){
 
   <div className='row mb-2'>
    <div className='col-4'>
-     <label htmlFor="PolicyNumber">Policy Number</label>
+     <label htmlFor="policyNumber">Policy Number</label>
      <i className='text-danger h5'>*</i>
    </div>
    <div className='col-5'>
-     <input id="PolicyNumber" type="number" value={PolicyNumber} onChange={handleInputChange}className='w-100 form-control' />
+     <input id="policyNumber" type="number" value={policyNumber} onChange={handleInputChange}className='w-100 form-control' />
    </div>
  </div>
  <div className='row mb-2'>
    <div className='col-4'>
-     <label htmlFor="DateOfLoss"> Date Of Loss</label>
+     <label htmlFor="dateOfLoss"> Date Of Loss</label>
      
    </div>
+<<<<<<< HEAD
    <div className="col-5">
    <input type="Date"   min={formatDate(pastYear)}
         max={formatDate(today)} ></input>
+=======
+   <div className='col-5'>
+     <input  id="dateOfLoss" type="date" value={dateOfLoss}  
+     onChange={handleInputChange}  className='w-100 form-control' />
+>>>>>>> 0aa0adef6ffc3cbbee6ec91b5654fa686a275392
    </div>
  </div>
  
  <div className='row mb-2'>
    <div className='col-4'>
-     <label htmlFor="LossLocation">Loss Location</label>
+     <label htmlFor="lossLocation">Loss Location</label>
    </div>
    <div className='col-5'>
-     <input id="LossLocation" type="text" value={LossLocation} 
+     <input id="lossLocation" type="text" value={lossLocation} 
      onChange={handleInputChange} className='w-100 form-control' />
    </div>
  </div>
 
 <div className='row mb-2'>
    <div className='col-4'>
-     <label htmlFor="LossTime">Time Of Loss</label>
+     <label htmlFor="lossTime">Time Of Loss</label>
   
    </div>
    <div className='col-5'>
-     <input id="LossTime" type="time" value={LossTime} 
+     <input id="lossTime" type="time" value={lossTime} 
      onChange={handleInputChange}className='w-100 form-control' />
    </div>
  </div>
 
 <div className='row mb-2'>
    <div className='col-4'>
-     <label htmlFor="ReportedBy">Reported By</label>
+     <label htmlFor="reportedBy">Reported By</label>
      
    </div>
    <div className='col-5'>
-     <input id="ReportedBy" type="text" value={ReportedBy} 
+     <input id="reportedBy" type="text" value={reportedBy} 
      onChange={handleInputChange} className='w-100 form-control' />
    </div>
  </div>
  <div className='row mb-2'>
    <div className='col-4'>
-     <label htmlFor="DateOfReport"> Date Reported</label>
+     <label htmlFor="dateOfReport"> Date Reported</label>
      
    </div>
    <div className='col-5'>
-     <input type="date" id="DateOfReport" value={DateOfReport} 
+     <input type="date" id="dateOfReport" value={dateOfReport} 
      onChange={handleInputChange}className='w-100 form-control' />
    </div>
  </div>
 
   
-  <input type="submit"className="btn btn-success custom-margin-right-1" value="Submit" onClick={handleClick}/> &nbsp; 
-  <input type="reset"className="btn btn-dark custom-margin-right-1" value="Reset"/>
+  {/* <input type="submit"className="btn btn-success custom-margin-right-1" value="Submit" onClick={handleClick}/> &nbsp; 
+  <input type="reset"className="btn btn-dark custom-margin-right-1" value="Reset"/> */}
   
   </div>
   );

@@ -13,53 +13,51 @@ function Newexposure({setComponentData, componentData}){
   };   
  
   const{ 
-    lossparty='', 
-    primarycoverage='', 
+    lossParty='', 
+    primaryCoverage='', 
     adjuster='', 
       status='', 
-      creationdate='', 
+      creationDate='', 
       claimant='', 
-      claimanttype='', 
-      primaryphone='', 
+      claimantType='',  
       address='', 
   } = componentData || {}; 
+
+
   return (
     <div>
-      
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="lossparty">Loss Party</label>
+          <label htmlFor="lossParty">Loss party</label>
         </div>
         <div className="col-6">
           <Form.Select
-            id="lossparty"
-            value={lossparty}
+            id="lossParty"
+            value={lossParty}
             onChange={handleInputChange}
             aria-label="Default select example"
           >
-            <option>None</option>
-            <option>Insured's loss</option>
-            <option>Third party Liability </option>
-            <option> </option>
+            <option value="None">None</option>
+            <option value="Insured's loss">Insured's loss</option>
+            <option value="Third party Liability">Third party Liability</option>
           </Form.Select>
         </div>
       </div>
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="primarycoverage">Primary Coverage</label>
+          <label htmlFor="primaryCoverage">Primary Coverage</label>
         </div>
         <div className="col-6">
           <Form.Select
-            id="primarycoverage"
-            value={primarycoverage}
+            id="primaryCoverage"
+            value={primaryCoverage}
             onChange={handleInputChange}
             aria-label="Default select example"
           >
-            <option>None</option>
-            {/* <option>1:900 Madison street </option> */}
-            <option> </option>
-            <option> </option>
+            <option value="None">None</option>
+            <option value="yes">yes</option>
+            <option value="no">no</option>
           </Form.Select>
         </div>
       </div>
@@ -92,8 +90,9 @@ function Newexposure({setComponentData, componentData}){
             onChange={handleInputChange}
             aria-label="Default select example"
           >
-            <option>None</option>
-            <option> </option>
+            <option value="None">None</option>
+            <option value="yes">yes</option>
+              <option value="no">no</option>
           </Form.Select>
         </div>
       </div>
@@ -109,21 +108,21 @@ function Newexposure({setComponentData, componentData}){
             onChange={handleInputChange}
             aria-label="Default select example"
           >
-            <option>Open</option>
-            <option>Closed</option>
+            <option value="Open">Open</option>
+            <option value="Closed">Closed</option>
           </Form.Select>
         </div>
       </div>
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="creationdate">Creation Date</label>
+          <label htmlFor="creationDate">Creation Date</label>
           <i className="text-danger h5">*</i>
         </div>
         <div className="col-6">
           <input
-            id="creationdate"
-            value={creationdate}
+            id="creationDate"
+            value={creationDate}
             onChange={handleInputChange}
             type="date"
             className="w-100 form-control"
@@ -148,38 +147,27 @@ function Newexposure({setComponentData, componentData}){
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="claimanttype">Claimant Type</label>
+          <label htmlFor="claimantType">Claimant Type</label>
         </div>
         <div className="col-6">
           <Form.Select
-            id="claimanttype"
-            value={claimanttype}
+            id="claimantType"
+            value={claimantType}
             onChange={handleInputChange}
             aria-label="Default select example"
           >
-            <option>None</option>
-            <option>Insured</option>
-            <option>Member of insured's household </option>
-            <option>Owner of the lost/Damaged property </option>
-            <option>Customer </option>
-            <option>Employee </option>
-            <option>Other Third Party </option>
+            <option value="None">None</option>
+            <option value="Insured">Insured</option>
+            <option value="Member of insured's household">
+              Member of insured's household{" "}
+            </option>
+            <option value="Owner of the lost/Damaged property">
+              Owner of the lost/Damaged property{" "}
+            </option>
+            <option value="Customer">Customer </option>
+            <option value="Employee ">Employee </option>
+            <option value="Other Third Party">Other Third Party </option>
           </Form.Select>
-        </div>
-      </div>
-
-      <div className="row mb-2">
-        <div className="col-3">
-          <label htmlFor="primaryphone">Primary Phone</label>
-        </div>
-        <div className="col-6">
-          <input
-            id="primaryphone"
-            value={primaryphone}
-            onChange={handleInputChange}
-            type="text"
-            className="w-100 form-control"
-          />
         </div>
       </div>
 

@@ -13,8 +13,10 @@ import {Exposure} from "./Pages/Exposures";
 // import Newexposure from "./components/Exposure.components/Newexposure";
 // import Searchexposure from "./components/Exposure.components/Searchexposures";
 import NewNote from "./NewNote";
-import SearchNote from "./SearchNote";
+//import SearchNote from "./SearchNote";
 import Search from "./Pages/Search";
+import Synopsis from "./Pages/Synopsis";
+import ClaimGeneration from "./Pages/ClaimGeneration";
 
 
  
@@ -44,15 +46,16 @@ function App() {
           {activeSection === "newDoc" && <NewDoc onDocumentClick={()=>setActiveSection("documents")} />} 
           {activeSection === "upload" && <Upload onDocumentClick={()=>setActiveSection("documents")}/>} 
           {activeSection === "losssummary" && <Losssummary onPIClick={()=>setActiveSection("pi")} onExposureClick={()=>setActiveSection("Exposures")}/>}
-          {activeSection === "Exposures" && <Exposure onLossSummaryClick={()=>setActiveSection("losssummary")} />}
+          {activeSection === "Exposures" && <Exposure onLossSummaryClick={()=>setActiveSection("losssummary")} onBlankClick={()=>setActiveSection("claimGeneration")} />}
           {/* {activeSection === "newexposure" && <Newexposure/>}
           {activeSection === "searchexposure" && <Searchexposure/>}   */}
           {activeSection === "newnote" && <NewNote/>}
-          {activeSection === "searchnote" && <SearchNote/>}
+          {/* {activeSection === "searchnote" && <SearchNote/>} */}
           {activeSection === "diary" && <Diary/>}
           {activeSection === "search" && <Search/>}
-          
-         
+          {activeSection === "synopsis" && <Synopsis onSynopsisClick={()=>setActiveSection("synopsis")} />}
+          {activeSection==="claimGeneration"&&<ClaimGeneration/>}         {/* new claim synopsis */}
+    
         </div> 
       </div> 
      

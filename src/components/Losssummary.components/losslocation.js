@@ -10,15 +10,15 @@ function Losslocation({ setComponentData, componentData }) {
     }));
   };
   const {
-    Location = '',
-    Address1 = '',
-    Address2 = '',
-    Address3 = '',
-    Country = '',
-    City = '',
-    State = '',
-    Zipcode = '',
-    Jurisdiction = '',
+    // location = '',
+    address = '',
+    // address2 = '',
+    // address3 = '',
+    country = '',
+    city = '',
+    state = '',
+    zipCode = '',
+    jurisdiction = '',
    } = componentData || {};
    
 
@@ -26,78 +26,80 @@ function Losslocation({ setComponentData, componentData }) {
     <div className="ms-3">
       <h5>Loss Location</h5>
 
-      <div className="row">
-        <div className="row mb-2">
+       <div className="row">
+      {/*  <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="Location">Location</label>
+            <label htmlFor="location">Location</label>
           </div>
           <div className="col-15">
             <input
               type="text"
               className="w-100 form-control"
-              id="Location"
-              value={Location}
+              id="location"
+              value={location}
+              onChange={handleInputChange}
+            />
+          </div>
+        </div> */}
+
+        <div className="row mb-2">
+          <div className="col-4">
+            <label htmlFor="address">Address</label>
+            </div>
+          <div className="col-15">
+            <input
+              type="text"
+              className="w-100 form-control"
+              maxLength={500}
+              id="address"
+              value={address}
               onChange={handleInputChange}
             />
           </div>
         </div>
+        
+        
 
-        <div className="row mb-2">
+        {/* <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="Address1">Address 1</label>
+            <label htmlFor="address2">Address 2</label>
           </div>
           <div className="col-15">
             <input
               type="text"
               className="w-100 form-control"
               maxLength={500}
-              id="Address1"
-              value={Address1}
+              id="address2"
+              value={address2}
               onChange={handleInputChange}
             />
           </div>
         </div>
-
         <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="Address2">Address 2</label>
+            <label htmlFor="address3">Address 3</label>
           </div>
           <div className="col-15">
             <input
               type="text"
               className="w-100 form-control"
               maxLength={500}
-              id="Address2"
-              value={Address2}
+              id="address3"
+              value={address3}
               onChange={handleInputChange}
             />
           </div>
-        </div>
-        <div className="row mb-2">
-          <div className="col-4">
-            <label htmlFor="Address3">Address 3</label>
-          </div>
-          <div className="col-15">
-            <input
-              type="text"
-              className="w-100 form-control"
-              maxLength={500}
-              id="Address3"
-              value={Address3}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
+        </div> */}
 
         <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="Country">Country</label>
+            <label htmlFor="country">Country</label>
           </div>
           <div className="col-8">
             <Form.Select
               className="w-100 form-control"
-              id="Country"
-              value={Country}
+              id="country"
+              value={country}
               onChange={handleInputChange}
             >
               <option value="None">None</option>
@@ -108,14 +110,14 @@ function Losslocation({ setComponentData, componentData }) {
 
         <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="City">City</label>
+            <label htmlFor="city">City</label>
           </div>
           <div className="col-8">
             <input
               type="text"
               className="w-100 form-control"
-              id="City"
-              value={City}
+              id="city"
+              value={city}
               onChange={handleInputChange}
             />
           </div>
@@ -123,13 +125,13 @@ function Losslocation({ setComponentData, componentData }) {
 
         <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="State">State</label>
+            <label htmlFor="state">State</label>
           </div>
           <div className="col-8">
             <Form.Select
               className="w-100 form-control"
-              id="State"
-              value={State}
+              id="state"
+              value={state}
               onChange={handleInputChange}
             >
               <option value="None">None</option>
@@ -190,14 +192,14 @@ function Losslocation({ setComponentData, componentData }) {
 
         <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="Zipcode">ZipCode</label>
+            <label htmlFor="zipCode">ZipCode</label>
           </div>
           <div className="col-8">
             <input
               type="text"
               className="w-100 form-control"
-              id="Zipcode"
-              value={Zipcode}
+              id="zipCode"
+              value={zipCode}
               onChange={handleInputChange}
             />
           </div>
@@ -205,13 +207,13 @@ function Losslocation({ setComponentData, componentData }) {
 
         <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="Jurisdiction">Jurisdiction</label>
+            <label htmlFor="jurisdiction">Jurisdiction</label>
           </div>
           <div className="col-8">
             <Form.Select
               className="w-100 form-control"
-              id="Jurisdiction"
-              value={Jurisdiction}
+              id="jurisdiction"
+              value={jurisdiction}
               onChange={handleInputChange}
             >
               <option>None</option>

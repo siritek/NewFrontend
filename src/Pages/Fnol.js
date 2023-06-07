@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import FnolTypeOfPolicy from "../components/Fnol.components/FnolTpeOfPolicy"
 import FnolDetails from "../components/Fnol.components/FnolDetails"
+//import { useState } from "react";
  
 var FnolDataObj;
 function Fnol(props) { 
   const [componentData, setComponentData] = useState({});
   
   const handlePIClick=()=>{
+    //console.log(componentData);
+   // setPage(prevPage => prevPage - 1);
     props.onPIClick();
   };
   const handleNext = () => {
