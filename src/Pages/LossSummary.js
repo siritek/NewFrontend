@@ -5,7 +5,7 @@ import Witnesses from "../components/Losssummary.components/Witnesses";
 import Losslocation from "../components/Losssummary.components/losslocation";
 import Properties from "../components/Losssummary.components/properties";
 // import Heading from "./components/header.component";
-
+import { FnolData } from './Fnol';
 
 var LossDataObj;
 function Losssummary(props) { 
@@ -39,7 +39,7 @@ function Losssummary(props) {
     
         <div className='row'> 
           <div className='col-6'> 
-          <Lossdetails setComponentData={setComponentData} componentData={componentData} />
+          <Lossdetails setComponentData={setComponentData} componentData={componentData} fnoldataobj={FnolData()} />
           </div> 
             
           <div className='col-6'> 

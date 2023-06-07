@@ -59,7 +59,7 @@ return (
           <input type="submit"className="btn btn-success custom-margin-right-1" value="Submit" onClick={()=>{handleClick();handleBlankClick()}}/> 
           </div></div>
     <hr />
-        <Newexposure setComponentData={setComponentData} componentData={componentData}/>
+        <Newexposure setComponentData={setComponentData} componentData={componentData} lossdataobj={LossData()}/>
        
         <Searchexposures/>
 

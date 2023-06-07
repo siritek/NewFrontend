@@ -105,8 +105,8 @@ function NewNote() {
         </div>
 
         <br />
-        <input type="submit" className="btn btn-success " value="submit" onClick={handleClick} /> &nbsp;
-        <input type="cancel" className="btn btn-success " />
+        <input type="submit" className="btn btn-success " value="Create" onClick={handleClick} /> &nbsp;
+        <input type="cancel" className="btn btn-success " value="Cancel" onClick={handleClick} />
 
       </form>
     </div>

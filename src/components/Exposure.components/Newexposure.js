@@ -1,9 +1,9 @@
-import React from 'react'  
+import React, {useEffect} from 'react'  
 import Form from "react-bootstrap/Form";  
 // import Dropdown from 'react-bootstrap/Dropdown';    
     
     
-function Newexposure({setComponentData, componentData}){  
+function Newexposure({setComponentData, componentData,lossdataobj}){  
   const handleInputChange = (e) => {  
     const {id, value} = e.target;  
     setComponentData((prevData) =>({  
@@ -11,7 +11,18 @@ function Newexposure({setComponentData, componentData}){
       [id]:value,  
     }));  
   };   
- 
+  useEffect(() => {
+    if (lossdataobj) {
+      const {
+        adjuster
+      } = lossdataobj;
+
+      setComponentData((prevData) => ({
+        ...prevData,
+        adjuster: adjuster || prevData.adjuster,
+      }));
+    }
+  }, [lossdataobj, setComponentData]);
   const{ 
     lossParty='', 
     primaryCoverage='', 
