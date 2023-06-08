@@ -14,6 +14,9 @@ function Exposure(props){
   const handleBlankClick=()=>{
     props.onBlankClick();
   }
+  const handleAppClick=()=>{
+    props.onAppClick();
+  }
   const handleClick=(e)=>{  
     ExposureDataObj=componentData 
     // Access the component data from the state 
@@ -55,7 +58,7 @@ return (
     <div>
             
           <button type="button" className="btn btn-dark" onClick={handleLossSummaryClick}>Back</button>&nbsp;
-          <button type="button" className="btn btn-dark" >Cancel</button>&nbsp;
+          <button type="button" className="btn btn-dark" onClick={handleAppClick}>Cancel</button>&nbsp;
           <input type="submit"className="btn btn-success custom-margin-right-1" value="Submit" onClick={()=>{handleClick();handleBlankClick()}}/> 
           </div></div>
     <hr />
