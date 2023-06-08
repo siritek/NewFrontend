@@ -1,9 +1,15 @@
-import React, {useEffect} from 'react'  
+import React, { useState,useEffect} from 'react'  
 import Form from "react-bootstrap/Form";  
 // import Dropdown from 'react-bootstrap/Dropdown';    
-    
-    
-function Newexposure({setComponentData, componentData,lossdataobj}){  
+ 
+var lossdataobj;
+var ExposureDataObj
+function Newexposure(props){ 
+
+  const [componentData, setComponentData] = useState({});
+  const handleBackClick=()=>{
+    props.onBackClick();
+  }
   const handleInputChange = (e) => {  
     const {id, value} = e.target;  
     setComponentData((prevData) =>({  
@@ -33,7 +39,12 @@ function Newexposure({setComponentData, componentData,lossdataobj}){
       claimantType='',  
       address='', 
   } = componentData || {}; 
-
+  const handleNext = () => {
+    // Access the component data from the state
+    ExposureDataObj = componentData
+    console.log(componentData);
+    // Perform further actions with the data
+  };
 
   return (
     <div>
@@ -42,8 +53,8 @@ function Newexposure({setComponentData, componentData,lossdataobj}){
     
     <div>
             
-          <button type="button" className="btn btn-dark" >Back</button>&nbsp;
-          <button type="button" className="btn btn-success" >Submit</button>
+          <button type="button" className="btn btn-dark" onClick={handleBackClick}>Back</button>&nbsp;
+          <button type="button" className="btn btn-success"onClick={handleNext} >Submit</button>
           </div>
         
       </div><hr/>

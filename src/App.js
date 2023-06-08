@@ -49,16 +49,17 @@ function App() {
           {activeSection === "newDoc" && <NewDoc onDocumentClick={()=>setActiveSection("documents")} />} 
           {activeSection === "upload" && <Upload onDocumentClick={()=>setActiveSection("documents")}/>} 
           {activeSection === "losssummary" && <Losssummary onPIClick={()=>setActiveSection("pi")} onExposureClick={()=>setActiveSection("Exposures")}/>}
-          {activeSection === "Exposures" && <Exposure onLossSummaryClick={()=>setActiveSection("losssummary")} onBlankClick={()=>setActiveSection("claimGeneration")}onAppClick={()=>setActiveSection("")}onNewClick={()=>setActiveSection("newexposure")} />}
-          {/* {activeSection === "newexposure" && <Newexposure/>}
-          {activeSection === "searchexposure" && <Searchexposure/>}   */}
+          {activeSection === "Exposures" && <Exposure onLossSummaryClick={()=>setActiveSection("losssummary")} onBlankClick={()=>setActiveSection("claimGeneration")}
+                  onAppClick={()=>setActiveSection("")}onNewClick={()=>setActiveSection("newexposure")} onExposureClick={()=>setActiveSection("Exposures")}/>}
+        
           {activeSection === "newnote" && <NewNote setComponentData={setComponentData} componentData={componentData}/>}
           {/* {activeSection === "searchnote" && <SearchNote/>} */}
           {activeSection === "diary" && <Diary/>}
           {activeSection === "search" && <Search setComponentData={setComponentData} componentData={componentData}/>}
           {activeSection === "synopsis" && <Synopsis onSynopsisClick={()=>setActiveSection("synopsis")} />}
           {activeSection==="claimGeneration"&&<ClaimGeneration/>}         {/* new claim synopsis */}
-          {activeSection==="newexposure"&&<Newexposure setComponentData={setComponentData} componentData={componentData} lossdataobj={LossData()}/>}
+          {activeSection==="newexposure"&&<Newexposure setComponentData={setComponentData} componentData={componentData} lossdataobj={LossData()}
+                   onBackClick={()=>setActiveSection("Exposures")}/>}
     
         </div> 
       </div> 
