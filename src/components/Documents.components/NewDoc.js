@@ -1,46 +1,65 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Form from "react-bootstrap/Form";
+var DocDataObj;
 function NewDoc(props) {
-const[DocName,setDocName]=React.useState('');
-const[DocType,setDocType]=React.useState('None')
-const[Related,setRelated]=React.useState('None');
-const[Status,setStatus]=React.useState('None');
-const[UploadedBy,setUploadedBy]=React.useState('')
-const[UDate,setUDate]=React.useState('');
-const[UTime,setUTime]=React.useState('');
+  const[componentData,setComponentData]=useState({});
+  const handleInputChange = (e) => {  
+    const {id, value} = e.target;  
+    setComponentData((prevData) =>({  
+      ...prevData,  
+      [id]:value,  
+    }));  
+  };  
+  const{ 
+    docName='', 
+   docType='', 
+    related='', 
+      status='', 
+      uploadedBy='', 
+      uDate='', 
+      uTime='',  
+  } = componentData || {}; 
+
 
   const handleDocumentClick=()=>{
     props.onDocumentClick();
   };
+  const handleNext = () => {
+    // Access the component data from the state
+    DocDataObj = componentData
+    console.log(componentData);
+    // Perform further actions with the data
+  };
   return (
-    <div>
+  
       <div>
-
-        <div className="d-flex justify-content-between align-items-center">
-          <h2>New Document</h2>
-          <button type="button" className="btn btn-success" onClick={handleDocumentClick}>
-            Back
-          </button>
-        </div>
-        <hr />
-      </div>
+      <div className="d-flex justify-content-between align-items-center"> 
+    <h2>New Document</h2> 
+    
+    <div>
+            
+          <button type="button" className="btn btn-dark" onClick={handleDocumentClick}>Back</button>&nbsp;
+          <button type="button" className="btn btn-success" onClick={handleNext}>Submit</button>
+          </div>
+        
+      </div><hr/>
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor='DocName'>Document Name</label>
+          <label htmlFor='docName'>Document Name</label>
           <i className="text-danger h5">*</i>
         </div>
         <div className="col-6">
-          <input id='DocName' type="text" value={DocName} onChange={event=>{setDocName(event.target.value)}} className="w-100 form-control" />
+          <input id='docName' type="text" value={docName} onChange={handleInputChange} className="w-100 form-control" />
         </div>
       </div>
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="DocType">Document Type</label>
+          <label htmlFor="docType">Document Type</label>
         </div>
         <div className="col-6">
-          <Form.Select id="DocType" value={DocType} onChange={event=>{setDocType(event.target.value)}} aria-label="Default select example">
+          <Form.Select id="docType" value={docType} onChange={handleInputChange} aria-label="Default select example">
             <option value='None'>None</option>
             <option value='Jpeg'>.JPEG</option>
             <option value='Pdf'>.PDF</option>
@@ -53,59 +72,59 @@ const[UTime,setUTime]=React.useState('');
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor='Related'>Related To</label>
+          <label htmlFor='related'>Related To</label>
         </div>
         <div className="col-6">
-          <Form.Select id="Related" value={Related} onChange={event=>{setRelated(event.target.value)}} aria-label="Default select example">
-            <option value="None">None</option>
-            <option value="Claim">Claim</option>
-            <option value="Contacts">Contacts</option>
+          <Form.Select id="related" value={related} onChange={handleInputChange} aria-label="Default select example">
+            <option value="none">None</option>
+            <option value="claim">Claim</option>
+            <option value="contacts">Contacts</option>
           </Form.Select>
         </div>
       </div>
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor='Status'>Status</label>
+          <label htmlFor='status'>Status</label>
           <i className="text-danger h5">*</i>
         </div>
         <div className="col-6">
-          <Form.Select id="Status" value={Status} onChange={event=>{setStatus(event.target.value)}} aria-label="Default select example">
-            <option value="None">None</option>
-            <option value="Any">Any</option>
-            <option value="Approved">Approved</option>
-            <option value="Approving">Approving</option>
-            <option value="Draft">Draft</option>
-            <option value="Final">Final</option>
+          <Form.Select id="status" value={status} onChange={handleInputChange} aria-label="Default select example">
+            <option value="none">None</option>
+            <option value="any">Any</option>
+            <option value="approved">Approved</option>
+            <option value="approving">Approving</option>
+            <option value="draft">Draft</option>
+            <option value="final">Final</option>
           </Form.Select>
         </div>
       </div>
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="UploadedBy">Uploaded By</label>
+          <label htmlFor="uploadedBy">Uploaded By</label>
           <i className="text-danger h5">*</i>
         </div>
         <div className="col-6">
-          <input id="UploadedBy" value={UploadedBy} onChange={event=>{setUploadedBy(event.target.value)}}className="w-100 form-control" />
+          <input id="uploadedBy" value={uploadedBy} onChange={handleInputChange}className="w-100 form-control" />
         </div>
       </div>
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor='UDate'>Uploaded Date</label>
+          <label htmlFor='uDate'>Uploaded Date</label>
         </div>
         <div className="col-3">
-          <input id="UDate" value={UDate} onChange={event=>{setUDate(event.target.value)}}type="date" className="w-100 form-control" />
+          <input id="uDate" value={uDate} onChange={handleInputChange}type="date" className="w-100 form-control" />
         </div>
       </div>
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor='UTime'>Uploaded Time</label>
+          <label htmlFor='uTime'>Uploaded Time</label>
         </div>
         <div className="col-3">
-          <input id="UTime" value={UTime} onChange={event=>{setUTime(event.target.value)}} type="time" className="w-100 form-control" />
+          <input id="uTime" value={uTime} onChange={handleInputChange} type="time" className="w-100 form-control" />
         </div>
       </div>
     </div>
