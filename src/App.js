@@ -17,6 +17,8 @@ import NewNote from "./NewNote";
 import Search from "./Pages/Search";
 import Synopsis from "./Pages/Synopsis";
 import ClaimGeneration from "./Pages/ClaimGeneration";
+import Newexposure from "./components/Exposure.components/Newexposure";
+import { LossData } from "./Pages/LossSummary";
 
 
  
@@ -47,7 +49,7 @@ function App() {
           {activeSection === "newDoc" && <NewDoc onDocumentClick={()=>setActiveSection("documents")} />} 
           {activeSection === "upload" && <Upload onDocumentClick={()=>setActiveSection("documents")}/>} 
           {activeSection === "losssummary" && <Losssummary onPIClick={()=>setActiveSection("pi")} onExposureClick={()=>setActiveSection("Exposures")}/>}
-          {activeSection === "Exposures" && <Exposure onLossSummaryClick={()=>setActiveSection("losssummary")} onBlankClick={()=>setActiveSection("claimGeneration")}onAppClick={()=>setActiveSection("")} />}
+          {activeSection === "Exposures" && <Exposure onLossSummaryClick={()=>setActiveSection("losssummary")} onBlankClick={()=>setActiveSection("claimGeneration")}onAppClick={()=>setActiveSection("")}onNewClick={()=>setActiveSection("newexposure")} />}
           {/* {activeSection === "newexposure" && <Newexposure/>}
           {activeSection === "searchexposure" && <Searchexposure/>}   */}
           {activeSection === "newnote" && <NewNote setComponentData={setComponentData} componentData={componentData}/>}
@@ -56,6 +58,7 @@ function App() {
           {activeSection === "search" && <Search setComponentData={setComponentData} componentData={componentData}/>}
           {activeSection === "synopsis" && <Synopsis onSynopsisClick={()=>setActiveSection("synopsis")} />}
           {activeSection==="claimGeneration"&&<ClaimGeneration/>}         {/* new claim synopsis */}
+          {activeSection==="newexposure"&&<Newexposure setComponentData={setComponentData} componentData={componentData} lossdataobj={LossData()}/>}
     
         </div> 
       </div> 
