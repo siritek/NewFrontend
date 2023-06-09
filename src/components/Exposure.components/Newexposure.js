@@ -2,9 +2,9 @@ import React, { useState,useEffect} from 'react'
 import Form from "react-bootstrap/Form";  
 // import Dropdown from 'react-bootstrap/Dropdown';    
  
-var lossdataobj;
+
 var ExposureDataObj
-function Newexposure(props){ 
+function Newexposure(props,{lossdataobj}){ 
 
   const [componentData, setComponentData] = useState({});
   const handleBackClick=()=>{

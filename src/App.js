@@ -58,7 +58,7 @@ function App() {
           {activeSection === "search" && <Search setComponentData={setComponentData} componentData={componentData}/>}
           {activeSection === "synopsis" && <Synopsis onSynopsisClick={()=>setActiveSection("synopsis")} />}
           {activeSection==="claimGeneration"&&<ClaimGeneration/>}         {/* new claim synopsis */}
-          {activeSection==="newexposure"&&<Newexposure setComponentData={setComponentData} componentData={componentData} lossdataobj={LossData()}
+          {activeSection==="newexposure"&&<Newexposure lossdataobj={LossData()}
                    onBackClick={()=>setActiveSection("exposures")}/>}
     
         </div> 
