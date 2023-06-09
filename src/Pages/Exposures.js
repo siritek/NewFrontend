@@ -4,10 +4,10 @@ import BootstrapTable from 'react-bootstrap-table-next';
 import { FnolData } from './Fnol';
 import { policyData } from './PolicyInformation';
 import { LossData } from './LossSummary';
+import {ExposureData} from'../components/Exposure.components/Newexposure';
 
-var ExposureDataObj;
+
 function Exposure(props){
-  const [componentData, setComponentData] = useState({});
   const handleLossSummaryClick=()=>{
     props.onLossSummaryClick();
   };
@@ -18,7 +18,6 @@ function Exposure(props){
     props.onAppClick();
   }
   const handleClick=(e)=>{  
-    ExposureDataObj=componentData 
     // Access the component data from the state 
     const myFnolData = FnolData();  
     const myPolicyInfo = policyData(); 
@@ -246,8 +245,6 @@ return (
     </div>
   ); 
 };
-const ExposureData = () => {
-  return ExposureDataObj
-}
+
  
-export {ExposureData, Exposure};  
+export default Exposure;  

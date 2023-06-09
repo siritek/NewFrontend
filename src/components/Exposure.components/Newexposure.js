@@ -54,7 +54,7 @@ function Newexposure(props){
     <div>
             
           <button type="button" className="btn btn-dark" onClick={handleBackClick}>Back</button>&nbsp;
-          <button type="button" className="btn btn-success"onClick={handleNext} >Submit</button>
+          <button type="button" className="btn btn-success"onClick={()=>{handleNext();handleBackClick();}} >Submit</button>
           </div>
         
       </div><hr/>
@@ -94,22 +94,7 @@ function Newexposure(props){
         </div>
       </div>
 
-      {/* <div className="row mb-2">
-        <div className="col-3">
-          <label htmlFor="Adjuster">Adjuster</label>
-        </div>
-        <div className="col-6">
-          <input
-            id="Adjuster-select"
-            value={Adjuster}
-            onChange={(event) => {
-              setAdjuster(event.target.value);
-            }}
-            type="text"
-            className="w-100 form-control"
-          />
-        </div>
-      </div> */}
+    
 
       <div className="row mb-2">
         <div className="col-3">
@@ -220,6 +205,9 @@ function Newexposure(props){
       </div>
     </div>
   );    
-}    
+} 
+const ExposureData = () => {
+  return ExposureDataObj
+}   
     
-export default Newexposure
+export  {Newexposure,ExposureData}
