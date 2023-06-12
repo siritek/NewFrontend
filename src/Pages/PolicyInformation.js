@@ -17,12 +17,14 @@ function Policyinfo(props) {
     const handleNext = () => {
       // Access the component data from the state
       policyInfoObj=componentData;
-      console.log(componentData);
       // Perform further actions with the data
     };
     const handleLossSummaryClick=()=>{
       props.onLossSummaryClick();
     };
+    if(Object.keys(componentData).length == 0 && policyInfoObj != undefined) {
+      setComponentData(policyInfoObj)
+    }
 
     
   return ( 

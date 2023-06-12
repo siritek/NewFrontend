@@ -5,9 +5,11 @@ function FnolDetails({setComponentData, componentData}){
   const pastYear = new Date();
   pastYear.setFullYear(today.getFullYear() - 1);
 
-  const handleInputChange = (e) => { 
+
+  const handleInputChange = (e) => {
     const {id, value} = e.target; 
     setComponentData((prevData) =>({ 
+      
       ...prevData, 
       [id]:value, 
     })); 
@@ -22,7 +24,6 @@ function FnolDetails({setComponentData, componentData}){
   dateOfReport ='', 
   policyNumber ='',  
   } = componentData || {};
- 
 
   const formatDate = (date) => {
     const year = date.getFullYear();
