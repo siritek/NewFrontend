@@ -16,8 +16,7 @@ function NewNote({setComponentData, componentData}){
     securityType = '',
     subject= '',
     relatedTo= '',
-    yes= '',
-    no= '',
+
     text = '',
     confidential="",
   } = componentData || {};
@@ -46,7 +45,7 @@ function NewNote({setComponentData, componentData}){
         <hr />
       </div>
 
-      <form >
+     
         <div className='row mb-2'>
           <div className='col-2'><label htmlFor='topic'>Topic</label></div>
           <div className='col-6'>
@@ -93,7 +92,8 @@ function NewNote({setComponentData, componentData}){
           <div className='col-2'><label htmlFor='relatedto'>Related To </label></div>
           <div className='col-6'>
             <Form.Select  aria-label="Default select example" id="relatedTo" value={relatedTo}  onChange={handleInputChange} >
-              <option value="claim">-"Claim"- </option>
+            <option value="none"> None </option>
+              <option value="claim"> Claim </option>
             </Form.Select>
           </div>
         </div>
@@ -102,8 +102,8 @@ function NewNote({setComponentData, componentData}){
 
 
         <div className="row mb-3">
-          <div className="col-2"><label htmlFor='confidential' required>Confidential</label></div>
-          <div className="col-6">
+          <div className="col-4">Confidential</div>
+          <div className="col-8">
             <input
               type="radio"
               name="basicRadioGroup"
@@ -138,7 +138,7 @@ function NewNote({setComponentData, componentData}){
         <input type="Reset" className="btn btn-dark " value="Reset" onClick={handleClick} />
         
 
-      </form>
+      
     </div>
 
   );

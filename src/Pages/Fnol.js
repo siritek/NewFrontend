@@ -4,12 +4,12 @@ import FnolDetails from "../components/Fnol.components/FnolDetails"
 //import { useState } from "react";
  
 var FnolDataObj;
-function Fnol(props) { 
-  const [componentData, setComponentData] = useState({});
+function Fnol(props) {
   
+  const [componentData, setComponentData] = useState({});
+
   const handlePIClick=()=>{
-    //console.log(componentData);
-   // setPage(prevPage => prevPage - 1);
+    
     props.onPIClick();
   };
   const handleNext = () => {
@@ -18,7 +18,9 @@ function Fnol(props) {
     console.log(componentData);
     // Perform further actions with the data
   };
-  
+  if(Object.keys(componentData).length == 0 && FnolDataObj != undefined) {
+    setComponentData(FnolDataObj)
+  }
   return ( 
      <div> 
  <div>

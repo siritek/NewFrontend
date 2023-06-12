@@ -9,7 +9,7 @@ import NewDoc from "./components/Documents.components/NewDoc";
 import Upload from "./components/Documents.components/Upload";
 import {Losssummary} from "./Pages/LossSummary";
 import Diary from "./Pages/Diary";
-import {Exposure} from "./Pages/Exposures";
+import Exposure from "./Pages/Exposures";
 // import Newexposure from "./components/Exposure.components/Newexposure";
 // import Searchexposure from "./components/Exposure.components/Searchexposures";
 import NewNote from "./NewNote";
@@ -17,6 +17,8 @@ import NewNote from "./NewNote";
 import Search from "./Pages/Search";
 import Synopsis from "./Pages/Synopsis";
 import ClaimGeneration from "./Pages/ClaimGeneration";
+import {Newexposure} from "./components/Exposure.components/Newexposure";
+import { LossData } from "./Pages/LossSummary";
 
 
  
@@ -46,16 +48,18 @@ function App() {
           {activeSection === "documents" && (<Documents onNewDocClick={() =>setActiveSection("newDoc")} onUploadClick={() => setActiveSection("upload")} />)} 
           {activeSection === "newDoc" && <NewDoc onDocumentClick={()=>setActiveSection("documents")} />} 
           {activeSection === "upload" && <Upload onDocumentClick={()=>setActiveSection("documents")}/>} 
-          {activeSection === "losssummary" && <Losssummary onPIClick={()=>setActiveSection("pi")} onExposureClick={()=>setActiveSection("Exposures")}/>}
-          {activeSection === "Exposures" && <Exposure onLossSummaryClick={()=>setActiveSection("losssummary")} onBlankClick={()=>setActiveSection("claimGeneration")} />}
-          {/* {activeSection === "newexposure" && <Newexposure/>}
-          {activeSection === "searchexposure" && <Searchexposure/>}   */}
+          {activeSection === "losssummary" && <Losssummary onPIClick={()=>setActiveSection("pi")} onExposureClick={()=>setActiveSection("exposures")}/>}
+          {activeSection === "exposures" && <Exposure onLossSummaryClick={()=>setActiveSection("losssummary")} onBlankClick={()=>setActiveSection("claimGeneration")}
+                  onAppClick={()=>setActiveSection("")}onNewClick={()=>setActiveSection("newexposure")} onExposureClick={()=>setActiveSection("exposures")}/>}
+        
           {activeSection === "newnote" && <NewNote setComponentData={setComponentData} componentData={componentData}/>}
           {/* {activeSection === "searchnote" && <SearchNote/>} */}
           {activeSection === "diary" && <Diary/>}
           {activeSection === "search" && <Search setComponentData={setComponentData} componentData={componentData}/>}
           {activeSection === "synopsis" && <Synopsis onSynopsisClick={()=>setActiveSection("synopsis")} />}
           {activeSection==="claimGeneration"&&<ClaimGeneration/>}         {/* new claim synopsis */}
+          {activeSection==="newexposure"&&<Newexposure lossdataobj={LossData()}
+                   onBackClick={()=>setActiveSection("exposures")}/>}
     
         </div> 
       </div> 

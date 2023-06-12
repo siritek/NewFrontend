@@ -2,8 +2,10 @@ import React from 'react';
 import Form from "react-bootstrap/Form";
 import Exposure from '../components/Synopsis.components/exposure.component';
 import Upcomingactivities from '../components/Synopsis.components/upcomingactivities.component';
-
-function Synopsis({setComponentData, componentData})  {
+import { useState } from "react";
+var SynDataObj;
+function Synopsis()  {
+  const[componentData,setComponentData]=useState({});
     const handleInputChange = (e) => { 
         const {id, value} = e.target; 
         setComponentData((prevData) =>({ 
@@ -12,32 +14,40 @@ function Synopsis({setComponentData, componentData})  {
         })); 
       }; 
       const { 
-        ClaimNumber ='', 
-        TypeOfLoss ='', 
-        Name ='', 
-        Adjuster ='', 
-      DateOfReport ='', 
-      PolicyNumber ='',
-      LossDescription = '',
-      DateOfLoss ='',
-      LossLocation ='',
+        claimNumber ='', 
+        typeOfLoss ='', 
+        name ='', 
+        adjuster ='', 
+      dateOfReport ='', 
+      policyNumber ='',
+      lossDescription = '',
+      dateOfLoss ='',
+      lossLocation ='',
 
       } = componentData || {};
-
+      const handleNext = () => {
+        // Access the component data from the state
+        SynDataObj = componentData
+        console.log(componentData);
+        // Perform further actions with the data
+      };
   return (
     <div className="ms-3">
-      <h5>Claim Synopsis</h5>
+         <div className="d-flex justify-content-between align-items-center"> 
+      <h2>Claim Synopsis</h2>
+      <button type="button" className="btn btn-success" onClick={handleNext}>Submit</button>
+      </div>
       <hr></hr>
 
       <div className="row">
         <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="ClaimNumber">Claim Number</label>
+            <label htmlFor="claimNumber">Claim Number</label>
           </div>
           <div className="col-5">
             <input
-              id="ClaimNumber"
-              value={ClaimNumber}
+              id="claimNumber"
+              value={claimNumber}
               onChange={handleInputChange}
               type="number"
               className="w-100 form-control"
@@ -48,13 +58,13 @@ function Synopsis({setComponentData, componentData})  {
 
         <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="TypeOfLoss">Type of Loss</label>
+            <label htmlFor="typeOfLoss">Type of Loss</label>
           </div>
           <div className="col-5">
             <Form.Select
               className="w-100 form-control"
-              id="TypeOfLoss"
-              value={TypeOfLoss}
+              id="typeOfLoss"
+              value={typeOfLoss}
               onChange={handleInputChange}
             >
               <option value="None">None</option>
@@ -64,12 +74,12 @@ function Synopsis({setComponentData, componentData})  {
 
         <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="PolicyNumber">Policy Number</label>
+            <label htmlFor="policyNumber">Policy Number</label>
           </div>
           <div className="col-5">
             <input
-              id="PolicyNumber"
-              value={PolicyNumber}
+              id="policyNumber"
+              value={policyNumber}
               onChange={handleInputChange}
               type="number"
               className="w-100 form-control"
@@ -80,12 +90,12 @@ function Synopsis({setComponentData, componentData})  {
 
          <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor='Name'>Name</label>
+            <label htmlFor='name'>Name</label>
             <i className="text-danger h5">*</i>
           </div>
           <div className="col-5">
-            <input id="Name"
-              value={Name}
+            <input id="name"
+              value={name}
               onChange={handleInputChange} type="text" className="w-100 form-control" />
             {/* <select className='w-200 form-control'> 
               <option>Ray Newton</option> 
@@ -96,24 +106,24 @@ function Synopsis({setComponentData, componentData})  {
 
         <div className='row mb-2'>
    <div className='col-4'>
-     <label htmlFor="DateOfLoss"> Date Of Loss</label>
+     <label htmlFor="dateOfLoss"> Date Of Loss</label>
      
    </div>
    <div className='col-5'>
-     <input  id="DateOfLoss" type="date" value={DateOfLoss}  
+     <input  id="dateOfLoss" type="date" value={dateOfLoss}  
      onChange={handleInputChange}  className='w-100 form-control' />
    </div>
  </div>
 
  <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="Adjuster">Adjuster</label>
+            <label htmlFor="adjuster">Adjuster</label>
           </div>
           <div className="col-5">
             <Form.Select 
               className="w-100 form-control"
-              id="Adjuster"
-              value={Adjuster}
+              id="adjuster"
+              value={adjuster}
               onChange={handleInputChange}
             >
               <option value="None">None</option>
@@ -123,36 +133,36 @@ function Synopsis({setComponentData, componentData})  {
 
         <div className='row mb-2'>
    <div className='col-4'>
-     <label htmlFor="DateOfReport"> Date Reported</label>
+     <label htmlFor="dateOfReport"> Date Reported</label>
      
    </div>
    <div className='col-5'>
-     <input type="date" id="DateOfReport" value={DateOfReport} 
+     <input type="date" id="dateOfReport" value={dateOfReport} 
      onChange={handleInputChange}className='w-100 form-control' />
    </div>
  </div>
 
  <div className='row mb-2'>
    <div className='col-4'>
-     <label htmlFor="LossLocation">Loss Location</label>
+     <label htmlFor="lossLocation">Loss Location</label>
    </div>
    <div className='col-5'>
-     <input id="LossLocation" type="text" value={LossLocation} 
+     <input id="lossLocation" type="text" value={lossLocation} 
      onChange={handleInputChange} className='w-100 form-control' />
    </div>
  </div>
 
  <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="LossDescription">Loss Description</label>
+            <label htmlFor="lossDescription">Loss Description</label>
           </div>
           <div className="col-5">
             <input
               type="text"
               className="w-100 form-control"
               maxLength={500}
-              id="LossDescription"
-              value={LossDescription}
+              id="lossDescription"
+              value={lossDescription}
               onChange={handleInputChange}
             />
           </div>

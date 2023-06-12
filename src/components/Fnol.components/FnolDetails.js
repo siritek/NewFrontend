@@ -5,14 +5,16 @@ function FnolDetails({setComponentData, componentData}){
   const pastYear = new Date();
   pastYear.setFullYear(today.getFullYear() - 1);
 
-  const handleInputChange = (e) => { 
+
+  const handleInputChange = (e) => {
     const {id, value} = e.target; 
     setComponentData((prevData) =>({ 
+      
       ...prevData, 
       [id]:value, 
     })); 
   }; 
- 
+
 
   const { 
   dateOfLoss ='', 
@@ -22,23 +24,6 @@ function FnolDetails({setComponentData, componentData}){
   dateOfReport ='', 
   policyNumber ='',  
   } = componentData || {};
-  // const handleClick=(e)=>{ 
-  //   e.preventDefault() 
-  //   const abs={losslocation,dateofloss,reportedby,policynumber,losstime} 
-  //   console.log(abs) 
-  //   fetch("http://localhost:8080/fnolfirst/add",{ 
-  //       method:"POST", 
-  //       headers:{"Content-Type":"application/json"}, 
-  //       body:JSON.stringify(abs) 
- 
-  //   }).then(()=>{ 
-  //       console.log("New Insured added") 
-  //   }) 
-  // }
-  // const myFnoalData = FnolData();
-  // console.log('xxxx->', myFnoalData)
-  // const myPolicyNo = myFnoalData ? myFnoalData.PolicyNumber : PolicyNumber
-  // console.log('ccc-> ', myPolicyNo)
 
   const formatDate = (date) => {
     const year = date.getFullYear();
@@ -123,10 +108,6 @@ function FnolDetails({setComponentData, componentData}){
      onChange={handleInputChange}className='w-100 form-control' />
    </div>
  </div>
-
-  
-  {/* <input type="submit"className="btn btn-success custom-margin-right-1" value="Submit" onClick={handleClick}/> &nbsp; 
-  <input type="reset"className="btn btn-dark custom-margin-right-1" value="Reset"/> */}
   
   </div>
   );

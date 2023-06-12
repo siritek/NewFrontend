@@ -1,9 +1,15 @@
-import React, {useEffect} from 'react'  
+import React, { useState,useEffect} from 'react'  
 import Form from "react-bootstrap/Form";  
 // import Dropdown from 'react-bootstrap/Dropdown';    
-    
-    
-function Newexposure({setComponentData, componentData,lossdataobj}){  
+ 
+
+var ExposureDataObj
+function Newexposure(props,{lossdataobj}){ 
+
+  const [componentData, setComponentData] = useState({});
+  const handleBackClick=()=>{
+    props.onBackClick();
+  }
   const handleInputChange = (e) => {  
     const {id, value} = e.target;  
     setComponentData((prevData) =>({  
@@ -33,10 +39,29 @@ function Newexposure({setComponentData, componentData,lossdataobj}){
       claimantType='',  
       address='', 
   } = componentData || {}; 
-
+  const handleNext = () => {
+    // Access the component data from the state
+    ExposureDataObj = componentData
+    console.log(componentData);
+    // Perform further actions with the data
+  };
+  if(Object.keys(componentData).length == 0 && ExposureDataObj != undefined) {
+    setComponentData(ExposureDataObj)
+  }
+  
 
   return (
     <div>
+         <div className="d-flex justify-content-between align-items-center"> 
+    <h2>New Exposure</h2> 
+    
+    <div>
+            
+          <button type="button" className="btn btn-dark" onClick={handleBackClick}>Back</button>&nbsp;
+          <button type="button" className="btn btn-success"onClick={()=>{handleNext();handleBackClick();}} >Submit</button>
+          </div>
+        
+      </div><hr/>
       <div className="row mb-2">
         <div className="col-3">
           <label htmlFor="lossParty">Loss party</label>
@@ -73,22 +98,7 @@ function Newexposure({setComponentData, componentData,lossdataobj}){
         </div>
       </div>
 
-      {/* <div className="row mb-2">
-        <div className="col-3">
-          <label htmlFor="Adjuster">Adjuster</label>
-        </div>
-        <div className="col-6">
-          <input
-            id="Adjuster-select"
-            value={Adjuster}
-            onChange={(event) => {
-              setAdjuster(event.target.value);
-            }}
-            type="text"
-            className="w-100 form-control"
-          />
-        </div>
-      </div> */}
+    
 
       <div className="row mb-2">
         <div className="col-3">
@@ -199,6 +209,9 @@ function Newexposure({setComponentData, componentData,lossdataobj}){
       </div>
     </div>
   );    
-}    
+} 
+const ExposureData = () => {
+  return ExposureDataObj
+}   
     
-export default Newexposure
+export  {Newexposure,ExposureData}

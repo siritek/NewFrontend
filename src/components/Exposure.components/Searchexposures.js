@@ -52,28 +52,9 @@ function Searchexposures() {
  
         <div className='row'> 
           <div className='col-12'> 
-            {/* <DropdownButton id={`dropdown-button-${row.id}`} title='select' className='dropdown-type-value'> 
-              <Dropdown.Item onClick={() => alert(`${row.name} selected Type A`)}> 
-                John 
-              </Dropdown.Item> 
-              <Dropdown.Item onClick={() => alert(`${row.name} selected Type B`)}> 
-                Jake 
-              </Dropdown.Item> 
-              <Dropdown.Item onClick={() => alert(`${row.name} selected Type C`)}> 
-                Thomas 
-              </Dropdown.Item> 
-            </DropdownButton>  */}
+           
           </div> 
-        {/* <div className='col-4'> 
-        <DropdownButton id={`dropdown-button-${row.id}`} title='' className='dropdown-type-value'> 
-              <Dropdown.Item onClick={() => alert(`${row.name} selected Type A`)}> 
-                New Person 
-              </Dropdown.Item> 
-              <Dropdown.Item onClick={() => alert(`${row.name} selected Type B`)}> 
-                New Company 
-              </Dropdown.Item>              
-            </DropdownButton> 
-        </div> */} 
+       
       </div>    
  
       ), 
@@ -150,11 +131,9 @@ function Searchexposures() {
  
   ]; 
  
-  //Test data & State of the table 
+ 
   const [tableData, setTableData] = useState([ 
-    // { id: 1, name: 'John Doe', type: 'Type A', selected: false }, 
-    // { id: 2, name: 'Jane Smith', type: 'Type B', selected: false }, 
-    // { id: 3, name: 'Bob Johnson', type: 'Type A', selected: false }, 
+
   ]); 
  
   //Add new row on button click 
