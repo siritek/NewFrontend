@@ -39,7 +39,7 @@ function NewDoc(props) {
     <div>
             
           <button type="button" className="btn btn-dark" onClick={handleDocumentClick}>Back</button>&nbsp;
-          <button type="button" className="btn btn-success" onClick={handleNext}>Submit</button>
+          <button type="button" className="btn btn-success" onClick={()=>{handleNext();handleDocumentClick()}}>Submit</button>
           </div>
         
       </div><hr/>

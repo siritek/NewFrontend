@@ -35,7 +35,7 @@ function App() {
     
       <Row> 
         <Col> 
-          <Header onFnolClick={()=>setActiveSection("fnol")} onSearchClick={()=>setActiveSection("search")} ></Header> 
+          <Header onFnolClick={()=>setActiveSection("fnol")} onSearchClick={()=>setActiveSection("search")} onBlankClick={()=>setActiveSection("")}></Header> 
         </Col> 
       </Row> 
  

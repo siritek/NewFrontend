@@ -9,6 +9,9 @@ const Header = (props) => {
   const handleSearchClick=()=>{
     props.onSearchClick();
   }
+  const handleBlankClick=()=>{
+    props.onBlankClick();
+  }
 
   // const handleSearch = (event) => {
   //   event.preventDefault();
@@ -21,8 +24,9 @@ const Header = (props) => {
   return (
     <div>
       <nav className="navbar navbar-dark bg-success navbar-expand-md">
+      
         <NavbarBrand style={{ paddingLeft: "14px" }}>
-          <a className="navbar-brand text-dark" href="">
+          <a className="navbar-brand text-dark"  onClick={handleBlankClick}>
             <img src={logo} width={80} height={30} alt="Logo" />
           </a>
         </NavbarBrand>
@@ -59,8 +63,17 @@ const Header = (props) => {
                 </Form>
               </DropdownButton>
             </li> */}
-          </ul>
-        </div>
+            </ul> </div>
+          <div className="col-16 d-flex justify-content-end">
+          
+          <NavbarBrand>  <a className="btn btn-dark" href="">
+         Log Out
+        </a></NavbarBrand>
+          {/* <NavbarBrand className="btn btn-dark" style={{ paddingRight: "14px" }}><a href=""></a>  Log Out</NavbarBrand> */}
+        
+      </div>
+      
+       
       </nav>
     </div>
   );
