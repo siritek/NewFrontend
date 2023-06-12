@@ -20,21 +20,33 @@ const Header = (props) => {
 
   return (
     <div>
-     <nav className="navbar navbar-dark bg-success navbar-expand-md">
-      <NavbarBrand>  <a className="navbar-brand text-dark" href="">
-         <img src={logo} width={80} height={30} alt="Logo" /> 
-        </a></NavbarBrand>
+      <nav className="navbar navbar-dark bg-success navbar-expand-md">
+        <NavbarBrand style={{ paddingLeft: "14px" }}>
+          <a className="navbar-brand text-dark" href="">
+            <img src={logo} width={80} height={30} alt="Logo" />
+          </a>
+        </NavbarBrand>
         <div className="mx-auto">
           <ul className="navbar-nav">
             <li className="nav-item">
               <DropdownButton variant="dark" title="Claim">
-                <Dropdown.Item type="button" className="btn btn-dark" onClick={handleFnolClick}>
+                <Dropdown.Item
+                  type="button"
+                  className="btn btn-dark"
+                  onClick={handleFnolClick}
+                >
                   New Claim
                 </Dropdown.Item>
               </DropdownButton>
-            </li>&nbsp;
-
-            <button type="submit" onClick={handleSearchClick} className="btn btn-dark">Search</button>
+            </li>
+            &nbsp;
+            <button
+              type="submit"
+              onClick={handleSearchClick}
+              className="btn btn-dark"
+            >
+              Search
+            </button>
             {/* <li className="nav-item">
               <DropdownButton variant="dark"style={{ width: '300px' }} title="Search">
                 <Form onSubmit={handleSearch}>
