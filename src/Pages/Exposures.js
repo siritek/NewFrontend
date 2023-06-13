@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import Newexposure from "../components/Exposure.components/Newexposure";  
+//import Newexposure from "../components/Exposure.components/Newexposure";  
 import BootstrapTable from 'react-bootstrap-table-next';   
 import { FnolData } from './Fnol';
 import { policyData } from './PolicyInformation';
 import { LossData } from './LossSummary';
 import {ExposureData} from'../components/Exposure.components/Newexposure';
-
+import ClaimGeneration from './ClaimGeneration'; 
 
 function Exposure(props){
-  const [exposuresubmitclick, setExposuresubmitclick] = useState(false);
+  //const [exposuresubmitclick, setExposuresubmitclick] = useState(false);
+  //const [componentData, setComponentData] = useState({});
 
   const handleLossSummaryClick=()=>{
     props.onLossSummaryClick();
@@ -19,38 +20,55 @@ function Exposure(props){
   const handleAppClick=()=>{
     props.onAppClick();
   }
-  const handleClick=(e)=>{  
-    // Access the component data from the state 
-    const myFnolData = FnolData();  
-    const myPolicyInfo = policyData(); 
-    const myLossData = LossData(); 
-    const myExposureData = ExposureData(); 
- 
-    // console.log('policyinfo-->',myPolicyInfo) 
-    // console.log('Fnoldata -->', myFnolData) 
-    // console.log('lossdata-->',myLossData) 
-    // console.log('exposure--->',myExposureData) 
- 
-    const finalDataObj = { 
-      "fnolData": myFnolData,  
-      "policyInfoData": myPolicyInfo, 
-      "lossData": myLossData, 
-      "exposureData":myExposureData 
+  const handleClick=(e)=>{ 
+    //ExposureDataObj = {ExposureData}
+
+    const myFnolData = FnolData();
+    const myPolicyInfo = policyData();
+    const myLossData = LossData();
+    const myExposureData = ExposureData();
+
+    const finalDataObj = {
+      "fnolData": myFnolData,
+      "policyInfoData": myPolicyInfo,
+      "lossData": myLossData,
+      "exposureData": myExposureData
     } 
-    //  console.log(finalDataObj); 
-    // e.preventDefault()  
-    // const abs={myFnolData,myPolicyInfo,myLossData,myExposureData}  
-    console.log(finalDataObj)  
-    fetch("http://localhost:8080/common/add",{  
-        method:"POST",  
-        headers:{"Content-Type":"application/json"},  
-        body:JSON.stringify(finalDataObj)  
-  
-    }).then(()=>{  
-        console.log("New claim added")  
-        setExposuresubmitclick(true);
-    })  
-  }
+    console.log(finalDataObj) 
+    fetch("http://localhost:8080/common/add", { 
+      method: "POST", 
+      headers: { "Content-Type": "application/json" }, 
+      body: JSON.stringify(finalDataObj) 
+    }) 
+      .then(() => { 
+        console.log("New claim added"); 
+        generateClaimNumber(); // Call the generateClaimNumber function 
+      }) 
+      .catch((error) => { 
+        console.error("Error adding new claim:", error); 
+      }); 
+  } 
+ 
+  const generateClaimNumber = () => { 
+    const fnolData = FnolData(); // Call FnolData() to retrieve the data 
+    const policyNumber = fnolData.policyNumber;  
+ 
+    console.log("Policy Number:", policyNumber); 
+    fetch("http://localhost:8080/claim/generateClaimNumber", { 
+      method: "POST", 
+      headers: { "Content-Type": "application/x-www-form-urlencoded" }, 
+      body: `policyNumber=${policyNumber}`, 
+    }) 
+      .then((response) => response.json()) 
+      .then((data) => { 
+        console.log("Claim Number:", data.claimNumber); 
+        props.setClaimNumber(data.claimNumber); 
+        handleBlankClick(); 
+      }) 
+      .catch((error) => { 
+        console.error("Error generating claim number:", error); 
+      }); 
+  }; 
   const columns = [ 
     { 
       dataField: "checkbox", 
@@ -219,6 +237,7 @@ return (
           </div></div>
     <hr />
         {/* <Newexposure setComponentData={setComponentData} componentData={componentData} lossdataobj={LossData()}/> */}
+        
        
         <div className="row p-1 m-0 ">
         
@@ -244,10 +263,13 @@ return (
         </div>
       </div>
       <BootstrapTable keyField="id" data={tableData} columns={columns} />
-
+      {props.claimNumber && <ClaimGeneration claimNumber={props.claimNumber} />}
     </div>
+    
   ); 
 };
+// const ExposureData = () => {
+//   return ExposureDataObj;
+// }
 
- 
-export default Exposure;  
+export default Exposure 

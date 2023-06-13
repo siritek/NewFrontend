@@ -65,7 +65,7 @@ function Newexposure(props,{lossdataobj}){
       <div className="row mb-2">
         <div className="col-3">
           <label htmlFor="lossParty">Loss party</label>
-        </div>
+        </div>7
         <div className="col-6">
           <Form.Select
             id="lossParty"
