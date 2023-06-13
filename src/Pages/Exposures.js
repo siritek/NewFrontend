@@ -8,6 +8,8 @@ import {ExposureData} from'../components/Exposure.components/Newexposure';
 
 
 function Exposure(props){
+  const [exposuresubmitclick, setExposuresubmitclick] = useState(false);
+
   const handleLossSummaryClick=()=>{
     props.onLossSummaryClick();
   };
@@ -46,6 +48,7 @@ function Exposure(props){
   
     }).then(()=>{  
         console.log("New claim added")  
+        setExposuresubmitclick(true);
     })  
   }
   const columns = [ 
