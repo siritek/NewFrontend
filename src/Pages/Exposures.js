@@ -9,7 +9,7 @@ import ClaimGeneration from './ClaimGeneration';
 
 function Exposure(props){
   //const [exposuresubmitclick, setExposuresubmitclick] = useState(false);
-  //const [componentData, setComponentData] = useState({});
+  const [componentData, setComponentData] = useState({});
 
   const handleLossSummaryClick=()=>{
     props.onLossSummaryClick();
@@ -21,6 +21,7 @@ function Exposure(props){
     props.onAppClick();
   }
   const handleClick=(e)=>{ 
+
     //ExposureDataObj = {ExposureData}
 
     const myFnolData = FnolData();
@@ -47,7 +48,14 @@ function Exposure(props){
       .catch((error) => { 
         console.error("Error adding new claim:", error); 
       }); 
-  } 
+      
+      // if (Object.keys(componentData).length === 0 && finalDataObj !== undefined) {
+      //   setComponentData(finalDataObj);
+      // } else {
+      //   setComponentData({}); // Clear the componentData object
+      // }
+    } 
+
  
   const generateClaimNumber = () => { 
     const fnolData = FnolData(); // Call FnolData() to retrieve the data 

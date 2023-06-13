@@ -45,9 +45,13 @@ function Newexposure(props,{lossdataobj}){
     console.log(componentData);
     // Perform further actions with the data
   };
-  if(Object.keys(componentData).length == 0 && ExposureDataObj != undefined) {
+  if(Object.keys(componentData).length === 0 && ExposureDataObj !== undefined) {
     setComponentData(ExposureDataObj)
   }
+  // else {
+  //     setComponentData({}); // Clear the componentData object
+  //   }
+  
   
 
   return (
