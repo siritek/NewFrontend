@@ -62,8 +62,10 @@ function FnolDetails({setComponentData, componentData}){
      
    </div>
    <div className='col-5'>
-     <input  id="dateOfLoss" type="date" value={dateOfLoss}  
+     <input  id="dateOfLoss" type="date" value={dateOfLoss}
+      max={new Date().toISOString().split('T')[0]}  
      onChange={handleInputChange}  className='w-100 form-control' />
+      
    </div>
  </div>
  
