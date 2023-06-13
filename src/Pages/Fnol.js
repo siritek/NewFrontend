@@ -40,7 +40,7 @@ function Fnol(props) {
 
         <div className='col-6'>
         
-          <FnolTypeOfPolicy />
+          <FnolTypeOfPolicy setComponentData={setComponentData} componentData={componentData} />
           </div>
           
   </div>
