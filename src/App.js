@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Header from "./Header";
-import { SideNavigation } from "./SideNavigation";
+import {SideNavigation} from "./SideNavigation";
 import { Col, Row } from "reactstrap";
 import { Fnol } from "./Pages/Fnol";
 import { Policyinfo } from "./Pages/PolicyInformation";
@@ -17,29 +17,42 @@ import ClaimGeneration from "./Pages/ClaimGeneration";
 import { Newexposure } from "./components/Exposure.components/Newexposure";
 import { LossData } from "./Pages/LossSummary";
 
-
 function App() {
   const [activeSection, setActiveSection] = useState(null);
-  const [exposureSubmitClicked, setExposureSubmitClicked] = useState(false);
-  const [claimNumber, setClaimNumber] = useState(null); 
+  const [firstfour, setfirstfour] = useState(false);
+  const [claimNumber, setClaimNumber] = useState(null);
   const [componentData, setComponentData] = useState({});
 
-  const updateComponentData = (newData) => {setComponentData(newData);};
+  const updateComponentData = (newData) => {
+    setComponentData(newData);
+  };
+
   const handleSectionClick = (section) => {
     setActiveSection(section);
-    if (section === "exposures") {
-      setExposureSubmitClicked(true);
-    } else {
-      setExposureSubmitClicked(false);
+    if (section === "fnol" || section === "pi" || section === "losssummary" || section === "exposures") {
+      setfirstfour(true);
+    }
+    if (section === "synopsis"|| section === "newnote" || section === "dairy" || section === "documents") {
+      setfirstfour(false);
     }
   };
+
+  const handleFnolClick = () => {
+    setActiveSection("fnol");
+    setfirstfour(true);
+  };
+  const handleLinkClick = () => {
+    setActiveSection("synopsis");
+    setfirstfour(false);
+  };
+
 
   return (
     <>
       <Row>
         <Col>
           <Header
-            onFnolClick={() => setActiveSection("fnol")}
+            onFnolClick={handleFnolClick}
             onSearchClick={() => setActiveSection("search")}
             onBlankClick={() => setActiveSection("")}
           />
@@ -49,8 +62,9 @@ function App() {
       <div style={{ display: "flex" }}>
         <SideNavigation
           onSectionClick={handleSectionClick}
-          exposureSubmitClicked={exposureSubmitClicked}
+          firstfour={firstfour}
         />
+      
 
         <div style={{ marginLeft: "10px", width: "100%" }}>
           {activeSection === "fnol" && <Fnol onPIClick={() => setActiveSection("pi")} />}
@@ -92,7 +106,7 @@ function App() {
               componentData={componentData}
             />
           )}
-          {activeSection === "claimGeneration" && (  <ClaimGeneration claimNumber={claimNumber} />)}
+          {activeSection === "claimGeneration" && (  <ClaimGeneration claimNumber={claimNumber} onLinkClick={handleLinkClick} />)}
           {/* new claim synopsis */}
           {activeSection === "newexposure" && (
             <Newexposure lossdataobj={LossData()} onBackClick={() => setActiveSection("exposures")}/>

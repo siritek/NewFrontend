@@ -1,16 +1,14 @@
 import React, { useState } from 'react'; 
 import Synopsis from './Synopsis'; 
  
-const ClaimGeneration = ({ claimNumber }) => { 
-  const [redirectToSynopsis, setRedirectToSynopsis] = useState(false); 
+const ClaimGeneration = (props,{ claimNumber }) => { 
+  
  
   const handleLinkClick = () => { 
-    setRedirectToSynopsis(true); 
+    props.onLinkClick()
   }; 
  
-  if (redirectToSynopsis) { 
-    return <Synopsis claimNumber={claimNumber} />; 
-  } 
+ 
  
   return ( 
     <div> 
