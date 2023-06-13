@@ -11,13 +11,13 @@ function NewDoc(props) {
     }));  
   };  
   const{ 
-    docName='', 
-   docType='', 
+    documentName='', 
+   documentType='', 
     related='', 
       status='', 
       uploadedBy='', 
-      uDate='', 
-      uTime='',  
+      uploadedDate='', 
+      uploadedTime='',  
   } = componentData || {}; 
 
 
@@ -46,20 +46,20 @@ function NewDoc(props) {
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor='docName'>Document Name</label>
+          <label htmlFor='documentName'>Document Name</label>
           <i className="text-danger h5">*</i>
         </div>
         <div className="col-6">
-          <input id='docName' type="text" value={docName} onChange={handleInputChange} className="w-100 form-control" />
+          <input id='documentName' type="text" value={documentName} onChange={handleInputChange} className="w-100 form-control" />
         </div>
       </div>
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="docType">Document Type</label>
+          <label htmlFor="documentType">Document Type</label>
         </div>
         <div className="col-6">
-          <Form.Select id="docType" value={docType} onChange={handleInputChange} aria-label="Default select example">
+          <Form.Select id="documentType" value={documentType} onChange={handleInputChange} aria-label="Default select example">
             <option value='None'>None</option>
             <option value='Jpeg'>.JPEG</option>
             <option value='Pdf'>.PDF</option>
@@ -112,19 +112,19 @@ function NewDoc(props) {
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor='uDate'>Uploaded Date</label>
+          <label htmlFor='uploadedDate'>Uploaded Date</label>
         </div>
         <div className="col-3">
-          <input id="uDate" value={uDate} onChange={handleInputChange}type="date" className="w-100 form-control" />
+          <input id="uploadedDate" value={uploadedDate} onChange={handleInputChange}type="date" className="w-100 form-control" />
         </div>
       </div>
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor='uTime'>Uploaded Time</label>
+          <label htmlFor='uploadedTime'>Uploaded Time</label>
         </div>
         <div className="col-3">
-          <input id="uTime" value={uTime} onChange={handleInputChange} type="time" className="w-100 form-control" />
+          <input id="uploadedTime" value={uploadedTime} onChange={handleInputChange} type="time" className="w-100 form-control" />
         </div>
       </div>
     </div>

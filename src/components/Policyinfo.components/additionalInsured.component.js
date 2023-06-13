@@ -76,7 +76,7 @@ function handleDelete() {
 
       <div className="App">
         <div className="table-responsive">
-          <table className="tabletable-hover table-bordered">
+          <table className="table table-hover table-bordered">
             <tbody>
               <tr>
                 <th>
@@ -155,3 +155,5 @@ function handleDelete() {
 }
 
 export default Additional;
+
+
