@@ -12,6 +12,7 @@ function NewNote({setComponentData, componentData}){
  
 
   const {
+    ClaimNumber='',
     topic = '',
     securityType = '',
     subject= '',
@@ -44,6 +45,13 @@ function NewNote({setComponentData, componentData}){
         <h2>New Note</h2>
         <hr />
       </div>
+
+      <div className='row mb-2'>
+          <div className='col-2'><label htmlFor='Claim Number'>Claim Number</label></div>
+          <div className='col-6'>
+            <input type="text" className='w-100 form-control' id="Claim Number" value={ClaimNumber}  onChange={handleInputChange} />
+          </div>
+        </div>
 
      
         <div className='row mb-2'>
