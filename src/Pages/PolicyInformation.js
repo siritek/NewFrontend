@@ -63,4 +63,4 @@ function Policyinfo(props) {
 const policyData = () => {
   return policyInfoObj;
 }
-export {policyData, Policyinfo};
+export {policyData,policyInfoObj, Policyinfo};

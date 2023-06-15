@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import Newexposure from "../components/Exposure.components/Newexposure";  
-import BootstrapTable from 'react-bootstrap-table-next';   
+// import Newexposure from "../components/Exposure.components/Newexposure";  
+// import BootstrapTable from 'react-bootstrap-table-next';   
 import { FnolData } from './Fnol';
-import { policyData } from './PolicyInformation';
+import { policyData, policyInfoObj } from "./PolicyInformation";
 import { LossData } from './LossSummary';
-import {ExposureData} from'../components/Exposure.components/Newexposure';
+import {ExposureData,ExposureDataObj} from'../components/Exposure.components/Newexposure';
+import { Button } from "react-bootstrap";
 
 
 function Exposure(props){
@@ -48,130 +49,51 @@ function Exposure(props){
         console.log("New claim added")  
     })  
   }
-  const columns = [ 
-    { 
-      dataField: "checkbox", 
-      text: "Checkbox", 
-      headerClasses: "checkbox-header", 
-      classes: "checkbox-column", 
-      headerFormatter: (cellContent, row) => ( 
-        <div className="form-check"> 
-          <input 
-            type="checkbox" 
-            className="form-check-input" 
-            id={row.id} 
-             
-          /> 
-        </div> 
-      ), 
-      formatter: (cellContent, row) => ( 
-        <div className="form-check"> 
-          <input 
-            type="checkbox" 
-            className="form-check-input" 
-            id={row.id} 
-            checked={row.selected} 
-      onChange={() => handleCheckboxChange(row.id)} 
-          /> 
-        </div> 
- 
-      ), 
-    }, 
-    { 
-      dataField: "id", 
-      text: "#", 
-      sort: true, 
-      headerClasses: "id-header", 
-      classes: "id-column", 
-    }, 
-    { 
-      dataField: "Type", 
-      text: "Type", 
-      sort: true, 
-      headerClasses: "Type-header", 
-      classes: "Type-column", 
-      formatter: (cellContent, row) => ( 
- 
-        <div className='row'> 
-          <div className='col-12'> 
-           
-          </div> 
-       
-      </div>    
- 
-      ), 
-    }, 
-    { 
-      dataField: "Coverage", 
-      text: "Coverage", 
-      sort: true, 
-      headerClasses: "Coverage-header", 
-      classes: "Coverage-column", 
-      formatter: (cellContent, row) => ( 
-          <div className='row'> 
-            <div className='col-12'>
-            </div> 
-          </div>         
-      ), 
-    }, 
- 
-     { 
-      dataField: "Claimant", 
-      text: "Claimant", 
-      sort: true, 
-      headerClasses: "Claimant-header", 
-      classes: "Claimant-column", 
-      formatter: (cellContent, row) => ( 
-          <div className='row'> 
-            <div className='col-12'> 
-            </div> 
-          </div>         
-      ), 
-    }, 
 
-    { 
-      dataField: "Involving", 
-      text: "Involving", 
-      sort: true, 
-      headerClasses: "Involving-header", 
-      classes: "Involving-column", 
-      formatter: (cellContent, row) => ( 
-          <div className='row'> 
-            <div className='col-12'> 
-            </div> 
-          </div>         
-      ), 
-    },
 
-    { 
-      dataField: "Status", 
-      text: "Status", 
-      sort: true, 
-      headerClasses: "Status-header", 
-      classes: "Status-column", 
-      formatter: (cellContent, row) => ( 
-          <div className='row'> 
-            <div className='col-12'> 
-            </div> 
-          </div>         
-      ), 
-    },
+  const [inputarr, setInputarr] = useState([]);
+  const [allChecked, setAllChecked] = useState(false);
 
-    { 
-      dataField: "Created Via", 
-      text: "Created Via", 
-      sort: true, 
-      headerClasses: "Created Via-header", 
-      classes: "Created Via-column", 
-      formatter: (cellContent, row) => ( 
-          <div className='row'> 
-            <div className='col-12'> 
-            </div> 
-          </div>         
-      ), 
-    },
- 
-  ]; 
+  function changhandle() {
+    setInputarr([
+      ...inputarr,
+      {
+        
+        checked: false,
+        Type: "",
+        Coverage: "",
+        Claimant: "",
+        Involving: "",
+        Status: "",
+      },
+    ]);
+    console.log(inputarr);
+  }
+
+  function handleInputChange(e, index) {
+    const { name, value } = e.target;
+    const list = [...inputarr];
+    list[index][name] = value;
+    setInputarr(list);
+  }
+
+  function handleCheckboxChange(e, index) {
+    const { checked } = e.target;
+    const list = [...inputarr];
+    list[index].checked = checked;
+    setInputarr(list);
+  }
+
+  function handleAllCheckedChange(e) {
+    const { checked } = e.target;
+    setAllChecked(checked);
+    setInputarr(inputarr.map((item) => ({ ...item, checked })));
+  }
+
+  function handleDelete() {
+    setInputarr(inputarr.filter((item) => !item.checked));
+    setAllChecked(false);
+  }
  
  
   const [tableData, setTableData] = useState([ 
@@ -184,66 +106,170 @@ function Exposure(props){
     setTableData([...tableData, newRow]); 
   }; 
  
-  //Get the state of checked row 
-  const handleCheckboxChange = (rowId) => { 
-    setTableData((prevData) => 
-      prevData.map((row) => 
-        row.id === rowId ? { ...row, selected: !row.selected } : row 
-      ) 
-    ); 
-  }; 
+  // //Get the state of checked row 
+  // const handleCheckboxChange = (rowId) => { 
+  //   setTableData((prevData) => 
+  //     prevData.map((row) => 
+  //       row.id === rowId ? { ...row, selected: !row.selected } : row 
+  //     ) 
+  //   ); 
+  // }; 
   const handleNewClick=()=>{
     props.onNewClick();
   }
  
   //Delete the checked row from the table 
-  const handleDeleteRow = () => { 
-    const updatedData = tableData.filter((row) => !row.selected); 
-    setTableData(updatedData); 
-  }; 
+  // const handleDeleteRow = () => { 
+  //   const updatedData = tableData.filter((row) => !row.selected); 
+  //   setTableData(updatedData); 
+  // }; 
  
 
 return (
-
-    <div>
-       <div className="d-flex justify-content-between align-items-center"> 
-    <h2>Exposures</h2> 
-    <div>
-            
-          <button type="button" className="btn btn-dark" onClick={handleLossSummaryClick}>Back</button>&nbsp;
-          <button type="button" className="btn btn-dark" onClick={handleAppClick}>Cancel</button>&nbsp;
-          <input type="submit"className="btn btn-success custom-margin-right-1" value="Submit" onClick={()=>{handleClick();handleBlankClick()}}/> 
-          </div></div>
+  <div>
+    <div className="d-flex justify-content-between align-items-center">
+      <h2>Exposures</h2>
+      <div>
+        <button
+          type="button"
+          className="btn btn-dark"
+          onClick={handleLossSummaryClick}
+        >
+          Back
+        </button>
+        &nbsp;
+        <button type="button" className="btn btn-dark" onClick={handleAppClick}>
+          Cancel
+        </button>
+        &nbsp;
+        <input
+          type="submit"
+          className="btn btn-success custom-margin-right-1"
+          value="Submit"
+          onClick={() => {
+            handleClick();
+            handleBlankClick();
+          }}
+        />
+      </div>
+    </div>
     <hr />
-        {/* <Newexposure setComponentData={setComponentData} componentData={componentData} lossdataobj={LossData()}/> */}
-       
-        <div className="row p-1 m-0 ">
-        
-       
-        <div className="col-16 d-flex justify-content-end">
-          
-            <button
-              type="button"
-              className="btn btn-success custom-margin-right-2"
-              onClick={()=>{handleAddRow();handleNewClick();}}
-              >
-              Add exposures
-            </button>
-            &nbsp;&nbsp;
-            <button
-              type="button"
-              className="btn btn-dark"
-              onClick={handleDeleteRow}
-            >
-              Delete
-            </button>
-          
+    {/* <Newexposure setComponentData={setComponentData} componentData={componentData} lossdataobj={LossData()}/> */}
+
+    <div className="row p-1 m-0 ">
+      <div className="col-16 d-flex justify-content-end">
+        <button
+          type="button"
+          className="btn btn-success custom-margin-right-2"
+          onClick={() => {
+            handleAddRow();
+            handleNewClick();
+          }}
+        >
+          Add exposures
+        </button>
+        &nbsp;&nbsp;
+        <button
+          type="button"
+          className="btn btn-dark"
+          onClick={handleDelete}
+          // onClick={handleDeleteRow}
+        >
+          Delete
+        </button>
+      </div>
+    </div>
+    {/* <BootstrapTable keyField="id" data={tableData} columns={columns} /> */}
+
+    <div className="container">
+      <div className="row p-1 m-0">
+        <div className="col-4 align-right">
+          <Button variant="success" onClick={changhandle}>
+            Add
+          </Button>
         </div>
       </div>
-      <BootstrapTable keyField="id" data={tableData} columns={columns} />
+      <div className="App">
+        <div className="table-responsive">
+          <table className="table table-hover table-bordered">
+            <tbody>
+              <tr>
+                <th>
+                  <input
+                    type="checkbox"
+                    checked={allChecked}
+                    onChange={handleAllCheckedChange}
+                  />
+                </th>
+                <th> ID </th>
+                <th> Type </th>
+                <th> Coverage </th>
+                <th> Claimant </th>
+                <th> Invovling </th>
+                <th> Status </th>
+              </tr>
+              {inputarr.length < 1 ? (
+                <tr>
+                  <td colSpan={8} className="text-center">
+                    No data Entered yet !
+                  </td>
+                </tr>
+              ) : (
+                inputarr.map((info, ind) => {
+                  return (
+                    <tr key={ind}>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={info.checked}
+                          onChange={(e) => handleCheckboxChange(e, ind)}
+                        />
+                      </td>
 
+                      <td>{ind + 1}</td>
+
+                      <td>
+                        {policyInfoObj.policyType}
+                      </td>
+
+                      <td>
+                        {ExposureDataObj.primaryCoverage}
+                      </td>
+
+                      <td>
+                        {ExposureDataObj.claimant}
+                      </td>
+
+                      <td>
+                        <input
+                          type="text"
+                          name="Involving"
+                          value={info.Involving}
+                          onChange={(e) => handleInputChange(e, ind)}
+                          className="form-control"
+                        />
+                      </td>
+
+                      <td>
+                        <input
+                          type="text"
+                          name="Status"
+                          value={info.Status}
+                          onChange={(e) => handleInputChange(e, ind)}
+                          className="form-control"
+                        />
+                      </td>
+                    </tr>
+                  );
+                })
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-  ); 
+  </div>
+); 
 };
 
  
