@@ -12,12 +12,11 @@ function NewNote({setComponentData, componentData}){
  
 
   const {
-    ClaimNumber='',
+    claimNumber='',
     topic = '',
     securityType = '',
     subject= '',
     relatedTo= '',
-
     text = '',
     confidential="",
   } = componentData || {};
@@ -47,9 +46,9 @@ function NewNote({setComponentData, componentData}){
       </div>
 
       <div className='row mb-2'>
-          <div className='col-2'><label htmlFor='Claim Number'>Claim Number</label></div>
+          <div className='col-2'><label htmlFor='claimNumber'>Claim Number</label></div>
           <div className='col-6'>
-            <input type="text" className='w-100 form-control' id="Claim Number" value={ClaimNumber}  onChange={handleInputChange} />
+            <input type="text" className='w-100 form-control' id="claim Number" value={claimNumber}  onChange={handleInputChange} />
           </div>
         </div>
 
