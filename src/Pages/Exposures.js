@@ -1,14 +1,27 @@
 import React, { useState } from 'react';
+<<<<<<< HEAD
 // import Newexposure from "../components/Exposure.components/Newexposure";  
 // import BootstrapTable from 'react-bootstrap-table-next';   
+=======
+//import Newexposure from "../components/Exposure.components/Newexposure";  
+import BootstrapTable from 'react-bootstrap-table-next';   
+>>>>>>> 6b2b651bd81cdcc0a2801132629f439385bec8f3
 import { FnolData } from './Fnol';
 import { policyData, policyInfoObj } from "./PolicyInformation";
 import { LossData } from './LossSummary';
+<<<<<<< HEAD
 import {ExposureData,ExposureDataObj} from'../components/Exposure.components/Newexposure';
 import { Button } from "react-bootstrap";
 
+=======
+import {ExposureData} from'../components/Exposure.components/Newexposure';
+import ClaimGeneration from './ClaimGeneration'; 
+>>>>>>> 6b2b651bd81cdcc0a2801132629f439385bec8f3
 
 function Exposure(props){
+  //const [exposuresubmitclick, setExposuresubmitclick] = useState(false);
+  const [componentData, setComponentData] = useState({});
+
   const handleLossSummaryClick=()=>{
     props.onLossSummaryClick();
   };
@@ -18,24 +31,22 @@ function Exposure(props){
   const handleAppClick=()=>{
     props.onAppClick();
   }
-  const handleClick=(e)=>{  
-    // Access the component data from the state 
-    const myFnolData = FnolData();  
-    const myPolicyInfo = policyData(); 
-    const myLossData = LossData(); 
-    const myExposureData = ExposureData(); 
- 
-    // console.log('policyinfo-->',myPolicyInfo) 
-    // console.log('Fnoldata -->', myFnolData) 
-    // console.log('lossdata-->',myLossData) 
-    // console.log('exposure--->',myExposureData) 
- 
-    const finalDataObj = { 
-      "fnolData": myFnolData,  
-      "policyInfoData": myPolicyInfo, 
-      "lossData": myLossData, 
-      "exposureData":myExposureData 
+  const handleClick=(e)=>{ 
+
+    //ExposureDataObj = {ExposureData}
+
+    const myFnolData = FnolData();
+    const myPolicyInfo = policyData();
+    const myLossData = LossData();
+    const myExposureData = ExposureData();
+
+    const finalDataObj = {
+      "fnolData": myFnolData,
+      "policyInfoData": myPolicyInfo,
+      "lossData": myLossData,
+      "exposureData": myExposureData
     } 
+<<<<<<< HEAD
     //  console.log(finalDataObj); 
     // e.preventDefault()  
     // const abs={myFnolData,myPolicyInfo,myLossData,myExposureData}  
@@ -49,6 +60,130 @@ function Exposure(props){
         console.log("New claim added")  
     })  
   }
+=======
+    console.log(finalDataObj) 
+    fetch("http://localhost:8080/common/add", { 
+      method: "POST", 
+      headers: { "Content-Type": "application/json" }, 
+      body: JSON.stringify(finalDataObj) 
+    }) 
+      .then(() => { 
+        console.log("New claim added"); 
+        generateClaimNumber(); // Call the generateClaimNumber function 
+      }) 
+      .catch((error) => { 
+        console.error("Error adding new claim:", error); 
+      }); 
+      
+      // if (Object.keys(componentData).length === 0 && finalDataObj !== undefined) {
+      //   setComponentData(finalDataObj);
+      // } else {
+      //   setComponentData({}); // Clear the componentData object
+      // }
+    } 
+
+ 
+  const generateClaimNumber = () => { 
+    const fnolData = FnolData(); // Call FnolData() to retrieve the data 
+    const policyNumber = fnolData.policyNumber;  
+ 
+    console.log("Policy Number:", policyNumber); 
+    fetch("http://localhost:8080/claim/generateClaimNumber", { 
+      method: "POST", 
+      headers: { "Content-Type": "application/x-www-form-urlencoded" }, 
+      body: `policyNumber=${policyNumber}`, 
+    }) 
+      .then((response) => response.json()) 
+      .then((data) => { 
+        console.log("Claim Number:", data.claimNumber); 
+        props.setClaimNumber(data.claimNumber); 
+        handleBlankClick(); 
+      }) 
+      .catch((error) => { 
+        console.error("Error generating claim number:", error); 
+      }); 
+  }; 
+  const columns = [ 
+    { 
+      dataField: "checkbox", 
+      text: "Checkbox", 
+      headerClasses: "checkbox-header", 
+      classes: "checkbox-column", 
+      headerFormatter: (cellContent, row) => ( 
+        <div className="form-check"> 
+          <input 
+            type="checkbox" 
+            className="form-check-input" 
+            id={row.id} 
+             
+          /> 
+        </div> 
+      ), 
+      formatter: (cellContent, row) => ( 
+        <div className="form-check"> 
+          <input 
+            type="checkbox" 
+            className="form-check-input" 
+            id={row.id} 
+            checked={row.selected} 
+      onChange={() => handleCheckboxChange(row.id)} 
+          /> 
+        </div> 
+ 
+      ), 
+    }, 
+    { 
+      dataField: "id", 
+      text: "#", 
+      sort: true, 
+      headerClasses: "id-header", 
+      classes: "id-column", 
+    }, 
+    { 
+      dataField: "Type", 
+      text: "Type", 
+      sort: true, 
+      headerClasses: "Type-header", 
+      classes: "Type-column", 
+      formatter: (cellContent, row) => ( 
+ 
+        <div className='row'> 
+          <div className='col-12'> 
+           
+          </div> 
+       
+      </div>    
+ 
+      ), 
+    }, 
+    { 
+      dataField: "Coverage", 
+      text: "Coverage", 
+      sort: true, 
+      headerClasses: "Coverage-header", 
+      classes: "Coverage-column", 
+      formatter: (cellContent, row) => ( 
+          <div className='row'> 
+            <div className='col-12'>
+            </div> 
+          </div>         
+      ), 
+    }, 
+ 
+     { 
+      dataField: "Claimant", 
+      text: "Claimant", 
+      sort: true, 
+      headerClasses: "Claimant-header", 
+      classes: "Claimant-column", 
+      formatter: (cellContent, row) => ( 
+          <div className='row'> 
+            <div className='col-12'> 
+            </div> 
+          </div>         
+      ), 
+    }, 
+>>>>>>> 6b2b651bd81cdcc0a2801132629f439385bec8f3
 
 
   const [inputarr, setInputarr] = useState([]);
@@ -154,6 +289,7 @@ return (
       </div>
     </div>
     <hr />
+<<<<<<< HEAD
     {/* <Newexposure setComponentData={setComponentData} componentData={componentData} lossdataobj={LossData()}/> */}
 
     <div className="row p-1 m-0 ">
@@ -270,7 +406,42 @@ return (
     </div>
   </div>
 ); 
+=======
+        {/* <Newexposure setComponentData={setComponentData} componentData={componentData} lossdataobj={LossData()}/> */}
+        
+       
+        <div className="row p-1 m-0 ">
+        
+       
+        <div className="col-16 d-flex justify-content-end">
+          
+            <button
+              type="button"
+              className="btn btn-success custom-margin-right-2"
+              onClick={()=>{handleAddRow();handleNewClick();}}
+              >
+              Add exposures
+            </button>
+            &nbsp;&nbsp;
+            <button
+              type="button"
+              className="btn btn-dark"
+              onClick={handleDeleteRow}
+            >
+              Delete
+            </button>
+          
+        </div>
+      </div>
+      <BootstrapTable keyField="id" data={tableData} columns={columns} />
+      {props.claimNumber && <ClaimGeneration claimNumber={props.claimNumber} />}
+    </div>
+    
+  ); 
+>>>>>>> 6b2b651bd81cdcc0a2801132629f439385bec8f3
 };
+// const ExposureData = () => {
+//   return ExposureDataObj;
+// }
 
- 
-export default Exposure;  
+export default Exposure 

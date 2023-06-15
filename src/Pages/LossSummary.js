@@ -23,7 +23,7 @@ function Losssummary(props) {
     const handleExposureClick=()=>{
       props.onExposureClick();
     };
-    if(Object.keys(componentData).length == 0 && LossDataObj != undefined) {
+    if(Object.keys(componentData).length === 0 && LossDataObj !== undefined) {
       setComponentData(LossDataObj)
     }
     return ( 

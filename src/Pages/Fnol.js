@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import FnolTypeOfPolicy from "../components/Fnol.components/FnolTpeOfPolicy"
+//import FnolTypeOfPolicy from "../components/Fnol.components/FnolTpeOfPolicy"
 import FnolDetails from "../components/Fnol.components/FnolDetails"
 //import { useState } from "react";
  
@@ -18,7 +18,7 @@ function Fnol(props) {
     console.log(componentData);
     // Perform further actions with the data
   };
-  if(Object.keys(componentData).length == 0 && FnolDataObj != undefined) {
+  if(Object.keys(componentData).length === 0 && FnolDataObj !== undefined) {
     setComponentData(FnolDataObj)
   }
   return ( 
@@ -40,7 +40,7 @@ function Fnol(props) {
 
         <div className='col-6'>
         
-          <FnolTypeOfPolicy />
+          {/* <FnolTypeOfPolicy setComponentData={setComponentData} componentData={componentData} /> */}
           </div>
           
   </div>
