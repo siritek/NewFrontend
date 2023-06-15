@@ -45,39 +45,9 @@ function NewNote({setComponentData, componentData}){
         <h2>New Note</h2>
         <hr />
       </div>
-<<<<<<< HEAD
       <div className="row mb-2">
         <div className="col-2">
           <label htmlFor="topic">Topic</label>
-=======
-
-      <div className='row mb-2'>
-          <div className='col-2'><label htmlFor='Claim Number'>Claim Number</label></div>
-          <div className='col-6'>
-            <input type="text" className='w-100 form-control' id="Claim Number" value={ClaimNumber}  onChange={handleInputChange} />
-          </div>
-        </div>
-
-     
-        <div className='row mb-2'>
-          <div className='col-2'><label htmlFor='topic'>Topic</label></div>
-          <div className='col-6'>
-            <Form.Select  aria-label="Default select example" required id="topic" value={topic}  onChange={handleInputChange} >
-              <option value="general" >-General-</option>
-              <option value="firstnoticeofloss">First Notice of Loss</option>
-              <option value="coverage">Coverage</option>
-              <option value="investigation">Investigation</option>
-              <option value="medicalissues">Medical Issues</option>
-              <option value="evaluation">Evaluation</option>
-              <option value="settlement">Settlement</option>
-              <option value="subrogation">Subrogation</option>
-              <option value="salvage">Salvage</option>
-              <option value="litigation">Litigation</option>
-              <option value="denial">Denial</option>
-              <option value="reinsurance">Reinsurance</option>
-            </Form.Select>
-          </div>
->>>>>>> 6b2b651bd81cdcc0a2801132629f439385bec8f3
         </div>
         <div className="col-6">
           <Form.Select
