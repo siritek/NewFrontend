@@ -101,7 +101,7 @@ function App() {
           {activeSection === "search" && <Search setComponentData={setComponentData} componentData={componentData} />}
           {/* {activeSection === "synopsis" && <Synopsis onSynopsisClick={() => setActiveSection("synopsis")} />} */}
           {activeSection === "synopsis" && (
-            <Synopsis
+            <Synopsis claimNumber={claimNumber}
               setComponentData={updateComponentData}
               componentData={componentData}
             />
