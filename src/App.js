@@ -101,13 +101,9 @@ function App() {
           {activeSection === "search" && <Search setComponentData={setComponentData} componentData={componentData} />}
           {/* {activeSection === "synopsis" && <Synopsis onSynopsisClick={() => setActiveSection("synopsis")} />} */}
           {activeSection === "synopsis" && (
-<<<<<<< HEAD
-            <Synopsis  claimNumber={claimNumber}  setComponentData={updateComponentData} componentData={componentData}
-=======
             <Synopsis claimNumber={claimNumber}
               setComponentData={updateComponentData}
               componentData={componentData}
->>>>>>> c3c0059c0852ca9dc1c143bf357d89ed1830e245
             />
           )}
           {activeSection === "claimGeneration" && ( <ClaimGeneration claimNumber={claimNumber} onLinkClick={handleLinkClick} />)}
