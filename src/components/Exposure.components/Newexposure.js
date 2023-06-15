@@ -53,15 +53,8 @@ function Newexposure(props,{lossdataobj}){
   if(Object.keys(componentData).length === 0 && ExposureDataObj !== undefined) {
     setComponentData(ExposureDataObj)
   }
-<<<<<<< HEAD
 
   const [inputarr, setInputarr] = useState([]);
-=======
-  // else {
-  //     setComponentData({}); // Clear the componentData object
-  //   }
-  
->>>>>>> 6b2b651bd81cdcc0a2801132629f439385bec8f3
   
     function changhandle() {
       setInputarr([
