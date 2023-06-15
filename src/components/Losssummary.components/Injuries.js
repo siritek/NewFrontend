@@ -30,7 +30,7 @@ function Injuries() {
   function handleOptionChange(e, index) {
     const { value } = e.target;
     const list = [...inputarr];
-    list[index].CoverageType = value;
+    list[index].Severity = value;
     setInputarr(list);
   }
 

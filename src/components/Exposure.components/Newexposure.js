@@ -17,6 +17,8 @@ function Newexposure(props,{lossdataobj}){
       [id]:value,  
     }));  
   };   
+
+
   useEffect(() => {
     if (lossdataobj) {
       const {
@@ -29,16 +31,19 @@ function Newexposure(props,{lossdataobj}){
       }));
     }
   }, [lossdataobj, setComponentData]);
+  
+  
   const{ 
-    lossParty='', 
-    primaryCoverage='', 
-    adjuster='', 
+      lossParty='', 
+      primaryCoverage='', 
+      adjuster='', 
       status='', 
       creationDate='', 
       claimant='', 
       claimantType='',  
       address='', 
-  } = componentData || {}; 
+  } = componentData || {};
+
   const handleNext = () => {
     // Access the component data from the state
     ExposureDataObj = componentData
@@ -48,11 +53,30 @@ function Newexposure(props,{lossdataobj}){
   if(Object.keys(componentData).length === 0 && ExposureDataObj !== undefined) {
     setComponentData(ExposureDataObj)
   }
+<<<<<<< HEAD
+
+  const [inputarr, setInputarr] = useState([]);
+=======
   // else {
   //     setComponentData({}); // Clear the componentData object
   //   }
   
+>>>>>>> 6b2b651bd81cdcc0a2801132629f439385bec8f3
   
+    function changhandle() {
+      setInputarr([
+        ...inputarr,
+        {
+        checked: false,
+        Type: "",
+        Coverage: "",
+        Claimant: "",
+        Involving: "",
+        Status: "",
+        },
+      ]);
+      console.log(inputarr);
+    }
 
   return (
     <div>
@@ -62,7 +86,7 @@ function Newexposure(props,{lossdataobj}){
     <div>
             
           <button type="button" className="btn btn-dark" onClick={handleBackClick}>Back</button>&nbsp;
-          <button type="button" className="btn btn-success"onClick={()=>{handleNext();handleBackClick();}} >Submit</button>
+          <button type="button" className="btn btn-success"onClick={()=>{handleNext();handleBackClick();changhandle();}} >Submit</button>
           </div>
         
       </div><hr/>
@@ -218,4 +242,4 @@ const ExposureData = () => {
   return ExposureDataObj
 }   
     
-export  {Newexposure,ExposureData}
+export  {Newexposure,ExposureData,ExposureDataObj}
