@@ -1,4 +1,4 @@
-import React from 'react';
+import {React,useState} from 'react';
 import { Dropdown, DropdownButton, NavbarBrand } from 'react-bootstrap';
 import logo from './images/Logo2png.png.png';
 // import Search from "./Pages/Search";
@@ -12,6 +12,13 @@ const Header = (props) => {
   const handleBlankClick=()=>{
     props.onBlankClick();
   }
+
+const handleAdminClick = ()=>
+{
+  props.onAdminClick();
+}
+
+  
 
   // const handleSearch = (event) => {
   //   event.preventDefault();
@@ -63,9 +70,20 @@ const Header = (props) => {
                 </Form>
               </DropdownButton>
             </li> */}
+
+           
+
             </ul> </div>
           <div className="col-16 d-flex justify-content-end">
-          
+          <button
+              type="buton"
+              onClick={()=>{handleBlankClick(); handleAdminClick()}}
+              className="btn btn-dark"
+            >
+              Edit
+            </button>
+            &nbsp;   &nbsp;   &nbsp;
+
           <NavbarBrand>  <a className="btn btn-dark" href="">
          Log Out
         </a></NavbarBrand>
