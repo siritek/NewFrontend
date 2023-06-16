@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import {React,useState} from 'react';
-import { Dropdown, DropdownButton, NavbarBrand } from 'react-bootstrap';
-=======
 import React from 'react';
 import {  NavbarBrand } from 'react-bootstrap';
->>>>>>> e5924be708a22563f1981359bc6ab16dc4a14f38
 import logo from './images/Logo2png.png.png';
 // import Search from "./Pages/Search";
 const Header = (props) => {
@@ -83,7 +78,7 @@ const handleAdminClick = ()=>
               onClick={()=>{handleBlankClick(); handleAdminClick()}}
               className="btn btn-dark"
             >
-              Edit
+              Admin
             </button>
             &nbsp;   &nbsp;   &nbsp;
 
