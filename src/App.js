@@ -21,8 +21,12 @@ import Dropdownlist from "./Pages/Dropdown-list"
 function App() {
   const [activeSection, setActiveSection] = useState(null);
   const [firstfour, setfirstfour] = useState(false);
+<<<<<<< HEAD
   const [admin,setAdmin]  = useState(false);
   const [claimNumber, setClaimNumber] = useState(null);
+=======
+  const [claimNumber, setClaimNumber] = useState();
+>>>>>>> e5924be708a22563f1981359bc6ab16dc4a14f38
   const [componentData, setComponentData] = useState({});
 
   const updateComponentData = (newData) => {
@@ -105,7 +109,7 @@ const handleAdminClick =() => {
               onAppClick={() => setActiveSection("")}
               onNewClick={() => setActiveSection("newexposure")}
               onExposureClick={() => setActiveSection("exposures")}
-              setClaimNumber={setClaimNumber}
+                setClaimNumber={setClaimNumber}
             />
           )}
 
@@ -114,20 +118,25 @@ const handleAdminClick =() => {
           {activeSection === "search" && <Search setComponentData={setComponentData} componentData={componentData} />}
           {/* {activeSection === "synopsis" && <Synopsis onSynopsisClick={() => setActiveSection("synopsis")} />} */}
           {activeSection === "synopsis" && (
-            <Synopsis
+            <Synopsis claimNumber={claimNumber}
               setComponentData={updateComponentData}
               componentData={componentData}
             />
           )}
-          {activeSection === "claimGeneration" && (  <ClaimGeneration claimNumber={claimNumber} onLinkClick={handleLinkClick} />)}
+          {activeSection === "claimGeneration" && ( <ClaimGeneration claimNumber={claimNumber} onLinkClick={handleLinkClick} />)}
           {/* new claim synopsis */}
           {activeSection === "newexposure" && (
+<<<<<<< HEAD
             <Newexposure lossdataobj={LossData()} onBackClick={() => setActiveSection("exposures")}/>)}
 
           {activeSection === "dropdownlist" &&(
            <Dropdownlist onAdminClick= {()=>setActiveSection("dropdownlist")} />)}
             
           
+=======
+            <Newexposure  lossdataobj={LossData()} onBackClick={() => setActiveSection("exposures")}/>
+          )}
+>>>>>>> e5924be708a22563f1981359bc6ab16dc4a14f38
         </div>
       </div>
     </>

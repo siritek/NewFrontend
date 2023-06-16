@@ -17,6 +17,8 @@ function Newexposure(props,{lossdataobj}){
       [id]:value,  
     }));  
   };   
+
+
   useEffect(() => {
     if (lossdataobj) {
       const {
@@ -29,26 +31,45 @@ function Newexposure(props,{lossdataobj}){
       }));
     }
   }, [lossdataobj, setComponentData]);
+  
+  
   const{ 
-    lossParty='', 
-    primaryCoverage='', 
-    adjuster='', 
+      lossParty='', 
+      primaryCoverage='', 
+      adjuster='', 
       status='', 
       creationDate='', 
       claimant='', 
       claimantType='',  
       address='', 
-  } = componentData || {}; 
+  } = componentData || {};
+
   const handleNext = () => {
     // Access the component data from the state
     ExposureDataObj = componentData
     console.log(componentData);
     // Perform further actions with the data
   };
-  if(Object.keys(componentData).length == 0 && ExposureDataObj != undefined) {
+  if(Object.keys(componentData).length === 0 && ExposureDataObj !== undefined) {
     setComponentData(ExposureDataObj)
   }
+
+  const [inputarr, setInputarr] = useState([]);
   
+    function changhandle() {
+      setInputarr([
+        ...inputarr,
+        {
+        checked: false,
+        Type: "",
+        Coverage: "",
+        Claimant: "",
+        Involving: "",
+        Status: "",
+        },
+      ]);
+      console.log(inputarr);
+    }
 
   return (
     <div>
@@ -58,7 +79,7 @@ function Newexposure(props,{lossdataobj}){
     <div>
             
           <button type="button" className="btn btn-dark" onClick={handleBackClick}>Back</button>&nbsp;
-          <button type="button" className="btn btn-success"onClick={()=>{handleNext();handleBackClick();}} >Submit</button>
+          <button type="button" className="btn btn-success"onClick={()=>{handleNext();handleBackClick();changhandle();}} >Submit</button>
           </div>
         
       </div><hr/>
@@ -214,4 +235,4 @@ const ExposureData = () => {
   return ExposureDataObj
 }   
     
-export  {Newexposure,ExposureData}
+export  {Newexposure,ExposureData,ExposureDataObj}

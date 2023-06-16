@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import {React,useState} from 'react';
 import { Dropdown, DropdownButton, NavbarBrand } from 'react-bootstrap';
+=======
+import React from 'react';
+import {  NavbarBrand } from 'react-bootstrap';
+>>>>>>> e5924be708a22563f1981359bc6ab16dc4a14f38
 import logo from './images/Logo2png.png.png';
 // import Search from "./Pages/Search";
 const Header = (props) => {
@@ -32,23 +37,21 @@ const handleAdminClick = ()=>
     <div>
       <nav className="navbar navbar-dark bg-success navbar-expand-md">
       
-        <NavbarBrand style={{ paddingLeft: "14px" }}>
-          <a className="navbar-brand text-dark"  onClick={handleBlankClick}>
+        <NavbarBrand style={{ paddingLeft: "14px" }}
+          className="navbar-brand text-dark"  onClick={handleBlankClick}>
             <img src={logo} width={80} height={30} alt="Logo" />
-          </a>
+          
         </NavbarBrand>
         <div className="mx-auto">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <DropdownButton variant="dark" title="Claim">
-                <Dropdown.Item
+              <button
                   type="button"
                   className="btn btn-dark"
                   onClick={handleFnolClick}
                 >
                   New Claim
-                </Dropdown.Item>
-              </DropdownButton>
+               </button>
             </li>
             &nbsp;
             <button
