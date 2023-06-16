@@ -20,7 +20,7 @@ import { LossData } from "./Pages/LossSummary";
 function App() {
   const [activeSection, setActiveSection] = useState(null);
   const [firstfour, setfirstfour] = useState(false);
-  const [claimNumber, setClaimNumber] = useState(null);
+  const [claimNumber, setClaimNumber] = useState();
   const [componentData, setComponentData] = useState({});
 
   const updateComponentData = (newData) => {
@@ -92,7 +92,7 @@ function App() {
               onAppClick={() => setActiveSection("")}
               onNewClick={() => setActiveSection("newexposure")}
               onExposureClick={() => setActiveSection("exposures")}
-              setClaimNumber={setClaimNumber}
+                setClaimNumber={setClaimNumber}
             />
           )}
 
@@ -106,10 +106,10 @@ function App() {
               componentData={componentData}
             />
           )}
-          {activeSection === "claimGeneration" && (  <ClaimGeneration claimNumber={claimNumber} onLinkClick={handleLinkClick} />)}
+          {activeSection === "claimGeneration" && ( <ClaimGeneration claimNumber={claimNumber} onLinkClick={handleLinkClick} />)}
           {/* new claim synopsis */}
           {activeSection === "newexposure" && (
-            <Newexposure lossdataobj={LossData()} onBackClick={() => setActiveSection("exposures")}/>
+            <Newexposure  lossdataobj={LossData()} onBackClick={() => setActiveSection("exposures")}/>
           )}
         </div>
       </div>
