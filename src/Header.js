@@ -13,6 +13,13 @@ const Header = (props) => {
     props.onBlankClick();
   }
 
+const handleAdminClick = ()=>
+{
+  props.onAdminClick();
+}
+
+  
+
   // const handleSearch = (event) => {
   //   event.preventDefault();
   //   // Handle search functionality
@@ -61,9 +68,20 @@ const Header = (props) => {
                 </Form>
               </DropdownButton>
             </li> */}
+
+           
+
             </ul> </div>
           <div className="col-16 d-flex justify-content-end">
-          
+          <button
+              type="buton"
+              onClick={()=>{handleBlankClick(); handleAdminClick()}}
+              className="btn btn-dark"
+            >
+              Admin
+            </button>
+            &nbsp;   &nbsp;   &nbsp;
+
           <NavbarBrand>  <a className="btn btn-dark" href="">
          Log Out
         </a></NavbarBrand>
