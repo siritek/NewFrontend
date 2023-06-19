@@ -1,6 +1,5 @@
-import { useState } from "react";
-import { Button } from "react-bootstrap";
-import Form from "react-bootstrap/Form";
+import React, { useState } from "react";
+import { Button, Form } from "react-bootstrap";
 
 function Additional() {
   const [inputarr, setInputarr] = useState([]);
@@ -13,36 +12,38 @@ function Additional() {
 
   function handleChange(e, index, name) {
     const { value } = e.target;
-    const list = [...inputarr];
-    list[index][name] = value;
-    setInputarr(list);
+    const updatedInputArr = [...inputarr];
+    updatedInputArr[index][name] = value;
+    setInputarr(updatedInputArr);
   }
 
   function handleCheckboxChange(e, index) {
     const { checked } = e.target;
-    const list = [...inputarr];
-    list[index].checked = checked;
-    setInputarr(list);
+    const updatedInputArr = [...inputarr];
+    updatedInputArr[index].checked = checked;
+    setInputarr(updatedInputArr);
   }
 
   function handleAllCheckedChange(e) {
     const { checked } = e.target;
     setAllChecked(checked);
-    setInputarr(inputarr.map((item) => ({ ...item, checked })));
+    const updatedInputArr = inputarr.map((item) => ({ ...item, checked: checked }));
+    setInputarr(updatedInputArr);
   }
 
   function handleDelete() {
-    setInputarr(inputarr.filter((item) => !item.checked));
+    const updatedInputArr = inputarr.filter((item) => !item.checked);
+    setInputarr(updatedInputArr);
     setAllChecked(false);
   }
 
   function handleSubmit() {
-    const list = inputarr.map((item) => ({
+    const updatedInputArr = inputarr.map((item) => ({
       ...item,
       submitted: true,
     }));
-    setInputarr(list);
-    console.log(list);
+    setInputarr(updatedInputArr);
+    console.log(updatedInputArr);
   }
 
   function handleAdd() {
@@ -53,9 +54,15 @@ function Additional() {
         name: "",
         address: "",
         type: "",
-        submitted: false,
+        submitted: false, 
       },
     ]);
+  }
+
+  function handleDeleteRow(index) {
+    const updatedInputArr = [...inputarr];
+    updatedInputArr.splice(index, 1);
+    setInputarr(updatedInputArr);
   }
 
   return (
@@ -95,83 +102,93 @@ function Additional() {
                 <th>Name</th>
                 <th>Address</th>
                 <th>Type</th>
+                <th>Delete</th> {/* Render the "Delete" column */}
               </tr>
               {inputarr.length < 1 ? (
                 <tr>
-                  <td colSpan={5} className="text-center">
-                    No data Entered yet!
+                  <td colSpan={6} className="text-center">
+                    No data entered yet!
                   </td>
                 </tr>
               ) : (
                 inputarr.map((info, ind) => {
                   return (
-                    <tr key={ind}>
-                      <td>
-                        {!info.submitted && (
-                          <input
-                            type="checkbox"
-                            checked={info.checked}
-                            onChange={(e) => handleCheckboxChange(e, ind)}
-                          />
-                        )}
-                      </td>
-                      <td>{ind + 1}</td>
-                      <td>
-                        {!info.submitted ? (
-                          <input
-                            type="text"
-                            name="name"
-                            value={info.name}
-                            onChange={(e) => handleChange(e, ind, "name")}
-                            placeholder="Name"
-                            className="form-control"
-                          />
-                        ) : (
-                          info.name
-                        )}
-                      </td>
-                      <td>
-                        {!info.submitted ? (
-                          <input
-                            type="text"
-                            name="address"
-                            value={info.address}
-                            onChange={(e) => handleChange(e, ind, "address")}
-                            placeholder="Address"
-                            className="form-control"
-                          />
-                        ) : (
-                          info.address
-                        )}
-                      </td>
-                      <td>
-                        {!info.submitted ? (
-                          <Form.Select
-                            value={info.type}
-                            onChange={(e) => handleChange(e, ind, "type")}
+                    !info.deleted && (
+                      <tr key={ind}>
+                        <td>
+                          {!info.submitted && (
+                            <input
+                              type="checkbox"
+                              checked={info.checked}
+                              onChange={(e) => handleCheckboxChange(e, ind)}
+                            />
+                          )}
+                        </td>
+                        <td>{ind + 1}</td>
+                        <td>
+                          {!info.submitted ? (
+                            <input
+                              type="text"
+                              name="name"
+                              value={info.name}
+                              onChange={(e) => handleChange(e, ind, "name")}
+                              placeholder="Name"
+                              className="form-control"
+                            />
+                          ) : (
+                            info.name
+                          )}
+                        </td>
+                        <td>
+                          {!info.submitted ? (
+                            <input
+                              type="text"
+                              name="address"
+                              value={info.address}
+                              onChange={(e) => handleChange(e, ind, "address")}
+                              placeholder="Address"
+                              className="form-control"
+                            />
+                          ) : (
+                            info.address
+                          )}
+                        </td>
+                        <td>
+                          {!info.submitted ? (
+                            <Form.Select
+                              value={info.type}
+                              onChange={(e) => handleChange(e, ind, "type")}
+                            >
+                              {options.map((option, index) => (
+                                <option key={index} value={option}>
+                                  {option}
+                                </option>
+                              ))}
+                            </Form.Select>
+                          ) : (
+                            info.type
+                          )}
+                        </td>
+                        <td>
+                          <Button
+                            variant="danger"
+                            onClick={() => handleDeleteRow(ind)}
+                            disabled={info.submitted} 
                           >
-                            {options.map((option, index) => (
-                              <option key={index} value={option}>
-                                {option}
-                              </option>
-                            ))}
-                          </Form.Select>
-                        ) : (
-                          info.type
-                        )}
-                      </td>
-                    </tr>
+                            Delete
+                          </Button>
+                        </td>
+                      </tr>
+                    )
                   );
                 })
               )}
             </tbody>
           </table>
-        </div>
+        </div>  
       </div>
     </div>
   );
 }
 
 export default Additional;
-
-
