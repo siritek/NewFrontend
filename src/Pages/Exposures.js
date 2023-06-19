@@ -43,10 +43,12 @@ function Exposure(props){
     fetch("http://localhost:8080/common/add",{  
         method:"POST",  
         headers:{"Content-Type":"application/json"},  
-        body:JSON.stringify(finalDataObj)  
+        body:JSON.stringify(finalDataObj) 
   
     }).then(()=>{  
-        console.log("New claim added")  
+        console.log("New claim added") 
+        //console.log("thi s is loss data",myLossData)
+         console.log("json sendto server",finalDataObj)
     })  
   }
 
