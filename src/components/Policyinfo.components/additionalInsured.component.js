@@ -59,12 +59,6 @@ function Additional() {
     ]);
   }
 
-  function handleDeleteRow(index) {
-    const updatedInputArr = [...inputarr];
-    updatedInputArr.splice(index, 1);
-    setInputarr(updatedInputArr);
-  }
-
   return (
     <div className="container">
       <div className="row p-1 m-0">
@@ -102,7 +96,6 @@ function Additional() {
                 <th>Name</th>
                 <th>Address</th>
                 <th>Type</th>
-                <th>Delete</th> {/* Render the "Delete" column */}
               </tr>
               {inputarr.length < 1 ? (
                 <tr>
@@ -168,15 +161,6 @@ function Additional() {
                           ) : (
                             info.type
                           )}
-                        </td>
-                        <td>
-                          <Button
-                            variant="danger"
-                            onClick={() => handleDeleteRow(ind)}
-                            disabled={info.submitted} 
-                          >
-                            Delete
-                          </Button>
                         </td>
                       </tr>
                     )
