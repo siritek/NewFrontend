@@ -5,7 +5,46 @@ function Witnesses() {
   const [inputarr, setInputarr] = useState([]);
   const [allChecked, setAllChecked] = useState(false);
 
-  function changhandle() {
+  function handleChange(e, index, name) {
+    const { value } = e.target;
+    const updatedInputArr = [...inputarr];
+    updatedInputArr[index][name] = value;
+    setInputarr(updatedInputArr);
+  }
+
+  function handleCheckboxChange(e, index) {
+    const { checked } = e.target;
+    const updatedInputArr = [...inputarr];
+    updatedInputArr[index].checked = checked;
+    setInputarr(updatedInputArr);
+  }
+
+  function handleAllCheckedChange(e) {
+    const { checked } = e.target;
+    setAllChecked(checked);
+    const updatedInputArr = inputarr.map((item) => ({
+      ...item,
+      checked: checked,
+    }));
+    setInputarr(updatedInputArr);
+  }
+
+  function handleDelete() {
+    const updatedInputArr = inputarr.filter((item) => !item.checked);
+    setInputarr(updatedInputArr);
+    setAllChecked(false);
+  }
+
+  function handleSubmit() {
+    const updatedInputArr = inputarr.map((item) => ({
+      ...item,
+      submitted: true,
+    }));
+    setInputarr(updatedInputArr);
+    console.log(updatedInputArr);
+  }
+
+  function handleAdd() {
     setInputarr([
       ...inputarr,
       {
@@ -15,49 +54,29 @@ function Witnesses() {
         Phone2: "",
         Email: "",
         RecordedStatement: "",
+        submitted: false,
       },
     ]);
-    console.log(inputarr);
   }
 
-  function handleInputChange(e, index) {
-    const { name, value } = e.target;
-    const list = [...inputarr];
-    list[index][name] = value;
-    setInputarr(list);
-  }
-
-  function handleCheckboxChange(e, index) {
-    const { checked } = e.target;
-    const list = [...inputarr];
-    list[index].checked = checked;
-    setInputarr(list);
-  }
-
-  function handleAllCheckedChange(e) {
-    const { checked } = e.target;
-    setAllChecked(checked);
-    setInputarr(inputarr.map((item) => ({ ...item, checked })));
-  }
-
-  function handleDelete() {
-    setInputarr(inputarr.filter((item) => !item.checked));
-    setAllChecked(false);
-  }
 
   return (
     <div className="container">
       <div className="row p-1 m-0">
-        <div className="col-8">
+        <div className="col-6">
           <strong> Witnesses </strong>
         </div>
-        <div className="col-4 align-right">
-          <Button variant="success" onClick={changhandle}>
+        <div className="col-6 align-right">
+          <Button variant="success" onClick={handleAdd}>
             Add
           </Button>
           &nbsp;
           <Button variant="dark" onClick={handleDelete}>
             Delete
+          </Button>
+          &nbsp;
+          <Button variant="primary" onClick={handleSubmit}>
+            Save
           </Button>
         </div>
       </div>
@@ -90,67 +109,91 @@ function Witnesses() {
               ) : (
                 inputarr.map((info, ind) => {
                   return (
-                    <tr key={ind}>
-                      <td>
-                        <input
-                          type="checkbox"
-                          checked={info.checked}
-                          onChange={(e) => handleCheckboxChange(e, ind)}
-                        />
-                      </td>
+                    !info.deleted && (
+                      <tr key={ind}>
+                        <td>
+                          <input
+                            type="checkbox"
+                            checked={info.checked}
+                            onChange={(e) => handleCheckboxChange(e, ind)}
+                          />
+                        </td>
 
-                      <td>{ind + 1}</td>
+                        <td>{ind + 1}</td>
 
-                      <td>
-                        <input
-                          type="text"
-                          name="Name"
-                          value={info.Name}
-                          onChange={(e) => handleInputChange(e, ind)}
-                          className="form-control"
-                        />
-                      </td>
+                        <td>
+                          {!info.submitted ? (
+                            <input
+                              type="text"
+                              name="Name"
+                              value={info.Name}
+                              onChange={(e) => handleChange(e, ind, "Name")}
+                              className="form-control"
+                            />
+                          ) : (
+                            info.Name
+                          )}
+                        </td>
 
-                      <td>
-                        <input
-                          type="text"
-                          name="Phone1"
-                          value={info.Phone1}
-                          onChange={(e) => handleInputChange(e, ind)}
-                          className="form-control"
-                        />
-                      </td>
+                        <td>
+                          {!info.submitted ? (
+                            <input
+                              type="text"
+                              name="Phone1"
+                              value={info.Phone1}
+                              onChange={(e) => handleChange(e, ind, "Phone1")}
+                              className="form-control"
+                            />
+                          ) : (
+                            info.Phone1
+                          )}
+                        </td>
 
-                      <td>
-                        <input
-                          type="text"
-                          name="Phone2"
-                          value={info.Phone2}
-                          onChange={(e) => handleInputChange(e, ind)}
-                          className="form-control"
-                        />
-                      </td>
+                        <td>
+                          {!info.submitted ? (
+                            <input
+                              type="text"
+                              name="Phone2"
+                              value={info.Phone2}
+                              onChange={(e) => handleChange(e, ind, "Phone2")}
+                              className="form-control"
+                            />
+                          ) : (
+                            info.Phone2
+                          )}
+                        </td>
 
-                      <td>
-                        <input
-                          type="text"
-                          name="Email"
-                          value={info.Email}
-                          onChange={(e) => handleInputChange(e, ind)}
-                          className="form-control"
-                        />
-                      </td>
+                        <td>
+                          {!info.submitted ? (
+                            <input
+                              type="text"
+                              name="Email"
+                              value={info.Email}
+                              onChange={(e) => handleChange(e, ind, "Email")}
+                              className="form-control"
+                            />
+                          ) : (
+                            info.Email
+                          )}
+                        </td>
 
-                      <td>
-                        <input
-                          type="text"
-                          name="RecordedStatement"
-                          value={info.RecordedStatement}
-                          onChange={(e) => handleInputChange(e, ind)}
-                          className="form-control"
-                        />
-                      </td>
-                    </tr>
+                        <td>
+                          {!info.submitted ? (
+                            <input
+                              type="text"
+                              name="RecordedStatement"
+                              value={info.RecordedStatement}
+                              onChange={(e) =>
+                                handleChange(e, ind, "RecordedStatement")
+                              }
+                              className="form-control"
+                            />
+                          ) : (
+                            info.RecordedStatement
+                          )}
+                        </td>
+                      </tr>
+                    )
                   );
                 })
               )}

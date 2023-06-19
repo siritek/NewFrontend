@@ -54,6 +54,43 @@ function Exposure(props){
   const [inputarr, setInputarr] = useState([]);
   const [allChecked, setAllChecked] = useState(false);
 
+
+  function handleChange(e, index, name) {
+    const { value } = e.target;
+    const updatedInputArr = [...inputarr];
+    updatedInputArr[index][name] = value;
+    setInputarr(updatedInputArr);
+  }
+
+    function handleCheckboxChange(e, index) {
+    const { checked } = e.target;
+    const updatedInputArr = [...inputarr];
+    updatedInputArr[index].checked = checked;
+    setInputarr(updatedInputArr);
+  }
+
+    function handleAllCheckedChange(e) {
+    const { checked } = e.target;
+    setAllChecked(checked);
+    const updatedInputArr = inputarr.map((item) => ({ ...item, checked: checked }));
+    setInputarr(updatedInputArr);
+  }
+
+  function handleDelete() {
+    const updatedInputArr = inputarr.filter((item) => !item.checked);
+    setInputarr(updatedInputArr);
+    setAllChecked(false);
+  }
+
+  function handleSubmit() {
+    const updatedInputArr = inputarr.map((item) => ({
+      ...item,
+      submitted: true,
+    }));
+    setInputarr(updatedInputArr);
+    console.log(updatedInputArr);
+  }
+
   function changhandle() {
     setInputarr([
       ...inputarr,
@@ -65,34 +102,10 @@ function Exposure(props){
         Claimant: "",
         Involving: "",
         Status: "",
+        submitted: false,
       },
     ]);
     console.log(inputarr);
-  }
-
-  function handleInputChange(e, index) {
-    const { name, value } = e.target;
-    const list = [...inputarr];
-    list[index][name] = value;
-    setInputarr(list);
-  }
-
-  function handleCheckboxChange(e, index) {
-    const { checked } = e.target;
-    const list = [...inputarr];
-    list[index].checked = checked;
-    setInputarr(list);
-  }
-
-  function handleAllCheckedChange(e) {
-    const { checked } = e.target;
-    setAllChecked(checked);
-    setInputarr(inputarr.map((item) => ({ ...item, checked })));
-  }
-
-  function handleDelete() {
-    setInputarr(inputarr.filter((item) => !item.checked));
-    setAllChecked(false);
   }
  
  
@@ -123,6 +136,7 @@ function Exposure(props){
   //   const updatedData = tableData.filter((row) => !row.selected); 
   //   setTableData(updatedData); 
   // }; 
+
  
 
 return (
@@ -187,8 +201,13 @@ return (
           <Button variant="success" onClick={changhandle}>
             Add
           </Button>
+          &nbsp;
+          <Button variant="primary" onClick={handleSubmit}>
+            Save
+          </Button>
         </div>
       </div>
+
       <div className="App">
         <div className="table-responsive">
           <table className="table table-hover table-bordered">
@@ -217,49 +236,45 @@ return (
               ) : (
                 inputarr.map((info, ind) => {
                   return (
-                    <tr key={ind}>
-                      <td>
-                        <input
-                          type="checkbox"
-                          checked={info.checked}
-                          onChange={(e) => handleCheckboxChange(e, ind)}
-                        />
-                      </td>
+                    !info.deleted && (
+                      <tr key={ind}>
+                        <td>
+                          <input
+                            type="checkbox"
+                            checked={info.checked}
+                            onChange={(e) => handleCheckboxChange(e, ind)}
+                          />
+                        </td>
 
-                      <td>{ind + 1}</td>
+                        <td>{ind + 1}</td>
 
-                      <td>
-                        {policyInfoObj.policyType}
-                      </td>
+                        <td>{policyInfoObj.policyType}</td>
 
-                      <td>
-                        {ExposureDataObj.primaryCoverage}
-                      </td>
+                        <td>{ExposureDataObj.primaryCoverage}</td>
 
-                      <td>
-                        {ExposureDataObj.claimant}
-                      </td>
+                        <td>{ExposureDataObj.claimant}</td>
 
-                      <td>
-                        <input
-                          type="text"
-                          name="Involving"
-                          value={info.Involving}
-                          onChange={(e) => handleInputChange(e, ind)}
-                          className="form-control"
-                        />
-                      </td>
+                        <td>
+                          <input
+                            type="text"
+                            name="Involving"
+                            value={info.Involving}
+                            onChange={(e) => handleChange(e, ind)}
+                            className="form-control"
+                          />
+                        </td>
 
-                      <td>
-                        <input
-                          type="text"
-                          name="Status"
-                          value={info.Status}
-                          onChange={(e) => handleInputChange(e, ind)}
-                          className="form-control"
-                        />
-                      </td>
-                    </tr>
+                        <td>
+                          <input
+                            type="text"
+                            name="Status"
+                            value={info.Status}
+                            onChange={(e) => handleChange(e, ind)}
+                            className="form-control"
+                          />
+                        </td>
+                      </tr>
+                    )
                   );
                 })
               )}
