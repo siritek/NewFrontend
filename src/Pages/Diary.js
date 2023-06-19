@@ -64,6 +64,7 @@ const handleAssignedToChange = (event) => {
 
 
 const{ 
+  ClaimNumber='',
   subject='', 
  description='', 
   //related='', 
@@ -89,7 +90,13 @@ const handleNext = () => {
       <button type="button" className="btn btn-success" onClick={handleNext}>Submit</button>
       </div>
       <hr/>
-      <div className='row'> 
+      <div className='row'>
+      <div className='row mb-2'>
+          <div className='col-4'><label htmlFor='Claim Number'>Claim Number</label></div>
+          <div className='col-5'>
+            <input type="text" className='w-100 form-control' id="Claim Number" value={ClaimNumber}  onChange={handleInputChange} />
+          </div>
+        </div> 
          <div className='row mb-2'> 
           <div className='col-4'> 
             <label htmlFor='subject' >Subject</label> 

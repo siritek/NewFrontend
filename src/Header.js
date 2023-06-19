@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dropdown, DropdownButton, NavbarBrand } from 'react-bootstrap';
+import {  NavbarBrand } from 'react-bootstrap';
 import logo from './images/Logo2png.png.png';
 // import Search from "./Pages/Search";
 const Header = (props) => {
@@ -13,6 +13,13 @@ const Header = (props) => {
     props.onBlankClick();
   }
 
+const handleAdminClick = ()=>
+{
+  props.onAdminClick();
+}
+
+  
+
   // const handleSearch = (event) => {
   //   event.preventDefault();
   //   // Handle search functionality
@@ -25,23 +32,21 @@ const Header = (props) => {
     <div>
       <nav className="navbar navbar-dark bg-success navbar-expand-md">
       
-        <NavbarBrand style={{ paddingLeft: "14px" }}>
-          <a className="navbar-brand text-dark"  onClick={handleBlankClick}>
+        <NavbarBrand style={{ paddingLeft: "14px" }}
+          className="navbar-brand text-dark"  onClick={handleBlankClick}>
             <img src={logo} width={80} height={30} alt="Logo" />
-          </a>
+          
         </NavbarBrand>
         <div className="mx-auto">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <DropdownButton variant="dark" title="Claim">
-                <Dropdown.Item
+              <button
                   type="button"
                   className="btn btn-dark"
                   onClick={handleFnolClick}
                 >
                   New Claim
-                </Dropdown.Item>
-              </DropdownButton>
+               </button>
             </li>
             &nbsp;
             <button
@@ -63,9 +68,20 @@ const Header = (props) => {
                 </Form>
               </DropdownButton>
             </li> */}
+
+           
+
             </ul> </div>
           <div className="col-16 d-flex justify-content-end">
-          
+          <button
+              type="buton"
+              onClick={()=>{handleBlankClick(); handleAdminClick()}}
+              className="btn btn-dark"
+            >
+              Admin
+            </button>
+            &nbsp;   &nbsp;   &nbsp;
+
           <NavbarBrand>  <a className="btn btn-dark" href="">
          Log Out
         </a></NavbarBrand>

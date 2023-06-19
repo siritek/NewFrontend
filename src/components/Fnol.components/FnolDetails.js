@@ -1,19 +1,46 @@
 //import { FnolData } from "../../Pages/Fnol";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import React, { useCallback, useState } from "react";
 function FnolDetails({setComponentData, componentData}){ 
+
+ 
+
+
 
   const today = new Date();
   const pastYear = new Date();
-  pastYear.setFullYear(today.getFullYear() - 1);
+  pastYear.setFullYear(today.getFullYear() - 1)
 
 
-  const handleInputChange = (e) => {
+
+
+  const handleInputChange = (e,date) => {
+    if(date == 'date'){
+ setComponentData((prevData) =>({ 
+      ...prevData, 
+      dateOfLoss:e, 
+    }));
+    }
+    else if(date=='datereport'){
+       setComponentData((prevData) =>({ 
+      ...prevData, 
+      dateOfReport:e, 
+    }));
+    }
+    else{
     const {id, value} = e.target; 
-    setComponentData((prevData) =>({ 
+
+ setComponentData((prevData) =>({ 
       
       ...prevData, 
       [id]:value, 
-    })); 
+    }));
+    }
+    
   }; 
+
+  
 
 
   const { 
@@ -25,12 +52,16 @@ function FnolDetails({setComponentData, componentData}){
   policyNumber ='',  
   } = componentData || {};
 
-  const formatDate = (date) => {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  };
+  function App() {
+    const [dateVal, setDateVal] = useState(null);
+    const handleChange = useCallback(setDateVal, []);
+    const formatDate = useCallback((Date) => 
+        Date.toLocaleString(), []);
+    const parseDate = useCallback((string) => 
+        new Date(string), []);
+  }
+
+ 
   
   return(<div>
       
@@ -58,12 +89,30 @@ function FnolDetails({setComponentData, componentData}){
  </div>
  <div className='row mb-2'>
    <div className='col-4'>
+  
+   
      <label htmlFor="dateOfLoss"> Date Of Loss</label>
      
    </div>
    <div className='col-5'>
-     <input  id="dateOfLoss" type="date" value={dateOfLoss}  
-     onChange={handleInputChange}  className='w-100 form-control' />
+     {/* <input  id="dateOfLoss" type="date" value={dateOfLoss}
+      max={new Date().toISOString().split('T')[0]}  
+     onChange={handleInputChange}  className='w-100 form-control' /> */}
+      
+   <DatePicker
+   className='w-100 form-control'
+        selected={dateOfLoss}
+         id="dateOfLoss"
+        onChange={(e)=>handleInputChange(e,'date')}
+          
+
+             minDate={pastYear}
+      maxDate={today}
+        dateFormat="MM-dd-yyyy"
+        placeholderText="MM-DD-YYYY"
+      />
+
+
    </div>
  </div>
  
@@ -102,12 +151,24 @@ function FnolDetails({setComponentData, componentData}){
    <div className='col-4'>
      <label htmlFor="dateOfReport"> Date Reported</label>
      
-   </div>
-   <div className='col-5'>
-     <input type="date" id="dateOfReport" value={dateOfReport} 
-     onChange={handleInputChange}className='w-100 form-control' />
-   </div>
- </div>
+     </div>
+<div className='col-5'>
+  {/* <input type="date" id="dateOfReport" value={dateOfReport} 
+      
+    onChange={handleInputChange} className='w-100 form-control' /> */}
+    
+      <DatePicker
+      className='w-100 form-control'
+        selected={dateOfReport}
+         id="dateOfReport"
+        onChange={(e)=>handleInputChange(e,'datereport')}
+        dateFormat="MM-dd-yyyy"
+        placeholderText="MM-DD-YYYY"
+      />
+
+    
+</div>
+</div>
   
   </div>
   );

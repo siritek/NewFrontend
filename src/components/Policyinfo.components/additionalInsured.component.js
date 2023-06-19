@@ -1,7 +1,5 @@
-//import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from "react";
-import { Button } from "react-bootstrap";
-import Form from "react-bootstrap/Form";
+import React, { useState } from "react";
+import { Button, Form } from "react-bootstrap";
 
 function Additional() {
   const [inputarr, setInputarr] = useState([]);
@@ -12,50 +10,54 @@ function Additional() {
     "Additional Named Insured (Company)",
   ];
 
-  function changhandle() {
-    setInputarr([
-      ...inputarr,
-      {
-        checked: false,
-        Name: "",
-        Address: "",
-        Type: "",
-      },
-    ]);
-    console.log(inputarr);
-  }
-
-  function handleInputChange(e, index) {
-    const { name, value } = e.target;
-    const list = [...inputarr];
-    list[index][name] = value;
-    setInputarr(list);
-  }
-
-  function handleOptionChange(e, index) {
+  function handleChange(e, index, name) {
     const { value } = e.target;
-    const list = [...inputarr];
-    list[index].Type = value;
-    setInputarr(list);
+    const updatedInputArr = [...inputarr];
+    updatedInputArr[index][name] = value;
+    setInputarr(updatedInputArr);
   }
 
   function handleCheckboxChange(e, index) {
     const { checked } = e.target;
-    const list = [...inputarr];
-    list[index].checked = checked;
-    setInputarr(list);
+    const updatedInputArr = [...inputarr];
+    updatedInputArr[index].checked = checked;
+    setInputarr(updatedInputArr);
   }
 
   function handleAllCheckedChange(e) {
     const { checked } = e.target;
     setAllChecked(checked);
-    setInputarr(inputarr.map((item) => ({ ...item, checked })));
+    const updatedInputArr = inputarr.map((item) => ({ ...item, checked: checked }));
+    setInputarr(updatedInputArr);
   }
 
-function handleDelete() {
-  setInputarr(inputarr.filter((item) => !item.checked));
-  setAllChecked(false);
-}
+  function handleDelete() {
+    const updatedInputArr = inputarr.filter((item) => !item.checked);
+    setInputarr(updatedInputArr);
+    setAllChecked(false);
+  }
+
+  function handleSubmit() {
+    const updatedInputArr = inputarr.map((item) => ({
+      ...item,
+      submitted: true,
+    }));
+    setInputarr(updatedInputArr);
+    console.log(updatedInputArr);
+  }
+
+  function handleAdd() {
+    setInputarr([
+      ...inputarr,
+      {
+        checked: false,
+        name: "",
+        address: "",
+        type: "",
+        submitted: false, 
+      },
+    ]);
+  }
 
   return (
     <div className="container">
@@ -64,19 +66,23 @@ function handleDelete() {
           <strong>Additional Insured</strong>
         </div>
         <div className="col-6 align-right">
-          <Button variant="success" onClick={changhandle}>
+          <Button variant="success" onClick={handleAdd}>
             Add
           </Button>
           &nbsp;
           <Button variant="dark" onClick={handleDelete}>
             Delete
           </Button>
+          &nbsp;
+          <Button variant="primary" onClick={handleSubmit}>
+            Save
+          </Button>
         </div>
       </div>
 
       <div className="App">
         <div className="table-responsive">
-          <table className="tabletable-hover table-bordered">
+          <table className="table table-hover table-bordered">
             <tbody>
               <tr>
                 <th>
@@ -87,68 +93,83 @@ function handleDelete() {
                   />
                 </th>
                 <th>ID</th>
-                <th> Name </th>
-                <th> Address </th>
-                <th> Type </th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Type</th>
               </tr>
               {inputarr.length < 1 ? (
                 <tr>
-                  <td colSpan={5} className="text-center">
-                    No data Entered yet !
+                  <td colSpan={6} className="text-center">
+                    No data entered yet!
                   </td>
                 </tr>
               ) : (
                 inputarr.map((info, ind) => {
                   return (
-                    <tr key={ind}>
-                      <td>
-                        <input
-                          type="checkbox"
-                          checked={info.checked}
-                          onChange={(e) => handleCheckboxChange(e, ind)}
-                        />
-                      </td>
-                      <td>{ind + 1}</td>
-
-                      <td>
-                        <input
-                          type="text"
-                          name="Name"
-                          value={info.name}
-                          onChange={(e) => handleInputChange(e, ind)}
-                          placeholder="Name"
-                          className="form-control"
-                        />
-                      </td>
-                      <td>
-                        <input
-                          type="text"
-                          name="Address"
-                          value={info.Address}
-                          onChange={(e) => handleInputChange(e, ind)}
-                          placeholder="Address"
-                          className="form-control"
-                        />
-                      </td>
-                      <td>
-                        <Form.Select
-                          value={info.option}
-                          onChange={(e) => handleOptionChange(e, ind)}
-                        >
-                          {options.map((option, index) => (
-                            <option key={index} value={option}>
-                              {option}
-                            </option>
-                          ))}
-                        </Form.Select>
-                      </td>
-                    </tr>
+                    !info.deleted && (
+                      <tr key={ind}>
+                        <td>
+                          {!info.submitted && (
+                            <input
+                              type="checkbox"
+                              checked={info.checked}
+                              onChange={(e) => handleCheckboxChange(e, ind)}
+                            />
+                          )}
+                        </td>
+                        <td>{ind + 1}</td>
+                        <td>
+                          {!info.submitted ? (
+                            <input
+                              type="text"
+                              name="name"
+                              value={info.name}
+                              onChange={(e) => handleChange(e, ind, "name")}
+                              placeholder="Name"
+                              className="form-control"
+                            />
+                          ) : (
+                            info.name
+                          )}
+                        </td>
+                        <td>
+                          {!info.submitted ? (
+                            <input
+                              type="text"
+                              name="address"
+                              value={info.address}
+                              onChange={(e) => handleChange(e, ind, "address")}
+                              placeholder="Address"
+                              className="form-control"
+                            />
+                          ) : (
+                            info.address
+                          )}
+                        </td>
+                        <td>
+                          {!info.submitted ? (
+                            <Form.Select
+                              value={info.type}
+                              onChange={(e) => handleChange(e, ind, "type")}
+                            >
+                              {options.map((option, index) => (
+                                <option key={index} value={option}>
+                                  {option}
+                                </option>
+                              ))}
+                            </Form.Select>
+                          ) : (
+                            info.type
+                          )}
+                        </td>
+                      </tr>
+                    )
                   );
                 })
               )}
             </tbody>
           </table>
-        </div>
+        </div>  
       </div>
     </div>
   );
