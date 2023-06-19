@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Injuries from "../components/Losssummary.components/Injuries";
 import Lossdetails from "../components/Losssummary.components/Lossdetails";
 import Witnesses from "../components/Losssummary.components/Witnesses";
@@ -23,9 +23,12 @@ function Losssummary(props) {
     const handleExposureClick=()=>{
       props.onExposureClick();
     };
-    if(Object.keys(componentData).length === 0 && LossDataObj !== undefined) {
-      setComponentData(LossDataObj)
-    }
+    useEffect(() => {
+      if (Object.keys(componentData).length === 0 && LossDataObj !== undefined) {
+        setComponentData(LossDataObj);
+      }
+    }, []);
+    
     return ( 
       <div> 
         <div className="d-flex justify-content-between align-items-center"> 

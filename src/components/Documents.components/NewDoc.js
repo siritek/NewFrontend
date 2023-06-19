@@ -11,7 +11,7 @@ function NewDoc(props) {
     }));  
   };  
   const{ 
-    ClaimNumber='',
+    claimNumber='',
     documentName='', 
    documentType='', 
     related='', 
@@ -49,11 +49,11 @@ function NewDoc(props) {
 
       <div className="row mb-2">
       <div className="col-3">
-          <label htmlFor='ClaimNumber'>ClaimNumber</label>
+          <label htmlFor='claimNumber'>ClaimNumber</label>
           <i className="text-danger h5">*</i>
         </div>
         <div className="col-6">
-          <input id='ClaimNumber' type="text" value={ClaimNumber} onChange={handleInputChange} className="w-100 form-control" />
+          <input id='claimNumber' type="text" value={claimNumber} onChange={handleInputChange} className="w-100 form-control" />
         </div>
         </div>
          <div className="row mb-2">
