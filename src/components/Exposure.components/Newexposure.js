@@ -35,7 +35,6 @@ function Newexposure(props,{lossdataobj}){
   
   };   
 
-<<<<<<< HEAD
   const handlelossPartychange = (e) => {
     setLossParty(e.target.value);
     handleInputChange(e);
@@ -80,9 +79,6 @@ function Newexposure(props,{lossdataobj}){
     }
 
   }
-=======
-
->>>>>>> 310cffd61bfd213763d1c55ab70302971c0e9db7
   useEffect(() => {
     if (lossdataobj) {
       const {
@@ -98,17 +94,10 @@ function Newexposure(props,{lossdataobj}){
   
   
   const{ 
-<<<<<<< HEAD
    // lossParty='', 
     //primaryCoverage='', 
    // adjuster='', 
     //  status='', 
-=======
-      lossParty='', 
-      primaryCoverage='', 
-      adjuster='', 
-      status='', 
->>>>>>> 310cffd61bfd213763d1c55ab70302971c0e9db7
       creationDate='', 
       claimant='', 
      // claimantType='',  

@@ -21,14 +21,8 @@ const[securityType, setSecurityType] = useState('');
 const[securityTypes, setSecurityTypes] = useState([]);
 
   const {
-<<<<<<< HEAD
     //topic = '',
     //securityType = '',
-=======
-    claimNumber='',
-    topic = '',
-    securityType = '',
->>>>>>> 310cffd61bfd213763d1c55ab70302971c0e9db7
     subject= '',
     relatedTo= '',
     text = '',
@@ -87,7 +81,6 @@ const[securityTypes, setSecurityTypes] = useState([]);
       <div className='row mb-2'>
           <div className='col-2'><label htmlFor='claimNumber'>Claim Number</label></div>
           <div className='col-6'>
-<<<<<<< HEAD
             <Form.Select  aria-label="Default select example" required id="topic" value={topic}  onChange={handleTopicChange} >
             {topics.map((topic,index) => (
                 <option key={index} value={topic}>
@@ -96,6 +89,7 @@ const[securityTypes, setSecurityTypes] = useState([]);
             ))}
             </Form.Select>
           </div>
+        </div>
         </div>
 
         <div className='row mb-2'>
@@ -111,14 +105,9 @@ const[securityTypes, setSecurityTypes] = useState([]);
 
             </Form.Select>
           </div>
-=======
-            <input type="text" className='w-100 form-control' id="claim Number" value={claimNumber}  onChange={handleInputChange} />
-          </div>
         </div>
-        <div className="col-2">
-          <label htmlFor="topic">Topic</label>
->>>>>>> 310cffd61bfd213763d1c55ab70302971c0e9db7
-        </div>
+        <div className='row mb-2'>
+          <div className='col-2'><label htmlFor='topic'>Topic </label></div>
         <div className="col-6">
           <Form.Select
             aria-label="Default select example"
@@ -127,7 +116,7 @@ const[securityTypes, setSecurityTypes] = useState([]);
             value={topic}
             onChange={handleInputChange}
           >
-            <option value="general">-General-</option>
+            <option value="general">General</option>
             <option value="firstnoticeofloss">First Notice of Loss</option>
             <option value="coverage">Coverage</option>
             <option value="investigation">Investigation</option>
@@ -142,25 +131,7 @@ const[securityTypes, setSecurityTypes] = useState([]);
           </Form.Select>
         </div>
       </div>
-      <div className="row mb-2">
-        <div className="col-2">
-          <label htmlFor="securitytype">Security Type </label>
-        </div>
-        <div className="col-6">
-          <Form.Select
-            aria-label="Default select example"
-            id="securityType"
-            value={securityType}
-            onChange={handleInputChange}
-          >
-            <option value="none">-none- </option>
-            <option value="medical">Medical</option>
-            <option value="private">Private</option>
-            <option value="public">Public</option>
-            <option value="sensitive">Sensitive</option>
-          </Form.Select>
-        </div>
-      </div>
+      
       <div className="row mb-2">
         <div className="col-2">
           <label htmlFor="subject">Subject</label>
@@ -244,6 +215,7 @@ const[securityTypes, setSecurityTypes] = useState([]);
         onClick={handleClick}
       />
     </div>
+   
   );
 
 }
