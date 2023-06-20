@@ -1,34 +1,19 @@
-<<<<<<< HEAD
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import React,{useState} from 'react'
-=======
 import React,{useEffect,useState} from 'react'
 import axios from 'axios';
->>>>>>> 12b1653e8b78cfd59a28a4ea951ecdf2b0fe1e01
 import Form from "react-bootstrap/Form";
 var DairyDataObj;
 function Dairy()
 {
   const[componentData,setComponentData]=useState({});
-<<<<<<< HEAD
-  const handleInputChange = (e,date) => { 
-  if(date=='dueDate'){
+const handleInputChange = (e,date) => { 
+  if(date == 'dueDate'){
     setComponentData((prevData) =>({ 
-   ...prevData, 
-   dateOfReport:e, 
- }));
- } 
- else if(date=='DateCreated'){
-  setComponentData((prevData) =>({ 
-    ...prevData, 
-    dateCreated:e, 
-}));
-}
-else{
-
-=======
-const handleInputChange = (e) => { 
+         ...prevData, 
+         dueDate:e, 
+       }));
+       }
   const { id, value } = e.target;
     if (id === "relatedTo") {
       setRelatedTo(value);
@@ -37,7 +22,6 @@ const handleInputChange = (e) => {
     } else if (id === "createdBy") {
       setCreatedBy(value);
     } else { 
->>>>>>> 12b1653e8b78cfd59a28a4ea951ecdf2b0fe1e01
   const {id, value} = e.target;  
   setComponentData((prevData) =>({  
     ...prevData,  
@@ -235,9 +219,4 @@ const handleNext = () => {
        
     )
 }
-<<<<<<< HEAD
-}
-=======
-
->>>>>>> 12b1653e8b78cfd59a28a4ea951ecdf2b0fe1e01
 export default Dairy;
