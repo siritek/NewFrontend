@@ -21,6 +21,7 @@ const[securityType, setSecurityType] = useState('');
 const[securityTypes, setSecurityTypes] = useState([]);
 
   const {
+    claimNumber='',
     //topic = '',
     //securityType = '',
     subject= '',
