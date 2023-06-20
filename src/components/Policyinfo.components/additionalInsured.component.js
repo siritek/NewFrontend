@@ -109,13 +109,12 @@ function Additional() {
                     !info.deleted && (
                       <tr key={ind}>
                         <td>
-                          {!info.submitted && (
+              
                             <input
                               type="checkbox"
                               checked={info.checked}
                               onChange={(e) => handleCheckboxChange(e, ind)}
                             />
-                          )}
                         </td>
                         <td>{ind + 1}</td>
                         <td>

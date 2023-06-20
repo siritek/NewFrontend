@@ -1,7 +1,8 @@
-import React, { useState } from 'react' 
+import React, { useEffect,useState } from 'react'
+import axios from 'axios' 
 //import BootstrapTable from 'react-bootstrap-table-next'; 
 import { Dropdown,Button } from "react-bootstrap"; 
-import Form from "react-bootstrap/Form";  
+import Form from "react-bootstrap/Form"
  
 function Documents(props) { 
   const[Related,setRelated]=React.useState('None');
@@ -10,6 +11,28 @@ function Documents(props) {
 
   const [inputarr, setInputarr] = useState([]);
   const [allChecked, setAllChecked] = useState(false);
+
+  const [selectedStatus, setSelectedStatus] = useState('');
+  const[Statuses, setStatuses] = useState([]);
+
+  const handleStatusChange = (event) => {
+    setSelectedStatus(event.target.value);
+  };
+  
+  useEffect(() => {
+    fetchdocumentsDD();
+  }, []);
+
+  const fetchdocumentsDD = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/documentsDD');
+      console.log('Response data:', response.data);
+      const { statuses } = response.data;
+      setStatuses(statuses);
+    } catch (error) {
+      console.error('Error fetching documents(dd):', error);
+    }
+  }
 
     function changhandle() {
     setInputarr([
@@ -29,10 +52,18 @@ function Documents(props) {
   function handleInputChange(e, index) {
     const { name, value } = e.target;
     const list = [...inputarr];
-    list[index][name] = value;
+  
+    if (index !== undefined) {
+      list[index][name] = value;
+    } else {
+      list.forEach((item) => {
+        item[name] = value;
+      });
+    }
+  
     setInputarr(list);
   }
-
+  
   function handleCheckboxChange(e, index) {
     const { checked } = e.target;
     const list = [...inputarr];
@@ -196,13 +227,12 @@ function Documents(props) {
         <div className='row mb-2'>  
           <div className='col-3'><label htmlFor='Status'>Status</label></div>  
           <div className='col-4'>  
-            <Form.Select id="Status" value={Status} onChange={event=>{setStatus(event.target.value)}}  className='w-100 form-control'>  
-              <option value="None">None</option>  
-              <option value="Any">Any</option>  
-              <option value="Approved">Approved</option> 
-              <option value="Approving">Approving</option> 
-              <option value="Draft">Draft</option> 
-              <option value="Final">Final</option>  
+          <Form.Select id="Status" value={selectedStatus} onChange={handleStatusChange}className='w-100 form-control'>
+          {Statuses && Statuses.map((status) => (
+          <option key={status} value={status}>
+          {status}
+          </option>
+          ))}
             </Form.Select>  
           </div>  
         </div> 

@@ -11,6 +11,7 @@ import { Losssummary } from "./Pages/LossSummary";
 import Diary from "./Pages/Diary";
 import Exposure from "./Pages/Exposures";
 import NewNote from "./NewNote";
+import SearchNote from "./SearchNote"
 import Search from "./Pages/Search";
 import Synopsis from "./Pages/Synopsis";
 import ClaimGeneration from "./Pages/ClaimGeneration";
@@ -21,7 +22,7 @@ import Dropdownlist from "./Pages/Dropdown-list"
 function App() {
   const [activeSection, setActiveSection] = useState(null);
   const [firstfour, setfirstfour] = useState(false);
-  const [claimNumber, setClaimNumber] = useState();
+  const [claimNumber, setClaimNumber] = useState(null);
   const [componentData, setComponentData] = useState({});
   const [admin, setAdmin] = useState(false);
 
@@ -110,6 +111,7 @@ const handleAdminClick =() => {
           )}
 
           {activeSection === "newnote" && <NewNote setComponentData={setComponentData} componentData={componentData} />}
+          {activeSection === "searchnote" && <SearchNote />}
           {activeSection === "diary" && <Diary />}
           {activeSection === "search" && <Search setComponentData={setComponentData} componentData={componentData} />}
           {/* {activeSection === "synopsis" && <Synopsis onSynopsisClick={() => setActiveSection("synopsis")} />} */}
@@ -119,7 +121,7 @@ const handleAdminClick =() => {
               componentData={componentData}
             />
           )}
-          {activeSection === "claimGeneration" && ( <ClaimGeneration claimNumber={claimNumber} onLinkClick={handleLinkClick} />)}
+          {activeSection === "claimGeneration" && ( <ClaimGeneration claimNumber="123456" onLinkClick={handleLinkClick} />)}
           {/* new claim synopsis */}
           {activeSection === "newexposure" && (
             <Newexposure lossdataobj={LossData()} onBackClick={() => setActiveSection("exposures")}/>)}

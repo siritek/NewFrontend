@@ -6,11 +6,12 @@ import { policyData, policyInfoObj } from "./PolicyInformation";
 import { LossData } from './LossSummary';
 import {ExposureData,ExposureDataObj} from'../components/Exposure.components/Newexposure';
 import { Button } from "react-bootstrap";
+import ClaimGeneration from './ClaimGeneration';
 
 
 function Exposure(props){
   //const [exposuresubmitclick, setExposuresubmitclick] = useState(false);
-  const [componentData, setComponentData] = useState({});
+  //const [componentData, setComponentData] = useState({});
 
   const handleLossSummaryClick=()=>{
     props.onLossSummaryClick();
@@ -43,56 +44,96 @@ function Exposure(props){
     fetch("http://localhost:8080/common/add",{  
         method:"POST",  
         headers:{"Content-Type":"application/json"},  
-        body:JSON.stringify(finalDataObj)  
+        body:JSON.stringify(finalDataObj) 
   
-    }).then(()=>{  
-        console.log("New claim added")  
+    }).then(() => {  
+      console.log("New claim added");  
+      generateClaimNumber(); // Call the generateClaimNumber function  
     })  
-  }
+    .catch((error) => {  
+      console.error("Error adding new claim:", error);  
+    });  
+  }  
+
+  const generateClaimNumber = () => { 
+    const fnolData = FnolData(); // Call FnolData() to retrieve the data 
+    const policyNumber = fnolData.policyNumber; 
+   
+    console.log("Policy Number:", policyNumber); 
+    fetch("http://localhost:8080/claim/generateClaimNumber", { 
+      method: "POST", 
+      headers: { "Content-Type": "application/x-www-form-urlencoded" }, 
+      body: `policyNumber=${policyNumber}`, 
+    }) 
+      .then((response) => response.json()) 
+      .then((data) => { 
+        console.log("Claim Number:", data.claimNumber); 
+        props.setClaimNumber({ 
+          claimNumber: data.claimNumber, 
+          policyNumber: policyNumber, 
+        }); 
+        handleBlankClick(); 
+      }) 
+      .catch((error) => { 
+        console.error("Error generating claim number:", error); 
+      }); 
+  }; 
+
 
 
   const [inputarr, setInputarr] = useState([]);
   const [allChecked, setAllChecked] = useState(false);
 
-  function changhandle() {
-    setInputarr([
-      ...inputarr,
-      {
-        
-        checked: false,
-        Type: "",
-        Coverage: "",
-        Claimant: "",
-        Involving: "",
-        Status: "",
-      },
-    ]);
-    console.log(inputarr);
+
+  function handleChange(e, index, name) {
+    const { value } = e.target;
+    const updatedInputArr = [...inputarr];
+    updatedInputArr[index][name] = value;
+    setInputarr(updatedInputArr);
   }
 
-  function handleInputChange(e, index) {
-    const { name, value } = e.target;
-    const list = [...inputarr];
-    list[index][name] = value;
-    setInputarr(list);
-  }
-
-  function handleCheckboxChange(e, index) {
+    function handleCheckboxChange(e, index) {
     const { checked } = e.target;
-    const list = [...inputarr];
-    list[index].checked = checked;
-    setInputarr(list);
+    const updatedInputArr = [...inputarr];
+    updatedInputArr[index].checked = checked;
+    setInputarr(updatedInputArr);
   }
 
-  function handleAllCheckedChange(e) {
+    function handleAllCheckedChange(e) {
     const { checked } = e.target;
     setAllChecked(checked);
-    setInputarr(inputarr.map((item) => ({ ...item, checked })));
+    const updatedInputArr = inputarr.map((item) => ({ ...item, checked: checked }));
+    setInputarr(updatedInputArr);
   }
 
   function handleDelete() {
-    setInputarr(inputarr.filter((item) => !item.checked));
+    const updatedInputArr = inputarr.filter((item) => !item.checked);
+    setInputarr(updatedInputArr);
     setAllChecked(false);
+  }
+
+  function handleSubmit() {
+    const updatedInputArr = inputarr.map((item) => ({
+      ...item,
+      submitted: true,
+    }));
+    setInputarr(updatedInputArr);
+    console.log(updatedInputArr);
+  }
+
+  function handleAdd() {
+    setInputarr([
+      ...inputarr,
+      {
+        checked: false,
+        LossParty: "",
+        PrimaryCoverage: "",
+        ClaimantType: "",
+        Status: "",
+        Adjuster: "",
+        submitted: false,
+      },
+    ]);
   }
  
  
@@ -123,6 +164,7 @@ function Exposure(props){
   //   const updatedData = tableData.filter((row) => !row.selected); 
   //   setTableData(updatedData); 
   // }; 
+
  
 
 return (
@@ -184,11 +226,16 @@ return (
     <div className="container">
       <div className="row p-1 m-0">
         <div className="col-4 align-right">
-          <Button variant="success" onClick={changhandle}>
+          <Button variant="success" onClick={handleAdd}>
             Add
+          </Button>
+          &nbsp;
+          <Button variant="primary" onClick={handleSubmit}>
+            Save
           </Button>
         </div>
       </div>
+
       <div className="App">
         <div className="table-responsive">
           <table className="table table-hover table-bordered">
@@ -202,11 +249,11 @@ return (
                   />
                 </th>
                 <th> ID </th>
-                <th> Type </th>
-                <th> Coverage </th>
-                <th> Claimant </th>
-                <th> Invovling </th>
-                <th> Status </th>
+                <th> LossParty </th>
+                <th> PrimaryCoverage </th>
+                <th> ClaimantType </th>
+                <th> status </th>
+                <th> adjuster </th>
               </tr>
               {inputarr.length < 1 ? (
                 <tr>
@@ -217,49 +264,45 @@ return (
               ) : (
                 inputarr.map((info, ind) => {
                   return (
-                    <tr key={ind}>
-                      <td>
-                        <input
-                          type="checkbox"
-                          checked={info.checked}
-                          onChange={(e) => handleCheckboxChange(e, ind)}
-                        />
-                      </td>
+                    !info.deleted && (
+                      <tr key={ind}>
+                        <td>
+                          <input
+                            type="checkbox"
+                            checked={info.checked}
+                            onChange={(e) => handleCheckboxChange(e, ind)}
+                          />
+                        </td>
 
-                      <td>{ind + 1}</td>
+                        <td>{ind + 1}</td>
 
-                      <td>
-                        {policyInfoObj.policyType}
-                      </td>
+                        <td>{policyInfoObj.policyType}</td>
 
-                      <td>
-                        {ExposureDataObj.primaryCoverage}
-                      </td>
+                        <td>{ExposureDataObj.primaryCoverage}</td>
 
-                      <td>
-                        {ExposureDataObj.claimant}
-                      </td>
+                        <td>{ExposureDataObj.claimant}</td>
 
-                      <td>
-                        <input
-                          type="text"
-                          name="Involving"
-                          value={info.Involving}
-                          onChange={(e) => handleInputChange(e, ind)}
-                          className="form-control"
-                        />
-                      </td>
+                        <td>
+                          <input
+                            type="text"
+                            name="Involving"
+                            value={info.Involving}
+                            onChange={(e) => handleChange(e, ind)}
+                            className="form-control"
+                          />
+                        </td>
 
-                      <td>
-                        <input
-                          type="text"
-                          name="Status"
-                          value={info.Status}
-                          onChange={(e) => handleInputChange(e, ind)}
-                          className="form-control"
-                        />
-                      </td>
-                    </tr>
+                        <td>
+                          <input
+                            type="text"
+                            name="Status"
+                            value={info.Status}
+                            onChange={(e) => handleChange(e, ind)}
+                            className="form-control"
+                          />
+                        </td>
+                      </tr>
+                    )
                   );
                 })
               )}
@@ -268,6 +311,12 @@ return (
         </div>
       </div>
     </div>
+    {props.claimNumber && (
+      <ClaimGeneration
+        claimNumber={props.claimNumber}
+        policyNumber={props.policyNumber}
+      />
+    )}
   </div>
 ); 
 };

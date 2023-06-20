@@ -1,4 +1,5 @@
-import React, { useState,useEffect} from 'react'  
+import React, {useEffect, useState} from 'react' 
+import axios from 'axios'; 
 import Form from "react-bootstrap/Form";  
 // import Dropdown from 'react-bootstrap/Dropdown';    
  
@@ -10,15 +11,74 @@ function Newexposure(props,{lossdataobj}){
   const handleBackClick=()=>{
     props.onBackClick();
   }
+
+  const [lossParty, setLossParty] = useState('');
+  const [primaryCoverage, setPrimaryCoverage] = useState('');
+  const[claimantType, setClaimantType] = useState('');
+  const[lossparties, setLossparties] = useState([]);
+  const[primaryCoverages, setPrimaryCoverages] = useState([]);
+  const[claimantTypes, setClaimantTypes] = useState([]);
+  const[status, setStatus] = useState();
+  const[statuses, setStatuses] = useState([]);
+  const[adjuster, setAdjuster] = useState();
+  const[adjusters, setAdjusters] = useState([]);
+
   const handleInputChange = (e) => {  
-    const {id, value} = e.target;  
+    const {id, value} = e.target;
+   // if(id==="lossParty"){setLossParty(value);}
+    //else if(id==="primaryCoverage"){setPrimaryCoverage(value);}
+    //else if(id==="claimantType"){setClaimantType(value);}else{
     setComponentData((prevData) =>({  
       ...prevData,  
       [id]:value,  
-    }));  
+    })); 
+  
   };   
 
+  const handlelossPartychange = (e) => {
+    setLossParty(e.target.value);
+    handleInputChange(e);
+  }
+  const handleprimarycoveragechange = (e) => {
+    setPrimaryCoverage(e.target.value);
+    handleInputChange(e);
+  }
+  const handleadjusterchange = (e) => {
+    setAdjuster(e.target.value);
+    handleInputChange(e);
+  }
+  const handlestatuschange = (e) => {
+    setStatus(e.target.value);
+    handleInputChange(e);
+  }
 
+  const handleclaimantTypechange = (e) => {
+    setClaimantType(e.target.value);
+    handleInputChange(e);
+  }
+
+  useEffect(() => {
+    fetchExposureDDTypes();
+  }, []);
+
+ 
+
+  const fetchExposureDDTypes = async () => {
+    try{
+    const response = await axios.get('http://localhost:8080/exposuresDD')
+    console.log('Response data:', response.data);
+    const {lossParty, primaryCoverage, adjuster, claimantType, exposureStatus} = response.data;
+    setLossparties(lossParty);
+    setPrimaryCoverages(primaryCoverage);
+    setClaimantTypes(claimantType);
+    setStatuses(exposureStatus);
+    setAdjusters(adjuster);
+    console.log('testing  adjusterr values in console '+adjuster);
+    }catch(error){
+      console.error('Error fetching exposure types:', error);
+    }
+
+  }
   useEffect(() => {
     if (lossdataobj) {
       const {
@@ -34,13 +94,13 @@ function Newexposure(props,{lossdataobj}){
   
   
   const{ 
-      lossParty='', 
-      primaryCoverage='', 
-      adjuster='', 
-      status='', 
+   // lossParty='', 
+    //primaryCoverage='', 
+   // adjuster='', 
+    //  status='', 
       creationDate='', 
       claimant='', 
-      claimantType='',  
+     // claimantType='',  
       address='', 
   } = componentData || {};
 
@@ -91,12 +151,14 @@ function Newexposure(props,{lossdataobj}){
           <Form.Select
             id="lossParty"
             value={lossParty}
-            onChange={handleInputChange}
+            onChange={handlelossPartychange}
             aria-label="Default select example"
           >
-            <option value="None">None</option>
-            <option value="Insured's loss">Insured's loss</option>
-            <option value="Third party Liability">Third party Liability</option>
+            {lossparties&& lossparties.map ((lossParty,index) => (
+              <option key={index} value={lossParty}>
+                {lossParty}
+                </option>          
+            ))}
           </Form.Select>
         </div>
       </div>
@@ -109,12 +171,14 @@ function Newexposure(props,{lossdataobj}){
           <Form.Select
             id="primaryCoverage"
             value={primaryCoverage}
-            onChange={handleInputChange}
+            onChange={handleprimarycoveragechange}
             aria-label="Default select example"
           >
-            <option value="None">None</option>
-            <option value="yes">yes</option>
-            <option value="no">no</option>
+            { primaryCoverages.map ((primaryCoverage) => (
+              <option key={primaryCoverage} value={primaryCoverage}>
+                {primaryCoverage}
+                </option>          
+            ))}
           </Form.Select>
         </div>
       </div>
@@ -129,12 +193,14 @@ function Newexposure(props,{lossdataobj}){
           <Form.Select
             id="adjuster"
             value={adjuster}
-            onChange={handleInputChange}
+            onChange={handleadjusterchange}
             aria-label="Default select example"
           >
-            <option value="None">None</option>
-            <option value="yes">yes</option>
-              <option value="no">no</option>
+            {adjusters && adjusters.map ((adjuster,index) => (
+              <option key={index} value={adjuster}>
+                {adjuster}
+                </option>          
+            ))}
           </Form.Select>
         </div>
       </div>
@@ -147,11 +213,14 @@ function Newexposure(props,{lossdataobj}){
           <Form.Select
             id="status"
             value={status}
-            onChange={handleInputChange}
+            onChange={handlestatuschange}
             aria-label="Default select example"
           >
-            <option value="Open">Open</option>
-            <option value="Closed">Closed</option>
+            {statuses && statuses.map ((status,index) => (
+              <option key={index} value={status}>
+                {status}
+                </option>          
+            ))}
           </Form.Select>
         </div>
       </div>
@@ -195,20 +264,14 @@ function Newexposure(props,{lossdataobj}){
           <Form.Select
             id="claimantType"
             value={claimantType}
-            onChange={handleInputChange}
+            onChange={handleclaimantTypechange}
             aria-label="Default select example"
           >
-            <option value="None">None</option>
-            <option value="Insured">Insured</option>
-            <option value="Member of insured's household">
-              Member of insured's household{" "}
-            </option>
-            <option value="Owner of the lost/Damaged property">
-              Owner of the lost/Damaged property{" "}
-            </option>
-            <option value="Customer">Customer </option>
-            <option value="Employee ">Employee </option>
-            <option value="Other Third Party">Other Third Party </option>
+            {claimantTypes && claimantTypes.map (claimantType => (
+              <option key={claimantType} value={claimantType}>
+                {claimantType}
+                </option>
+            ))}
           </Form.Select>
         </div>
       </div>

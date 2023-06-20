@@ -1,11 +1,17 @@
+<<<<<<< HEAD
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import React,{useState} from 'react'
+=======
+import React,{useEffect,useState} from 'react'
+import axios from 'axios';
+>>>>>>> 12b1653e8b78cfd59a28a4ea951ecdf2b0fe1e01
 import Form from "react-bootstrap/Form";
 var DairyDataObj;
 function Dairy()
 {
   const[componentData,setComponentData]=useState({});
+<<<<<<< HEAD
   const handleInputChange = (e,date) => { 
   if(date=='dueDate'){
     setComponentData((prevData) =>({ 
@@ -21,22 +27,77 @@ function Dairy()
 }
 else{
 
+=======
+const handleInputChange = (e) => { 
+  const { id, value } = e.target;
+    if (id === "relatedTo") {
+      setRelatedTo(value);
+    } else if (id === "assignedTo") {
+      setAssignedTo(value);
+    } else if (id === "createdBy") {
+      setCreatedBy(value);
+    } else { 
+>>>>>>> 12b1653e8b78cfd59a28a4ea951ecdf2b0fe1e01
   const {id, value} = e.target;  
   setComponentData((prevData) =>({  
     ...prevData,  
     [id]:value,  
-  }));  
+  }));
+}  
 };  
+
+const[relatedTo, setRelatedTo] = useState('');
+const[relatedTos, setRelatedTos] = useState([]);
+
+const [createdBy, setCreatedBy] = useState('');
+const[createdBys, setCreatedBys] = useState([]);
+
+const[assignedTo, setAssignedTo] = useState('');
+const[assignedTos, setAssignedTos] = useState([]);
+
+useEffect(() => {
+  fetchdairyDD();
+}, []);
+
+const fetchdairyDD = async () => {
+  try {
+    const response = await axios.get('http://localhost:8080/diaryDD');
+    console.log('Response data: dairyDD', response.data);
+    const { relatedTos, createdBy, assignees } = response.data;
+
+    // Assign the retrieved values to the state variables
+    setRelatedTos(relatedTos);
+    setCreatedBys(createdBy);
+    setAssignedTos(assignees);
+  } catch (error) {
+    console.error('Error fetching dairyDD:', error);
+  }
+};
+
+const handlerealtedToChange = (event) => {
+  setRelatedTo(event.target.value);
+  handleInputChange(event); 
+}
+const handleCreatedByChange = (event) => {
+  setCreatedBy(event.target.value);
+  handleInputChange(event); 
+}
+const handleAssignedToChange = (event) => {
+  setAssignedTo(event.target.value);
+  handleInputChange(event);
+}
+
+
 const{ 
   ClaimNumber='',
   subject='', 
  description='', 
-  related='', 
+  //related='', 
     dueDate='', 
     priority='', 
     details='', 
-    assignedTo='',
-    createdBy='',
+    //assignedTo='',
+    //createdBy='',
     dateCreated='',  
 } = componentData || {}; 
 
@@ -84,10 +145,12 @@ const handleNext = () => {
          <div className='col-4'>
          <label htmlFor='related'>Related To</label></div>  
           <div className='col-5'>  
-            <Form.Select id="related" value={related} onChange={handleInputChange} className='w-100 form-control'>  
-              <option value='none'> None</option>  
-              <option value='claim'>Claim</option>  
-              <option value="contacts">Contacts</option>  
+            <Form.Select id="related" value={relatedTo} onChange={handlerealtedToChange} className='w-100 form-control'>  
+
+              {relatedTos.map((relatedTo,index) => {
+                return <option key={index} value={relatedTo}>{relatedTo}</option>;
+              })}
+
             </Form.Select>  
           </div> 
           </div>
@@ -129,20 +192,21 @@ const handleNext = () => {
           <div className='col-4'>
             <label htmlFor='assignedTo'>Assigned To</label></div> 
           <div className='col-5'> 
-            <Form.Select id='assignedTo' value={assignedTo} onChange={handleInputChange}  className='w-100 form-control'> 
-              <option value='none'>None</option>
-              <option value='agent'>Agent</option>  
+            <Form.Select id='assignedTo' value={assignedTo} onChange={handleAssignedToChange}  className='w-100 form-control'> 
+              {assignedTos.map((assigned,index) => {
+                return <option key={index} value={assigned}>{assigned}</option>;
+              })} 
             </Form.Select> 
           </div> 
-        </div> 
-        
+        </div>        
 
         <div className='row mb-2'> 
           <div className='col-4'><label htmlFor='createdBy'>Created By</label></div> 
           <div className='col-5'> 
-            <Form.Select  id="cratedBy" value={createdBy} className='w-100 form-control'> 
-              <option value='none'>None</option>
-              <option value='agent'>Agent</option>  
+            <Form.Select  id="createdBy" value={createdBy} onChange={handleCreatedByChange} className='w-100 form-control'> 
+               {createdBys.map((createdBy,index)=> {
+                 return <option key={index} value={createdBy}>{createdBy}</option>;
+               })}
             </Form.Select> 
           </div> 
         </div> 
@@ -171,5 +235,9 @@ const handleNext = () => {
        
     )
 }
+<<<<<<< HEAD
 }
+=======
+
+>>>>>>> 12b1653e8b78cfd59a28a4ea951ecdf2b0fe1e01
 export default Dairy;

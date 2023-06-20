@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import React, { useEffect }  from 'react'
+=======
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+>>>>>>> 12b1653e8b78cfd59a28a4ea951ecdf2b0fe1e01
 import Form from "react-bootstrap/Form";
 // import Dropdown from 'react-bootstrap/Dropdown'; 
 
@@ -15,6 +20,7 @@ pastYear.setFullYear(today.getFullYear() - 1)
 
 
  
+<<<<<<< HEAD
 function Basic({id, value, setComponentData, componentData, fnoldataobj }) { 
   const handleInputChange = (e,data) => {
     if(data=="date"){
@@ -36,6 +42,49 @@ function Basic({id, value, setComponentData, componentData, fnoldataobj }) {
     }
     
   };
+=======
+function Basic({ setComponentData, componentData, fnoldataobj }) { 
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+  {/*}  if (id === "policyType") {
+      setPolicyType(value);
+    } else if (id === "policyStatus") {
+      setPolicyStatus(value);
+    }
+     else {
+     //const { id, value } = e.target;*/}
+    setComponentData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
+//  }
+};
+    const [policyType, setPolicyType] = useState('');
+    const [policyTypes, setPolicyTypes] = useState([]);
+    const [policyStatus, setPolicyStatus] = useState('');
+    const [policyStatuses, setPolicyStatuses] = useState([]);
+    
+  
+    useEffect(() => {
+      fetchBasicInformationDD();
+    }, []);
+  
+    const fetchBasicInformationDD = async () => {
+      try {
+      
+        const response = await axios.get('http://localhost:8080/basicinformationDD');
+        console.log('Response data:', response.data);
+        const { policyTypes, policyStatuses } = response.data;
+        console.log('Policy Type:', policyTypes);
+        console.log('Policy Status:', policyStatuses);
+        setPolicyTypes(policyTypes);
+        setPolicyStatuses(policyStatuses);
+      } catch (error) {
+        console.error('Error fetching policy types and status:', error);
+      }
+    };
+  
+>>>>>>> 12b1653e8b78cfd59a28a4ea951ecdf2b0fe1e01
 
   useEffect(() => {
     if (fnoldataobj) {
@@ -55,10 +104,18 @@ function Basic({id, value, setComponentData, componentData, fnoldataobj }) {
       }));
     }
   }, [fnoldataobj, setComponentData]);
+  
+  const handlePolicyTypeChange = (event) => {
+    setPolicyType(event.target.value);
+    handleInputChange(event);
+  };
+  const handlePolicyStatusChange = (event) => {
+    setPolicyStatus(event.target.value);
+    handleInputChange(event);
+  }
 
   const {
     policyNumber = '',
-    policyType = '',
     policyVerified= '',
     dateOfLoss= '',
     lossTime = '',
@@ -67,7 +124,7 @@ function Basic({id, value, setComponentData, componentData, fnoldataobj }) {
     expirationDate= '',
     cancellationDate = '',
     originalEffectiveDate = '',
-    policyStatus= '',
+   // policyStatus= '',
     name='',
     address='',
     primaryPhone='',
@@ -99,20 +156,18 @@ function Basic({id, value, setComponentData, componentData, fnoldataobj }) {
             <label htmlFor="policyType">Policy Type</label>
           </div>
           <div className="col-8">
-            <Form.Select
-              id="policyType"
-              value={policyType}
-              onChange={handleInputChange}
-              aria-label="Default select example"
+          <Form.Select
+            className="w-100 form-control"
+            id="policyType"
+            value={policyType}
+            onChange={handlePolicyTypeChange}
             >
-              <option value="None">None</option>
-              <option value="Personal Auto">Personal Auto</option>
-              <option value="Commercial Auto">Commercial Auto</option>
-              <option value="Homeowners">Homeowners</option>
-              <option value="Genral Liability">Genral Liability</option>
-              <option value="Mutual">Mutual</option>
-              <option value="Worker Compensation">Worker Compensation</option>
-            </Form.Select>
+            {policyTypes.map((type,index) => (
+            <option key={index} value={type}>
+            {type}
+          </option>
+          ))}
+          </Form.Select>
           </div>
         </div>
 
@@ -262,25 +317,25 @@ function Basic({id, value, setComponentData, componentData, fnoldataobj }) {
           </div>
         </div>
 
-        <div className="row mb-2">
+       <div className="row mb-2">
           <div className="col-4">
             <label htmlFor="policyStatus">Policy Status</label>
           </div>
           <div className="col-8">
-            <Form.Select
-              aria-label="Default select example"
-              id="policyStatus"
-              value={policyStatus}
-              onChange={handleInputChange}
+          <Form.Select
+           className="w-100 form-control"
+          id="policyStatus"
+          value={policyStatus}
+          onChange={handlePolicyStatusChange}
             >
-              <option value="None">None</option>
-              <option value="In Effect">In Effect</option>
-              <option value="Pre-Cancellation">Pre-Cancellation</option>
-              <option value="Expired">Expired</option>
-              <option value="Other">Other</option>
-            </Form.Select>
+          {policyStatuses.map((status,index) => (
+          <option key={index} value={status}>
+            {status}
+          </option>
+          ))}
+          </Form.Select>
           </div>
-        </div>
+            </div>
 
         <hr />
         <h5>Insured</h5>

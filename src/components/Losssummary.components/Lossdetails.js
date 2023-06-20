@@ -1,17 +1,81 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 
-
 function Lossdetails({ setComponentData, componentData, fnoldataobj}) {
-  const handleInputChange = (e) => {
+  {/* const handleInputChange = (e) => {
     const { id, value } = e.target;
     setComponentData((prevData) => ({
       ...prevData,
       [id]: value,
     }));
+  };*/}
+
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+      setComponentData((prevData) => ({
+        ...prevData,
+        [id]: value,
+      }));
+    
+    {/*if (id === "lossCause") {
+      setLossCause(value);
+      setComponentData((prevData) => ({
+        ...prevData,
+        lossCause: value,
+      }));
+      console.log("this is loss cause "+value);
+    } else if (id === "typeOfLoss") {
+      setTypeOfLoss(value);
+      setComponentData((prevData) => ({
+        ...prevData,
+        typeOfLoss: value,
+      }));
+      console.log("this is loss type "+value);
+    } else if (id === "relationshipToInsured") {
+      setRelationshipToInsured(value);
+      setComponentData((prevData) => ({
+        ...prevData,
+        relationshipToInsured: value,
+      }));
+      console.log("this is realationship "+value);
+    } else 
+      setComponentData((prevData) => ({
+        ...prevData,
+        [id]: value,
+      }));
+    */}
   };
 
-  
+  const [lossCause, setLossCause] = useState('');
+  const [lossCauses, setLossCauses] = useState([]);
+  const [typeOfLoss, setTypeOfLoss] = useState('');
+  const [typeOfLosses, setTypeOfLosses] = useState([]);
+  const [relationshipToInsured, setRelationshipToInsured] = useState('');
+  const [relationshipToInsureds, setRelationshipToInsureds] = useState([]);
+  const[adjuster, setAdjuster] = useState('');
+  const[adjusters, setAdjusters] = useState([]);
+
+  useEffect(() => {
+    fetchLossDetailsDD();
+  }, []);
+
+  const fetchLossDetailsDD = async () => {
+    try {
+      //const response = await axios.get('<localhost:8080>/policytypes');
+      const response = await axios.get('http://localhost:8080/lossdetailsDD');
+      console.log('Response data: ', response.data);
+      const { lossCauses, typeOfLosses, relationshipToInsureds,adjusters } = response.data;
+      setLossCauses(lossCauses);
+      setTypeOfLosses(typeOfLosses);
+      setAdjusters(adjusters);
+      setRelationshipToInsureds(relationshipToInsureds);
+
+    } catch (error) {
+      console.error('Error fetching loss details(loss cause, type of loss, relationship to insured):', error);
+    }
+  };
+
   useEffect(() => {
     if (fnoldataobj) {
       const {
@@ -31,19 +95,38 @@ function Lossdetails({ setComponentData, componentData, fnoldataobj}) {
     }
   }, [fnoldataobj, setComponentData]);
 
+  const handlelossCauseChange = (event) => {
+    const selectedlossCause = event.target.value;
+    setLossCause(selectedlossCause);
+    handleInputChange(event);
+  }
+  const handleAdjusterChange = (event) => {
+    const selectedadjuster = event.target.value;
+    setAdjuster(selectedadjuster);
+    handleInputChange(event);
+  }
+  const handleTypeOfLossChange = (event) => {
+    const selectedtypeOfLoss = event.target.value;
+    setTypeOfLoss(selectedtypeOfLoss);
+    handleInputChange(event);
+  }
+  const handleRelationshipToInsuredChange = (event) => {
+    const selectedrelationshipToInsured = event.target.value;
+    setRelationshipToInsured(selectedrelationshipToInsured);
+    handleInputChange(event);
+  }
+
   const {
-    adjuster = '',
+   // adjuster = '',
     lossDescription = '',
-    lossCause = '',
     otherDescription = '',
-    typeOfLoss = '',
     weatherInvolved = '',
     weatherDescription = '',
     dateOfLoss = '',
     timeOfLoss = '',
     reportedBy = '',
-    relationshipToInsured ='',
   } = componentData || {};
+
   return (
     <div className="ms-3">
       <h5>Loss Details</h5>
@@ -58,11 +141,13 @@ function Lossdetails({ setComponentData, componentData, fnoldataobj}) {
               className="w-100 form-control"
               id="adjuster"
               value={adjuster}
-              onChange={handleInputChange}
+              onChange={handleAdjusterChange}
             >
-              <option value="None">None</option>
-              <option value="yes">yes</option>
-              <option value="no">no</option>
+              {adjusters.map((type,index) => (
+                <option key={index} value={type}>
+                  {type}
+                </option>
+              ))}
             </Form.Select>
           </div>
         </div>
@@ -92,11 +177,13 @@ function Lossdetails({ setComponentData, componentData, fnoldataobj}) {
               className="w-100 form-control"
               id="lossCause"
               value={lossCause}
-              onChange={handleInputChange}
-            >
-              <option value="None">None</option>
-              <option value="Personalauto">Personal Auto</option>
-              <option value="Homeowners">Homeowners </option>
+              onChange={handlelossCauseChange}
+            >	
+              {lossCauses.map((type,index) => (
+                <option key={index} value={type}>
+                  {type}
+                </option>
+              ))}
             </Form.Select>
           </div>
         </div>
@@ -126,11 +213,13 @@ function Lossdetails({ setComponentData, componentData, fnoldataobj}) {
               className="w-100 form-control"
               id="typeOfLoss"
               value={typeOfLoss}
-              onChange={handleInputChange}
+              onChange={handleTypeOfLossChange}
             >
-              <option value="None">None</option>
-              <option value="Nohomene">home</option>
-              <option value="fire">fire</option>
+              {typeOfLosses.map((type,index) => (
+                <option key={index} value={type}>
+                  {type}
+                </option>
+              ))}
             </Form.Select>
           </div>
         </div>
@@ -258,15 +347,13 @@ function Lossdetails({ setComponentData, componentData, fnoldataobj}) {
               className="w-100 form-control"
               id="relationshipToInsured"
               value={relationshipToInsured}
-              onChange={handleInputChange}
+              onChange={handleRelationshipToInsuredChange}
             >
-              <option value="None">None</option>
-              <option value="Agent">Agent</option>
-              <option value="Insured">Insured</option>
-              <option value="Householdmember">Household Member</option>
-              <option value="Friend">Friend</option>
-              <option value="Otherparty">Other Party Involved</option>
-              <option value="Attorney">Attorney</option>
+              {relationshipToInsureds.map((type,index) => ( 
+              <option key={index} value={type}>
+                {type}
+              </option>
+            ))}        
             </Form.Select>
           </div>
         </div>
