@@ -121,21 +121,19 @@ function Exposure(props){
     console.log(updatedInputArr);
   }
 
-  function changhandle() {
+  function handleAdd() {
     setInputarr([
       ...inputarr,
       {
-        
         checked: false,
-        Type: "",
-        Coverage: "",
-        Claimant: "",
-        Involving: "",
+        LossParty: "",
+        PrimaryCoverage: "",
+        ClaimantType: "",
         Status: "",
+        Adjuster: "",
         submitted: false,
       },
     ]);
-    console.log(inputarr);
   }
  
  
@@ -228,7 +226,7 @@ return (
     <div className="container">
       <div className="row p-1 m-0">
         <div className="col-4 align-right">
-          <Button variant="success" onClick={changhandle}>
+          <Button variant="success" onClick={handleAdd}>
             Add
           </Button>
           &nbsp;
@@ -251,11 +249,11 @@ return (
                   />
                 </th>
                 <th> ID </th>
-                <th> Type </th>
-                <th> Coverage </th>
-                <th> Claimant </th>
-                <th> Invovling </th>
-                <th> Status </th>
+                <th> LossParty </th>
+                <th> PrimaryCoverage </th>
+                <th> ClaimantType </th>
+                <th> status </th>
+                <th> adjuster </th>
               </tr>
               {inputarr.length < 1 ? (
                 <tr>
@@ -313,7 +311,12 @@ return (
         </div>
       </div>
     </div>
-    {props.claimNumber && <ClaimGeneration claimNumber={props.claimNumber}  policyNumber={props.policyNumber}/>}
+    {props.claimNumber && (
+      <ClaimGeneration
+        claimNumber={props.claimNumber}
+        policyNumber={props.policyNumber}
+      />
+    )}
   </div>
 ); 
 };
