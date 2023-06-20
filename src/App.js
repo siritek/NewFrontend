@@ -11,6 +11,7 @@ import { Losssummary } from "./Pages/LossSummary";
 import Diary from "./Pages/Diary";
 import Exposure from "./Pages/Exposures";
 import NewNote from "./NewNote";
+import SearchNote from "./SearchNote"
 import Search from "./Pages/Search";
 import Synopsis from "./Pages/Synopsis";
 import ClaimGeneration from "./Pages/ClaimGeneration";
@@ -110,6 +111,7 @@ const handleAdminClick =() => {
           )}
 
           {activeSection === "newnote" && <NewNote setComponentData={setComponentData} componentData={componentData} />}
+          {activeSection === "searchnote" && <SearchNote />}
           {activeSection === "diary" && <Diary />}
           {activeSection === "search" && <Search setComponentData={setComponentData} componentData={componentData} />}
           {/* {activeSection === "synopsis" && <Synopsis onSynopsisClick={() => setActiveSection("synopsis")} />} */}
