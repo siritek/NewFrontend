@@ -21,7 +21,7 @@ import Dropdownlist from "./Pages/Dropdown-list"
 function App() {
   const [activeSection, setActiveSection] = useState(null);
   const [firstfour, setfirstfour] = useState(false);
-  const [claimNumber, setClaimNumber] = useState();
+  const [claimNumber, setClaimNumber] = useState(null);
   const [componentData, setComponentData] = useState({});
   const [admin, setAdmin] = useState(false);
 
@@ -119,7 +119,7 @@ const handleAdminClick =() => {
               componentData={componentData}
             />
           )}
-          {activeSection === "claimGeneration" && ( <ClaimGeneration claimNumber={claimNumber} onLinkClick={handleLinkClick} />)}
+          {activeSection === "claimGeneration" && ( <ClaimGeneration claimNumber="123456" onLinkClick={handleLinkClick} />)}
           {/* new claim synopsis */}
           {activeSection === "newexposure" && (
             <Newexposure lossdataobj={LossData()} onBackClick={() => setActiveSection("exposures")}/>)}

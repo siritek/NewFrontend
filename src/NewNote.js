@@ -81,13 +81,7 @@ const[securityTypes, setSecurityTypes] = useState([]);
       <div className='row mb-2'>
           <div className='col-2'><label htmlFor='claimNumber'>Claim Number</label></div>
           <div className='col-6'>
-            <Form.Select  aria-label="Default select example" required id="topic" value={topic}  onChange={handleTopicChange} >
-            {topics.map((topic,index) => (
-                <option key={index} value={topic}>
-                  {topic}
-                </option>
-            ))}
-            </Form.Select>
+          <input type="text" className='w-100 form-control' id="claim Number" value={claimNumber}  onChange={handleInputChange} /> 
           </div>
         </div>
         </div>

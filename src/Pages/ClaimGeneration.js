@@ -1,8 +1,8 @@
 import React, { useState } from 'react'; 
 // import Synopsis from './Synopsis'; 
  
-const ClaimGeneration = (props) => { 
-  const { claimNumber } = props;
+const ClaimGeneration = (props,{ claimNumber }) => { 
+  // const { claimNumber } = props;
   
  
   const handleLinkClick = () => { 
