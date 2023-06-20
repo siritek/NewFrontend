@@ -69,7 +69,9 @@ function Searchnote(){
                 value={relatedto}
                 onChange={(e) => setrelatedto(e.target.value)}
               >
+                <option value="none">None</option>
                 <option value="claim">Claim</option>
+                <option value="contacts">Contacts</option>
               </Form.Select>
             </div>
           </div>
