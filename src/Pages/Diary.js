@@ -1,9 +1,26 @@
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import React,{useState} from 'react'
 import Form from "react-bootstrap/Form";
 var DairyDataObj;
-function Dairy(){ 
+function Dairy()
+{
   const[componentData,setComponentData]=useState({});
-const handleInputChange = (e) => {  
+  const handleInputChange = (e,date) => { 
+  if(date=='dueDate'){
+    setComponentData((prevData) =>({ 
+   ...prevData, 
+   dateOfReport:e, 
+ }));
+ } 
+ else if(date=='DateCreated'){
+  setComponentData((prevData) =>({ 
+    ...prevData, 
+    dateCreated:e, 
+}));
+}
+else{
+
   const {id, value} = e.target;  
   setComponentData((prevData) =>({  
     ...prevData,  
@@ -44,6 +61,7 @@ const handleNext = () => {
             <input type="text" className='w-100 form-control' id="Claim Number" value={ClaimNumber}  onChange={handleInputChange} />
           </div>
         </div> 
+
          <div className='row mb-2'> 
           <div className='col-4'> 
             <label htmlFor='subject' >Subject</label> 
@@ -52,6 +70,7 @@ const handleNext = () => {
           <input type="text" id='subject' value={subject} onChange={handleInputChange} className='w-100 form-control' maxLength={25}/> 
           </div> 
         </div> 
+
         <div className='row mb-2'> 
           <div className='col-4'> 
             <label htmlFor='description'>Description</label> 
@@ -60,6 +79,7 @@ const handleNext = () => {
           <input type="text" id='description' value={description} onChange={handleInputChange} className='w-100 form-control' maxLength={25}/> 
           </div> 
         </div> 
+
         <div className='row mb-2'> 
          <div className='col-4'>
          <label htmlFor='related'>Related To</label></div>  
@@ -78,19 +98,22 @@ const handleNext = () => {
      
    </div>
    <div className='col-5'>
-     <input  id="dueDate" type="date" value={dueDate}  
-     onChange={handleInputChange}  className='w-100 form-control' />
-   </div>
- </div>
+     {/*<input  id="dueDate" type="date" value={dueDate}  
+     onChange={handleInputChange}  className='w-100 form-control' />*/}
+ 
+        <DatePicker
+       className='w-100 form-control'
+       selected={dueDate}
+        id="dueDate"
+       onChange={(e)=>handleInputChange(e,'dueDate')}
+       dateFormat="MM-dd-yyyy"
+       placeholderText="MM-DD-YYYY"
+     />
+     </div>
+      </div>
+          
         
-        <div className='row mb-2'> 
-          <div className='col-4'> 
-            <label htmlFor='priority'>Priority</label> 
-          </div> 
-          <div className='col-5'> 
-          <input type="text" id='priority' value={priority} onChange={handleInputChange} className='w-100 form-control' maxLength={25}/> 
-          </div> 
-        </div> 
+        
 
 
         <div className='row mb-2'> 
@@ -130,8 +153,15 @@ const handleNext = () => {
      
    </div>
    <div className='col-5'>
-     <input  id="dateCreated" type="date" value={dateCreated}  
-     onChange={handleInputChange}  className='w-100 form-control' />
+   <DatePicker
+   className='w-100 form-control'
+        selected={dateCreated}
+         id="dateCreated"
+        onChange={(e)=>handleInputChange(e,'dateCreated')}
+        dateFormat="MM-dd-yyyy"
+        placeholderText="MM-DD-YYYY"
+      />
+   
    </div>
  </div>
         
@@ -140,5 +170,6 @@ const handleNext = () => {
           
        
     )
+}
 }
 export default Dairy;

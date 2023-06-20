@@ -1,15 +1,40 @@
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import React, { useEffect }  from 'react'
 import Form from "react-bootstrap/Form";
 // import Dropdown from 'react-bootstrap/Dropdown'; 
 
+
+const today = new Date();
+const pastYear = new Date();
+pastYear.setFullYear(today.getFullYear() - 1)
+
+
+
+  
+
+
  
-function Basic({ setComponentData, componentData, fnoldataobj }) { 
-  const handleInputChange = (e) => {
-    const { id, value } = e.target;
-    setComponentData((prevData) => ({
-      ...prevData,
-      [id]: value,
-    }));
+function Basic({id, value, setComponentData, componentData, fnoldataobj }) { 
+  const handleInputChange = (e,data) => {
+    if(data=="date"){
+      const { id, value } = e.target;
+
+      setComponentData((prevData) => ({
+        ...prevData,
+        [id]: value,
+      }));
+
+    }else{
+      const {id, value} = e.target; 
+
+      setComponentData((prevData) => ({
+        ...prevData,
+        [id]: value,
+      }));
+
+    }
+    
   };
 
   useEffect(() => {
@@ -116,15 +141,34 @@ function Basic({ setComponentData, componentData, fnoldataobj }) {
             No
           </div>
         </div>
-
         <div className='row mb-2'>
    <div className='col-4'>
+  
+   
      <label htmlFor="dateOfLoss"> Date Of Loss</label>
      
    </div>
    <div className='col-5'>
-     <input  id="dateOfLoss" type="date" value={dateOfLoss}  
-     onChange={handleInputChange}  className='w-100 form-control' />
+     {/* <input  id="dateOfLoss" type="date" value={dateOfLoss}
+      max={new Date().toISOString().split('T')[0]}  
+     onChange={handleInputChange}  className='w-100 form-control' /> */}
+      
+   <DatePicker
+   className='w-100 form-control'
+        selected={dateOfLoss}
+         id="dateOfLoss"
+        onChange={(e)=>handleInputChange(e,'date')}
+          
+
+             minDate={pastYear}
+      maxDate={today}
+        dateFormat="MM-dd-yyyy"
+        placeholderText="MM-DD-YYYY"
+      />
+
+
+
+        
    </div>
  </div>
 

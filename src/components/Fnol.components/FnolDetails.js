@@ -23,9 +23,9 @@ function FnolDetails({setComponentData, componentData}){
     }));
     }
     else if(date=='datereport'){
-       setComponentData((prevData) =>({ 
-      ...prevData, 
-      dateOfReport:e, 
+      setComponentData((prevData) =>({ 
+        ...prevData, 
+        dateOfReport:e, 
     }));
     }
     else{
@@ -104,8 +104,6 @@ function FnolDetails({setComponentData, componentData}){
         selected={dateOfLoss}
          id="dateOfLoss"
         onChange={(e)=>handleInputChange(e,'date')}
-          
-
              minDate={pastYear}
       maxDate={today}
         dateFormat="MM-dd-yyyy"
