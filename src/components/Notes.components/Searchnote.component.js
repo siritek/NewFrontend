@@ -17,7 +17,7 @@ function Searchnote(){
     e.preventDefault()
     const abs={topic,relatedTo,findText}
     console.log(abs)
-    fetch("http://localhost:8080/",{
+    fetch("http://localhost:8080/searchnotefirst/add",{
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify(abs)
