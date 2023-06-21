@@ -8,14 +8,14 @@ import Form from "react-bootstrap/Form";
 function Searchnote(){  
 
     const[topic,settopic] =useState('')
-    const[findtext,setfindtext] =useState('')
-   const[relatedto,setrelatedto] =useState('')
+    const[findText,setfindText] =useState('')
+   const[relatedTo,setrelatedTo] =useState('')
 
    
 
    const handleClick=(e)=>{
     e.preventDefault()
-    const abs={topic,relatedto,findtext}
+    const abs={topic,relatedTo,findText}
     console.log(abs)
     fetch("http://localhost:8080/",{
         method:"POST",
@@ -41,9 +41,9 @@ function Searchnote(){
                 type="text"
                 className="w-100 form-control"
                 id="FindText-select"
-                value={findtext}
+                value={findText}
                 onChange={(event) => {
-                  setfindtext(event.target.value);
+                  setfindText(event.target.value);
                 }}
               />
             </div>
@@ -65,9 +65,9 @@ function Searchnote(){
             <div className="col-8">
               <Form.Select
                 className="w-100 form-control"
-                name="relatedto"
-                value={relatedto}
-                onChange={(e) => setrelatedto(e.target.value)}
+                name="relatedTo"
+                value={relatedTo}
+                onChange={(e) => setrelatedTo(e.target.value)}
               >
                 <option value="none">None</option>
                 <option value="claim">Claim</option>
