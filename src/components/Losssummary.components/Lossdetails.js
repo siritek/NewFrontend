@@ -1,3 +1,5 @@
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
@@ -11,7 +13,16 @@ function Lossdetails({ setComponentData, componentData, fnoldataobj}) {
     }));
   };*/}
 
-  const handleInputChange = (e) => {
+  const [loading, setLoading,] = useState(true); 
+  const handleInputChange = (e,date) => { 
+      if(date == 'dateOfLoss'){
+   setComponentData((prevData) =>({ 
+        ...prevData, 
+        dateOfLoss:e, 
+      }));
+      }
+      
+  
     const { id, value } = e.target;
       setComponentData((prevData) => ({
         ...prevData,
@@ -45,6 +56,10 @@ function Lossdetails({ setComponentData, componentData, fnoldataobj}) {
         [id]: value,
       }));
     */}
+  
+
+  
+
   };
 
   const [lossCause, setLossCause] = useState('');
@@ -271,15 +286,15 @@ function Lossdetails({ setComponentData, componentData, fnoldataobj}) {
             <label htmlFor="dateOfLoss">Date of loss</label>
             <i className="text-danger h5">*</i>
           </div>
-          <div className="col-8">
-            <input
-              type="date"
+          <div className="col-5"> 
+          <DatePicker
               className="w-100 form-control"
+              selected={dateOfLoss}
               id="dateOfLoss"
-              value={dateOfLoss}
-              onChange={handleInputChange}
-              
-            />
+             onChange={(e)=>handleInputChange(e,'dateOfLoss')}
+             dateFormat="MM-dd-yyyy"
+             placeholderText="MM-DD-YYYY"
+           />
           </div>
         </div>
 

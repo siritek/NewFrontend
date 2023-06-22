@@ -13,11 +13,19 @@ const handleInputChange = (e,date) => {
          ...prevData, 
          dueDate:e, 
        }));
-       }
-  const { id, value } = e.target;
-    if (id === "relatedTo") {
+       }else if(date == "dateCreated"){
+        setComponentData((prevData) =>({ 
+          ...prevData, 
+          dateCreated:e, 
+        }));
+       }else{
+
+         const { id, value } = e.target;
+              if (id === "relatedTo") {
       setRelatedTo(value);
-    } else if (id === "assignedTo") {
+
+    }
+     else if (id === "assignedTo") {
       setAssignedTo(value);
     } else if (id === "createdBy") {
       setCreatedBy(value);
@@ -27,7 +35,7 @@ const handleInputChange = (e,date) => {
     ...prevData,  
     [id]:value,  
   }));
-}  
+}  }
 };  
 
 const[relatedTo, setRelatedTo] = useState('');

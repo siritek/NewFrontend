@@ -6,6 +6,8 @@ function FnolDetails({setComponentData, componentData}){
 
  
 
+  const date = new Date();
+  const options = { timeZone: 'America/New_York', timeZoneName: 'short' };
 
 
   const today = new Date();
@@ -17,6 +19,7 @@ function FnolDetails({setComponentData, componentData}){
 
   const handleInputChange = (e,date) => {
     if(date == 'date'){
+      console.log(e,'dateoflosseeeeeeee');
  setComponentData((prevData) =>({ 
       ...prevData, 
       dateOfLoss:e, 

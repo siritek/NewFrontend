@@ -1,3 +1,6 @@
+
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import React, { useState, useEffect } from 'react'; 
 import axios from 'axios'; 
 import Form from "react-bootstrap/Form"; 
@@ -5,21 +8,106 @@ import Form from "react-bootstrap/Form";
  
   
 function Basic({ setComponentData, componentData, fnoldataobj }) {  
-  const handleInputChange = (e) => { 
-    const { id, value } = e.target; 
-  {/*}  if (id === "policyType") { 
-      setPolicyType(value); 
-    } else if (id === "policyStatus") { 
-      setPolicyStatus(value); 
-    } 
-     else { 
-     //const { id, value } = e.target;*/} 
-    setComponentData((prevData) => ({ 
+
+  const [loading, setLoading,] = useState(true); 
+  const handleInputChange = (e,date) => { 
+
+    if(date == 'dateOfLoss'){
+        setComponentData((prevData) =>({ 
       ...prevData, 
-      [id]: value, 
-    })); 
-//  } 
+      dateOfLoss:e, 
+    }));
+    }
+   
+
+  
+    else if(date=="effectiveDate"){
+      setComponentData((prevData) =>({ 
+        ...prevData, 
+        effectiveDate:e, 
+      }));
+    }
+    else if(date=="expirationDate"){
+      setComponentData((prevData) =>({ 
+        ...prevData, 
+        expirationDate:e, 
+      }));
+    }
+    // else if(id==""){
+    //   setComponentData((prevData) =>({ 
+    //     ...prevData, 
+    //     effectiveDate:e, 
+    //   }));
+    // }
+    else if(date=="cancellationDate"){
+      setComponentData((prevData) =>({ 
+        ...prevData, 
+        cancellationDate:e, 
+      }));
+    }
+    else if(date=="originalEffectiveDate"){
+      setComponentData((prevData) =>({ 
+        ...prevData, 
+        originalEffectiveDate:e, 
+      }));
+    }
+    else{
+      const { id, value } = e.target;
+     setComponentData((prevData) => ({ 
+       ...prevData, 
+       [id]: value, 
+     }));
+    }
+  }
+  const handleInputChange1 = (e,date) => { 
+      if(date == 'dateOfLoss'){
+        alert()
+          setComponentData((prevData) =>({ 
+        ...prevData, 
+        dateOfLoss:e, 
+      }));
+      } 
+
+    //  const { id, value } = e.target;
+    // setComponentData((prevData) => ({ 
+    //   ...prevData, 
+    //   [id]: value, 
+    // })); 
+ 
+
+else if(date=='effectiveDate'){
+  setComponentData((prevData) =>({ 
+    ...prevData, 
+    effectiveDate:e, 
+}));
+}
+// else{
+// const {id, value} = e.target; 
+
+// setComponentData((prevData) =>({ 
+  
+//   ...prevData, 
+//   [id]:value, 
+// }));
+// }
+else if(date=='expirationDate'){
+  setComponentData((prevData) =>({ 
+    ...prevData, 
+    expirationDate:e, 
+}));
+}
+else{
+// const {id, value} = e.target; 
+
+// setComponentData((prevData) =>({ 
+  
+//   ...prevData, 
+//   [id]:value, 
+// }));
+}
+
 }; 
+
     const [policyType, setPolicyType] = useState(''); 
     const [policyTypes, setPolicyTypes] = useState([]); 
     const [policyStatus, setPolicyStatus] = useState(''); 
@@ -163,8 +251,14 @@ function Basic({ setComponentData, componentData, fnoldataobj }) {
       
    </div> 
    <div className='col-5'> 
-     <input  id="dateOfLoss" type="date" value={dateOfLoss}   
-     onChange={handleInputChange}  className='w-100 form-control' /> 
+   <DatePicker
+              className="w-100 form-control"
+              selected={dateOfLoss}
+              id="dateOfLoss"
+             onChange={(e)=>handleInputChange(e,'dateOfLoss')}
+             dateFormat="MM-dd-yyyy"
+             placeholderText="MM-DD-YYYY"
+           />
    </div> 
  </div> 
  
@@ -200,13 +294,17 @@ function Basic({ setComponentData, componentData, fnoldataobj }) {
             <i className="text-danger h5">*</i> 
           </div> 
           <div className="col-8"> 
-            <input 
-              type="date" 
-              className="w-100 form-control" 
-              id="effectiveDate" 
-              value={effectiveDate} 
-              onChange={handleInputChange} 
-            /> 
+          <DatePicker
+      className='w-100 form-control'
+        selected={effectiveDate}
+         id="effectiveDate"
+        onChange={(e)=>handleInputChange(e,'effectiveDate')}
+        dateFormat="MM-dd-yyyy"
+        placeholderText="MM-DD-YYYY"
+      />
+
+            
+             
           </div> 
         </div> 
  
@@ -216,13 +314,16 @@ function Basic({ setComponentData, componentData, fnoldataobj }) {
             <i className="text-danger h5">*</i> 
           </div> 
           <div className="col-8"> 
-            <input 
-              type="date" 
-              className="w-100 form-control" 
-              id="expirationDate" 
-              value={expirationDate} 
-              onChange={handleInputChange} 
-            /> 
+          <DatePicker
+              className="w-100 form-control"
+              selected={expirationDate}
+              id="expirationDate"
+             onChange={(e)=>handleInputChange(e,'expirationDate')}
+             dateFormat="MM-dd-yyyy"
+             placeholderText="MM-DD-YYYY"
+           />
+            
+              
           </div> 
         </div> 
  
@@ -231,13 +332,17 @@ function Basic({ setComponentData, componentData, fnoldataobj }) {
             <label htmlFor="cancellationDate">Cancellation Date</label> 
           </div> 
           <div className="col-8"> 
-            <input 
-              type="date" 
-              className="w-100 form-control" 
-              id="cancellationDate" 
-              value={cancellationDate} 
-              onChange={handleInputChange} 
-            /> 
+          <DatePicker
+      className='w-100 form-control'
+        selected={cancellationDate}
+         id="cancellationDate"
+        onChange={(e)=>handleInputChange(e,'cancellationDate')}
+        dateFormat="MM-dd-yyyy"
+        placeholderText="MM-DD-YYYY"
+      />
+
+            
+              
           </div> 
         </div> 
  
@@ -248,13 +353,14 @@ function Basic({ setComponentData, componentData, fnoldataobj }) {
             </label> 
           </div> 
           <div className="col-8"> 
-            <input 
-              type="date" 
-              className="w-100 form-control" 
-              id="originalEffectiveDate" 
-              value={originalEffectiveDate} 
-              onChange={handleInputChange} 
-            /> 
+          <DatePicker
+      className='w-100 form-control'
+        selected={originalEffectiveDate}
+         id="originalEffectiveDate"
+        onChange={(e)=>handleInputChange(e,'originalEffectiveDate')}
+        dateFormat="MM-dd-yyyy"
+        placeholderText="MM-DD-YYYY"
+      />
           </div> 
         </div> 
  
@@ -324,7 +430,7 @@ function Basic({ setComponentData, componentData, fnoldataobj }) {
   );  
 }  
   
-export default Basic  
+export default Basic 
  
  
  

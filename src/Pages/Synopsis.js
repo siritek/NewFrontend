@@ -1,10 +1,38 @@
+
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import React, { useState, useEffect } from 'react'; 
 //import Form from 'react-bootstrap/Form'; 
 import Upcomingactivities from '../components/Synopsis.components/upcomingactivities.component'; 
  
-function Synopsis({ claimNumber }) { 
+function Synopsis({ claimNumber }) {
   const [componentData, setComponentData] = useState(null); 
   const [loading, setLoading] = useState(true); 
+  const handleInputChange = (e,date) => { 
+      if(date == 'dateOfLoss'){
+   setComponentData((prevData) =>({ 
+        ...prevData, 
+        dateOfLoss:e, 
+      }));
+      }
+
+    else if(date=='datereport'){
+          setComponentData((prevData) =>({ 
+            ...prevData, 
+            dateOfReport:e, 
+        }));
+        }
+        else{
+           const { id, value } = e.target;
+           setComponentData((prevData) =>({ 
+            ...prevData, 
+            [id]:value, 
+          }));
+          }
+          
+        }; 
+  
+     
  
   useEffect(() => { 
     const fetchData = async () => { 
@@ -93,15 +121,17 @@ function Synopsis({ claimNumber }) {
         <div className="row mb-2"> 
           <div className="col-4"> 
             <label htmlFor="dateOfLoss">Date Of Loss</label> 
-          </div> 
+          </div>
           <div className="col-5"> 
-            <input 
-              id="dateOfLoss" 
-              type="date" 
-              value={componentData?.dateOfLoss?.toISOString().split('T')[0] || ''} 
-              readOnly 
-              className="w-100 form-control" 
-            /> 
+          <DatePicker
+              className="w-100 form-control"
+              selected={componentData?.dateOfLoss|| ''}
+              id="dateOfLoss"
+             onChange={(e)=>handleInputChange(e,'dateOfLoss')}
+             dateFormat="MM-dd-yyyy"
+             placeholderText="MM-DD-YYYY"
+           />
+        
           </div> 
         </div> 
         <div className="row mb-2"> 
@@ -121,15 +151,21 @@ function Synopsis({ claimNumber }) {
         <div className="row mb-2"> 
           <div className="col-4"> 
             <label htmlFor="dateOfReport">Date Reported</label> 
-          </div> 
-          <div className="col-5"> 
-            <input 
-              type="date" 
-              id="dateOfReport" 
-              value={componentData?.dateOfReport?.toISOString().split('T')[0] || ''} 
-              readOnly 
-              className="w-100 form-control" 
-            /> 
+            </div>
+<div className='col-5'>
+  {/* <input type="date" id="dateOfReport" value={dateOfReport} 
+      
+    onChange={handleInputChange} className='w-100 form-control' /> */}
+    
+      <DatePicker
+      className='w-100 form-control'
+        selected={componentData?.dateOfReport || ''}
+         id="dateOfReport"
+        onChange={(e)=>handleInputChange(e,'datereport')}
+        dateFormat="MM-dd-yyyy"
+        placeholderText="MM-DD-YYYY"
+      />
+            
           </div> 
         </div> 
         <div className="row mb-2"> 
@@ -170,6 +206,8 @@ function Synopsis({ claimNumber }) {
       </div> 
     </div> 
   ); 
-} 
+  }
+
+      
  
 export default Synopsis; 
