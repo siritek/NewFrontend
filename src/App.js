@@ -35,7 +35,7 @@ function App() {
     if (section === "fnol" || section === "pi" || section === "losssummary" || section === "exposures") {
       setfirstfour(true);
     }
-   if (section === "synopsis"|| section === "newnote" || section === "dairy" || section === "documents"|| section ===" ") {
+   if (section === "synopsis"|| section === "newnote" || section === "dairy" || section === "documents"|| section ===" "||section==="search") {
       setfirstfour(false);
     }
       if(section === "dropdownlist") 
@@ -63,6 +63,12 @@ const handleAdminClick =() => {
   setAdmin (true);
   setfirstfour(false);
 };
+const handleSearchClick =() => {
+  setActiveSection("search")
+  setAdmin (false);
+  setfirstfour(false);
+};
+
 
   return (
     <>
@@ -70,7 +76,7 @@ const handleAdminClick =() => {
         <Col>
           <Header
             onFnolClick={handleFnolClick}
-            onSearchClick={() => setActiveSection("search")}
+            onSearchClick={handleSearchClick}
             onBlankClick={handleBlankClick}
             onAdminClick ={ handleAdminClick}
           />
