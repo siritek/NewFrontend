@@ -38,6 +38,47 @@ function Synopsis({ claimNumber }) {
   if (loading) {  
     return <div>Loading...</div>;  
   }  
+
+  // useEffect(() => { 
+  //   const fetchData = async () => { 
+  //     try { 
+  //       const response = await fetch('http://localhost:8080/claim/loss', { 
+  //         method: 'POST', 
+  //         headers: { 
+  //           'Content-Type': 'application/json', 
+  //         }, 
+  //         body: JSON.stringify({ 
+  //           claimNumber: claimNumber, 
+  //           policyNumber: '', // Add the policy number if needed 
+  //         }), 
+  //       }); 
+ 
+  //       if (response.ok) { 
+  //         const data = await response.json(); 
+ 
+  //         if (Array.isArray(data) && data.length > 0) { 
+  //           const claim = data[0]; 
+  //           claim.dateOfLoss = new Date(claim.dateOfLoss); // Convert date string to Date object 
+  //           claim.dateOfReport = new Date(claim.dateOfReport); // Convert date string to Date object 
+  //           setComponentData(claim); 
+  //         } 
+  //       } else { 
+  //         throw new Error('Failed to fetch data'); 
+  //       } 
+ 
+  //       setLoading(false); 
+  //     } catch (error) { 
+  //       console.error('Error fetching data:', error); 
+  //       setLoading(false); 
+  //     } 
+  //   }; 
+ 
+  //   fetchData(); 
+  // }, [claimNumber]); 
+ 
+  // if (loading) { 
+  //   return <div>Loading...</div>; 
+  // }
   
   return (  
     <div className="ms-3">  
