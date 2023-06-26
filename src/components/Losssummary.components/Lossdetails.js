@@ -15,12 +15,12 @@ function Lossdetails({ setComponentData, componentData, fnoldataobj}) {
 
   const [loading, setLoading,] = useState(true); 
   const handleInputChange = (e,date) => { 
-      if(date == 'dateOfLoss'){
-   setComponentData((prevData) =>({ 
-        ...prevData, 
-        dateOfLoss:e, 
-      }));
-      }
+  //     if(date == 'dateOfLoss'){
+  //  setComponentData((prevData) =>({ 
+  //       ...prevData, 
+  //       dateOfLoss:e, 
+  //     }));
+  //     }
       
   
     const { id, value } = e.target;
@@ -287,14 +287,16 @@ function Lossdetails({ setComponentData, componentData, fnoldataobj}) {
             <i className="text-danger h5">*</i>
           </div>
           <div className="col-5"> 
-          <DatePicker
+          {/* <DatePicker
               className="w-100 form-control"
               selected={dateOfLoss}
               id="dateOfLoss"
              onChange={(e)=>handleInputChange(e,'dateOfLoss')}
              dateFormat="MM-dd-yyyy"
              placeholderText="MM-DD-YYYY"
-           />
+           /> */}
+           <input id="dateOfLoss" type="date" value={dateOfLoss}  
+     onChange={handleInputChange}className='w-100 form-control' />
           </div>
         </div>
 

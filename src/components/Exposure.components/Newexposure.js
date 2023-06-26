@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
  
 
 var ExposureDataObj
+var exposureDataArray = [];
 function Newexposure(props,{lossdataobj}){ 
 
   const [componentData, setComponentData] = useState({});
@@ -107,12 +108,16 @@ function Newexposure(props,{lossdataobj}){
   const handleNext = () => {
     // Access the component data from the state
     ExposureDataObj = componentData
-    console.log(componentData);
+
+    if (typeof(Storage) !== "undefined") {
+      exposureDataArray.push(componentData)
+      localStorage.setItem("exposureDataArray", JSON.stringify(exposureDataArray));
+    }
     // Perform further actions with the data
   };
-  if(Object.keys(componentData).length === 0 && ExposureDataObj !== undefined) {
-    setComponentData(ExposureDataObj)
-  }
+  // if(Object.keys(componentData).length === 0 && ExposureDataObj !== undefined) {
+  //   setComponentData(ExposureDataObj)
+  // }
 
   const [inputarr, setInputarr] = useState([]);
   

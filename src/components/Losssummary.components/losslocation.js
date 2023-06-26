@@ -35,7 +35,7 @@ const fetchLossLocationDD = async () => {
 } 
   const {
     // location = '',
-    address = '',
+    lossAddress = '',
     // address2 = '',
     // address3 = '',
     //country = '',
@@ -78,15 +78,15 @@ const fetchLossLocationDD = async () => {
 
         <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="address">Address</label>
+            <label htmlFor="lossAddress">Address</label>
             </div>
           <div className="col-15">
             <input
               type="text"
               className="w-100 form-control"
               maxLength={500}
-              id="address"
-              value={address}
+              id="lossAddress"
+              value={lossAddress}
               onChange={handleInputChange}
             />
           </div>

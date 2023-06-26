@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef,useEffect } from "react";
 import Header from "./Header";
 import {SideNavigation} from "./SideNavigation";
 import { Col, Row } from "reactstrap";
@@ -15,7 +15,7 @@ import SearchNote from "./SearchNote"
 import Search from "./Pages/Search";
 import Synopsis from "./Pages/Synopsis";
 import ClaimGeneration from "./Pages/ClaimGeneration";
-import { Newexposure } from "./components/Exposure.components/Newexposure";
+import  {Newexposure}  from "./components/Exposure.components/Newexposure";
 import { LossData } from "./Pages/LossSummary";
 import Dropdownlist from "./Pages/Dropdown-list"
 
@@ -23,6 +23,7 @@ function App() {
   const [activeSection, setActiveSection] = useState(null);
   const [firstfour, setfirstfour] = useState(false);
   const [claimNumber, setClaimNumber] = useState(null);
+  // const [policyNumber, setPolicyNumber] = useState(null); 
   const [componentData, setComponentData] = useState({});
   const [admin, setAdmin] = useState(false);
 
@@ -68,6 +69,13 @@ const handleSearchClick =() => {
   setAdmin (false);
   setfirstfour(false);
 };
+
+
+// useEffect(() => {
+//   if (claimNumber && policyNumber) {
+//     setActiveSection("claimGeneration");
+//   }
+// }, [claimNumber, policyNumber]);
 
 
   return (
@@ -124,15 +132,20 @@ const handleSearchClick =() => {
           {activeSection === "newnote" && <NewNote setComponentData={setComponentData} componentData={componentData} />}
           {activeSection === "searchnote" && <SearchNote />}
           {activeSection === "diary" && <Diary />}
-          {activeSection === "search" && <Search setComponentData={setComponentData} componentData={componentData} />}
+          {activeSection === "search" && (<Search setComponentData={updateComponentData} componentData={componentData} />)}
           {/* {activeSection === "synopsis" && <Synopsis onSynopsisClick={() => setActiveSection("synopsis")} />} */}
           {activeSection === "synopsis" && (
-            <Synopsis claimNumber={claimNumber}
-              setComponentData={updateComponentData}
-              componentData={componentData}
+            <Synopsis  claimNumber={claimNumber.claimNumber} 
+                 setComponentData={updateComponentData} componentData={componentData}
             />
           )}
-          {activeSection === "claimGeneration" && ( <ClaimGeneration claimNumber="123456" onLinkClick={handleLinkClick} />)}
+        {activeSection === "claimGeneration" && claimNumber &&  ( 
+            <ClaimGeneration 
+              claimNumber={claimNumber} 
+              // policyNumber={policyNumber} 
+              onLinkClick={handleLinkClick} 
+            /> 
+          )}
           {/* new claim synopsis */}
           {activeSection === "newexposure" && (
             <Newexposure lossdataobj={LossData()} onBackClick={() => setActiveSection("exposures")}/>)}

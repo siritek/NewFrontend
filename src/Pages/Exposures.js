@@ -9,9 +9,13 @@ import { Button } from "react-bootstrap";
 import ClaimGeneration from './ClaimGeneration';
 
 
+
 function Exposure(props){
   //const [exposuresubmitclick, setExposuresubmitclick] = useState(false);
   //const [componentData, setComponentData] = useState({});
+
+  //var myExposureDataArray = JSON.parse(localStorage.getItem("exposureDataArray"));
+  const myExposureDataArray = JSON.parse(localStorage.getItem("exposureDataArray")) || [];
 
   const handleLossSummaryClick=()=>{
     props.onLossSummaryClick();
@@ -24,18 +28,17 @@ function Exposure(props){
   }
   const handleClick=(e)=>{ 
 
-    //ExposureDataObj = {ExposureData}
-
     const myFnolData = FnolData();
     const myPolicyInfo = policyData();
     const myLossData = LossData();
-    const myExposureData = ExposureData();
-
+   // const myExposureData = localStorage.getItem("exposureDataArray");
+   const myExposureData = ExposureData();
+   
     const finalDataObj = {
       "fnolData": myFnolData,
       "policyInfoData": myPolicyInfo,
       "lossData": myLossData,
-      "exposureData": myExposureData
+      "exposureData":myExposureData
     } 
     //  console.log(finalDataObj); 
     // e.preventDefault()  
@@ -54,6 +57,27 @@ function Exposure(props){
       console.error("Error adding new claim:", error);  
     });  
   }  
+  
+  // const myExposureData = () => {
+  //   const tableRows = document.querySelectorAll('tr[key]');
+  // const tableData = [];
+
+  // tableRows.forEach((row) => {
+  //   const rowData = {};
+  //   const cells = row.querySelectorAll('td');
+
+  //   cells.forEach((cell, index) => {
+  //     const columnHeader = document.querySelector(`th:nth-child(${index + 1})`).textContent;
+  //     rowData[columnHeader] = cell.textContent;
+  //   });
+
+  //   tableData.push(rowData);
+  // });
+  // console.log("===== >>>>>>", tableData)
+  //   return tableData
+  // }
+ 
+
 
   const generateClaimNumber = () => { 
     const fnolData = FnolData(); // Call FnolData() to retrieve the data 
@@ -92,11 +116,20 @@ function Exposure(props){
     setInputarr(updatedInputArr);
   }
 
-    function handleCheckboxChange(e, index) {
+  //   function handleCheckboxChange(e, index) {
+  //   const { checked } = e.target;
+  //   const updatedInputArr = [...inputarr];
+  //   updatedInputArr[index].checked = checked;
+  //   setInputarr(updatedInputArr);
+  // }
+
+  function handleCheckboxChange(e, index) {
     const { checked } = e.target;
-    const updatedInputArr = [...inputarr];
-    updatedInputArr[index].checked = checked;
-    setInputarr(updatedInputArr);
+    setInputarr((prevInputArr) => {
+      const updatedInputArr = [...prevInputArr];
+      updatedInputArr[index] = { ...updatedInputArr[index], checked };
+      return updatedInputArr;
+    });
   }
 
     function handleAllCheckedChange(e) {
@@ -112,30 +145,44 @@ function Exposure(props){
     setAllChecked(false);
   }
 
-  function handleSubmit() {
-    const updatedInputArr = inputarr.map((item) => ({
-      ...item,
-      submitted: true,
-    }));
-    setInputarr(updatedInputArr);
-    console.log(updatedInputArr);
-  }
+  // function handleSubmit() {
+  //   const updatedInputArr = inputarr.map((item) => ({
+  //     ...item,
+  //     submitted: true,
+  //   }));
+  //   setInputarr(updatedInputArr);
+  //   console.log(updatedInputArr);
+  // }
 
-  function handleAdd() {
-    setInputarr([
-      ...inputarr,
-      {
-        checked: false,
-        LossParty: "",
-        PrimaryCoverage: "",
-        ClaimantType: "",
-        Status: "",
-        Adjuster: "",
-        submitted: false,
-      },
-    ]);
-  }
- 
+  // function handleAdd() {
+  //   setInputarr((prevInputArr) => {
+  //     const newRow = {
+  //       checked: false,
+  //       LossParty: "", // Set the default values here
+  //       PrimaryCoverage: "",
+  //       ClaimantType: "",
+  //       Status: "",
+  //       Adjuster: "",
+  //       submitted: false,
+  //     };
+  
+  //     return [...prevInputArr, newRow];
+  //   });
+  // }
+  // function handleAdd() {
+  //   setInputarr([
+  //     ...inputarr,
+  //     {
+  //       checked: false,
+  //       lossParty: "",
+  //       primaryCoverage: "",
+  //       claimantType: "",
+  //       status: "",
+  //       adjuster: "",
+  //       submitted: false,
+  //     },
+  //   ]);
+  // }
  
   const [tableData, setTableData] = useState([ 
 
@@ -191,6 +238,7 @@ return (
           onClick={() => {
             handleClick();
             handleBlankClick();
+          //  myExposureData();
           }}
         />
       </div>
@@ -223,8 +271,8 @@ return (
     </div>
     {/* <BootstrapTable keyField="id" data={tableData} columns={columns} /> */}
 
-    <div className="container">
-      <div className="row p-1 m-0">
+     <div className="container">
+      {/* <div className="row p-1 m-0">
         <div className="col-4 align-right">
           <Button variant="success" onClick={handleAdd}>
             Add
@@ -234,7 +282,7 @@ return (
             Save
           </Button>
         </div>
-      </div>
+      </div>  */}
 
       <div className="App">
         <div className="table-responsive">
@@ -248,64 +296,40 @@ return (
                     onChange={handleAllCheckedChange}
                   />
                 </th>
-                <th> ID </th>
+                {/* <th> ID </th> */}
                 <th> LossParty </th>
                 <th> PrimaryCoverage </th>
                 <th> ClaimantType </th>
                 <th> status </th>
                 <th> adjuster </th>
               </tr>
-              {inputarr.length < 1 ? (
-                <tr>
-                  <td colSpan={8} className="text-center">
-                    No data Entered yet !
-                  </td>
-                </tr>
-              ) : (
-                inputarr.map((info, ind) => {
+              
+              {
+                myExposureDataArray == undefined || myExposureDataArray.length === 0 ? <tr>
+                <td colSpan={8} className="text-center">
+                  No data Entered yet !
+                </td>
+              </tr> : (
+                myExposureDataArray.map((item) => {
                   return (
-                    !info.deleted && (
-                      <tr key={ind}>
-                        <td>
-                          <input
-                            type="checkbox"
-                            checked={info.checked}
-                            onChange={(e) => handleCheckboxChange(e, ind)}
-                          />
-                        </td>
-
-                        <td>{ind + 1}</td>
-
-                        <td>{policyInfoObj.policyType}</td>
-
-                        <td>{ExposureDataObj.primaryCoverage}</td>
-
-                        <td>{ExposureDataObj.claimant}</td>
-
-                        <td>
-                          <input
-                            type="text"
-                            name="Involving"
-                            value={info.Involving}
-                            onChange={(e) => handleChange(e, ind)}
-                            className="form-control"
-                          />
-                        </td>
-
-                        <td>
-                          <input
-                            type="text"
-                            name="Status"
-                            value={info.Status}
-                            onChange={(e) => handleChange(e, ind)}
-                            className="form-control"
-                          />
-                        </td>
-                      </tr>
-                    )
-                  );
+                    <tr>
+                      <td>
+                        <input
+                          type="checkbox"
+                          checked={item.checked}
+                          onChange={(e) => handleCheckboxChange(e, item.id)}
+                        />
+                      </td>
+                      <td>{item.id}</td>
+                      <td>{item.lossParty}</td>
+                      <td>{item.primaryCoverage}</td>
+                      <td>{item.claimantType}</td>
+                      <td>{item.status}</td>
+                      <td>{item.adjuster}</td>
+                    </tr>)
                 })
-              )}
+              )
+              }
             </tbody>
           </table>
         </div>
@@ -315,6 +339,7 @@ return (
       <ClaimGeneration
         claimNumber={props.claimNumber}
         policyNumber={props.policyNumber}
+       // onLinkClick={handleBlankClick}
       />
     )}
   </div>
@@ -325,3 +350,6 @@ return (
 // }
 
 export default Exposure 
+
+
+
