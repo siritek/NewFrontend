@@ -74,7 +74,9 @@ function Dropdownlist() {
     try {
       const response = await axios.get('http://localhost:8080/policystatus');
       console.log('Response data:', response.data);
-      setPolicyStatuses(response.data);
+      if (response.data && response.data.length > 0) {
+        setPolicyStatuses(response.data);
+      }
     } catch (error) {
       console.error('Error fetching policy types and status:', error);
     }

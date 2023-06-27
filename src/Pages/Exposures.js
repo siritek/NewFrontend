@@ -15,7 +15,10 @@ function Exposure(props){
   //const [componentData, setComponentData] = useState({});
 
   //var myExposureDataArray = JSON.parse(localStorage.getItem("exposureDataArray"));
-  const myExposureDataArray = JSON.parse(localStorage.getItem("exposureDataArray")) || [];
+  // const myExposureDataArray = JSON.parse(localStorage.getItem("exposureDataArray")) || [];
+  const [myExposureDataArray, setMyExposureDataArray] = useState( 
+    JSON.parse(localStorage.getItem("exposureDataArray")) || [] 
+  ); 
 
   const handleLossSummaryClick=()=>{
     props.onLossSummaryClick();
@@ -123,27 +126,51 @@ function Exposure(props){
   //   setInputarr(updatedInputArr);
   // }
 
-  function handleCheckboxChange(e, index) {
-    const { checked } = e.target;
-    setInputarr((prevInputArr) => {
-      const updatedInputArr = [...prevInputArr];
-      updatedInputArr[index] = { ...updatedInputArr[index], checked };
-      return updatedInputArr;
-    });
-  }
+  // function handleCheckboxChange(e, index) {
+  //   const { checked } = e.target;
+  //   setInputarr((prevInputArr) => {
+  //     const updatedInputArr = [...prevInputArr];
+  //     updatedInputArr[index] = { ...updatedInputArr[index], checked };
+  //     return updatedInputArr;
+  //   });
+  // }
+  function handleCheckboxChange(e, index) { 
+    const { checked } = e.target; 
+    const updatedExposureDataArray = [...myExposureDataArray]; 
+    updatedExposureDataArray[index] = { 
+      ...updatedExposureDataArray[index], 
+      checked, 
+    }; 
+    setMyExposureDataArray(updatedExposureDataArray); 
+  } 
 
-    function handleAllCheckedChange(e) {
-    const { checked } = e.target;
-    setAllChecked(checked);
-    const updatedInputArr = inputarr.map((item) => ({ ...item, checked: checked }));
-    setInputarr(updatedInputArr);
-  }
+  //   function handleAllCheckedChange(e) {
+  //   const { checked } = e.target;
+  //   setAllChecked(checked);
+  //   const updatedInputArr = inputarr.map((item) => ({ ...item, checked: checked }));
+  //   setInputarr(updatedInputArr);
+  // }
+  function handleAllCheckedChange(e) { 
+    const { checked } = e.target; 
+    setAllChecked(checked); 
+    const updatedExposureDataArray = myExposureDataArray.map((item) => ({ 
+      ...item, 
+      checked: checked, 
+    })); 
+    setMyExposureDataArray(updatedExposureDataArray); 
+  } 
 
-  function handleDelete() {
-    const updatedInputArr = inputarr.filter((item) => !item.checked);
-    setInputarr(updatedInputArr);
-    setAllChecked(false);
-  }
+  // function handleDelete() {
+  //   const updatedInputArr = inputarr.filter((item) => !item.checked);
+  //   setInputarr(updatedInputArr);
+  //   setAllChecked(false);
+  // }
+
+  function handleDelete() { 
+    const updatedInputArr = inputarr.filter((item) => !item.checked); 
+    setInputarr(updatedInputArr); 
+    setAllChecked(false); 
+  } 
 
   // function handleSubmit() {
   //   const updatedInputArr = inputarr.map((item) => ({
@@ -258,13 +285,19 @@ return (
         >
           Add exposures
         </button>
-        &nbsp;&nbsp;
-        <button
-          type="button"
-          className="btn btn-dark"
-          onClick={handleDelete}
-          // onClick={handleDeleteRow}
-        >
+        &nbsp;&nbsp; 
+        <button 
+          type="button" 
+          className="btn btn-dark" 
+          // onClick={handleDelete} 
+          // // onClick={handleDeleteRow} 
+          onClick={() => { 
+            setMyExposureDataArray( 
+              myExposureDataArray.filter((item) => !item.checked) 
+            ); 
+            setAllChecked(false); 
+          }} 
+          >
           Delete
         </button>
       </div>
@@ -310,26 +343,26 @@ return (
                   No data Entered yet !
                 </td>
               </tr> : (
-                myExposureDataArray.map((item) => {
-                  return (
-                    <tr>
+                myExposureDataArray.map((item,index) => (
+                 
+                    <tr key={index}>
                       <td>
                         <input
                           type="checkbox"
                           checked={item.checked}
-                          onChange={(e) => handleCheckboxChange(e, item.id)}
+                          onChange={(e) => handleCheckboxChange(e, index)}
                         />
                       </td>
-                      <td>{item.id}</td>
+                      {/* <td>{item.id}</td> */}
                       <td>{item.lossParty}</td>
                       <td>{item.primaryCoverage}</td>
                       <td>{item.claimantType}</td>
                       <td>{item.status}</td>
                       <td>{item.adjuster}</td>
-                    </tr>)
-                })
-              )
-              }
+                    </tr>
+              
+                ))
+              )}
             </tbody>
           </table>
         </div>
@@ -343,8 +376,7 @@ return (
       />
     )}
   </div>
-); 
-};
+)}
 // const ExposureData = () => {
 //   return ExposureDataObj;
 // }
