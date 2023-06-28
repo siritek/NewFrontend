@@ -55,10 +55,12 @@ function Exposure(props){
     }).then(() => {  
       console.log("New claim added");  
       generateClaimNumber(); // Call the generateClaimNumber function  
+      
     })  
     .catch((error) => {  
       console.error("Error adding new claim:", error);  
     });  
+    localStorage.clear();
   }  
   
   // const myExposureData = () => {
