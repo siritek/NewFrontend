@@ -123,7 +123,7 @@ function Properties() {
                             <input
                               type="text"
                               name="Address"
-                              value={info.City}
+                              value={info.Address}
                               onChange={(e) => handleChange(e, ind, "Address")}
                               className="form-control"
                             />

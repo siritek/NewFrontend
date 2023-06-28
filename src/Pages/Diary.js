@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
  import Form from "react-bootstrap/Form";
 var DairyDataObj;
+
 function Dairy() {
   const [componentData, setComponentData] = useState({});
   const handleInputChange = (e, date) => {
@@ -50,6 +51,14 @@ function Dairy() {
   useEffect(() => {
     fetchdairyDD();
   }, []);
+
+    const handleBlankClick = (e) => {
+    e.preventDefault()
+    setRelatedTo(''); 
+    setCreatedBy('');
+    setAssignedTo('');  
+    setComponentData({});
+    }
 
   const fetchdairyDD = async () => {
     try {
@@ -123,7 +132,6 @@ function Dairy() {
     <div>
       <div className="d-flex justify-content-between align-items-center">
         <h2>Diary</h2>
-        <button type="button" className="btn btn-success" onClick={handleClick}>Submit</button>
         <button type="button" className="btn btn-success" onClick={handleClick}>Submit</button>
       </div>
       <hr />
@@ -245,6 +253,10 @@ function Dairy() {
 
           </div>
         </div>
+
+        <div>
+  <button type="reset" className="btn btn-dark " value="reset" onClick={handleBlankClick}>Reset</button>
+</div>
 
       </div>
     </div>

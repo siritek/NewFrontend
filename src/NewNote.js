@@ -225,9 +225,9 @@ const[securityTypes, setSecurityTypes] = useState([]);
       />{" "}
       &nbsp;
       <input
-        type="reset"
+        type="Reset"
         className="btn btn-dark "
-        value="reset"
+        value="Reset"
         onClick={handleBlankClick}
       />
     </div>
