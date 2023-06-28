@@ -1,3 +1,4 @@
+import { clear } from '@testing-library/user-event/dist/clear';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import Form from "react-bootstrap/Form";
@@ -27,7 +28,7 @@ const[securityTypes, setSecurityTypes] = useState([]);
     subject= '',
     relatedTo= '',
     text = '',
-    confidential="",
+    confidential=''
   } = componentData || {};
 
   const handleTopicChange = (event) => {
@@ -56,9 +57,10 @@ const[securityTypes, setSecurityTypes] = useState([]);
   }
 
 
+
   const handleClick = (e) => {
     e.preventDefault()
-    const abs = { topic, securityType, subject, relatedTo, text }
+    const abs = { topic, securityType, subject, relatedTo, text,claimNumber,confidential }
     console.log(abs)
     fetch("http://localhost:8080/newnotefirst/add", {
       method: "POST",
@@ -68,31 +70,42 @@ const[securityTypes, setSecurityTypes] = useState([]);
     }).then(() => {
       console.log("New Insured added")
     })
-
-
   }
-
+  
+  const handleBlankClick = (e) => {
+    e.preventDefault()
+    setTopic(''); 
+    setSecurityType(''); 
+    setComponentData({});
+    }
+  
   return (
     <div>
       <div className="ms-3">
         <h2>New Note</h2>
         <hr />
       </div>
+
       <div className="row mb-2">
-      <div className='row mb-2'>
-          <div className='col-2'><label htmlFor='claimNumber'>Claim Number</label></div>
-          <div className='col-6'>
-          <input type="text" className='w-100 form-control' id="claim Number" value={claimNumber}  onChange={handleInputChange} /> 
-          </div>
+        <div className="col-2">
+          <label htmlFor="claimNumber">Claim Number</label>
         </div>
+        <div className="col-6">
+          <input
+            type="text"
+            className="w-100 form-control"
+            id="claimNumber"
+            value={claimNumber}
+            onChange={handleInputChange}
+          />
         </div>
+      </div>
 
         <div className='row mb-2'>
           <div className='col-2'><label htmlFor='securitytype'>Security Type </label></div>
           <div className='col-6'>
             <Form.Select aria-label="Default select example" id="securityType" value={securityType}  onChange={handleSecurityTypeChange} >
-              
-              {securityTypes.map((securityType,index) => (
+               {securityTypes.map((securityType,index) => (
                 <option key={index} value={securityType}>
                   {securityType}
                 </option>
@@ -101,6 +114,7 @@ const[securityTypes, setSecurityTypes] = useState([]);
             </Form.Select>
           </div>
         </div>
+
         <div className='row mb-2'>
           <div className='col-2'><label htmlFor='topic'>Topic </label></div>
         <div className="col-6">
@@ -109,9 +123,14 @@ const[securityTypes, setSecurityTypes] = useState([]);
             required
             id="topic"
             value={topic}
-            onChange={handleInputChange}
+            onChange={handleTopicChange}
           >
-            <option value="general">General</option>
+            {topics.map((topic,index) => (
+              <option key={index} value={topic}>
+                {topic}
+              </option>
+            ))}
+            {/* <option value="general">General</option>
             <option value="firstnoticeofloss">First Notice of Loss</option>
             <option value="coverage">Coverage</option>
             <option value="investigation">Investigation</option>
@@ -122,7 +141,7 @@ const[securityTypes, setSecurityTypes] = useState([]);
             <option value="salvage">Salvage</option>
             <option value="litigation">Litigation</option>
             <option value="denial">Denial</option>
-            <option value="reinsurance">Reinsurance</option>
+            <option value="reinsurance">Reinsurance</option> */}
           </Form.Select>
         </div>
       </div>
@@ -158,29 +177,32 @@ const[securityTypes, setSecurityTypes] = useState([]);
           </Form.Select>
         </div>
       </div>
-      <div className="row mb-3">
-        <div className="col-4">Confidential</div>
-        <div className="col-8">
-          <input
-            type="radio"
-            name="basicRadioGroup"
-            id="confidential"
-            value="yes"
-            checked={confidential === "yes"}
-            onChange={handleInputChange}
-          />{" "}
-          Yes <span className="ms-3"></span>
-          <input
-            type="radio"
-            name="basicRadioGroup"
-            id="confidential"
-            value="no"
-            checked={confidential === "no"}
-            onChange={handleInputChange}
-          />{" "}
-          No
-        </div>
-      </div>
+
+      <div className="row mb-3"> 
+          <div className="col-4">Confidential</div> 
+          <div className="col-8"> 
+            <input 
+              type="radio" 
+              name="basicRadioGroup" 
+              id="confidential" 
+              value="yes" 
+              checked={confidential === "yes"} 
+              onChange={handleInputChange} 
+            />{" "} 
+            Yes <span className="ms-3"></span> 
+            <input 
+              type="radio" 
+              name="basicRadioGroup" 
+              id="confidential" 
+              value="no" 
+              checked={confidential === "no"} 
+              onChange={handleInputChange} 
+            />{" "} 
+            No 
+          </div> 
+        </div> 
+
+      
       <div className="row mb-2">
         <div className="col-2">
           <label htmlFor="text">Text</label>
@@ -204,14 +226,14 @@ const[securityTypes, setSecurityTypes] = useState([]);
       />{" "}
       &nbsp;
       <input
-        type="Reset"
+        type="reset"
         className="btn btn-dark "
-        value="Reset"
-        onClick={handleClick}
+        value="reset"
+        onClick={handleBlankClick}
       />
     </div>
    
   );
-
 }
+
 export default NewNote;
