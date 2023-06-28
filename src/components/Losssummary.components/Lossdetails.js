@@ -1,4 +1,4 @@
-import DatePicker from "react-datepicker";
+//import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -13,7 +13,7 @@ function Lossdetails({ setComponentData, componentData, fnoldataobj}) {
     }));
   };*/}
 
-  const [loading, setLoading,] = useState(true); 
+  //const [loading, setLoading,] = useState(true); 
   const handleInputChange = (e,date) => { 
   //     if(date == 'dateOfLoss'){
   //  setComponentData((prevData) =>({ 

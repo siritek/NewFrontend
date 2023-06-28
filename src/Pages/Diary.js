@@ -3,17 +3,17 @@ import "react-datepicker/dist/react-datepicker.css";
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
  import Form from "react-bootstrap/Form";
-var DairyDataObj;
+//var DairyDataObj;
 
 function Dairy() {
   const [componentData, setComponentData] = useState({});
   const handleInputChange = (e, date) => {
-    if (date == 'dueDate') {
+    if (date === 'dueDate') {
       setComponentData((prevData) => ({
         ...prevData,
         dueDate: e,
       }));
-    } else if (date == "dateCreated") {
+    } else if (date === "dateCreated") {
       setComponentData((prevData) => ({
         ...prevData,
         dateCreated: e,
@@ -122,12 +122,12 @@ function Dairy() {
   } = componentData || {};
 
 
-  const handleNext = () => {
-    // Access the component data from the state
-    DairyDataObj = componentData
-    console.log(componentData);
-    // Perform further actions with the data
-  };
+  // const handleNext = () => {
+  //   // Access the component data from the state
+  //   DairyDataObj = componentData
+  //   console.log(componentData);
+  //   // Perform further actions with the data
+  // };
   return (
     <div>
       <div className="d-flex justify-content-between align-items-center">

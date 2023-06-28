@@ -1,12 +1,12 @@
 import React, { useEffect,useState } from 'react'
 import axios from 'axios' 
 //import BootstrapTable from 'react-bootstrap-table-next'; 
-import { Dropdown,Button } from "react-bootstrap"; 
+import { Dropdown} from "react-bootstrap"; 
 import Form from "react-bootstrap/Form"
  
 function Documents(props) { 
   const[Related,setRelated]=React.useState('None');
-  const[Status,setStatus]=React.useState('None');
+ // const[Status,setStatus]=React.useState('None');
   const[Identity,setIdentity]=React.useState('')
 
   const [inputarr, setInputarr] = useState([]);
@@ -34,20 +34,20 @@ function Documents(props) {
     }
   }
 
-    function changhandle() {
-    setInputarr([
-      ...inputarr,
-      {
-        checked: false,
-        Name: "",
-        Phone1: "",
-        Phone2: "",
-        Email: "",
-        RecordedStatement: "",
-      },
-    ]);
-    console.log(inputarr);
-  }
+  //   function changhandle() {
+  //   setInputarr([
+  //     ...inputarr,
+  //     {
+  //       checked: false,
+  //       Name: "",
+  //       Phone1: "",
+  //       Phone2: "",
+  //       Email: "",
+  //       RecordedStatement: "",
+  //     },
+  //   ]);
+  //   console.log(inputarr);
+  // }
 
   function handleInputChange(e, index) {
     const { name, value } = e.target;
@@ -77,10 +77,10 @@ function Documents(props) {
     setInputarr(inputarr.map((item) => ({ ...item, checked })));
   }
 
-  function handleDelete() {
-    setInputarr(inputarr.filter((item) => !item.checked));
-    setAllChecked(false);
-  }
+  // function handleDelete() {
+  //   setInputarr(inputarr.filter((item) => !item.checked));
+  //   setAllChecked(false);
+  // }
 
   const handleNewDocClick=()=>{
     props.onNewDocClick();
