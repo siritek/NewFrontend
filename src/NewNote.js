@@ -1,4 +1,3 @@
-import { clear } from '@testing-library/user-event/dist/clear';
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import Form from "react-bootstrap/Form";
