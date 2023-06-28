@@ -9,7 +9,7 @@ import Form from "react-bootstrap/Form";
   
 function Basic({ setComponentData, componentData, fnoldataobj }) {  
 
-  const [loading, setLoading,] = useState(true); 
+  // const [loading, setLoading,] = useState(true); 
   const handleInputChange = (e,date) => { 
 
     // if(date == 'dateOfLoss'){

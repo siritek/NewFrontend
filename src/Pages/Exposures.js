@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 // import Newexposure from "../components/Exposure.components/Newexposure";  
 // import BootstrapTable from 'react-bootstrap-table-next';   
 import { FnolData } from './Fnol';
-import { policyData, policyInfoObj } from "./PolicyInformation";
+import { policyData } from "./PolicyInformation";
 import { LossData } from './LossSummary';
-import {ExposureData,ExposureDataObj} from'../components/Exposure.components/Newexposure';
-import { Button } from "react-bootstrap";
+import {ExposureData} from'../components/Exposure.components/Newexposure';
+//import { Button } from "react-bootstrap";
 import ClaimGeneration from './ClaimGeneration';
 
 
@@ -19,7 +19,14 @@ function Exposure(props){
   const [myExposureDataArray, setMyExposureDataArray] = useState( 
     JSON.parse(localStorage.getItem("exposureDataArray")) || [] 
   ); 
+  const handleDelete = () => {
+    const updatedDataArray = myExposureDataArray.filter((item) => !item.checked);
+    setMyExposureDataArray(updatedDataArray);
+    localStorage.setItem("exposureDataArray", JSON.stringify(updatedDataArray));
+  };
 
+  
+  
   const handleLossSummaryClick=()=>{
     props.onLossSummaryClick();
   };
@@ -34,7 +41,7 @@ function Exposure(props){
     const myFnolData = FnolData();
     const myPolicyInfo = policyData();
     const myLossData = LossData();
-   // const myExposureData = localStorage.getItem("exposureDataArray");
+   //const myExposureData = localStorage.getItem("exposureDataArray");
    const myExposureData = ExposureData();
    
     const finalDataObj = {
@@ -52,9 +59,12 @@ function Exposure(props){
         headers:{"Content-Type":"application/json"},  
         body:JSON.stringify(finalDataObj) 
   
-    }).then(() => {  
+    })
+    .then(() => {  
       console.log("New claim added");  
+     
       generateClaimNumber(); // Call the generateClaimNumber function  
+   
     })  
     .catch((error) => {  
       console.error("Error adding new claim:", error);  
@@ -108,16 +118,16 @@ function Exposure(props){
 
 
 
-  const [inputarr, setInputarr] = useState([]);
+  //const [inputarr, setInputarr] = useState([]);
   const [allChecked, setAllChecked] = useState(false);
 
 
-  function handleChange(e, index, name) {
-    const { value } = e.target;
-    const updatedInputArr = [...inputarr];
-    updatedInputArr[index][name] = value;
-    setInputarr(updatedInputArr);
-  }
+  // function handleChange(e, index, name) {
+  //   const { value } = e.target;
+  //   const updatedInputArr = [...inputarr];
+  //   updatedInputArr[index][name] = value;
+  //   setInputarr(updatedInputArr);
+  // }
 
   //   function handleCheckboxChange(e, index) {
   //   const { checked } = e.target;
@@ -166,11 +176,13 @@ function Exposure(props){
   //   setAllChecked(false);
   // }
 
-  function handleDelete() { 
-    const updatedInputArr = inputarr.filter((item) => !item.checked); 
-    setInputarr(updatedInputArr); 
-    setAllChecked(false); 
-  } 
+  // function handleDelete() { 
+  //   const updatedInputArr = inputarr.filter((item) => !item.checked); 
+  //   setInputarr(updatedInputArr); 
+  //   setAllChecked(false); 
+  // } 
+
+  
 
   // function handleSubmit() {
   //   const updatedInputArr = inputarr.map((item) => ({
@@ -286,7 +298,15 @@ return (
           Add exposures
         </button>
         &nbsp;&nbsp; 
-        <button 
+        {
+         <button
+         type="button"
+         className="btn btn-dark"
+         onClick={handleDelete}
+       >
+         Delete
+       </button>
+        /* <button 
           type="button" 
           className="btn btn-dark" 
           // onClick={handleDelete} 
@@ -299,7 +319,7 @@ return (
           }} 
           >
           Delete
-        </button>
+        </button> */}
       </div>
     </div>
     {/* <BootstrapTable keyField="id" data={tableData} columns={columns} /> */}
@@ -338,7 +358,7 @@ return (
               </tr>
               
               {
-                myExposureDataArray == undefined || myExposureDataArray.length === 0 ? <tr>
+                myExposureDataArray === undefined || myExposureDataArray.length === 0 ? <tr>
                 <td colSpan={8} className="text-center">
                   No data Entered yet !
                 </td>

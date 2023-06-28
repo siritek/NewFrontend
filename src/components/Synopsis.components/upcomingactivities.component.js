@@ -91,32 +91,32 @@ function Upcomingactivities() {
   ]; 
  
   //Test data & State of the table 
-  const [tableData, setTableData] = useState([ 
+  const [tableData] = useState([ 
     // { id: 1, name: 'John Doe', type: 'Type A', selected: false }, 
     // { id: 2, name: 'Jane Smith', type: 'Type B', selected: false }, 
     // { id: 3, name: 'Bob Johnson', type: 'Type A', selected: false }, 
   ]); 
  
   //Add new row on button click 
-  const handleAddRow = () => {   
-    const newRow = { id: tableData.length + 1, name: '', type: '' }; 
-    setTableData([...tableData, newRow]); 
-  }; 
+  // const handleAddRow = () => {   
+  //   const newRow = { id: tableData.length + 1, name: '', type: '' }; 
+  //   setTableData([...tableData, newRow]); 
+  // }; 
  
   //Get the state of checked row 
-  const handleCheckboxChange = (rowId) => { 
-    setTableData((prevData) => 
-      prevData.map((row) => 
-        row.id === rowId ? { ...row, selected: !row.selected } : row 
-      ) 
-    ); 
-  }; 
+  // const handleCheckboxChange = (rowId) => { 
+  //   setTableData((prevData) => 
+  //     prevData.map((row) => 
+  //       row.id === rowId ? { ...row, selected: !row.selected } : row 
+  //     ) 
+  //   ); 
+  // }; 
  
   //Delete the checked row from the table 
-  const handleDeleteRow = () => { 
-    const updatedData = tableData.filter((row) => !row.selected); 
-    setTableData(updatedData); 
-  }; 
+  // const handleDeleteRow = () => { 
+  //   const updatedData = tableData.filter((row) => !row.selected); 
+  //   setTableData(updatedData); 
+  // }; 
  
   return (
     <div>

@@ -10,12 +10,27 @@ function Notetable() {
     "Additional Named Insured (Company)",
   ];
 
+  // function handleChange(e, index, name) {
+  //   const { value } = e.target;
+  //   const updatedInputArr = [...inputarr];
+  //   updatedInputArr[index][name] = value;
+  //   setInputarr(updatedInputArr);
+  // }
   function handleChange(e, index, name) {
-    const { value } = e.target;
-    const updatedInputArr = [...inputarr];
-    updatedInputArr[index][name] = value;
-    setInputarr(updatedInputArr);
-  }
+  const { value } = e.target;
+  setInputarr((prevInputArr) =>
+    prevInputArr.map((item, i) => {
+      if (i === index && !item.submitted) {
+        return {
+          ...item,
+          [name]: value,
+        };
+      }
+      return item;
+    })
+  );
+}
+
 
   function handleCheckboxChange(e, index) {
     const { checked } = e.target;
