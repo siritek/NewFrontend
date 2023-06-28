@@ -64,11 +64,16 @@ function Exposure(props){
       console.log("New claim added");  
      
       generateClaimNumber(); // Call the generateClaimNumber function  
+<<<<<<< HEAD
    
+=======
+      
+>>>>>>> e3f11ba13390465eb9d5ecbffdf6c301ec52f0d3
     })  
     .catch((error) => {  
       console.error("Error adding new claim:", error);  
     });  
+    localStorage.clear();
   }  
   
   // const myExposureData = () => {
@@ -260,7 +265,7 @@ return (
       <div>
         <button
           type="button"
-          className="btn btn-dark"
+          className="btn btn-dark"   
           onClick={handleLossSummaryClick}
         >
           Back
