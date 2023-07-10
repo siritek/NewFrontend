@@ -107,12 +107,16 @@ function Newexposure(props,{lossdataobj}){
 
   const handleNext = () => {
     // Access the component data from the state
-    ExposureDataObj = componentData
-
     if (typeof(Storage) !== "undefined") {
-      exposureDataArray.push(componentData)
-      localStorage.setItem("exposureDataArray", JSON.stringify(exposureDataArray));
+
+      ExposureDataObj = componentData
+      const myFinalArray = JSON.parse(localStorage.getItem("exposureDataArray")) || [];
+      myFinalArray.push(componentData)
+      localStorage.setItem("exposureDataArray", JSON.stringify(myFinalArray));
+    
     }
+
+
     // Perform further actions with the data
   };
   // if(Object.keys(componentData).length === 0 && ExposureDataObj !== undefined) {
