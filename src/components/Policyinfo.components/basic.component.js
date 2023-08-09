@@ -164,14 +164,14 @@ setComponentData((prevData) =>({
  
   const { 
     policyNumber = '', 
-    policyVerified= '', 
+   // policyVerified= '', 
     dateOfLoss= '', 
     lossTime = '', 
     underwriting = '', 
     effectiveDate = '', 
     expirationDate= '', 
     cancellationDate = '', 
-    originalEffectiveDate = '', 
+   // originalEffectiveDate = '', 
    // policyStatus= '', 
     name='', 
     address='', 
@@ -221,7 +221,7 @@ setComponentData((prevData) =>({
  
     
  
-        <div className="row mb-3"> 
+        {/* <div className="row mb-3"> 
           <div className="col-4">Policy Verified</div> 
           <div className="col-8"> 
             <input 
@@ -243,7 +243,7 @@ setComponentData((prevData) =>({
             />{" "} 
             No 
           </div> 
-        </div> 
+        </div>  */}
  
         <div className='row mb-2'> 
    <div className='col-4'> 
@@ -352,7 +352,7 @@ setComponentData((prevData) =>({
           </div> 
         </div> 
  
-        <div className="row mb-2"> 
+        {/* <div className="row mb-2"> 
           <div className="col-4"> 
             <label htmlFor="originalEffectiveDate"> 
               Original Effective Date 
@@ -367,10 +367,10 @@ setComponentData((prevData) =>({
         dateFormat="MM-dd-yyyy"
         placeholderText="MM-DD-YYYY"
       /> */}
-       <input id="originalEffectiveDate" type="Date" value={originalEffectiveDate}  
+       {/* <input id="originalEffectiveDate" type="Date" value={originalEffectiveDate}  
      onChange={handleInputChange}className='w-100 form-control' /> 
           </div> 
-        </div> 
+        </div>  */}
  
        <div className="row mb-2"> 
           <div className="col-4"> 

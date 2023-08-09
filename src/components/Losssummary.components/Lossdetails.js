@@ -134,7 +134,7 @@ function Lossdetails({ setComponentData, componentData, fnoldataobj}) {
   const {
    // adjuster = '',
     lossDescription = '',
-    otherDescription = '',
+   // otherDescription = '',
     weatherInvolved = '',
     weatherDescription = '',
     dateOfLoss = '',
@@ -203,7 +203,7 @@ function Lossdetails({ setComponentData, componentData, fnoldataobj}) {
           </div>
         </div>
 
-        <div className="row mb-2">
+        {/* <div className="row mb-2">
           <div className="col-4">
             <label htmlFor="otherDescription">Other Description</label>
           </div>
@@ -217,7 +217,7 @@ function Lossdetails({ setComponentData, componentData, fnoldataobj}) {
               onChange={handleInputChange}
             />
           </div>
-        </div>
+        </div> */}
 
         <div className="row mb-2">
           <div className="col-4">
