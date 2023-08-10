@@ -15,7 +15,7 @@ function Dropdownlist() {
     adjusterOptions:[] ,
     adjusterInput: "",
 
-    relationshiptoinsured: "",
+    relationshipToInsured: "",
     relationshipToInsuredOptions: [],
     relationshipToInsuredInput: "",
 
@@ -51,7 +51,7 @@ function Dropdownlist() {
   const [showInput, setShowInput] = useState({
     state: false,
     adjuster: false,
-    relationshiptoinsured: false,
+    relationshipToInsured: false,
     topic: false,
     securityType: false,
     relatedTo: false,
@@ -120,30 +120,34 @@ function Dropdownlist() {
     console.log(output);
 
   
-      const fetchData = async () => {
-        try {
-          const response = await axios.get("http://localhost:8080/admindropdownsDD");
-          console.log("Response data:", response.data);
+const fetchData = async () => {
+  try {
+    const response = await axios.get("http://localhost:8080/admindropdownsDD");
 
-          const data = response.data;
+    console.log("Response data:", response.data);
+
+    const data = response.data;
     
-          setComponentData((prevData) => ({
-            ...prevData,
-            stateOptions: data.state || [],
-            adjusterOptions: data.adjuster || [],
-            relationshipToInsuredOptions: data.relationshipToInsured || [],
-            topicOptions: data.topic || [],
-            securityTypeOptions: data.securityType || [],
-            relatedToOptions: data.relatedTo || [],
-            exposureStatusOptions: data.exposureStatus || [],
-            assignedToOptions: data.assignedTo || [],
-            createdByOptions: data.createdBy || [],
-          }));
-        } catch (error) {
-          console.error("Error fetching data:", error);
-          // Add proper error handling, e.g., show error message to the user
-        }
-      };
+    setComponentData((prevData) => ({
+      ...prevData,
+      stateOptions: data.state || [],
+      adjusterOptions: data.adjuster || [],
+      relationshipToInsuredOptions: data.relationshipToInsured || [],
+      topicOptions: data.topic || [],
+      securityTypeOptions: data.securityType || [],
+      relatedToOptions: data.relatedTo || [],
+      exposureStatusOptions: data.exposureStatus || [],
+    
+      assignedToOptions: data.assignedTo || [],
+      createdByOptions: data.createdBy || [],
+    }));
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    // Add proper error handling, e.g., show error message to the user
+  }
+};
+
+fetchData();
     
      
    

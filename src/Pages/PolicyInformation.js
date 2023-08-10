@@ -9,6 +9,9 @@ var policyInfoObj;
 
 function Policyinfo(props) { 
   const [componentData, setComponentData] = useState({});
+  const [excludeData, setExcludeData] = useState([]);
+  const [additionalData, setAdditionalData] = useState([]);
+  const [policylevelData, setPolicylevelData] = useState([]);
 
   useEffect(() => {
     if (Object.keys(componentData).length === 0 && policyInfoObj !== undefined) {
@@ -20,14 +23,48 @@ function Policyinfo(props) {
     props.onFnolClick();
   };
 
-  const handleNext = () => {
-    policyInfoObj = componentData;
+  const handleNext = () => { 
+    policyInfoObj = { 
+      ...componentData, 
+      exclude : excludeData,
+      additional : additionalData,
+      policylevel : policylevelData,
     // Perform further actions with the data
+  };
+  console.log(policyInfoObj);
   };
 
   const handleLossSummaryClick = () => {
     props.onLossSummaryClick();
   };
+
+  const handleExcludeSave = (excludeData) => { 
+    setComponentData((prevData) => ({ 
+      ...prevData,
+      exclude: excludeData,
+    }));
+    setExcludeData(excludeData);
+    console.log(excludeData); // Do something with the injuries data
+  }; 
+
+
+  const handleAdditionalSave = (additionalData) => { 
+    setComponentData((prevData) => ({ 
+      ...prevData, 
+      additional: additionalData, 
+    })); 
+    setAdditionalData(additionalData); 
+    console.log(additionalData); // Do something with the injuries data 
+  }; 
+ 
+  const handlePolicylevelSave = (policylevelData) => { 
+    setComponentData((prevData) => ({ 
+      ...prevData, 
+      policylevel: policylevelData, 
+    })); 
+    setPolicylevelData(policylevelData); 
+    console.log(policylevelData); // Do something with the injuries data 
+  }; 
 
   return ( 
     <div> 
@@ -56,13 +93,13 @@ function Policyinfo(props) {
           <Basic setComponentData={setComponentData} componentData={componentData} fnoldataobj={FnolData()} /> 
         </div> 
         <div className='col-6'> 
-          <Additional setComponentData={setComponentData} componentData={componentData} /> 
+          <Additional setComponentData={setComponentData} componentData={componentData} onSave={handleAdditionalSave}/> 
           <hr />  
-          <Excluded /> 
+          <Excluded setComponentData={setComponentData} componentData={componentData} onSave={handleExcludeSave} /> 
         </div> 
         <hr /> 
         <div className='col-6'> 
-          <Policylevel /> 
+          <Policylevel setComponentData={setComponentData} componentData={componentData} onSave={handlePolicylevelSave} /> 
           {/* <Agent /> */} 
         </div> 
       </div> 

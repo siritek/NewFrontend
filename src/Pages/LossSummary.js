@@ -10,16 +10,54 @@ import { FnolData } from './Fnol';
 var LossDataObj;
 function Losssummary(props) { 
   const [componentData, setComponentData] = useState({});
+  const [injuriesData, setInjuriesData] = useState([]);
+  const [witnessesData, setWitnessesData] = useState([]);
+  const [propertiesData, setPropertiesData] = useState([]); 
 
   const handlePIClick=()=>{
  props.onPIClick();
   };
   const handleNext = () => {
     // Access the component data from the state
-    LossDataObj = componentData
-    console.log(componentData);
+    LossDataObj = {
+      ...componentData,
+      injuries: injuriesData,
+      properties: propertiesData,
+      witnesses: witnessesData,
+    };
     // Perform further actions with the data
+    console.log(LossDataObj);
   };
+
+
+  const handleInjuriesSave = (injuriesData) => { 
+    setComponentData((prevData) => ({ 
+      ...prevData, 
+      injuries: injuriesData, 
+    })); 
+    setInjuriesData(injuriesData); 
+    console.log(injuriesData); // Do something with the injuries data 
+  }; 
+ 
+  const handleWitnessesSave = (witnessesData) => { 
+    setComponentData((prevData) => ({ 
+      ...prevData, 
+      witnesses: witnessesData, 
+    })); 
+    setWitnessesData(witnessesData); 
+    console.log(witnessesData); // Do something with the witnesses data 
+  }; 
+ 
+  const handlePropertiesSave = (propertiesData) => { 
+    setComponentData((prevData) => ({ 
+      ...prevData, 
+      properties: propertiesData, 
+    })); 
+    setPropertiesData(propertiesData); 
+    console.log(propertiesData); // Do something with the injuries data 
+  };  
+
+
     const handleExposureClick=()=>{
       props.onExposureClick();
     };
@@ -49,18 +87,18 @@ function Losssummary(props) {
           </div> 
             
           <div className='col-6'> 
-            <Losslocation setComponentData={setComponentData} componentData={componentData}/> 
+            <Losslocation setComponentData={setComponentData} componentData={componentData} /> 
            </div> 
            <hr />  
            <div className='col-6'> 
-            <Properties/> 
+            <Properties setComponentData={setComponentData} componentData={componentData} onSave={handlePropertiesSave}/> 
            </div>
            <div className='col-6'>
-            <Injuries/>
+            <Injuries setComponentData={setComponentData} componentData={componentData} onSave={handleInjuriesSave}/>
            </div>
-           <hr/>
+           <hr/> 
            <div className='col-6'>
-           <Witnesses/>
+           <Witnesses setComponentData={setComponentData} componentData={componentData} onSave={handleWitnessesSave}/>
            </div>
 
         </div> 
