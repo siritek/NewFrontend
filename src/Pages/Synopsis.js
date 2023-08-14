@@ -1,13 +1,35 @@
-import React, { useState, useEffect } from 'react';  
+import React, { useState, useEffect, data, downloadCSV} from 'react'; 
+import {saveAs} from 'file-saver'; 
 //import Form from 'react-bootstrap/Form';  
 //import Upcomingactivities from '../components/Synopsis.components/upcomingactivities.component';  
   
 function Synopsis({ claimNumber }) {  
   const [componentData, setComponentData] = useState(null);  
   const [loading, setLoading] = useState(true);  
+  const [csvContent, setCSVContent] = useState(true);
+  const[handleButtonClickDisabled, sethandleButtonClickDisabled] = useState('');
+
+  const handleClick = () => {
+    const csvRows = [];
+
+    csvRows.push(Object.keys(data[0]).join(','));
+
+    data.forEach(item => {
+      const values = Object.values(item);
+      csvRows.push(values.join(','));
+    });
+
+    const csv = csvRows.join('\n');
+    setCSVContent(csv);
+
+    const downloadCSV = () => {
+      const blob = new Blob([csvContent], { type: 'csv;charset=utf-8;' });
+      saveAs(blob, 'data.csv');
+    };
+
+    alert('Button 2 clicked!');
+  }
   
-
-
   useEffect(() => {  
     const fetchData = async () => {  
       try {  
@@ -61,6 +83,9 @@ function Synopsis({ claimNumber }) {
   } catch (error) {
     console.error('Error sending request:', error);
   }
+ 
+    sethandleButtonClickDisabled(true);
+
 };
 
   if (loading) {  
@@ -191,9 +216,14 @@ function Synopsis({ claimNumber }) {
           </div>  
         </div>  
         <div>
-        <button onClick={handleButtonClick} className="btn btn-primary mb-2">
+        <button onClick={handleButtonClick} disabled={handleButtonClickDisabled} className="btn btn-primary mb-2">
         Send Claim to Guidewire
       </button>
+      </div>
+      <div>
+        
+        <button onClick={()=>{
+          handleClick(); downloadCSV()}} className="btn btn-primary mb-2">Download CSV</button>
       </div>
         {/* <div>  
           <Upcomingactivities claimNumber={claimNumber} />  
@@ -204,7 +234,7 @@ function Synopsis({ claimNumber }) {
       </div>  
     </div>  
   );  
-}  
+};
   
 export default Synopsis;
 
