@@ -1,4 +1,4 @@
-import React, { useState, useEffect, data, downloadCSV} from 'react'; 
+import React, { useState, useEffect, data} from 'react'; 
 import {saveAs} from 'file-saver'; 
 //import Form from 'react-bootstrap/Form';  
 //import Upcomingactivities from '../components/Synopsis.components/upcomingactivities.component';  
@@ -9,26 +9,7 @@ function Synopsis({ claimNumber }) {
   const [csvContent, setCSVContent] = useState(true);
   const[handleButtonClickDisabled, sethandleButtonClickDisabled] = useState('');
 
-  const handleClick = () => {
-    const csvRows = [];
 
-    csvRows.push(Object.keys(data[0]).join(','));
-
-    data.forEach(item => {
-      const values = Object.values(item);
-      csvRows.push(values.join(','));
-    });
-
-    const csv = csvRows.join('\n');
-    setCSVContent(csv);
-
-    const downloadCSV = () => {
-      const blob = new Blob([csvContent], { type: 'csv;charset=utf-8;' });
-      saveAs(blob, 'data.csv');
-    };
-
-    alert('Button 2 clicked!');
-  }
   
   useEffect(() => {  
     const fetchData = async () => {  
@@ -43,6 +24,7 @@ function Synopsis({ claimNumber }) {
             const claim = data[0];  
             claim.dateOfLoss = new Date(claim.dateOfLoss); // Convert date string to Date object  
             claim.dateOfReport = new Date(claim.dateOfReport); // Convert date string to Date object  
+            //claim.downloadCSV = new data(claim.downloadCSV); //convert data to csv
             setComponentData(claim);  
           }  
         } else {  
@@ -86,6 +68,28 @@ function Synopsis({ claimNumber }) {
  
     sethandleButtonClickDisabled(true);
 
+};
+
+const handleClick = () => {
+  const csvRows = [];
+
+  csvRows.push(Object.keys(componentData[0]).join(','));
+
+  data.forEach(item => {
+    const values = Object.values(componentData);
+    csvRows.push(values.join(','));
+  });
+
+  const csv = csvRows.join('\n');
+  setCSVContent(csv);
+  
+  downloadCSV();
+
+  alert('Button 2 clicked!');
+}
+const downloadCSV = () => {
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  saveAs(blob, 'data.csv');
 };
 
   if (loading) {  
