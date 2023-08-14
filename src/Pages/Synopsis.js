@@ -6,8 +6,35 @@ import {saveAs} from 'file-saver';
 function Synopsis({ claimNumber }) {  
   const [componentData, setComponentData] = useState(null);  
   const [loading, setLoading] = useState(true);  
-  const [csvContent, setCSVContent] = useState(true);
+  const [csvContent, setCSVContent] = useState('');
   const[handleButtonClickDisabled, sethandleButtonClickDisabled] = useState('');
+
+  const downloadCSV = () => {
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    saveAs(blob, 'data.csv');
+  };
+
+  const handleClick = () => {
+    if(componentData) {
+    const csvRows = [];
+  
+    csvRows.push(Object.keys(componentData[0]).join(','));
+
+      const values = Object.values(componentData);
+      csvRows.push(values.join(','));
+
+  
+      data.forEach(item => {  
+    const csv = csvRows.join('\n');
+    setCSVContent(csv);});
+    
+    downloadCSV();
+  
+    alert('handle clicked!');
+    } else{
+      console.error('componentData is null or undefined')
+    }
+  }
 
 
   
@@ -23,8 +50,7 @@ function Synopsis({ claimNumber }) {
           if (Array.isArray(data) && data.length > 0) {  
             const claim = data[0];  
             claim.dateOfLoss = new Date(claim.dateOfLoss); // Convert date string to Date object  
-            claim.dateOfReport = new Date(claim.dateOfReport); // Convert date string to Date object  
-            //claim.downloadCSV = new data(claim.downloadCSV); //convert data to csv
+            claim.dateOfReport = new Date(claim.dateOfReport); // Convert date string to Date object
             setComponentData(claim);  
           }  
         } else {  
@@ -70,27 +96,8 @@ function Synopsis({ claimNumber }) {
 
 };
 
-const handleClick = () => {
-  const csvRows = [];
 
-  csvRows.push(Object.keys(componentData[0]).join(','));
 
-  data.forEach(item => {
-    const values = Object.values(componentData);
-    csvRows.push(values.join(','));
-  });
-
-  const csv = csvRows.join('\n');
-  setCSVContent(csv);
-  
-  downloadCSV();
-
-  alert('Button 2 clicked!');
-}
-const downloadCSV = () => {
-  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-  saveAs(blob, 'data.csv');
-};
 
   if (loading) {  
     return <div>Loading...</div>;  
