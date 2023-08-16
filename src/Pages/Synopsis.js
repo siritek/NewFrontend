@@ -4,54 +4,7 @@ import { saveAs } from 'file-saver';
 function Synopsis({ claimNumber }) {
   const [componentData, setComponentData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [csvContent, setCSVContent] = useState('');
-  const [handleButtonClickDisabled, setHandleButtonClickDisabled] = useState(false);
-
-  const downloadCSV = () => {
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    saveAs(blob, 'data.csv');
-  };
-  const handleClick = () => {
-    if (componentData) {
-      const csvRows = [];
-      csvRows.push(Object.keys(componentData).join(',')); // Add headers
-      csvRows.push(Object.values(componentData).join(',')); // Add values
-  
-      const csvContent = csvRows.join('\n');
-      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-      saveAs(blob, 'data.csv');
-      alert('CSV downloaded successfully!');
-    } else {
-      console.error('componentData is null or undefined');
-    }
-  };
-  
-
-  const handleButtonClick = async () => {
-    if (!handleButtonClickDisabled) {
-      try {
-        const response = await fetch('http://localhost:8080/claim/submit', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            claimNumber: claimNumber,
-            policyNumber: componentData?.policyNumber || '',
-          }),
-        });
-
-        if (response.ok) {
-          console.log('Request sent successfully!');
-          setHandleButtonClickDisabled(true);
-        } else {
-          console.error('Failed to send request');
-        }
-      } catch (error) {
-        console.error('Error sending request:', error);
-      }
-    }
-  };
+    const [handleButtonClickDisabled, setHandleButtonClickDisabled] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -81,6 +34,57 @@ function Synopsis({ claimNumber }) {
     fetchData();
   }, [claimNumber]);
 
+  const handleClick = () => {
+    if (componentData) {
+      const csvRows = [];
+      
+      // Add headers
+      const headers = Object.keys(componentData);
+      csvRows.push(headers.join(','));
+
+      // Add values
+      const values = Object.values(componentData).map(value => {
+        if (value instanceof Date) {
+          return value.toISOString(); // Convert Date objects to ISO strings
+        }
+        return value;
+      });
+      csvRows.push(values.join(','));
+
+      const csvContent = csvRows.join('\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      saveAs(blob, 'data.csv');
+      alert('CSV downloaded successfully!');
+    } else {
+      console.error('componentData is null or undefined');
+    }
+  };
+
+  const handleButtonClick = async () => {
+    if (!handleButtonClickDisabled) {
+      try {
+        const response = await fetch('http://localhost:8080/claim/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            claimNumber: claimNumber,
+            policyNumber: componentData?.policyNumber || '',
+          }),
+        });
+
+        if (response.ok) {
+          console.log('Request sent successfully!');
+          setHandleButtonClickDisabled(true);
+        } else {
+          console.error('Failed to send request');
+        }
+      } catch (error) {
+        console.error('Error sending request:', error);
+      }
+    }
+  };
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -213,8 +217,8 @@ function Synopsis({ claimNumber }) {
       </div>
       <div>
         
-        <button onClick={()=>{
-          handleClick(); downloadCSV()}} className="btn btn-primary mb-2">Download CSV</button>
+        <button onClick={
+          handleClick} className="btn btn-primary mb-2">Download CSV</button>
       </div>
         {/* <div>  
           <Upcomingactivities claimNumber={claimNumber} />  
