@@ -8,7 +8,7 @@ function NewDoc(props) {
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     if(id==="docType"){setDocType(value);}
-    else if(id==="related"){setRelated(value);}
+    else if(id==="relatedTo"){setRelatedTo(value);}
     else if(id==="status"){setStatus(value);}
     else{
     setComponentData((prevData) => ({
@@ -18,10 +18,12 @@ function NewDoc(props) {
   }
   };
 
+const [relatedTo, setRelatedTo] = useState('');
+const [subtype, setSubtype] = useState('');
+const options = ['Claim', 'Contact', 'None'];
+
 const[docType, setDocType] = useState('');
 const[docTypes, setDocTypes] = useState([]);
-const[related, setRelated] = useState('');
-const[relateds, setRelateds] = useState([]);
 const[status, setStatus] = useState('');
 const[statuses, setStatuses] = useState([]);
 
@@ -36,7 +38,6 @@ const fetchnewDocumentsDD = async () => {
     const{documentTypes,relatedTos,statuses}=response.data;
     setDocTypes(documentTypes);
     console.log(documentTypes);
-    setRelateds(relatedTos);
     console.log(relatedTos);
     setStatuses(statuses);
     console.log(statuses);
@@ -50,11 +51,18 @@ const handledocTypeChange = (e) => {
   setDocType(e.target.value);
   handleInputChange(e);
 }
-const handleRelatedChange = (e) => {
-  setRelated(e.target.value);
-  handleInputChange(e);
 
-}
+const handleRelatedToChange = (event) => {
+  const selectedValue = event.target.value;
+  setRelatedTo(selectedValue);
+  setSubtype('');
+};
+
+const handleSubtypeChange = (event) => {
+  const fieldValue = event.target.value;
+  setSubtype(fieldValue);
+};
+
 const handleStatusChange = (e) => {
   setStatus(e.target.value);
   handleInputChange(e);
@@ -66,7 +74,7 @@ const handleStatusChange = (e) => {
     const docData = {
       docName,
       docType,
-      related,
+      relatedTo,
       status,
       uploadedBy,
       uDate,
@@ -143,24 +151,47 @@ const handleStatusChange = (e) => {
           </Form.Select>
         </div>
       </div>
-      <div className="row mb-2">
-        <div className="col-3">
-          <label htmlFor='related'>Related To</label>
+      <div>
+      <div className='row mb-2'>
+        <div className='col-3'>
+          <label htmlFor='relatedTo'>Related To</label>
         </div>
-        <div className="col-6">
-          <Form.Select
-            id="related"
-            value={related}
-            onChange={handleRelatedChange}
-            aria-label="Default select example"
-          >
-              {relateds.map((type,index) => (
-                <option key={index} value={type}>
-                  {type}
-                </option>))}
-          </Form.Select>
+        <div className='col-6'>
+          <select
+            id='relatedTo'
+            value={relatedTo}
+            onChange={handleRelatedToChange}
+            className='w-100 form-control'>
+            <option value=''>Select an option</option>
+            {options.map((option, index) => (
+              <option key={index} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
+      {relatedTo !== 'None' && relatedTo !== 'Claim' && relatedTo !== 'Select an option' &&(
+        <div className='row mb-2'>
+          <div className='col-3'>
+            <label htmlFor='subtype'>
+              {relatedTo === 'Contact'
+                ? 'Related Contact'
+                : 'Any Field'}
+            </label>
+          </div>
+          <div className='col-6'>
+            <input
+              type='text'
+              id='subtype'
+              value={subtype}
+              onChange={handleSubtypeChange}
+              className='w-100 form-control'
+            />
+          </div>
+        </div>
+      )}
+    </div>
       <div className="row mb-2">
         <div className="col-3">
           <label htmlFor='status'>Status</label>
