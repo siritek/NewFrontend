@@ -1,111 +1,95 @@
-import React, { useState, useEffect, data} from 'react'; 
-import {saveAs} from 'file-saver'; 
-//import Form from 'react-bootstrap/Form';  
-//import Upcomingactivities from '../components/Synopsis.components/upcomingactivities.component';  
-  
-function Synopsis({ claimNumber }) {  
-  const [componentData, setComponentData] = useState(null);  
-  const [loading, setLoading] = useState(true);  
-  const [csvContent, setCSVContent] = useState('');
-  const[handleButtonClickDisabled, sethandleButtonClickDisabled] = useState('');
+import React, { useState, useEffect } from 'react';
+import { saveAs } from 'file-saver';
 
-  const downloadCSV = () => {
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    saveAs(blob, 'data.csv');
-  };
+function Synopsis({ claimNumber }) {
+  const [componentData, setComponentData] = useState(null);
+  const [loading, setLoading] = useState(true);
+    const [handleButtonClickDisabled, setHandleButtonClickDisabled] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:8080/claim/loss/${claimNumber}`);
+
+        if (response.ok) {
+          const data = await response.json();
+
+          if (Array.isArray(data) && data.length > 0) {
+            const claim = data[0];
+            claim.dateOfLoss = new Date(claim.dateOfLoss);
+            claim.dateOfReport = new Date(claim.dateOfReport);
+            setComponentData(claim);
+          }
+        } else {
+          throw new Error('Failed to fetch data');
+        }
+
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [claimNumber]);
 
   const handleClick = () => {
-    if(componentData) {
-    const csvRows = [];
-  
-    csvRows.push(Object.keys(componentData[0]).join(','));
+    if (componentData) {
+      const csvRows = [];
+      
+      // Add headers
+      const headers = Object.keys(componentData);
+      csvRows.push(headers.join(','));
 
-      const values = Object.values(componentData);
+      // Add values
+      const values = Object.values(componentData).map(value => {
+        if (value instanceof Date) {
+          return value.toISOString(); // Convert Date objects to ISO strings
+        }
+        return value;
+      });
       csvRows.push(values.join(','));
 
-  
-      data.forEach(item => {  
-    const csv = csvRows.join('\n');
-    setCSVContent(csv);});
-    
-    downloadCSV();
-  
-    alert('handle clicked!');
-    } else{
-      console.error('componentData is null or undefined')
-    }
-  }
-
-
-  
-  useEffect(() => {  
-    const fetchData = async () => {  
-      try {  
-        const response = await fetch(`http://localhost:8080/claim/loss/${claimNumber}`);  
-          
-  
-        if (response.ok) {  
-          const data = await response.json();  
-  
-          if (Array.isArray(data) && data.length > 0) {  
-            const claim = data[0];  
-            claim.dateOfLoss = new Date(claim.dateOfLoss); // Convert date string to Date object  
-            claim.dateOfReport = new Date(claim.dateOfReport); // Convert date string to Date object
-            setComponentData(claim);  
-          }  
-        } else {  
-          throw new Error('Failed to fetch data');  
-        }  
-  
-        setLoading(false);  
-      } catch (error) {  
-        console.error('Error fetching data:', error);  
-        setLoading(false);  
-      }  
-    };  
-  
-    fetchData();  
-  }, [claimNumber]);  
- 
- // Function to handle the button click
- const handleButtonClick = async () => {
-  try {
-    // Send the request to the backend with claimNumber and policynumber as parameters
-    const response = await fetch('http://localhost:8080/claim/submit', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        claimNumber: claimNumber,
-        policyNumber: componentData?.policyNumber || '',
-      }),
-    });
-
-    if (response.ok) {
-      // Handle success
-      console.log('Request sent successfully!');
+      const csvContent = csvRows.join('\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      saveAs(blob, 'data.csv');
+      alert('CSV downloaded successfully!');
     } else {
-      throw new Error('Failed to send request');
+      console.error('componentData is null or undefined');
     }
-  } catch (error) {
-    console.error('Error sending request:', error);
+  };
+
+  const handleButtonClick = async () => {
+    if (!handleButtonClickDisabled) {
+      try {
+        const response = await fetch('http://localhost:8080/claim/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            claimNumber: claimNumber,
+            policyNumber: componentData?.policyNumber || '',
+          }),
+        });
+
+        if (response.ok) {
+          console.log('Request sent successfully!');
+          setHandleButtonClickDisabled(true);
+        } else {
+          console.error('Failed to send request');
+        }
+      } catch (error) {
+        console.error('Error sending request:', error);
+      }
+    }
+  };
+  if (loading) {
+    return <div>Loading...</div>;
   }
- 
-    sethandleButtonClickDisabled(true);
 
-};
-
-
-
-
-  if (loading) {  
-    return <div>Loading...</div>;  
-  }  
-
-
-  
-  return (  
+  return (
     <div className="ms-3">  
       <h5>Claim Synopsis</h5>  
       <hr />  
@@ -233,8 +217,8 @@ function Synopsis({ claimNumber }) {
       </div>
       <div>
         
-        <button onClick={()=>{
-          handleClick(); downloadCSV()}} className="btn btn-primary mb-2">Download CSV</button>
+        <button onClick={
+          handleClick} className="btn btn-primary mb-2">Download CSV</button>
       </div>
         {/* <div>  
           <Upcomingactivities claimNumber={claimNumber} />  

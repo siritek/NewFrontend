@@ -6,7 +6,6 @@ import axios from "axios";
 function Dropdownlist() {
   const [componentData, setComponentData] = useState({
 
-
     state: "",
     stateOptions: [] ,
     stateInput: "",
@@ -15,7 +14,7 @@ function Dropdownlist() {
     adjusterOptions:[] ,
     adjusterInput: "",
 
-    relationshipToInsured: "",
+    relationshiptoinsured: "",
     relationshipToInsuredOptions: [],
     relationshipToInsuredInput: "",
 
@@ -42,10 +41,6 @@ function Dropdownlist() {
     createdBy: "",
     createdByOptions: [],
     createdByInput: "",
-
-    // policyStatus: "",
-    // policyStatusOptions: [],
-    // policyStatusInput: "",
   });
 
   const [showInput, setShowInput] = useState({
@@ -58,7 +53,6 @@ function Dropdownlist() {
     status: false,
     assignedTo: false,
     createdBy: false,
-    // policyStatus: false,
   });
 
   const handleInputChange = (e) => {
@@ -68,6 +62,8 @@ function Dropdownlist() {
       [id]: value,
     }));
   };
+
+ 
 
   const handleDelete = (id) => {
     const deletedOption = componentData[id];
@@ -90,7 +86,8 @@ function Dropdownlist() {
     console.log(output);
 
     // Perform the appropriate POST request to the server to delete the option
-    fetch("http://localhost:8080/modifyDropdown/add", {
+
+    fetch("http://localhost:8080/modifyDropdown/modify", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -119,6 +116,24 @@ function Dropdownlist() {
     };
     console.log(output);
 
+      // Perform the appropriate POST request to the server to add the option
+      fetch("http://localhost:8080/modifyDropdown/modify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(output),
+      });
+ };
+
+
+
+  const toggleInput = (id) => {
+    setShowInput((prevShowInput) => ({
+      ...prevShowInput,
+      [id]: true,
+    }));
+  };
   
 const fetchData = async () => {
   try {
@@ -127,12 +142,14 @@ const fetchData = async () => {
     console.log("Response data:", response.data);
 
     const data = response.data;
-    
+
+    //if (method != null && value != null && dropdownValue != null) {
+      
     setComponentData((prevData) => ({
       ...prevData,
       stateOptions: data.state || [],
       adjusterOptions: data.adjuster || [],
-      relationshipToInsuredOptions: data.relationshipToInsured || [],
+      relationshipToInsuredOptions: data.relationshiptoinsured || [],
       topicOptions: data.topic || [],
       securityTypeOptions: data.securityType || [],
       relatedToOptions: data.relatedTo || [],
@@ -141,178 +158,18 @@ const fetchData = async () => {
       assignedToOptions: data.assignedTo || [],
       createdByOptions: data.createdBy || [],
     }));
-  } catch (error) {
+  }
+  //}
+   catch (error) {
     console.error("Error fetching data:", error);
     // Add proper error handling, e.g., show error message to the user
   }
+ 
 };
 
-fetchData();
-    
-     
-   
-
-    // Perform the appropriate POST request to the server to add the option
-    fetch("http://localhost:8080/modifyDropdown/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(output),
-    });
-  };
-
-  const toggleInput = (id) => {
-    setShowInput((prevShowInput) => ({
-      ...prevShowInput,
-      [id]: true,
-    }));
-  };
-
-  // useEffect(() => {
-  //   const fetchPolicyStatuses = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         "http://localhost:8080/policystatus/getAll"
-  //       );
-  //       console.log("Response data:", response.data);
-  //       if (response.data && response.data.length > 0) {
-  //         setComponentData((prevData) => ({
-  //           ...prevData,
-  //           policyStatusOptions: response.data,
-  //         }));
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching policy statuses:", error);
-  //     }
-  //   };
-
-
-
-
-    //status, adjuster
-
-    // const fetchExposureDDTypes = async () => {
-    //   try {
-    //     const response = await axios.get("http://localhost:8080/exposuresDD");
-    //     console.log("Response data:", response.data);
-
-    //     const { adjuster } = response.data;
-    //     const { exposureStatus } = response.data;
-
-    //     if (adjuster && adjuster.length > 0 || exposureStatus && exposureStatus.length > 0) {
-    //       setComponentData((prevData) => ({
-    //         ...prevData,
-    //        exposureStatusOptions: exposureStatus,
-    //        exposureStatus: exposureStatus[0], // Set the default selected value   
-    //         adjusterOptions: adjuster,
-    //         adjuster: adjuster[0], // Set the default selected value
-    //       }));
-    //     }
-    //   } catch (error) {
-    //     console.error("Error fetching exposure types:", error);
-    //   }
-    // };
-
-    //states
-
-    // const fetchLossLocationDD = async () => {
-    //   try {
-    //     const response = await axios.get("http://localhost:8080/exposuresDD");
-    //     console.log("Response data:", response.data);
-
-    //     const { state } = response.data;
-
-    //     if (state && state.length > 0) {
-    //       setComponentData((prevData) => ({
-    //         ...prevData,
-    //         stateOptions: state,
-    //         state: state[0], // Set the default selected value
-    //       }));
-    //     }
-    //   } catch (error) {
-    //     console.error("Error fetching loss location:", error);
-    //   }
-    // };
-
-
-    //relationshiptoinsured
-
-    // const fetchLossDetailsDD = async () => {
-    //   try {
-    //     const response = await axios.get("http://localhost:8080/exposuresDD");
-    //     console.log("Response data:", response.data);
-
-    //     const { relationshiptoinsured } = response.data;
-
-    //     if (relationshiptoinsured && relationshiptoinsured.length > 0) {
-    //       setComponentData((prevData) => ({
-    //         ...prevData,
-    //         relationshipToInsuredOptions: relationshiptoinsured,
-    //         relationshiptoinsured: relationshiptoinsured[0], // Set the default selected value
-    //       }));
-    //     }
-    //   } catch (error) {
-    //     console.error("Error fetching loss details:", error);
-    //   }
-    // };
-
-    //topics, securitytype
-
-  //   const fetchnewNoteDD = async () => {
-  //     try {
-  //       const response = await axios.get("http://localhost:8080/exposuresDD");
-  //       console.log("Response data:", response.data);
-
-  //       const { topic } = response.data;
-  //       const { securityType } = response.data;
-
-
-  //       if (topic && topic.length > 0  || securityType && securityType.length > 0) { {
-  //         setComponentData((prevData) => ({
-  //           ...prevData,
-  //           securityTypeOptions: securityType,
-  //           securityType: securityType[0], // Set the default selected value
-  //           topicOptions: topic,
-  //           topic: topic[0], // Set the default selected value
-  //         }));
-  //       }
-  //     }
-  //     } catch (error) {
-  //       console.error("Error fetching newnote:", error);
-  //     }
-  //   };
-
-  //       const fetchnewDocumentsDD = async () => {
-  //         try {
-  //           const response = await axios.get(
-  //             "http://localhost:8080/exposuresDD"
-  //           );
-  //           console.log("Response data:", response.data);
-
-  //           const { relatedTo } = response.data;
-
-  //           if (relatedTo && relatedTo.length > 0) {
-  //             setComponentData((prevData) => ({
-  //               ...prevData,
-  //               relatedToOptions: relatedTo,
-  //               relatedTo: relatedTo[0], // Set the default selected value
-  //             }));
-  //           }
-  //         } catch (error) {
-  //           console.error("Error fetching new document:", error);
-  //         }
-  //       };
-
-
-
-  //   // fetchPolicyStatuses();
-  //   fetchnewDocumentsDD();
-  //   fetchnewNoteDD();
-  //   fetchLossDetailsDD();
-  //   fetchLossLocationDD();
-  //   fetchExposureDDTypes();
-  // }, []);
+useEffect(() => {
+  fetchData();
+}, []);
 
   const {
     stateOptions,
@@ -339,11 +196,9 @@ fetchData();
     assignedToOptions,
     assignedToInput,
 
-    createdByOptions,
-    createdByInput,
+    // createdByOptions,
+    // createdByInput,
 
-    // policyStatusOptions,
-    // policyStatusInput,
   } = componentData;
 
   return (
@@ -460,15 +315,15 @@ fetchData();
 
         <div className="row mb-2">
           <div className="col-4">
-            <label htmlFor="relationshipToInsured">
+            <label htmlFor="relationshiptoinsured">
               Relationship to Insured
             </label>
           </div>
           <div className="col-4">
             <Form.Select
               className="w-100 form-control"
-              id="relationshipToInsured"
-              value={componentData.relationshipToInsured}
+              id="relationshiptoinsured"
+              value={componentData.relationshiptoinsured}
               onChange={handleInputChange}
             >
               {relationshipToInsuredOptions.map((option) => (
@@ -480,8 +335,8 @@ fetchData();
           </div>
           <div className="col-4">
             <Button
-              id="relationshipToInsured"
-              onClick={() => handleDelete("relationshipToInsured")}
+              id="relationshiptoinsured"
+              onClick={() => handleDelete("relationshiptoinsured")}
             >
               Delete
             </Button>
@@ -490,7 +345,7 @@ fetchData();
 
         <div className="row mb-2">
           <div className="col-4">
-            {showInput.relationshipToInsured && (
+            {showInput.relationshiptoinsured && (
               <Form.Control
                 type="text"
                 id="relationshipToInsuredInput"
@@ -500,18 +355,18 @@ fetchData();
             )}
           </div>
           <div className="col-4">
-            {!showInput.relationshipToInsured && (
+            {!showInput.relationshiptoinsured && (
               <Button
-                id="relationshipToInsured"
-                onClick={() => toggleInput("relationshipToInsured")}
+                id="relationshiptoinsured"
+                onClick={() => toggleInput("relationshiptoinsured")}
               >
                 Add
               </Button>
             )}
-            {showInput.relationshipToInsured && (
+            {showInput.relationshiptoinsured && (
               <Button
-                id="relationshipToInsured"
-                onClick={() => handleAdd("relationshipToInsured")}
+                id="relationshiptoinsured"
+                onClick={() => handleAdd("relationshiptoinsured")}
               >
                 Confirm
               </Button>
@@ -790,7 +645,7 @@ fetchData();
 
         {/* createdBy */}
 
-        <div className="row mb-2">
+        {/* <div className="row mb-2">
           <div className="col-4">
             <label htmlFor="createdBy">Created By</label>
           </div>
@@ -813,9 +668,9 @@ fetchData();
               Delete
             </Button>
           </div>
-        </div>
+        </div> */}
 
-        <div className="row mb-2">
+        {/* <div className="row mb-2">
           <div className="col-4">
             {showInput.createdBy && (
               <Form.Control
@@ -838,10 +693,11 @@ fetchData();
               </Button>
             )}
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
 }
+ 
 
 export default Dropdownlist;
