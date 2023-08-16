@@ -845,24 +845,3 @@ fetchData();
 }
 
 export default Dropdownlist;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

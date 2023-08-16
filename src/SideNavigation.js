@@ -3,14 +3,12 @@ import "react-pro-sidebar/dist/css/styles.css";
 import React from 'react';
 
 const SideNavigation = (props) => {
-  const { onSectionClick, firstfour , admin } = props;
+  const { onSectionClick, firstfour , admin,  } = props;
 
   const handleItemClick = (section) => {
     onSectionClick(section);
   };
                 
-
- 
  
   return (
     <ProSidebar style={{ height: '150vh' }} backgroundcolor="#bcf3ff">
@@ -25,7 +23,14 @@ const SideNavigation = (props) => {
     <MenuItem onClick={() => handleItemClick('losssummary')}>Loss Summary</MenuItem> 
     <MenuItem onClick={() => handleItemClick('exposures')}>Exposures</MenuItem> 
   </> 
-): admin ?  ( <MenuItem onClick={() => handleItemClick('dropdownlist')}>Dropdown-list</MenuItem>
+): admin ?  ( 
+
+<> 
+  <MenuItem onClick={() => handleItemClick('dropdownlist')}>Dropdown-list</MenuItem>
+  <MenuItem onClick={() => handleItemClick('guideware')}>Guideware</MenuItem>
+  
+
+</> 
   
 ) : ( <> 
   <MenuItem onClick={() => handleItemClick('synopsis')}>Synopsis</MenuItem> 
