@@ -234,6 +234,7 @@ const handleDownloadClick = () => {
         <button onClick={handleButtonClick} disabled={handleButtonClickDisabled} className="btn btn-primary mb-2">
         Send Claim to Guidewire
       </button>
+      &nbsp;
       <button onClick={handleDownloadClick} className="btn btn-primary mb-2">
           Download CSV
         </button>
