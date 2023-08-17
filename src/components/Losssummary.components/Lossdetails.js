@@ -240,46 +240,49 @@ function Lossdetails({ setComponentData, componentData, fnoldataobj}) {
         </div>
 
         <div className="row mb-2">
-          <div className="col-4">
-            <label>weather Involved</label>
-          </div>
-          <div className="col-8">
-            <input
-              type="radio"
-              name="Weather"
-              id="weatherInvolved"
-              value="yes"
-              checked={weatherInvolved === "yes"}
-              onChange={handleInputChange}
-            />{" "}
-            Yes <span className="ms-3"></span>
-            <input
-              type="radio"
-              name="Weather"
-              id="weatherInvolved"
-              value="no"
-              checked={weatherInvolved === "no"}
-              onChange={handleInputChange}
-            />{" "}
-            No
-          </div>
-        </div>
+  <div className="col-4">
+    <label>Weather Involved</label>
+  </div>
+  <div className="col-8">
+    <input
+      type="radio"
+      name="Weather"
+      id="weatherInvolved"
+      value="yes"
+      checked={weatherInvolved === "yes"}
+      onChange={handleInputChange}
+    />{" "}
+    Yes <span className="ms-3"></span>
+    <input
+      type="radio"
+      name="Weather"
+      id="weatherInvolved"
+      value="no"
+      checked={weatherInvolved === "no"}
+      onChange={handleInputChange}
+    />{" "}
+    No
+  </div>
+</div>
 
-        <div className="row mb-2">
-          <div className="col-4">
-            <label htmlFor="weatherDescription">Weather Description</label>
-          </div>
-          <div className="col-8">
-            <input
-              type="text"
-              className="w-100 form-control"
-             // maxLength={500}
-              id="weatherDescription"
-              value={weatherDescription}
-              onChange={handleInputChange}
-            />
-          </div>
-        </div>
+{weatherInvolved === "yes" && (
+  <div className="row mb-2">
+    <div className="col-4">
+      <label htmlFor="weatherDescription">Weather Description</label>
+    </div>
+    <div className="col-8">
+      <input
+        type="text"
+        className="w-100 form-control"
+        // maxLength={500}
+        id="weatherDescription"
+        value={weatherDescription}
+        onChange={handleInputChange}
+      />
+    </div>
+  </div>
+)}
+
 
         <div className="row mb-2">
           <div className="col-4">

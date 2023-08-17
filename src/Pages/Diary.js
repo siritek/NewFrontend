@@ -40,7 +40,8 @@ function Dairy() {
   };
 
   const [relatedTo, setRelatedTo] = useState('');
-  const [relatedTos, setRelatedTos] = useState([]);
+  const [subtype, setSubtype] = useState('');
+  const options = ['Claim', 'Contact', 'None'];
 
   const [createdBy, setCreatedBy] = useState('');
   const [createdBys, setCreatedBys] = useState([]);
@@ -67,8 +68,6 @@ function Dairy() {
       const { relatedTos, createdBys, assignees } = response.data;
 
       // Assign the retrieved values to the state variables
-      setRelatedTos(relatedTos);
-      console.log("-------", relatedTos);
       setCreatedBys(createdBys);
       console.log("-------", createdBys);
       setAssignedTos(assignees);
@@ -95,10 +94,16 @@ function Dairy() {
 
   }
 
-  const handlerealtedToChange = (event) => {
-    setRelatedTo(event.target.value);
-    handleInputChange(event);
-  }
+  const handleRelatedToChange = (event) => {
+    const selectedValue = event.target.value;
+    setRelatedTo(selectedValue);
+    setSubtype('');
+  };
+
+  const handleSubtypeChange = (event) => {
+    const fieldValue = event.target.value;
+    setSubtype(fieldValue);
+  };
   const handleCreatedByChange = (event) => {
     setCreatedBy(event.target.value);
     handleInputChange(event);
@@ -169,31 +174,47 @@ function Dairy() {
           </div>
         </div>
 
+        <div>
+      <div className='row mb-2'>
+        <div className='col-4'>
+          <label htmlFor='relatedTo'>Related To</label>
+        </div>
+        <div className='col-5'>
+          <select
+            id='relatedTo'
+            value={relatedTo}
+            onChange={handleRelatedToChange}
+            className='w-100 form-control'>
+            <option value=''>Select an option</option>
+            {options.map((option, index) => (
+              <option key={index} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+      {relatedTo !== 'None' && relatedTo !== 'Claim' && relatedTo !== 'Select an option' &&(
         <div className='row mb-2'>
           <div className='col-4'>
-            <label htmlFor='relatedTo'>Related To</label></div>
+            <label htmlFor='subtype'>
+              {relatedTo === 'Contact'
+                ? 'Related Contact'
+                : 'Any Field'}
+            </label>
+          </div>
           <div className='col-5'>
-            <Form.Select id="relatedTo" value={relatedTo} onChange={handlerealtedToChange} className='w-100 form-control'>  
-              {relatedTos && relatedTos.map((relatedTo,index) => {
-                return <option key={index} value={relatedTo}>{relatedTo}</option>;
-              })}
-
-            </Form.Select>  
-            {/* <Form.Control
-              as="select"
-              id="relatedTo"
-              value={relatedTo}
-              onChange={handlerealtedToChange}
-              className="w-100 form-control"
-            >
-              {relatedTos &&
-                relatedTos.map((relatedTo, index) => {
-                  return <option key={index} value={relatedTo}>{relatedTo}</option>;
-                })}
-            </Form.Control> */}
-
+            <input
+              type='text'
+              id='subtype'
+              value={subtype}
+              onChange={handleSubtypeChange}
+              className='w-100 form-control'
+            />
           </div>
         </div>
+      )}
+    </div>
 
         <div className='row mb-2'>
           <div className='col-4'>

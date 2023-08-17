@@ -1,13 +1,42 @@
-import React, { useState, useEffect} from 'react'; 
-//import {saveAs} from 'file-saver'; 
+import React, { useState, useEffect, data} from 'react'; 
+import {saveAs} from 'file-saver'; 
 //import Form from 'react-bootstrap/Form';  
 //import Upcomingactivities from '../components/Synopsis.components/upcomingactivities.component';  
   
 function Synopsis({ claimNumber }) {  
   const [componentData, setComponentData] = useState(null);  
   const [loading, setLoading] = useState(true);  
-  //const [csvContent, setCSVContent] = useState('');
+  const [csvContent, setCSVContent] = useState('');
   const[handleButtonClickDisabled, sethandleButtonClickDisabled] = useState('');
+
+  const downloadCSV = () => {
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    saveAs(blob, 'data.csv');
+  };
+
+  const handleClick = () => {
+    if(componentData) {
+    const csvRows = [];
+  
+    csvRows.push(Object.keys(componentData[0]).join(','));
+
+      const values = Object.values(componentData);
+      csvRows.push(values.join(','));
+
+  
+      data.forEach(item => {  
+    const csv = csvRows.join('\n');
+    setCSVContent(csv);});
+    
+    downloadCSV();
+  
+    alert('handle clicked!');
+    } else{
+      console.error('componentData is null or undefined')
+    }
+  }
+
+
   
   useEffect(() => {  
     const fetchData = async () => {  
@@ -36,19 +65,7 @@ function Synopsis({ claimNumber }) {
     };  
   
     fetchData();  
-  }, [claimNumber]);
-
-  const generateCSVContent = () => {
-    if (componentData) {
-      const csvRows = [];
-
-      csvRows.push(Object.keys(componentData[0]).join(','));
-      const values = Object.values(componentData);
-      csvRows.push(values.join(','));
-      return csvRows.join('\n');
-  }
-  return '';
-};
+  }, [claimNumber]);  
  
  // Function to handle the button click
  const handleButtonClick = async () => {
@@ -79,29 +96,15 @@ function Synopsis({ claimNumber }) {
 
 };
 
-const handleDownloadClick = () => {
-  const csvContent = generateCSVContent();
 
-  if (csvContent) {
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const blobURL = URL.createObjectURL(blob);
-
-    const link = document.createElement('a');
-    link.href = blobURL;
-    link.download = 'data.csv';
-    link.click();
-
-    URL.revokeObjectURL(blobURL);
-  } else {
-    console.error('CSV content is empty');
-  }
-};
 
 
   if (loading) {  
     return <div>Loading...</div>;  
   }  
 
+
+  
   return (  
     <div className="ms-3">  
       <h5>Claim Synopsis</h5>  
@@ -231,9 +234,11 @@ const handleDownloadClick = () => {
           Download CSV
         </button>
       </div>
-      {/* <div>
-        <button onClick={handleClick} className="btn btn-primary mb-2">Download CSV</button>
-      </div> */}
+      <div>
+        
+        <button onClick={()=>{
+          handleClick(); downloadCSV()}} className="btn btn-primary mb-2">Download CSV</button>
+      </div>
         {/* <div>  
           <Upcomingactivities claimNumber={claimNumber} />  
         </div>   */}

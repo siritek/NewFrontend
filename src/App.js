@@ -18,6 +18,9 @@ import ClaimGeneration from "./Pages/ClaimGeneration";
 import  {Newexposure}  from "./components/Exposure.components/Newexposure";
 import { LossData } from "./Pages/LossSummary";
 import Dropdownlist from "./Pages/Dropdown-list"
+import AdminPage from "./Pages/AdminPage";
+import Guideware from "./Pages/Guideware";
+
 
 function App() {
   const [activeSection, setActiveSection] = useState(null);
@@ -26,6 +29,7 @@ function App() {
   // const [policyNumber, setPolicyNumber] = useState(null); 
   const [componentData, setComponentData] = useState({});
   const [admin, setAdmin] = useState(false);
+ 
 
   const updateComponentData = (newData) => {
     setComponentData(newData);
@@ -39,8 +43,10 @@ function App() {
    if (section === "synopsis"|| section === "newnote" || section === "dairy" || section === "documents"|| section ===" "||section==="search") {
       setfirstfour(false);
     }
-      if(section === "dropdownlist") 
+      if(section === "dropdownlist" || section === "gudieware"  ) 
     {setAdmin(true)}
+
+
   };
 
   const handleFnolClick = () => {
@@ -60,10 +66,18 @@ function App() {
   };
 
 const handleAdminClick =() => {
-  setActiveSection("dropdownlist")
+  setActiveSection("admin");
   setAdmin (true);
   setfirstfour(false);
 };
+
+// const handleDropdownClick = () =>{
+//   setActiveSection("dropdownlist");
+//   setAdmin(true);
+//     setfirstfour(false)
+//   };
+
+
 const handleSearchClick =() => {
   setActiveSection("search")
   setAdmin (false);
@@ -86,7 +100,7 @@ const handleSearchClick =() => {
             onFnolClick={handleFnolClick}
             onSearchClick={handleSearchClick}
             onBlankClick={handleBlankClick}
-            onAdminClick ={ handleAdminClick}
+            onAdminClick={handleAdminClick}
           />
         </Col>
       </Row>
@@ -95,12 +109,14 @@ const handleSearchClick =() => {
         <SideNavigation
           onSectionClick={handleSectionClick}
           firstfour={firstfour}
-          admin ={admin}
+          admin={admin}
+          // onDropdownClick={handleDropdownClick}
         />
-      
 
         <div style={{ marginLeft: "10px", width: "100%" }}>
-          {activeSection === "fnol" && <Fnol onPIClick={() => setActiveSection("pi")} />}
+          {activeSection === "fnol" && (
+            <Fnol onPIClick={() => setActiveSection("pi")} />
+          )}
           {activeSection === "pi" && (
             <Policyinfo
               onFnolClick={() => setActiveSection("fnol")}
@@ -113,10 +129,17 @@ const handleSearchClick =() => {
               onUploadClick={() => setActiveSection("upload")}
             />
           )}
-          {activeSection === "newDoc" && <NewDoc onDocumentClick={() => setActiveSection("documents")} />}
-          {activeSection === "upload" && <Upload onDocumentClick={() => setActiveSection("documents")} />}
+          {activeSection === "newDoc" && (
+            <NewDoc onDocumentClick={() => setActiveSection("documents")} />
+          )}
+          {activeSection === "upload" && (
+            <Upload onDocumentClick={() => setActiveSection("documents")} />
+          )}
           {activeSection === "losssummary" && (
-            <Losssummary onPIClick={() => setActiveSection("pi")} onExposureClick={() => setActiveSection("exposures")} />
+            <Losssummary
+              onPIClick={() => setActiveSection("pi")}
+              onExposureClick={() => setActiveSection("exposures")}
+            />
           )}
           {activeSection === "exposures" && (
             <Exposure
@@ -125,35 +148,53 @@ const handleSearchClick =() => {
               onAppClick={() => setActiveSection("")}
               onNewClick={() => setActiveSection("newexposure")}
               onExposureClick={() => setActiveSection("exposures")}
-                setClaimNumber={setClaimNumber}
+              setClaimNumber={setClaimNumber}
             />
           )}
-
-          {activeSection === "newnote" && <NewNote setComponentData={setComponentData} componentData={componentData} />}
+          {activeSection === "newnote" && (
+            <NewNote
+              setComponentData={setComponentData}
+              componentData={componentData}
+            />
+          )}
           {activeSection === "searchnote" && <SearchNote />}
           {activeSection === "diary" && <Diary />}
-          {activeSection === "search" && (<Search setComponentData={updateComponentData} componentData={componentData} />)}
-          {/* {activeSection === "synopsis" && <Synopsis onSynopsisClick={() => setActiveSection("synopsis")} />} */}
-          {activeSection === "synopsis" && (
-            <Synopsis  claimNumber={claimNumber.claimNumber} 
-                 setComponentData={updateComponentData} componentData={componentData}
+          {activeSection === "search" && (
+            <Search
+              setComponentData={updateComponentData}
+              componentData={componentData}
             />
           )}
-        {activeSection === "claimGeneration" && claimNumber &&  ( 
-            <ClaimGeneration 
-              claimNumber={claimNumber} 
-              // policyNumber={policyNumber} 
-              onLinkClick={handleLinkClick} 
-            /> 
+          {/* {activeSection === "synopsis" && <Synopsis onSynopsisClick={() => setActiveSection("synopsis")} />} */}
+          {activeSection === "synopsis" && (
+            <Synopsis
+              claimNumber={claimNumber.claimNumber}
+              setComponentData={updateComponentData}
+              componentData={componentData}
+            />
+          )}
+          {activeSection === "claimGeneration" && claimNumber && (
+            <ClaimGeneration
+              claimNumber={claimNumber}
+              // policyNumber={policyNumber}
+              onLinkClick={handleLinkClick}
+            />
           )}
           {/* new claim synopsis */}
           {activeSection === "newexposure" && (
-            <Newexposure lossdataobj={LossData()} onBackClick={() => setActiveSection("exposures")}/>)}
-
-          {activeSection === "dropdownlist" &&(
-           <Dropdownlist onAdminClick= {()=>setActiveSection("dropdownlist")} />)}
-            
-          
+            <Newexposure
+              lossdataobj={LossData()}
+              onBackClick={() => setActiveSection("exposures")}
+            />
+          )}
+          {activeSection === "admin" && (
+            <AdminPage onAdminClick={() => setActiveSection("Adminpage")} />
+          )}
+          {activeSection === "dropdownlist" && <Dropdownlist />}
+          {activeSection === "guideware" && <Guideware />}
+          {/* {activeSection === "dropdownlist" && (
+          <Dropdownlist onDropdownClick={() => setActiveSection("dropdownlist")} />
+          )} */}
         </div>
       </div>
     </>
