@@ -11,7 +11,20 @@ function Searchnote(){
     const[PolicyNumber,setPolicyNumber] =useState('') 
     const[claimNumber,setclaimNumber] =useState('') 
     const[findText,setfindText] =useState('') 
-   const[relatedTo,setrelatedTo] =useState('') 
+    const [relatedTo, setRelatedTo] = useState('');
+    const [subtype, setSubtype] = useState('');
+    const options = ['Claim', 'Contact', 'None'];
+
+    const handleRelatedToChange = (event) => {
+      const selectedValue = event.target.value;
+      setRelatedTo(selectedValue);
+      setSubtype('');
+    };
+    
+    const handleSubtypeChange = (event) => {
+      const fieldValue = event.target.value;
+      setSubtype(fieldValue);
+    };
  
     
  
@@ -98,23 +111,47 @@ function Searchnote(){
                         </div>    
                     </div>  */} 
  
-          <div className="row mb-2"> 
-            <div className="col-4"> 
-              <label>Related To:</label> 
-            </div> 
-            <div className="col-8"> 
-              <Form.Select 
-                className="w-100 form-control" 
-                name="relatedTo" 
-                value={relatedTo} 
-                onChange={(e) => setrelatedTo(e.target.value)} 
-              > 
-                <option value="none">None</option> 
-                <option value="claim">Claim</option> 
-                <option value="contacts">Contacts</option> 
-              </Form.Select> 
-            </div> 
-          </div> 
+ <div>
+      <div className='row mb-2'>
+        <div className='col-4'>
+          <label htmlFor='relatedTo'>Related To</label>
+        </div>
+        <div className='col-8'>
+          <select
+            id='relatedTo'
+            value={relatedTo}
+            onChange={handleRelatedToChange}
+            className='w-100 form-control'>
+            <option value=''>Select an option</option>
+            {options.map((option, index) => (
+              <option key={index} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+      {relatedTo !== 'None' && relatedTo !== 'Claim' && relatedTo !== 'Select an option' &&(
+        <div className='row mb-2'>
+          <div className='col-4'>
+            <label htmlFor='subtype'>
+              {relatedTo === 'Contact'
+                ? 'Related Contact'
+                : 'Any Field'}
+            </label>
+          </div>
+          <div className='col-8'>
+            <input
+              type='text'
+              id='subtype'
+              value={subtype}
+              onChange={handleSubtypeChange}
+              className='w-100 form-control'
+            />
+          </div>
+        </div>
+      )}
+    </div>
           <div className="row mb-2"> 
             <div className="col-4"> 
               <label>Topic:</label> 
