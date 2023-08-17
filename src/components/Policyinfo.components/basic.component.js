@@ -410,6 +410,7 @@ setComponentData((prevData) =>({
         <div className="row mb-2"> 
           <div className="col-4"> 
             <label htmlFor='address'>Address</label> 
+            <i className="text-danger h5">*</i>
           </div> 
           <div className="col-8"> 
             <input id="address" 

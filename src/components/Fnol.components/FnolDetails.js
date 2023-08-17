@@ -45,6 +45,7 @@ function FnolDetails({ setComponentData, componentData }) {
       <div className="row mb-2">
         <div className="col-4">
           <label htmlFor="dateOfLoss">Date Of Loss</label>
+          <i className="text-danger h5">*</i>
         </div>
         <div className="col-5">
            <input
@@ -74,6 +75,7 @@ function FnolDetails({ setComponentData, componentData }) {
       <div className="row mb-2">
         <div className="col-4">
           <label htmlFor="lossLocation">Loss Location</label>
+          <i className="text-danger h5">*</i>
         </div>
         <div className="col-5">
           <input
@@ -89,6 +91,7 @@ function FnolDetails({ setComponentData, componentData }) {
       <div className="row mb-2">
         <div className="col-4">
           <label htmlFor="lossTime">Time Of Loss</label>
+          <i className="text-danger h5">*</i>
         </div>
         <div className="col-5">
           <input
@@ -104,6 +107,7 @@ function FnolDetails({ setComponentData, componentData }) {
       <div className="row mb-2">
         <div className="col-4">
           <label htmlFor="reportedBy">Reported By</label>
+          <i className="text-danger h5">*</i>
         </div>
         <div className="col-5">
           <input
@@ -119,6 +123,7 @@ function FnolDetails({ setComponentData, componentData }) {
       <div className="row mb-2">
         <div className="col-4">
           <label htmlFor="dateOfReport">Date Reported</label>
+          <i className="text-danger h5">*</i>
         </div>
         <div className="col-5">
           {/* <DatePicker
