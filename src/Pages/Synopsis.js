@@ -34,29 +34,20 @@ function Synopsis({ claimNumber }) {
     fetchData();
   }, [claimNumber]);
 
-  const handleClick = () => {
-    if (componentData) {
-      const csvRows = [];
-      
-      // Add headers
-      const headers = Object.keys(componentData);
-      csvRows.push(headers.join(','));
+ 
+  const handleCsvDownload = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/download-csv');
 
-      // Add values
-      const values = Object.values(componentData).map(value => {
-        if (value instanceof Date) {
-          return value.toISOString(); // Convert Date objects to ISO strings
-        }
-        return value;
-      });
-      csvRows.push(values.join(','));
-
-      const csvContent = csvRows.join('\n');
-      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-      saveAs(blob, 'data.csv');
-      alert('CSV downloaded successfully!');
-    } else {
-      console.error('componentData is null or undefined');
+      if (response.ok) {
+        const blob = await response.blob();
+        saveAs(blob, 'nxt_master.csv');
+        alert('CSV downloaded successfully!');
+      } else {
+        console.error('Failed to download CSV');
+      }
+    } catch (error) {
+      console.error('Error downloading CSV:', error);
     }
   };
 
@@ -218,7 +209,7 @@ function Synopsis({ claimNumber }) {
       <div>
         
         <button onClick={
-          handleClick} className="btn btn-primary mb-2">Download CSV</button>
+          handleCsvDownload} className="btn btn-primary mb-2">Download CSV</button>
       </div>
         {/* <div>  
           <Upcomingactivities claimNumber={claimNumber} />  
