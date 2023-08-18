@@ -701,3 +701,175 @@ useEffect(() => {
  
 
 export default Dropdownlist;
+
+
+
+
+
+
+
+
+// useEffect(() => {
+  //   const fetchPolicyStatuses = async () => {
+  //     try {
+  //       const response = await axios.get(
+  //         "http://localhost:8080/policystatus/getAll"
+  //       );
+  //       console.log("Response data:", response.data);
+  //       if (response.data && response.data.length > 0) {
+  //         setComponentData((prevData) => ({
+  //           ...prevData,
+  //           policyStatusOptions: response.data,
+  //         }));
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching policy statuses:", error);
+  //     }
+  //   };
+
+
+
+
+    //status, adjuster
+
+    // const fetchExposureDDTypes = async () => {
+    //   try {
+    //     const response = await axios.get("http://localhost:8080/exposuresDD");
+    //     console.log("Response data:", response.data);
+
+    //     const { adjuster } = response.data;
+    //     const { exposureStatus } = response.data;
+
+    //     if (adjuster && adjuster.length > 0 || exposureStatus && exposureStatus.length > 0) {
+    //       setComponentData((prevData) => ({
+    //         ...prevData,
+    //        exposureStatusOptions: exposureStatus,
+    //        exposureStatus: exposureStatus[0], // Set the default selected value   
+    //         adjusterOptions: adjuster,
+    //         adjuster: adjuster[0], // Set the default selected value
+    //       }));
+    //     }
+    //   } catch (error) {
+    //     console.error("Error fetching exposure types:", error);
+    //   }
+    // };
+
+    //states
+
+    // const fetchLossLocationDD = async () => {
+    //   try {
+    //     const response = await axios.get("http://localhost:8080/exposuresDD");
+    //     console.log("Response data:", response.data);
+
+    //     const { state } = response.data;
+
+    //     if (state && state.length > 0) {
+    //       setComponentData((prevData) => ({
+    //         ...prevData,
+    //         stateOptions: state,
+    //         state: state[0], // Set the default selected value
+    //       }));
+    //     }
+    //   } catch (error) {
+    //     console.error("Error fetching loss location:", error);
+    //   }
+    // };
+
+
+    //relationshiptoinsured
+
+    // const fetchLossDetailsDD = async () => {
+    //   try {
+    //     const response = await axios.get("http://localhost:8080/exposuresDD");
+    //     console.log("Response data:", response.data);
+
+    //     const { relationshiptoinsured } = response.data;
+
+    //     if (relationshiptoinsured && relationshiptoinsured.length > 0) {
+    //       setComponentData((prevData) => ({
+    //         ...prevData,
+    //         relationshipToInsuredOptions: relationshiptoinsured,
+    //         relationshiptoinsured: relationshiptoinsured[0], // Set the default selected value
+    //       }));
+    //     }
+    //   } catch (error) {
+    //     console.error("Error fetching loss details:", error);
+    //   }
+    // };
+
+    //topics, securitytype
+
+  //   const fetchnewNoteDD = async () => {
+  //     try {
+  //       const response = await axios.get("http://localhost:8080/exposuresDD");
+  //       console.log("Response data:", response.data);
+
+  //       const { topic } = response.data;
+  //       const { securityType } = response.data;
+
+
+  //       if (topic && topic.length > 0  || securityType && securityType.length > 0) { {
+  //         setComponentData((prevData) => ({
+  //           ...prevData,
+  //           securityTypeOptions: securityType,
+  //           securityType: securityType[0], // Set the default selected value
+  //           topicOptions: topic,
+  //           topic: topic[0], // Set the default selected value
+  //         }));
+  //       }
+  //     }
+  //     } catch (error) {
+  //       console.error("Error fetching newnote:", error);
+  //     }
+  //   };
+
+  //       const fetchnewDocumentsDD = async () => {
+  //         try {
+  //           const response = await axios.get(
+  //             "http://localhost:8080/exposuresDD"
+  //           );
+  //           console.log("Response data:", response.data);
+
+  //           const { relatedTo } = response.data;
+
+  //           if (relatedTo && relatedTo.length > 0) {
+  //             setComponentData((prevData) => ({
+  //               ...prevData,
+  //               relatedToOptions: relatedTo,
+  //               relatedTo: relatedTo[0], // Set the default selected value
+  //             }));
+  //           }
+  //         } catch (error) {
+  //           console.error("Error fetching new document:", error);
+  //         }
+  //       };
+
+
+
+  //   // fetchPolicyStatuses();
+  //   fetchnewDocumentsDD();
+  //   fetchnewNoteDD();
+  //   fetchLossDetailsDD();
+  //   fetchLossLocationDD();
+  //   fetchExposureDDTypes();
+  // }, []);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

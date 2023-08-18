@@ -7,6 +7,8 @@ var FnolDataObj;
 function Fnol(props) {
   
   const [componentData, setComponentData] = useState({});
+  const [isFormValid, setIsFormValid] = useState(false);
+
 
   const handlePIClick=()=>{
     
@@ -24,13 +26,34 @@ function Fnol(props) {
     }
   }, []);
 
+  const validate =
+  componentData &&
+  componentData.dateOfLoss &&
+  componentData.dateOfLoss.length > 0 &&
+  componentData.lossLocation &&
+  componentData.lossLocation.length > 0 &&
+  componentData.lossTime &&
+  componentData.lossTime.length > 0 &&
+  componentData.reportedBy &&
+  componentData.reportedBy.length > 0 &&
+  componentData.dateOfReport &&
+  componentData.dateOfReport.length > 0 &&
+  componentData.policyNumber &&
+  componentData.policyNumber.length > 0;
+
+      
+  useEffect(() => {
+    setIsFormValid(validate);
+  }, [validate]);
+ 
+
  
   return ( 
      <div> 
  <div>
  <div className="d-flex justify-content-between align-items-center">
           <h2>FNOL (First Notice Of Loss)</h2>
-          <button type="button" className="btn btn-success" onClick={() => { handlePIClick(); handleNext(); }}>
+          <button type="button" disabled={!isFormValid} className="btn btn-success" onClick={() => { handlePIClick(); handleNext(); }}>
             Next
           </button>
           </div>

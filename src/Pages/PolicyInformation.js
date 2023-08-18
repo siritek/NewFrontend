@@ -9,9 +9,7 @@ var policyInfoObj;
 
 function Policyinfo(props) { 
   const [componentData, setComponentData] = useState({});
-  const [excludeData, setExcludeData] = useState([]);
-  const [additionalData, setAdditionalData] = useState([]);
-  const [policylevelData, setPolicylevelData] = useState([]);
+  const [isFormValid, setIsFormValid] = useState(false);
 
   useEffect(() => {
     if (Object.keys(componentData).length === 0 && policyInfoObj !== undefined) {
@@ -23,48 +21,33 @@ function Policyinfo(props) {
     props.onFnolClick();
   };
 
-  const handleNext = () => { 
-    policyInfoObj = { 
-      ...componentData, 
-      exclude : excludeData,
-      additional : additionalData,
-      policylevel : policylevelData,
+  const handleNext = () => {
+    policyInfoObj = componentData;
     // Perform further actions with the data
-  };
-  console.log(policyInfoObj);
   };
 
   const handleLossSummaryClick = () => {
     props.onLossSummaryClick();
   };
 
-  const handleExcludeSave = (excludeData) => { 
-    setComponentData((prevData) => ({ 
-      ...prevData,
-      exclude: excludeData,
-    }));
-    setExcludeData(excludeData);
-    console.log(excludeData); // Do something with the injuries data
-  }; 
 
+  const validate =
+  componentData &&
+  componentData.effectiveDate &&
+  componentData.effectiveDate.length > 0 &&
+  componentData.expirationDate &&
+  componentData.expirationDate.length > 0 &&
+  componentData.name &&
+  componentData.name.length > 0 &&
+  componentData.address &&
+  componentData.address.length > 0;
 
-  const handleAdditionalSave = (additionalData) => { 
-    setComponentData((prevData) => ({ 
-      ...prevData, 
-      additional: additionalData, 
-    })); 
-    setAdditionalData(additionalData); 
-    console.log(additionalData); // Do something with the injuries data 
-  }; 
+    
+  useEffect(() => {
+    setIsFormValid(validate);
+  }, [validate]);
  
-  const handlePolicylevelSave = (policylevelData) => { 
-    setComponentData((prevData) => ({ 
-      ...prevData, 
-      policylevel: policylevelData, 
-    })); 
-    setPolicylevelData(policylevelData); 
-    console.log(policylevelData); // Do something with the injuries data 
-  }; 
+
 
   return ( 
     <div> 
@@ -78,6 +61,7 @@ function Policyinfo(props) {
           <button
             type="button"
             className="btn btn-success"
+            disabled={!isFormValid}
             onClick={() => {
               handleLossSummaryClick();
               handleNext();
@@ -93,13 +77,13 @@ function Policyinfo(props) {
           <Basic setComponentData={setComponentData} componentData={componentData} fnoldataobj={FnolData()} /> 
         </div> 
         <div className='col-6'> 
-          <Additional setComponentData={setComponentData} componentData={componentData} onSave={handleAdditionalSave}/> 
+          <Additional setComponentData={setComponentData} componentData={componentData} /> 
           <hr />  
-          <Excluded setComponentData={setComponentData} componentData={componentData} onSave={handleExcludeSave} /> 
+          <Excluded /> 
         </div> 
         <hr /> 
         <div className='col-6'> 
-          <Policylevel setComponentData={setComponentData} componentData={componentData} onSave={handlePolicylevelSave} /> 
+          <Policylevel /> 
           {/* <Agent /> */} 
         </div> 
       </div> 
