@@ -11,11 +11,34 @@ function Policyinfo(props) {
   const [componentData, setComponentData] = useState({});
   const [isFormValid, setIsFormValid] = useState(false);
 
+
+  const validate =
+  componentData &&
+  componentData.effectiveDate &&
+  componentData.effectiveDate.length > 0 &&
+  componentData.expirationDate &&
+  componentData.expirationDate.length > 0 &&
+  componentData.name &&
+  componentData.name.length > 0 &&
+  componentData.address &&
+  componentData.address.length > 0
+  componentData.policyType &&
+  componentData.policyType.length > 0 &&
+  componentData.policyStatus  &&
+  componentData.policyStatus.length > 0 ;
+
+    
+  useEffect(() => {
+    setIsFormValid(validate);
+  }, [validate]);
+ 
+
+
   useEffect(() => {
     if (Object.keys(componentData).length === 0 && policyInfoObj !== undefined) {
       setComponentData(policyInfoObj);
     }
-  }, []);
+  }, [policyInfoObj]);
 
   const handleFnolClick = () => {
     props.onFnolClick();
@@ -31,22 +54,6 @@ function Policyinfo(props) {
   };
 
 
-  const validate =
-  componentData &&
-  componentData.effectiveDate &&
-  componentData.effectiveDate.length > 0 &&
-  componentData.expirationDate &&
-  componentData.expirationDate.length > 0 &&
-  componentData.name &&
-  componentData.name.length > 0 &&
-  componentData.address &&
-  componentData.address.length > 0;
-
-    
-  useEffect(() => {
-    setIsFormValid(validate);
-  }, [validate]);
- 
 
 
   return ( 

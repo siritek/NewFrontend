@@ -186,6 +186,7 @@ function Lossdetails({ setComponentData, componentData, fnoldataobj}) {
         <div className="row mb-2">
           <div className="col-4">
             <label htmlFor="lossCause">Loss Cause</label>
+            <i className="text-danger h5">*</i>
           </div>
           <div className="col-8">
             <Form.Select
@@ -222,6 +223,7 @@ function Lossdetails({ setComponentData, componentData, fnoldataobj}) {
         <div className="row mb-2">
           <div className="col-4">
             <label htmlFor="typeOfLoss">Type of Loss</label>
+            <i className="text-danger h5">*</i>
           </div>
           <div className="col-8">
             <Form.Select

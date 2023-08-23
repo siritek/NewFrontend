@@ -35,10 +35,10 @@ function App() {
   const handleSectionClick = (section) => {
     setActiveSection(section);
     if (section === "fnol" || section === "pi" || section === "losssummary" || section === "exposures") {
-      setfirstfour(true) ; setsecondfour(false)
+      setfirstfour(true) ; 
     }
    if (section === "synopsis"|| section === "newnote" || section === "dairy" || section === "documents"|| section ===" "||section==="search") {
-      setfirstfour(false); setsecondfour(true)
+      setfirstfour(false); 
     }
       if(section === "dropdownlist") 
     {setAdmin(true)}

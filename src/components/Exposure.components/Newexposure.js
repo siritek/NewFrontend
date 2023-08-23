@@ -24,11 +24,13 @@ function Newexposure(props,{lossdataobj}){
   const[adjuster, setAdjuster] = useState();
   const[adjusters, setAdjusters] = useState([]);
 
+  const [isFormValid, setIsFormValid] = useState(false);
+
+
+
   const handleInputChange = (e) => {  
     const {id, value} = e.target;
-   // if(id==="lossParty"){setLossParty(value);}
-    //else if(id==="primaryCoverage"){setPrimaryCoverage(value);}
-    //else if(id==="claimantType"){setClaimantType(value);}else{
+
     setComponentData((prevData) =>({  
       ...prevData,  
       [id]:value,  
@@ -95,15 +97,27 @@ function Newexposure(props,{lossdataobj}){
   
   
   const{ 
-   // lossParty='', 
-    //primaryCoverage='', 
-   // adjuster='', 
-    //  status='', 
+
       creationDate='', 
       claimant='', 
-     // claimantType='',  
+   
       address='', 
   } = componentData || {};
+
+
+  
+  const validate =(
+    componentData &&
+    componentData.address &&
+    componentData.address.length > 0 &&
+    componentData.creationDate && 
+    componentData.creationDate.length> 0);
+  
+          
+    useEffect(() => {
+      setIsFormValid(validate);
+    }, [validate]);
+   
 
   const handleNext = () => {
     // Access the component data from the state
@@ -119,9 +133,6 @@ function Newexposure(props,{lossdataobj}){
 
     // Perform further actions with the data
   };
-  // if(Object.keys(componentData).length === 0 && ExposureDataObj !== undefined) {
-  //   setComponentData(ExposureDataObj)
-  // }
 
   const [inputarr, setInputarr] = useState([]);
   
@@ -148,7 +159,7 @@ function Newexposure(props,{lossdataobj}){
     <div>
             
           <button type="button" className="btn btn-dark" onClick={handleBackClick}>Back</button>&nbsp;
-          <button type="button" className="btn btn-success"onClick={()=>{handleNext();handleBackClick();changhandle();}} >Submit</button>
+          <button type="button" disabled ={!isFormValid} className="btn btn-success"onClick={()=>{handleNext();handleBackClick();changhandle();}} >Submit</button>
           </div>
         
       </div><hr/>
