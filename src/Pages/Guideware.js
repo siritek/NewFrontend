@@ -2,14 +2,15 @@ import React, { useState, useEffect } from "react";
 import "../App.css";
 
 const TableRow = ({ index, Guideware }) => {
+  //const formattedDate = new Date(Guideware.createDateTime).toLocaleString();
   return (
     <tr>
       <td>{index + 1}</td>
-      <td>{Guideware.GWClaimNumber}</td>
-      <td>{Guideware.CreateDateTime}</td>
-      <td>{Guideware.BaseClaimNumber}</td>
-      <td>{Guideware.BasePolicyNumber}</td>
-      <td>{Guideware.Status}</td>
+      <td>{Guideware.gwclaimNumber}</td>
+      <td>{Guideware.createDateTime}</td>
+      <td>{Guideware.baseClaimNumber}</td>
+      <td>{Guideware.basePolicyNumber}</td>
+      <td>{Guideware.status}</td>
     </tr>
   );
 };
