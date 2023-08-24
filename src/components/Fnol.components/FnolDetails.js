@@ -8,11 +8,20 @@ function FnolDetails({ setComponentData, componentData }) {
   // pastYear.setFullYear(today.getFullYear() - 1);
 
   const handleInputChange = (e) => {
-    const { id, value } = e.target;
+    if (e.target.id=="policyNumber"){  
+      const numericValue = e.target.value.replace(/[^0-9]/g, ''); 
+      setComponentData((prevData) =>({  
+     
+        ...prevData,  
+        [e.target.id]:numericValue,  
+      })); 
+    }
+  else  {const { id, value } = e.target;
     setComponentData((prevData) => ({
       ...prevData,
       [id]: value,
     }));
+  }
   };
 
   const {
@@ -34,7 +43,7 @@ function FnolDetails({ setComponentData, componentData }) {
         <div className="col-5">
           <input
             id="policyNumber"
-            type="number"
+            type="text"
             value={policyNumber}
             onChange={handleInputChange}
             className="w-100 form-control"

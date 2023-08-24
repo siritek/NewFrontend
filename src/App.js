@@ -18,6 +18,8 @@ import ClaimGeneration from "./Pages/ClaimGeneration";
 import  {Newexposure}  from "./components/Exposure.components/Newexposure";
 import { LossData } from "./Pages/LossSummary";
 import Dropdownlist from "./Pages/Dropdown-list"
+import AdminPage from "./Pages/AdminPage"
+import Guideware from "./Pages/Guideware";
 
 function App() {
   const [activeSection, setActiveSection] = useState(null);

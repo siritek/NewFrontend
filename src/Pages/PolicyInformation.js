@@ -21,7 +21,7 @@ function Policyinfo(props) {
   componentData.name &&
   componentData.name.length > 0 &&
   componentData.address &&
-  componentData.address.length > 0
+  componentData.address.length > 0 &&
   componentData.policyType &&
   componentData.policyType.length > 0 &&
   componentData.policyStatus  &&

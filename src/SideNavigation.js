@@ -22,10 +22,10 @@ const SideNavigation = (props) => {
             <MenuItem onClick={() => handleItemClick('exposures')}>Exposures</MenuItem>
           </>
         ) : admin ? (
+          <>
           <MenuItem onClick={() => handleItemClick('dropdownlist')}>Dropdown-list</MenuItem>
-        ) : secondfour ? (
-          
-           null
+          <MenuItem onClick={() => handleItemClick('guideware')}>Guideware</MenuItem> 
+          </>
           
         ): 
         <>
