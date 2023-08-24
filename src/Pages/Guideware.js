@@ -41,7 +41,7 @@ const Guideware = () => {
   const [guidewareData, setGuidewareData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const rowsPerPage = 10;
+  const rowsPerPage = 5;
   const totalPages = Math.ceil(guidewareData.length / rowsPerPage);
 
   const handleNextPage = () => {

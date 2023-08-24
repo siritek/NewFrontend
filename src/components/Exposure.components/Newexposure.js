@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
  
 
 var ExposureDataObj
-var exposureDataArray = [];
+//var exposureDataArray = [];
 function Newexposure(props,{lossdataobj}){ 
 
   const [componentData, setComponentData] = useState({});
