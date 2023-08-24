@@ -35,10 +35,10 @@ function App() {
   const handleSectionClick = (section) => {
     setActiveSection(section);
     if (section === "fnol" || section === "pi" || section === "losssummary" || section === "exposures") {
-      setfirstfour(true) ; 
+      setfirstfour(true) ; setsecondfour(false)
     }
    if (section === "synopsis"|| section === "newnote" || section === "dairy" || section === "documents"|| section ===" "||section==="search") {
-      setfirstfour(false); 
+      setfirstfour(false); setsecondfour(true)
     }
       if(section === "dropdownlist") 
     {setAdmin(true)}
@@ -149,19 +149,26 @@ const handleSearchClick =() => {
               // policyNumber={policyNumber} 
               onLinkClick={handleLinkClick} 
             /> 
-          )}
-          {/* new claim synopsis */}
-          {activeSection === "newexposure" && (
-            <Newexposure lossdataobj={LossData()} onBackClick={() => setActiveSection("exposures")}/>)}
-
-          {activeSection === "dropdownlist" &&(
-           <Dropdownlist onAdminClick= {()=>setActiveSection("dropdownlist")} />)}
-            
-          
-        </div>
-      </div>
-    </>
-  );
-}
-
-export default App;
+          )} 
+          {/* new claim synopsis */} 
+          {activeSection === "newexposure" && ( 
+            <Newexposure 
+              lossdataobj={LossData()} 
+              onBackClick={() => setActiveSection("exposures")} 
+            /> 
+          )} 
+          {activeSection === "admin" && ( 
+            <AdminPage onAdminClick={() => setActiveSection("Adminpage")} /> 
+          )} 
+          {activeSection === "dropdownlist" && <Dropdownlist />} 
+          {activeSection === "guideware" && <Guideware />} 
+          {/* {activeSection === "dropdownlist" && ( 
+          <Dropdownlist onDropdownClick={() => setActiveSection("dropdownlist")} /> 
+          )} */} 
+        </div> 
+      </div> 
+    </> 
+  ); 
+} 
+ 
+export default App;  

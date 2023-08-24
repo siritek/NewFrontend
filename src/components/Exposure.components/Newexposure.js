@@ -227,7 +227,7 @@ function Newexposure(props,{lossdataobj}){
 
       <div className="row mb-2">
         <div className="col-3">
-          <label htmlFor="status">Status</label>
+          <label htmlFor="status">Exposure Status</label>
         </div>
         <div className="col-6">
           <Form.Select
@@ -293,22 +293,6 @@ function Newexposure(props,{lossdataobj}){
                 </option>
             ))}
           </Form.Select>
-        </div>
-      </div>
-
-      <div className="row mb-2">
-        <div className="col-3">
-          <label htmlFor="address">Address</label>
-          <i className="text-danger h5">*</i>
-        </div>
-        <div className="col-6">
-          <input
-            id="address"
-            value={address}
-            onChange={handleInputChange}
-            type="text"
-            className="w-100 form-control"
-          />
         </div>
       </div>
     </div>
