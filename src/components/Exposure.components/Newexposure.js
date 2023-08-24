@@ -108,8 +108,8 @@ function Newexposure(props,{lossdataobj}){
   
   const validate =(
     componentData &&
-    componentData.address &&
-    componentData.address.length > 0 &&
+  //  componentData.address &&
+   // componentData.address.length > 0 &&
     componentData.creationDate && 
     componentData.creationDate.length> 0);
   
