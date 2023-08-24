@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 
 function NewDoc(props) {
   const [componentData, setComponentData] = useState({});
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -102,7 +103,7 @@ const handleStatusChange = (e) => {
     docName = '',
     //docType = '',
     //related = '',
-   // status = '',
+  //  status = '',
     uploadedBy = '',
     uDate = '',
     uTime = '',
@@ -140,6 +141,21 @@ const handleStatusChange = (e) => {
     }
     
   };
+  const validate =(
+  componentData &&
+  componentData.docName &&
+  componentData.docName.length > 0 &&
+  status &&
+  status.length > 0 &&
+  componentData.uploadedBy &&
+  componentData.uploadedBy.length >0 );
+ 
+
+      
+  useEffect(() => {
+    setIsFormValid(validate);
+  }, [validate]);
+ 
 
 
   return (
@@ -152,7 +168,7 @@ const handleStatusChange = (e) => {
             Back
           </button>
         &nbsp;
-          <button type="button" className="btn btn-success" onClick={handleSubmit}>
+          <button type="button" disabled ={!isFormValid} className="btn btn-success" onClick={handleSubmit}>
             Submit
           </button>
           </div>
