@@ -254,7 +254,7 @@ function Documents(props) {
   </div>
  
   <div className='col-6 d-flex justify-content-end'>
-  <Dropdown>
+  {/* <Dropdown>
       <Dropdown.Toggle variant="success" id="dropdown-basic">
         New Document 
       </Dropdown.Toggle>
@@ -267,7 +267,8 @@ function Documents(props) {
           Upload Document
         </Dropdown.Item>
       </Dropdown.Menu>
-    </Dropdown>
+    </Dropdown> */}
+    <button type="button"   onClick={handleNewDocClick} className="btn btn-success " >New Document</button>
  <button type="button" className="btn btn-dark " >Delete Documents</button>
 </div>
 
