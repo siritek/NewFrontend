@@ -3,7 +3,7 @@ import "react-pro-sidebar/dist/css/styles.css";
 import React from 'react';
 
 const SideNavigation = (props) => {
-  const { onSectionClick, firstfour, admin, secondfour } = props;
+  const { onSectionClick, firstfour, admin } = props;
 
   const handleItemClick = (section) => {
     onSectionClick(section);

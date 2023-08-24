@@ -8,7 +8,7 @@ function FnolDetails({ setComponentData, componentData }) {
   // pastYear.setFullYear(today.getFullYear() - 1);
 
   const handleInputChange = (e) => {
-    if (e.target.id=="policyNumber"){  
+    if (e.target.id ==="policyNumber"){  
       const numericValue = e.target.value.replace(/[^0-9]/g, ''); 
       setComponentData((prevData) =>({  
      

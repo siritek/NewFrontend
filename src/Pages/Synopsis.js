@@ -27,6 +27,7 @@ function Synopsis({ claimNumber }) {
         } else {
           throw new Error('Failed to fetch data');
         }
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
       } finally {
@@ -34,7 +35,7 @@ function Synopsis({ claimNumber }) {
       }
     };
     fetchData();
-  }, [claimNumber]);
+  }, [claimNumber,componentData]);
 
   const handleCsvDownload = async () => {
     try {
