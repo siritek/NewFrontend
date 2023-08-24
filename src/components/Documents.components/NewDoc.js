@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 
 function NewDoc(props) {
   const [componentData, setComponentData] = useState({});
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -16,6 +17,7 @@ function NewDoc(props) {
       [id]: value,
     }));
   }
+  
   };
 
 const [relatedTo, setRelatedTo] = useState('');
@@ -90,6 +92,7 @@ const handleStatusChange = (e) => {
         // Handle error
         console.error(error);
       });
+      console.log(docData)
   };
 
   const handleDocumentClick = () => {
@@ -100,7 +103,7 @@ const handleStatusChange = (e) => {
     docName = '',
     //docType = '',
     //related = '',
-   // status = '',
+  //  status = '',
     uploadedBy = '',
     uDate = '',
     uTime = '',
@@ -138,6 +141,21 @@ const handleStatusChange = (e) => {
     }
     
   };
+  const validate =(
+  componentData &&
+  componentData.docName &&
+  componentData.docName.length > 0 &&
+  status &&
+  status.length > 0 &&
+  componentData.uploadedBy &&
+  componentData.uploadedBy.length >0 );
+ 
+
+      
+  useEffect(() => {
+    setIsFormValid(validate);
+  }, [validate]);
+ 
 
 
   return (
@@ -145,9 +163,15 @@ const handleStatusChange = (e) => {
       <div>
         <div className="d-flex justify-content-between align-items-center">
           <h2>New Document</h2>
+          <div className="col-16 d-flex justify-content-end">
           <button type="button" className="btn btn-success" onClick={handleDocumentClick}>
             Back
           </button>
+        &nbsp;
+          <button type="button" disabled ={!isFormValid} className="btn btn-success" onClick={handleSubmit}>
+            Submit
+          </button>
+          </div>
         </div>
         <hr />
       </div>
@@ -290,6 +314,7 @@ const handleStatusChange = (e) => {
       </div>
 <br/>
 <br/>
+{/* ------------------------------Upload Documents Below ------------------------------------------------  */}
       <div>
       <div className="d-flex justify-content-between align-items-center">
         <h2>Upload Document</h2>
