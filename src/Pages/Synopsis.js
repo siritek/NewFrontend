@@ -15,11 +15,11 @@ function Synopsis({ claimNumber }) {
           if (Array.isArray(data) && data.length > 0) {
             const claim = data[0];
             // Convert date strings to Date objects
-            claim.dateOfLoss = claim.dateOfLoss ? new Date(claim.dateOfLoss) : null;
-            claim.dateOfReport = claim.dateOfReport ? new Date(claim.dateOfReport) : null;
-            claim.effectiveDate = claim.effectiveDate ? new Date(claim.effectiveDate) : null;
-            claim.expirationDate = claim.expirationDate ? new Date(claim.expirationDate) : null;
-            claim.cancellationDate = claim.cancellationDate ? new Date(claim.cancellationDate) : null;
+            claim.dateOfLoss = new Date(claim.dateOfLoss);
+            claim.dateOfReport = new Date(claim.dateOfReport); 
+            claim.effectiveDate = new Date(claim.effectiveDate);
+            claim.expirationDate = new Date(claim.expirationDate);
+            claim.cancellationDate = new Date(claim.cancellationDate);
             
             // ...
             setComponentData(claim);
@@ -35,7 +35,7 @@ function Synopsis({ claimNumber }) {
       }
     };
     fetchData();
-  }, [claimNumber,componentData]);
+  }, [claimNumber]);
 
   const handleCsvDownload = async () => {
     try {
@@ -55,7 +55,8 @@ function Synopsis({ claimNumber }) {
   const handleButtonClick = async () => {
     if (!handleButtonClickDisabled) {
       try {
-        const response = await fetch('http://localhost:8080/claim/submit', {
+        setHandleButtonClickDisabled(true);
+        const response = await fetch('http://localhost:8080/claim', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -68,12 +69,17 @@ function Synopsis({ claimNumber }) {
         if (response.ok) {
           console.log('Request sent successfully!');
           setHandleButtonClickDisabled(true);
+          
         } else {
           console.error('Failed to send request');
         }
       } catch (error) {
         console.error('Error sending request:', error);
       }
+      // finally {
+      //   // Reset the button disabled state after the request is done (success or error)
+      //   setHandleButtonClickDisabled(false);
+      // }
     }
   };
 

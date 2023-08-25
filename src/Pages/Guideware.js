@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"; 
 import "../App.css"; 
 
-const rowsPerPage = 5;
+const rowsPerPage = 2;
 const TableRow = ({ index, pageIndex, Guideware }) => { 
   const continuousId = index + 1 + (pageIndex - 1) * rowsPerPage; 
  
@@ -82,7 +82,10 @@ const Guideware = () => {
  
   return ( 
     <div> 
-      <h1>Response</h1> 
+      
+      <h2>Confirmation History From Guidewire</h2> 
+      &nbsp;
+      
       {guidewareData.length === 0 ? ( 
         <p>Loading data...</p> 
       ) : ( 

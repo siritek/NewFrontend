@@ -42,7 +42,7 @@ function App() {
    if (section === "synopsis"|| section === "newnote" || section === "dairy" || section === "documents"|| section ===" "||section==="search") {
       setfirstfour(false); 
     }
-      if(section === "dropdownlist") 
+      if(section === "dropdownlist"  || section === "gudieware") 
     {setAdmin(true)}
   };
 

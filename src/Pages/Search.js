@@ -110,7 +110,7 @@ function Search({ setComponentData, componentData }) {
 
   const handleClaimNumberClick = (claimNumber) => {
     console.log('Claim number clicked:', claimNumber);
-    setComponentData({ claimNumber });
+   //setComponentData({ claimNumber });
     setComponentData({ ...componentData, claimNumber }); // Set the claim number in the component data
   };
     // Clear the claim list when componentData changes
