@@ -8,27 +8,17 @@ function FnolDetails({ setComponentData, componentData }) {
   // pastYear.setFullYear(today.getFullYear() - 1);
 
   const handleInputChange = (e) => {
-<<<<<<< HEAD
-    if (e.target.id=="policyNumber"){ 
-=======
-    if (e.target.id ==="policyNumber"){  
->>>>>>> a7eda5a711b8bfc42c69f48bea066093bec58caf
+    if (e.target.id ==="policyNumber"){ 
       const numericValue = e.target.value.replace(/[^0-9]/g, ''); 
       setComponentData((prevData) =>({  
      
         ...prevData,  
         [e.target.id]:numericValue,  
       })); 
-<<<<<<< HEAD
     } 
   else{const {id, value} = e.target;  
    
   setComponentData((prevData) =>({  
-=======
-    }
-  else  {const { id, value } = e.target;
-    setComponentData((prevData) => ({
->>>>>>> a7eda5a711b8bfc42c69f48bea066093bec58caf
       ...prevData,
       [id]: value,
     }));
@@ -54,11 +44,7 @@ function FnolDetails({ setComponentData, componentData }) {
         <div className="col-5">
           <input
             id="policyNumber"
-<<<<<<< HEAD
             type="text" 
-=======
-            type="text"
->>>>>>> a7eda5a711b8bfc42c69f48bea066093bec58caf
             value={policyNumber}
             onChange={handleInputChange}
             className="w-100 form-control"
