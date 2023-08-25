@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { saveAs } from 'file-saver';
 
-
 function Synopsis({ claimNumber }) {
   const [componentData, setComponentData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -31,7 +30,8 @@ function Synopsis({ claimNumber }) {
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
-      } finally {
+      }
+       finally {
         setLoading(false);
       }
     };
@@ -71,16 +71,19 @@ function Synopsis({ claimNumber }) {
           console.log('Request sent successfully!');
           setHandleButtonClickDisabled(true);
           
-        } else {
+         } 
+        else {
           console.error('Failed to send request');
+          //setHandleButtonClickDisabled(false);
         }
       } catch (error) {
         console.error('Error sending request:', error);
+        //setHandleButtonClickDisabled(false);
       }
-      finally {
-      //   // Reset the button disabled state after the request is done (success or error)
-         setHandleButtonClickDisabled(false);
-       }
+      // finally {
+      //  //Reset the button disabled state after the request is done (success or error)
+      //   setHandleButtonClickDisabled(false);
+      // }
     }
   };
 
