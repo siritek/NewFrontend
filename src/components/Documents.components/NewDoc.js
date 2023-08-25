@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 
 function NewDoc(props) {
   const [componentData, setComponentData] = useState({});
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -16,6 +17,7 @@ function NewDoc(props) {
       [id]: value,
     }));
   }
+  
   };
 
 const [relatedTo, setRelatedTo] = useState('');
@@ -90,6 +92,7 @@ const handleStatusChange = (e) => {
         // Handle error
         console.error(error);
       });
+      console.log(docData)
   };
 
   const handleDocumentClick = () => {
@@ -100,20 +103,75 @@ const handleStatusChange = (e) => {
     docName = '',
     //docType = '',
     //related = '',
-   // status = '',
+  //  status = '',
     uploadedBy = '',
     uDate = '',
     uTime = '',
   } = componentData || {};
+
+  const fileInputRef = useRef(null);
+  const [selectedFiles, setSelectedFiles] = useState([]);
+
+  // const handleDocumentClick = () => {
+  //   props.onDocumentClick();
+  // };
+
+  const handleFileSelection = (event) => {
+    const files = Array.from(event.target.files || event.dataTransfer.files);
+    setSelectedFiles(files); // Store the entire file objects
+  };
+
+  const handleUploadButtonClick = () => {
+    for (let i = 0; i < selectedFiles.length; i++) {
+      const file = selectedFiles[i];
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        const fileData = e.target.result;
+
+        // Generate a unique key for each file, e.g., using a timestamp or file name
+        const key = `uploadedFile_${Date.now()}`;
+
+        // Save the file data to local storage using the generated key
+        localStorage.setItem(key, fileData);
+        console.log(`File ${file.name} uploaded and saved to local storage with key ${key}`);
+      };
+
+      reader.readAsDataURL(file);
+    }
+    
+  };
+  const validate =(
+  componentData &&
+  componentData.docName &&
+  componentData.docName.length > 0 &&
+  status &&
+  status.length > 0 &&
+  componentData.uploadedBy &&
+  componentData.uploadedBy.length >0 );
+ 
+
+      
+  useEffect(() => {
+    setIsFormValid(validate);
+  }, [validate]);
+ 
+
 
   return (
     <>
       <div>
         <div className="d-flex justify-content-between align-items-center">
           <h2>New Document</h2>
+          <div className="col-16 d-flex justify-content-end">
           <button type="button" className="btn btn-success" onClick={handleDocumentClick}>
             Back
           </button>
+        &nbsp;
+          <button type="button" disabled ={!isFormValid} className="btn btn-success" onClick={handleSubmit}>
+            Submit
+          </button>
+          </div>
         </div>
         <hr />
       </div>
@@ -254,6 +312,37 @@ const handleStatusChange = (e) => {
           />
         </div>
       </div>
+<br/>
+<br/>
+{/* ------------------------------Upload Documents Below ------------------------------------------------  */}
+      <div>
+      <div className="d-flex justify-content-between align-items-center">
+        <h2>Upload Document</h2>
+        <div>
+          {/* <button type="button" className="btn btn-dark" onClick={handleDocumentClick}>
+            Back
+          </button> */}
+          &nbsp;
+       
+        </div>
+      </div>
+      <hr />
+
+      <label htmlFor="Documents">Documents &nbsp;</label>
+      <input
+        type="file"
+        id="Documents"
+        name="Documents"
+        ref={fileInputRef}
+        multiple
+        onChange={handleFileSelection}
+        onDrop={(e) => e.preventDefault()} // Prevent default behavior of opening the dropped file
+      />
+         <button type="button" className="btn btn-success" onClick={handleUploadButtonClick}>
+            Upload
+          </button>
+      
+    </div>
     </>
   );
 }
