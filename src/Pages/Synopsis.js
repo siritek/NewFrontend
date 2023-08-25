@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { saveAs } from 'file-saver';
 
+
 function Synopsis({ claimNumber }) {
   const [componentData, setComponentData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -76,10 +77,10 @@ function Synopsis({ claimNumber }) {
       } catch (error) {
         console.error('Error sending request:', error);
       }
-      // finally {
+      finally {
       //   // Reset the button disabled state after the request is done (success or error)
-      //   setHandleButtonClickDisabled(false);
-      // }
+         setHandleButtonClickDisabled(false);
+       }
     }
   };
 

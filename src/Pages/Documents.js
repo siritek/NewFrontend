@@ -268,7 +268,7 @@ function Documents(props) {
         </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown> */}
-    <button type="button"   onClick={handleNewDocClick} className="btn btn-success " >New Document</button>
+    <button type="button"   onClick={handleNewDocClick} className="btn btn-success " >New Document</button> &nbsp;
  <button type="button" className="btn btn-dark " >Delete Documents</button>
 </div>
 
