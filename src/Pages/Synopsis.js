@@ -4,44 +4,43 @@ import { saveAs } from 'file-saver';
 function Synopsis({ claimNumber }) {
   const [componentData, setComponentData] = useState(null);
   const [loading, setLoading] = useState(true);
-    const [handleButtonClickDisabled, setHandleButtonClickDisabled] = useState(false);
+  const [handleButtonClickDisabled, setHandleButtonClickDisabled] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(`http://localhost:8080/claim/loss/${claimNumber}`);
-
         if (response.ok) {
           const data = await response.json();
-
           if (Array.isArray(data) && data.length > 0) {
             const claim = data[0];
+            // Convert date strings to Date objects
             claim.dateOfLoss = new Date(claim.dateOfLoss);
-            claim.dateOfReport = new Date(claim.dateOfReport);
-            claim.effectiveDate=new Date(claim.effectiveDate);
-            claim.expirationDate=new Date(claim.expirationDate);
-            claim.cancellationDate=new Date(claim.cancellationDate);
+            claim.dateOfReport = new Date(claim.dateOfReport); 
+            claim.effectiveDate = new Date(claim.effectiveDate);
+            claim.expirationDate = new Date(claim.expirationDate);
+            claim.cancellationDate = new Date(claim.cancellationDate);
+            
+            // ...
             setComponentData(claim);
           }
         } else {
           throw new Error('Failed to fetch data');
         }
-
         setLoading(false);
       } catch (error) {
         console.error('Error fetching data:', error);
+      }
+       finally {
         setLoading(false);
       }
     };
-
     fetchData();
   }, [claimNumber]);
 
- 
   const handleCsvDownload = async () => {
     try {
       const response = await fetch('http://localhost:8080/download-csv');
-
       if (response.ok) {
         const blob = await response.blob();
         saveAs(blob, 'nxt_master.csv');
@@ -57,7 +56,8 @@ function Synopsis({ claimNumber }) {
   const handleButtonClick = async () => {
     if (!handleButtonClickDisabled) {
       try {
-        const response = await fetch('http://localhost:8080/claim/submit', {
+        setHandleButtonClickDisabled(true);
+        const response = await fetch('http://localhost:8080/claim', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -67,18 +67,26 @@ function Synopsis({ claimNumber }) {
             policyNumber: componentData?.policyNumber || '',
           }),
         });
-
         if (response.ok) {
           console.log('Request sent successfully!');
           setHandleButtonClickDisabled(true);
-        } else {
+          
+         } 
+        else {
           console.error('Failed to send request');
+          //setHandleButtonClickDisabled(false);
         }
       } catch (error) {
         console.error('Error sending request:', error);
+        //setHandleButtonClickDisabled(false);
       }
+      // finally {
+      //  //Reset the button disabled state after the request is done (success or error)
+      //   setHandleButtonClickDisabled(false);
+      // }
     }
   };
+
   if (loading) {
     return <div>Loading...</div>;
   }
