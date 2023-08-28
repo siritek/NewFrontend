@@ -357,7 +357,7 @@ function Synopsis({ claimNumber }) {
               className="w-100 form-control"
               maxLength={500}
               id="lossAddress"
-              value={componentData?.address || ''}
+              value={`${componentData?.address || ''}, ${componentData?.city || ''},${componentData?.state || ''}, ${componentData?.countries || ''}, ${componentData?.zipcode || ''}`}
             />
           </div>
         </div>
