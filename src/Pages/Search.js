@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import BootstrapTable from 'react-bootstrap-table-next';
 import Form from 'react-bootstrap/Form';
+import Synopsis from './Synopsis';
 
 function Search({ setComponentData, componentData }) {
   const columns = [
@@ -13,7 +14,7 @@ function Search({ setComponentData, componentData }) {
           onClick={() => handleClaimNumberClick(row.claimNumber)}
           className="claim-link"
         >
-          <a href={`/synopsis?claimNumber=${row.claimNumber}`}>{row.claimNumber}</a>
+          <a >{row.claimNumber}</a>
         </button>
       ),
     },
@@ -48,6 +49,7 @@ function Search({ setComponentData, componentData }) {
   const [claimNumber, setClaimNumber] = useState('');
   const [policyNumber, setPolicyNumber] = useState('');
   const [insuredName, setInsuredName] = useState('');
+  const [synopsisNavigate,setSynopsisNavigate] = useState(0);
   const [claimantName, setClaimantName] = useState('');
 
   const handleClaimNumberChange = (e) => {
@@ -110,8 +112,9 @@ function Search({ setComponentData, componentData }) {
 
   const handleClaimNumberClick = (claimNumber) => {
     console.log('Claim number clicked:', claimNumber);
-   //setComponentData({ claimNumber });
+   setComponentData({ claimNumber });
     setComponentData({ ...componentData, claimNumber }); // Set the claim number in the component data
+    setSynopsisNavigate(1);
   };
     // Clear the claim list when componentData changes
     React.useEffect(() => {
@@ -120,6 +123,9 @@ function Search({ setComponentData, componentData }) {
 
   return (
     <div>
+      {synopsisNavigate == 1 ? 
+      < Synopsis/> 
+      : <> 
       <Form onSubmit={handleSubmit}>
         <div className="mb-3 row">
           <div className="col-4">
@@ -174,6 +180,8 @@ function Search({ setComponentData, componentData }) {
           />
         )}
       </div>
+      </>
+      }
     </div>
   );
 }
