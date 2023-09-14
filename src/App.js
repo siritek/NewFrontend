@@ -162,7 +162,8 @@ function App() {
           {activeSection === "searchnote" && <SearchNote />}
           {activeSection === "diary" && <Diary />}
           {activeSection === "search" && (
-            <Search
+            <Search onLinkClick={handleLinkClick} 
+            setClaimNumber={setClaimNumber}
               setComponentData={updateComponentData}
               componentData={componentData}
             />

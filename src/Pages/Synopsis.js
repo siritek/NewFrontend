@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { saveAs } from 'file-saver';
 
+
 function Synopsis({ claimNumber }) {
   const [componentData, setComponentData] = useState(null);
   const [loading, setLoading] = useState(true);

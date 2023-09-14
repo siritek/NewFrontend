@@ -11,10 +11,10 @@ function Search({ setComponentData, componentData }) {
       sort: true,
       formatter: (cell, row) => (
         <button
-          onClick={() => handleClaimNumberClick(row.claimNumber)}
+          onClick={() => handleLinkClick(row)}
           className="claim-link"
         >
-          <a >{row.claimNumber}</a>
+          {row.claimNumber}
         </button>
       ),
     },
@@ -49,9 +49,20 @@ function Search({ setComponentData, componentData }) {
   const [claimNumber, setClaimNumber] = useState('');
   const [policyNumber, setPolicyNumber] = useState('');
   const [insuredName, setInsuredName] = useState('');
-  const [synopsisNavigate,setSynopsisNavigate] = useState(0);
+ // const [synopsisNavigate,setSynopsisNavigate] = useState(0);
   const [claimantName, setClaimantName] = useState('');
+  const [redirectToSynopsis, setRedirectToSynopsis] = useState(false); 
 
+  // const history = useHistory();
+
+  const handleLinkClick = (row) => { // Updated to accept 'row' parameter
+    setClaimNumber(row.claimNumber); // Set 'claimNumber' to the 'claimNumber' from the clicked row
+    setRedirectToSynopsis(true);
+  };
+ 
+  if (redirectToSynopsis) { 
+    return <Synopsis claimNumber={claimNumber}/>; 
+  }
   const handleClaimNumberChange = (e) => {
     setClaimNumber(e.target.value);
   };
@@ -110,22 +121,22 @@ function Search({ setComponentData, componentData }) {
       });
   };
 
-  const handleClaimNumberClick = (claimNumber) => {
-    console.log('Claim number clicked:', claimNumber);
-   setComponentData({ claimNumber });
-    setComponentData({ ...componentData, claimNumber }); // Set the claim number in the component data
-    setSynopsisNavigate(1);
-  };
-    // Clear the claim list when componentData changes
-    React.useEffect(() => {
-      setClaimList([]);
-    }, [componentData]);
+  // const handleClaimNumberClick = (claimNumber) => {
+  //   console.log('Claim number clicked:', claimNumber);
+  //  setComponentData({ claimNumber });
+  //   setComponentData({ ...componentData, claimNumber }); // Set the claim number in the component data
+  //   setSynopsisNavigate(1);
+  // };
+  //   // Clear the claim list when componentData changes
+  //   React.useEffect(() => {
+  //     setClaimList([]);
+  //   }, [componentData]);
 
   return (
     <div>
-      {synopsisNavigate == 1 ? 
+      {/* {synopsisNavigate == 1 ? 
       < Synopsis/> 
-      : <> 
+      : <>  */}
       <Form onSubmit={handleSubmit}>
         <div className="mb-3 row">
           <div className="col-4">
@@ -166,9 +177,22 @@ function Search({ setComponentData, componentData }) {
             </button>
           </div>
         </div>
-      </Form>     
+      </Form>   
 
-      <div>
+      <BootstrapTable
+        keyField="claimNumber"
+        data={claimList}
+        columns={columns}
+        striped
+        hover
+        condensed
+        bootstrap4
+      />
+    </div>
+  );
+}  
+
+      {/* <div>
         {claimList.length > 0 && (
           <BootstrapTable
           keyField={(row, index) => `row_${index}`} // Generate unique key for each row
@@ -180,10 +204,10 @@ function Search({ setComponentData, componentData }) {
           />
         )}
       </div>
-      </>
-      }
-    </div>
-  );
-}
+      {/* </> */}
+      {/* } */}
+//     </div> */}
+//   );
+// }
 
 export default Search;
