@@ -60,12 +60,18 @@ function Exposure(props){
         body:JSON.stringify(finalDataObj) 
   
     })
-    .then(() => {  
-      console.log("New claim added");  
-     
-      generateClaimNumber(); // Call the generateClaimNumber function  
-      
-    })  
+    //.then(() => {  
+     // console.log("New claim added");  
+      .then((response) => response.json()) 
+    .then((data) => { 
+      console.log("Claim Number:", data.claimNumber); 
+      props.setClaimNumber({ 
+        claimNumber: data.claimNumber,
+      });
+      handleBlankClick(); 
+     // generateClaimNumber(); // Call the generateClaimNumber function  
+       })
+
     .catch((error) => {  
       console.error("Error adding new claim:", error);  
     });  
@@ -93,29 +99,29 @@ function Exposure(props){
  
 
 
-  const generateClaimNumber = () => { 
-    const fnolData = FnolData(); // Call FnolData() to retrieve the data 
-    const policyNumber = fnolData.policyNumber; 
+  // const generateClaimNumber = () => { 
+  //   const fnolData = FnolData(); // Call FnolData() to retrieve the data 
+  //   const policyNumber = fnolData.policyNumber; 
    
-    console.log("Policy Number:", policyNumber); 
-    fetch("http://localhost:8080/claim/generateClaimNumber", { 
-      method: "POST", 
-      headers: { "Content-Type": "application/x-www-form-urlencoded" }, 
-      body: `policyNumber=${policyNumber}`, 
-    }) 
-      .then((response) => response.json()) 
-      .then((data) => { 
-        console.log("Claim Number:", data.claimNumber); 
-        props.setClaimNumber({ 
-          claimNumber: data.claimNumber, 
-          policyNumber: policyNumber, 
-        }); 
-        handleBlankClick(); 
-      }) 
-      .catch((error) => { 
-        console.error("Error generating claim number:", error); 
-      }); 
-  }; 
+  //   console.log("Policy Number:", policyNumber); 
+  //   fetch("http://localhost:8080/claim/generateClaimNumber", { 
+  //     method: "POST", 
+  //     headers: { "Content-Type": "application/x-www-form-urlencoded" }, 
+  //     body: `policyNumber=${policyNumber}`, 
+  //   }) 
+  //     .then((response) => response.json()) 
+  //     .then((data) => { 
+  //       console.log("Claim Number:", data.claimNumber); 
+  //       props.setClaimNumber({ 
+  //         claimNumber: data.claimNumber, 
+  //         policyNumber: policyNumber, 
+  //       }); 
+  //       handleBlankClick(); 
+  //     }) 
+  //     .catch((error) => { 
+  //       console.error("Error generating claim number:", error); 
+  //     }); 
+  // }; 
 
 
 
@@ -224,9 +230,7 @@ function Exposure(props){
   //   ]);
   // }
  
-  const [tableData, setTableData] = useState([ 
-
-  ]); 
+  const [tableData, setTableData] = useState([]); 
  
   //Add new row on button click 
   const handleAddRow = () => {   
