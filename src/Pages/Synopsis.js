@@ -39,12 +39,12 @@ function Synopsis({ claimNumber }) {
     fetchData();
   }, [claimNumber]);
 
-  const handleCsvDownload = async () => {
+    const handleCsvDownload = async () => {
     try {
-      const response = await fetch('http://localhost:8080/download-csv');
+      const response = await fetch(`http://localhost:8080/download-csv?claimNumber=${claimNumber}`);
       if (response.ok) {
         const blob = await response.blob();
-        saveAs(blob, 'nxt_master.csv');
+        saveAs(blob, 'claim_data.csv');
         alert('CSV downloaded successfully!');
       } else {
         console.error('Failed to download CSV');
