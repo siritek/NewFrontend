@@ -21,7 +21,7 @@ import Dropdownlist from "./Pages/Dropdown-list";
 import AdminPage from "./Pages/AdminPage";
 import Guideware from "./Pages/Guideware";
 
-function App() {
+function App(props) {
   const [activeSection, setActiveSection] = useState(null);
   const [firstfour, setfirstfour] = useState(false);
   const [secondfour, setsecondfour] = useState(false);
@@ -102,6 +102,7 @@ function App() {
             onSearchClick={handleSearchClick}
             onBlankClick={handleBlankClick}
             onAdminClick={handleAdminClick}
+            userRole={props.userRole}
           />
         </Col>
       </Row>

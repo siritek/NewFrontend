@@ -18,7 +18,7 @@ const handleAdminClick = ()=>
   props.onAdminClick();
 }
 
-  
+  const userRole = props.userRole; //Get userRole from props
 
   // const handleSearch = (event) => {
   //   event.preventDefault();
@@ -73,6 +73,7 @@ const handleAdminClick = ()=>
 
             </ul> </div>
           <div className="col-16 d-flex justify-content-end">
+            {userRole == 'admin' && (
           <button
               type="buton"
               onClick={()=>{handleBlankClick(); handleAdminClick()}}
@@ -80,6 +81,7 @@ const handleAdminClick = ()=>
             >
               Admin
             </button>
+          )}
             &nbsp;   &nbsp;   &nbsp;
 
           <NavbarBrand>  <a className="btn btn-dark" href="">
