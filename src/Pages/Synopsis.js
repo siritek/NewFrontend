@@ -39,13 +39,24 @@ function Synopsis({ claimNumber }) {
     fetchData();
   }, [claimNumber]);
 
-  const handleCsvDownload = async () => {
+    const handleCsvDownload = async () => {
     try {
-      const response = await fetch('http://localhost:8080/download-csv');
+      const response = await fetch(`http://localhost:8080/download-csv?claimNumber=${claimNumber}`);
       if (response.ok) {
         const blob = await response.blob();
-        saveAs(blob, 'nxt_master.csv');
-        alert('CSV downloaded successfully!');
+        const currentDate = new Date();
+      const year = currentDate.getFullYear();
+      const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+      const day = String(currentDate.getDate()).padStart(2, '0');
+      const hours = String(currentDate.getHours()).padStart(2, '0');
+      const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+      const seconds = String(currentDate.getSeconds()).padStart(2, '0');
+
+      const timestamp = `NXT-${year}-${month}-${day} ${hours}-${minutes}-${seconds}`;
+      const filename = `${timestamp}.csv`;
+
+      saveAs(blob, filename);
+      alert('CSV downloaded successfully!');
       } else {
         console.error('Failed to download CSV');
       }
